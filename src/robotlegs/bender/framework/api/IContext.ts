@@ -5,17 +5,14 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import {
-    IInjector,
-    IExtension,
-    IConfig,
-    IMatcher,
-    ILogger,
-    ILogTarget,
-    IEventDispatcher
-} from "../../../";
+import { IConfig } from "./IConfig";
+import { IExtension } from "./IExtension";
+import { IInjector } from "./IInjector";
+import { ILogger } from "./ILogger";
+import { ILogTarget } from "./ILogTarget";
+import { IMatcher } from "./IMatcher";
 
-// import IEventDispatcher = flash.events.IEventDispatcher;
+import { IEventDispatcher } from "../../events/IEventDispatcher";
 
 /*[Event(name="destroy", type="robotlegs.bender.framework.api.LifecycleEvent")]*/
 /*[Event(name="detain", type="robotlegs.bender.framework.api.PinEvent")]*/
@@ -47,12 +44,6 @@ export interface IContext extends IEventDispatcher {
      * The current log level
      */
     logLevel: number;
-
-    /**
-     * Sets the current log level
-     * @param value The log level. Use a constant from LogLevel
-     */
-    /*function set logLevel(value: uint): void;*/
 
     /**
      * The current lifecycle state
