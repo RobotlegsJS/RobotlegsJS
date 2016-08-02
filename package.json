@@ -18,12 +18,14 @@
   "author": "Goodgame Studios",
   "license": "MIT",
   "dependencies": {
-    "inversify": "^2.0.0-rc.5",
-    "reflect-metadata": "^0.1.3"
+    "inversify": "^2.0.0-rc.5"
   },
   "devDependencies": {
     "inversify-dts": "^1.5.0",
     "tslint": "^3.14.0",
     "typescript": "^2.1.0-dev.20160802"
+  },
+  "peerDependencies": {
+    "reflect-metadata": "^0.1.3"
   }
 }
