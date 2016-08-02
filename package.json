@@ -18,7 +18,9 @@
   "author": "Goodgame Studios",
   "license": "MIT",
   "dependencies": {
-    "inversify": "^2.0.0-rc.5"
+    "es6-shim": "^0.35.1",
+    "inversify": "^2.0.0-rc.5",
+    "reflect-metadata": "^0.1.3"
   },
   "devDependencies": {
     "inversify-dts": "^1.5.0",
