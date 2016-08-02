@@ -64,7 +64,13 @@
       "property-declaration": "nospace",
       "variable-declaration": "nospace"
     }],
-    "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore"],
+    "variable-name": [
+      true,
+      "ban-keywords",
+      "check-format",
+      "allow-leading-underscore",
+      "allow-pascal-case"
+    ],
     "whitespace": [
       true,
       "check-branch",
