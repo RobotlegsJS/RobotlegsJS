@@ -5,8 +5,6 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-// import IEventDispatcher = flash.events.IEventDispatcher;
-
 /*[Event(name="destroy", type="robotlegs.bender.framework.api.LifecycleEvent")]*/
 /*[Event(name="error", type="robotlegs.bender.framework.api.LifecycleEvent")]*/
 /*[Event(name="initialize", type="robotlegs.bender.framework.api.LifecycleEvent")]*/
@@ -21,6 +19,7 @@
 /*[Event(name="resume", type="robotlegs.bender.framework.api.LifecycleEvent")]*/
 /*[Event(name="stateChange", type="robotlegs.bender.framework.api.LifecycleEvent")]*/
 /*[Event(name="suspend", type="robotlegs.bender.framework.api.LifecycleEvent")]*/
+
 /**
  * The Robotlegs object lifecycle contract
  */
