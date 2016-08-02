@@ -48,13 +48,32 @@ export class LifecycleEvent {
 
     private _error: Error;
     private _type: string;
-    public target: any;
+    private _target: any;
 
     /**
      * Associated lifecycle error
      */
-    public get error(): Error { return this._error; }
-    public get type(): string { return this._type; }
+    public get error(): Error {
+        return this._error;
+    }
+
+    /**
+     * The type of event
+     */
+    public get type(): string {
+        return this._type;
+    }
+
+    /**
+     * The target of event
+     */
+    public get target(): any {
+        return this._target;
+    }
+
+    public set target(value: any) {
+        this._target = value;
+    }
 
     /*============================================================================*/
     /* Constructor                                                                */
@@ -66,7 +85,6 @@ export class LifecycleEvent {
      * @param error Optional error
      */
     constructor(type: string, error?: Error) {
-        // super(type);
         this._type = type;
         this._error = error;
     }

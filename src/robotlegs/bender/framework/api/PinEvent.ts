@@ -24,10 +24,10 @@ export class PinEvent {
 
     private _type: string;
     private _instance: Object;
-    public target: any;
+    private _target: any;
 
     /**
-     * The instance being detained or released
+     * The type of event
      */
     public get type(): string {
         return this._type;
@@ -38,6 +38,17 @@ export class PinEvent {
      */
     public get instance(): Object {
         return this._instance;
+    }
+
+    /**
+     * The target of event
+     */
+    public get target(): any {
+        return this._target;
+    }
+
+    public set target(value: any) {
+        this._target = value;
     }
 
     /*============================================================================*/
