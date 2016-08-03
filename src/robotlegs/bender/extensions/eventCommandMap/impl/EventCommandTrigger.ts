@@ -97,16 +97,14 @@ export class EventCommandTrigger implements ICommandTrigger {
     /*============================================================================*/
 
     private eventHandler(event: Event): void {
-        var eventConstructor: Object = <Object>event["constructor"] ;
-        var payloadEventClass: Object;
-        //not pretty, but optimized to avoid duplicate checks and shortest paths
-        if (eventConstructor == this._eventClass || (!this._eventClass)) {
+        let eventConstructor: Object = <Object>event["constructor"] ;
+        let payloadEventClass: Object;
+        // not pretty, but optimized to avoid duplicate checks and shortest paths
+        if (eventConstructor === this._eventClass || (!this._eventClass)) {
             payloadEventClass = eventConstructor;
-        }
-        else if (this._eventClass == Event) {
+        } else if (this._eventClass === Event) {
             payloadEventClass = this._eventClass;
-        }
-        else {
+        } else {
             return;
         }
         this._executor.executeCommands(this._mappings.getList(), new CommandPayload([event], [payloadEventClass]));

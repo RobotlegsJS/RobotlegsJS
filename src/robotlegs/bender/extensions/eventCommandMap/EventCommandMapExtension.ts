@@ -8,9 +8,6 @@
 import { IContext } from "../../framework/api/IContext";
 import { IExtension } from "../../framework/api/IExtension";
 
-import { ICommandMapper } from "../commandCenter/dsl/ICommandMapper";
-import { ICommandUnmapper } from "../commandCenter/dsl/ICommandUnmapper";
-
 import { IEventCommandMap } from "./api/IEventCommandMap";
 import { EventCommandMap } from "./impl/EventCommandMap";
 

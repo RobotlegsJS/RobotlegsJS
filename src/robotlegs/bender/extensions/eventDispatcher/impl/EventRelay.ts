@@ -76,7 +76,9 @@ export class EventRelay {
      */
     public addType(eventType: string): void {
         this._types.push(eventType);
-        this._active && this.addListener(eventType);
+        if (this._active) {
+            this.addListener(eventType);
+        }
     }
 
     /**
@@ -84,7 +86,7 @@ export class EventRelay {
      * @param eventType
      */
     public removeType(eventType: string): void {
-        var index: number = this._types.indexOf(eventType);
+        let index: number = this._types.indexOf(eventType);
         if (index > -1) {
             this._types.splice(index, 1);
             this.removeListener(eventType);
@@ -105,14 +107,14 @@ export class EventRelay {
     }
 
     private addListeners(): void {
-        for (let i in this._types) {
+        for (let i: number = 0; i < this._types.length; i++) {
             let type = this._types[i];
             this.addListener(type);
         }
     }
 
     private removeListeners(): void {
-        for (let i in this._types) {
+        for (let i: number = 0; i < this._types.length; i++) {
             let type = this._types[i];
             this.removeListener(type);
         }

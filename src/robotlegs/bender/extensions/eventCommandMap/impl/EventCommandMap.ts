@@ -81,8 +81,9 @@ export class EventCommandMap implements IEventCommandMap {
      * @inheritDoc
      */
     public addMappingProcessor(handler: Function): IEventCommandMap {
-        if (this._mappingProcessors.indexOf(handler) == -1)
+        if (this._mappingProcessors.indexOf(handler) === -1) {
             this._mappingProcessors.push(handler);
+        }
         return this;
     }
 

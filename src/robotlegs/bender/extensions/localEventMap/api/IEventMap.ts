@@ -25,7 +25,15 @@ export interface IEventMap {
      * @param priority
      * @param useWeakReference
      */
-    mapListener(dispatcher: IEventDispatcher, type: string, listener: Function, eventClass?: Object, useCapture?: Boolean, priority?: number, useWeakReference?: Boolean): void;
+    mapListener(
+        dispatcher: IEventDispatcher,
+        type: string,
+        listener: Function,
+        eventClass?: Object,
+        useCapture?: Boolean,
+        priority?: number,
+        useWeakReference?: Boolean
+    ): void;
 
     /**
      * The same as calling <code>removeEventListener</code> directly on the <code>IEventDispatcher</code>,

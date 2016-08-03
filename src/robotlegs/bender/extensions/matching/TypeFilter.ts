@@ -60,8 +60,9 @@ export class TypeFilter implements ITypeFilter {
      * @private
      */
     constructor(allOf: FunctionConstructor[], anyOf: FunctionConstructor[], noneOf: FunctionConstructor[]) {
-        if (!allOf || !anyOf || !noneOf)
-            throw Error('TypeFilter parameters can not be null');
+        if (!allOf || !anyOf || !noneOf) {
+            throw Error("TypeFilter parameters can not be null");
+        }
         this._allOfTypes = allOf;
         this._anyOfTypes = anyOf;
         this._noneOfTypes = noneOf;
@@ -75,7 +76,7 @@ export class TypeFilter implements ITypeFilter {
      * @inheritDoc
      */
     public matches(item: any): boolean {
-        var i: number = this._allOfTypes.length;
+        let i: number = this._allOfTypes.length;
         while (i--) {
             if (!(item instanceof this._allOfTypes[i])) {
                 return false;
@@ -89,7 +90,7 @@ export class TypeFilter implements ITypeFilter {
             }
         }
 
-        if (this._anyOfTypes.length == 0 && (this._allOfTypes.length > 0 || this._noneOfTypes.length > 0)) {
+        if (this._anyOfTypes.length === 0 && (this._allOfTypes.length > 0 || this._noneOfTypes.length > 0)) {
             return true;
         }
 
@@ -108,11 +109,11 @@ export class TypeFilter implements ITypeFilter {
     /*============================================================================*/
 
     protected alphabetiseCaseInsensitiveFCQNs(classVector: FunctionConstructor[]): string[] {
-        var fqcn: string;
-        var allFCQNs: string[] = [];
+        let fqcn: string;
+        let allFCQNs: string[] = [];
 
-        var iLength: number = classVector.length;
-        for (var i: number = 0; i < iLength; i++) {
+        let iLength: number = classVector.length;
+        for (let i: number = 0; i < iLength; i++) {
             // fqcn = getQualifiedClassName(classVector[i]);
             fqcn = classVector[i].toString().match(/function\ ([^\(]+)/)[1]
             allFCQNs[allFCQNs.length] = fqcn;
@@ -123,9 +124,9 @@ export class TypeFilter implements ITypeFilter {
     }
 
     protected createDescriptor(): string {
-        var allOf_FCQNs: string[] = this.alphabetiseCaseInsensitiveFCQNs(this.allOfTypes);
-        var anyOf_FCQNs: string[] = this.alphabetiseCaseInsensitiveFCQNs(this.anyOfTypes);
-        var noneOf_FQCNs: string[] = this.alphabetiseCaseInsensitiveFCQNs(this.noneOfTypes);
+        let allOf_FCQNs: string[] = this.alphabetiseCaseInsensitiveFCQNs(this.allOfTypes);
+        let anyOf_FCQNs: string[] = this.alphabetiseCaseInsensitiveFCQNs(this.anyOfTypes);
+        let noneOf_FQCNs: string[] = this.alphabetiseCaseInsensitiveFCQNs(this.noneOfTypes);
         return "all of: " + allOf_FCQNs.toString()
             + ", any of: " + anyOf_FCQNs.toString()
             + ", none of: " + noneOf_FQCNs.toString();

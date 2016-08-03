@@ -24,34 +24,35 @@ export class LifecycleEventRelay {
         LifecycleEvent.PRE_INITIALIZE, LifecycleEvent.INITIALIZE, LifecycleEvent.POST_INITIALIZE,
         LifecycleEvent.PRE_SUSPEND, LifecycleEvent.SUSPEND, LifecycleEvent.POST_SUSPEND,
         LifecycleEvent.PRE_RESUME, LifecycleEvent.RESUME, LifecycleEvent.POST_RESUME,
-        LifecycleEvent.PRE_DESTROY, LifecycleEvent.DESTROY, LifecycleEvent.POST_DESTROY];
+        LifecycleEvent.PRE_DESTROY, LifecycleEvent.DESTROY, LifecycleEvent.POST_DESTROY
+    ];
 
-        /*============================================================================*/
-        /* Private Properties                                                         */
-        /*============================================================================*/
+    /*============================================================================*/
+    /* Private Properties                                                         */
+    /*============================================================================*/
 
-        private _relay: EventRelay;
+    private _relay: EventRelay;
 
-        /*============================================================================*/
-        /* Constructor                                                                */
-        /*============================================================================*/
+    /*============================================================================*/
+    /* Constructor                                                                */
+    /*============================================================================*/
 
-        /**
-         * @private
-         */
-        constructor(source: IEventDispatcher, destination: IEventDispatcher) {
-            this._relay = new EventRelay(source, destination, LifecycleEventRelay.TYPES).start();
-        }
+    /**
+     * @private
+     */
+    constructor(source: IEventDispatcher, destination: IEventDispatcher) {
+        this._relay = new EventRelay(source, destination, LifecycleEventRelay.TYPES).start();
+    }
 
-        /*============================================================================*/
-        /* Public Functions                                                           */
-        /*============================================================================*/
+    /*============================================================================*/
+    /* Public Functions                                                           */
+    /*============================================================================*/
 
-        /**
-         * @private
-         */
-        public destroy(): void {
-            this._relay.stop();
-            this._relay = null;
-        }
+    /**
+     * @private
+     */
+    public destroy(): void {
+        this._relay.stop();
+        this._relay = null;
+    }
 }

@@ -96,8 +96,9 @@ export class DirectCommandMap implements IDirectCommandMap {
      * @inheritDoc
      */
     public addMappingProcessor(handler: Function): IDirectCommandMap {
-        if (this._mappingProcessors.indexOf(handler) === -1)
+        if (this._mappingProcessors.indexOf(handler) === -1) {
             this._mappingProcessors.push(handler);
+        }
         return this;
     }
 }

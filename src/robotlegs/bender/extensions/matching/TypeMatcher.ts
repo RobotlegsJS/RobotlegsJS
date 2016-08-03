@@ -94,7 +94,9 @@ export class TypeMatcher implements ITypeMatcher, ITypeMatcherFactory {
     }
 
     protected pushAddedTypesTo(types: any[], targetSet: FunctionConstructor[]): void {
-        this._typeFilter && this.throwSealedMatcherError();
+        if (this._typeFilter) {
+            this.throwSealedMatcherError();
+        }
 
         this.pushValuesToClassVector(types, targetSet);
     }
@@ -104,13 +106,13 @@ export class TypeMatcher implements ITypeMatcher, ITypeMatcherFactory {
     }
 
     protected pushValuesToClassVector(values: any[], vector: FunctionConstructor[]): void {
-        if (values.length == 1 && (typeof(values[0]) === "array")) {
-            for (let i in values[0]) {
+        if (values.length === 1 && (typeof(values[0]) === "array")) {
+            for (let i: number; i < values[0].length; i++) {
                 let type: FunctionConstructor = values[0][i];
                 vector.push(type);
             }
         } else {
-            for (let i in values) {
+            for (let i: number = 0; i < values.length; i++) {
                 let type = values[i];
                 vector.push(type);
             }
