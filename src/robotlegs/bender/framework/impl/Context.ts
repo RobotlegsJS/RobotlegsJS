@@ -280,7 +280,7 @@ export class Context extends EventDispatcher implements IContext {
     /**
      * @inheritDoc
      */
-    public install(...extensions: IExtension[]): IContext {
+    public install(...extensions: any[]): IContext {
         for (let i: number = 0; i < extensions.length; i++) {
             let extension: IExtension = extensions[i];
             this._extensionInstaller.install(extension);
@@ -291,7 +291,7 @@ export class Context extends EventDispatcher implements IContext {
     /**
      * @inheritDoc
      */
-    public configure(...configs: IConfig[]): IContext {
+    public configure(...configs: any[]): IContext {
         for (let i: number = 0; i < configs.length; i++) {
             let config: IConfig = configs[i];
             this._configManager.addConfig(config);
