@@ -91,3 +91,9 @@ export { IViewManager                 } from "./robotlegs/bender/extensions/view
 export { IMediator                    } from "./robotlegs/bender/extensions/mediatorMap/api/IMediator";
 export { IMediatorMap                 } from "./robotlegs/bender/extensions/mediatorMap/api/IMediatorMap";
 export { MediatorMapExtension         } from "./robotlegs/bender/extensions/mediatorMap/MediatorMapExtension";
+
+
+/**
+ * Bundles
+ */
+export { MVCSBundle                   } from "./robotlegs/bender/bundles/mvcs/MVCSBundle";
