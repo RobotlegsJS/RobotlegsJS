@@ -60,6 +60,6 @@ export class MVCSBundle implements IBundle {
             StageCrawlerExtension,
             StageSyncExtension);
 
-            context.configure(ContextViewListenerConfig);
+        context.configure(ContextViewListenerConfig);
     }
 }
