@@ -1,4 +1,5 @@
 .idea
 build
+lib
 node_modules
 typings
