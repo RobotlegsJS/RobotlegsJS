@@ -1,0 +1,16 @@
+src
+test
+typings
+coverage
+docs
+wiki
+bower.json
+karma.conf.js
+tsconfig.json
+typings.json
+CONTRIBUTING.md
+tslint.json
+.travis.yml
+.gitignore
+.vscode
+.publishrc
