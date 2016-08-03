@@ -18,7 +18,7 @@ import { IMediator } from "../../extensions/mediatorMap/api/IMediator";
  * <p>Override initialize and destroy to hook into the mediator lifecycle.</p>
  */
 @injectable()
-export class Mediator implements IMediator {
+export abstract class Mediator implements IMediator {
 
     /*============================================================================*/
     /* Public Properties                                                          */
@@ -40,14 +40,12 @@ export class Mediator implements IMediator {
     /**
      * @inheritDoc
      */
-    public initialize(): void {
-    }
+    public abstract initialize(): void;
 
     /**
      * @inheritDoc
      */
-    public destroy(): void {
-    }
+    public abstract destroy(): void;
 
     // @injectProperty(IEventMap)
     // protected eventMap: IEventMap;
@@ -57,7 +55,7 @@ export class Mediator implements IMediator {
 
     constructor (
         @inject(IEventMap) protected eventMap: IEventMap,
-        @inject(IEventDispatcher) protected eventDispatcher: IEventDispatcher,
+        @inject(IEventDispatcher) protected eventDispatcher: IEventDispatcher
     ) {
         this.eventMap = eventMap;
         this.eventDispatcher = eventDispatcher;
@@ -92,8 +90,8 @@ export class Mediator implements IMediator {
     }
 
     protected dispatch(event: Event): void {
-        if (this.eventDispatcher.hasEventListener(event.type))
+        if (this.eventDispatcher.hasEventListener(event.type)) {
             this.eventDispatcher.dispatchEvent(event);
+        }
     }
-
 }

@@ -13,7 +13,7 @@ import { ICommand } from "../../extensions/commandCenter/api/ICommand";
  * <p>Please note: you do not have to extend this class.
  * Any class with an execute method can be used.</p>
  */
-export class Command implements ICommand {
+export abstract class Command implements ICommand {
 
     /*============================================================================*/
     /* Public Functions                                                           */
@@ -22,6 +22,5 @@ export class Command implements ICommand {
     /**
      * @inheritDoc
      */
-    public execute(): void {
-    }
+    public abstract execute(): void;
 }

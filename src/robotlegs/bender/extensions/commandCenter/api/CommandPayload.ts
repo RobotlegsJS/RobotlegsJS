@@ -69,14 +69,12 @@ export class CommandPayload {
     public addPayload(payloadValue: Object, payloadClass: Object): CommandPayload {
         if (this._values) {
             this._values.push(payloadValue);
-        }
-        else {
+        } else {
             this._values = [payloadValue];
         }
         if (this._classes) {
             this._classes.push(payloadClass);
-        }
-        else {
+        } else {
             this._classes = [payloadClass];
         }
 

@@ -5,7 +5,7 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { ICommandTrigger } from "../api/ICommandTrigger"
+import { ICommandTrigger } from "../api/ICommandTrigger";
 
 /**
  * @private

@@ -67,11 +67,16 @@ export class CommandExecutor implements ICommandExecutor {
         let injectionEnabled: boolean = hasPayload && mapping.payloadInjectionEnabled;
         let command: any = null;
 
-        injectionEnabled && this.mapPayload(payload);
+        if (injectionEnabled) {
+            this.mapPayload(payload);
+        }
 
         if (mapping.guards.length === 0 || guardsApprove(mapping.guards, this._injector)) {
             let commandClass: Object = mapping.commandClass;
-            mapping.fireOnce && this._removeMapping && this._removeMapping(mapping);
+
+            if (mapping.fireOnce && this._removeMapping) {
+                this._removeMapping(mapping);
+            }
 
             // command = this._injector.getOrCreateNewInstance(commandClass);
             command = this._injector.instantiateUnmapped<any>(<any>commandClass);
@@ -85,14 +90,18 @@ export class CommandExecutor implements ICommandExecutor {
             }
         }
 
-        injectionEnabled && this.unmapPayload(payload);
+        if (injectionEnabled) {
+            this.unmapPayload(payload);
+        }
 
         if (command && mapping.executeMethod) {
             let executeMethod: Function = command[mapping.executeMethod].bind(command);
             let result: any = (hasPayload && executeMethod.length > 0)
                 ? executeMethod.apply(command, payload.values)
                 : executeMethod();
-            this._handleResult && this._handleResult(result, command, mapping);
+            if (this._handleResult) {
+                this._handleResult(result, command, mapping);
+            }
         }
     }
 
