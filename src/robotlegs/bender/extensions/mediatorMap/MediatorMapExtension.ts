@@ -8,7 +8,9 @@
 import { IMediatorMap } from "./api/IMediatorMap";
 import { MediatorMap } from "./impl/MediatorMap";
 
-import { IContext, IExtension, IInjector } from "../../../";
+import { IContext } from "../../framework/api/IContext";
+import { IExtension } from "../../framework/api/IExtension";
+import { IInjector } from "../../framework/api/IInjector";
 
 import { IViewManager } from "../viewManager";
 

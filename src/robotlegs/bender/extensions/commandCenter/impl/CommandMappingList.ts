@@ -11,7 +11,7 @@ import { ICommandTrigger } from "../api/ICommandTrigger";
 
 import { ILogger } from "../../../framework/api/ILogger";
 
-type CommandMappingCompareFunction = (a: ICommandMapping, b: ICommandMapping) => number;
+export type CommandMappingCompareFunction = (a: ICommandMapping, b: ICommandMapping) => number;
 
 /**
  * @private

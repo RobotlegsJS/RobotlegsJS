@@ -6,7 +6,7 @@
 // ------------------------------------------------------------------------------
 
 import { injectable, inject } from "inversify";
-import { injectProperty } from "../../../utils";
+// import { injectProperty } from "../../../utils";
 
 import { IEventMap } from "../../extensions/localEventMap/api/IEventMap";
 import { IEventDispatcher } from "../../events/IEventDispatcher";
@@ -49,11 +49,19 @@ export class Mediator implements IMediator {
     public destroy(): void {
     }
 
-    @injectProperty(IEventMap)
-    public eventMap: IEventMap;
+    // @injectProperty(IEventMap)
+    // protected eventMap: IEventMap;
+    //
+    // @injectProperty(IEventDispatcher)
+    // protected eventDispatcher: IEventDispatcher;
 
-    @injectProperty(IEventDispatcher)
-    public eventDispatcher: IEventDispatcher;
+    constructor (
+        @inject(IEventMap) protected eventMap: IEventMap,
+        @inject(IEventDispatcher) protected eventDispatcher: IEventDispatcher,
+    ) {
+        this.eventMap = eventMap;
+        this.eventDispatcher = eventDispatcher;
+    }
 
     /**
      * Runs after the mediator has been destroyed.

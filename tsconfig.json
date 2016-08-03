@@ -1,7 +1,7 @@
 {
   "baseUrl": "src",
-  "outDir": ".tsc",
   "compilerOptions": {
+    "outDir": "lib",
     "target": "es5",
     "module": "commonjs",
     "declaration": false,
@@ -12,7 +12,9 @@
   },
   "exclude": [
     "node_modules",
-    "bower_components"
+    "bower_components",
+    "test",
+    "not-ported-extensions"
   ],
   "rootDirs": [
       "src/"

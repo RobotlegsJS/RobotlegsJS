@@ -2,5 +2,10 @@
   "globalDependencies": {
     "bluebird": "registry:dt/bluebird#2.0.0+20160701023356",
     "es6-shim": "registry:dt/es6-shim#0.31.2+20160602141504"
+  },
+  "globalDevDependencies": {
+    "chai": "registry:dt/chai#3.4.0+20160317120654",
+    "eventemitter3": "registry:dt/eventemitter3#1.1.1+20151208234524",
+    "mocha": "registry:dt/mocha#2.2.5+20160317120654"
   }
 }

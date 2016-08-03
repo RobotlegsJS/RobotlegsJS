@@ -10,12 +10,10 @@ import {
     StageObserver
 } from "./";
 
-import {
-    IContext,
-    IExtension,
-    IInjector,
-    ILogger
-} from "../../../";
+import { IContext } from "../../framework/api/IContext";
+import { IExtension } from "../../framework/api/IExtension";
+import { IInjector } from "../../framework/api/IInjector";
+import { ILogger } from "../../framework/api/ILogger";
 
 let installCount: number = 0;
 

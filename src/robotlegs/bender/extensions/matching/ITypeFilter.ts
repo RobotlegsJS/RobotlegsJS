@@ -5,7 +5,7 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { IMatcher } from "../../../";
+import { IMatcher } from "../../framework/api/IMatcher";
 
 
 /**
