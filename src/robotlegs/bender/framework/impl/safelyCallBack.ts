@@ -30,9 +30,9 @@
  * @param message An optional message
  */
 export function safelyCallBack(callback: Function, error?: Object, message?: Object): void {
-    if (callback.length == 0) {
+    if (callback.length === 0) {
         callback();
-    } else if (callback.length == 1) {
+    } else if (callback.length === 1) {
         callback(error);
     } else {
         callback(error, message);

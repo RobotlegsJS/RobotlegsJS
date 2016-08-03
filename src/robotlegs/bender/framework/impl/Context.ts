@@ -5,33 +5,26 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import {
-    injectable
-} from "inversify";
+import { injectable } from "inversify";
 
-import {
-    IExtension,
-    IConfig,
-    IContext,
-    IInjector,
-    ILogTarget,
-    ILogger,
-    IMatcher,
-    LifecycleEvent,
-    LogManager,
-    Pin,
-    Lifecycle,
-    ConfigManager,
-    ExtensionInstaller,
-} from "../../../";
+import { IConfig } from "../api/IConfig";
+import { IContext } from "../api/IContext";
+import { IExtension } from "../api/IExtension";
+import { IInjector } from "../api/IInjector";
+import { ILogger } from "../api/ILogger";
+import { ILogTarget } from "../api/ILogTarget";
+import { IMatcher } from "../api/IMatcher";
+import { LifecycleEvent } from "../api/LifecycleEvent";
 
-import { EventDispatcher } from "../../events/EventDispatcher";
-
+import { ConfigManager } from "./ConfigManager";
+import { ExtensionInstaller } from "./ExtensionInstaller";
+import { Lifecycle } from "./Lifecycle";
+import { LogManager } from "./LogManager";
+import { Pin } from "./Pin";
+import { RobotlegsInjector } from "./RobotlegsInjector";
 import { UID } from "./UID";
 
-import { RobotlegsInjector } from "./RobotlegsInjector";
-
-import { defaultInjector } from "../../../utils";
+import { EventDispatcher } from "../../events/EventDispatcher";
 
 /*[Event(name="destroy", type="robotlegs.bender.framework.api.LifecycleEvent")]*/
 /*[Event(name="detain", type="robotlegs.bender.framework.api.PinEvent")]*/
@@ -287,9 +280,9 @@ export class Context extends EventDispatcher implements IContext {
     /**
      * @inheritDoc
      */
-    public install(...extensions: Object[]): IContext {
-        for (let i in extensions) {
-            let extension: Object = extensions[i];
+    public install(...extensions: IExtension[]): IContext {
+        for (let i: number = 0; i < extensions.length; i++) {
+            let extension: IExtension = extensions[i];
             this._extensionInstaller.install(extension);
         }
         return this;
@@ -298,9 +291,9 @@ export class Context extends EventDispatcher implements IContext {
     /**
      * @inheritDoc
      */
-    public configure(...configs: Object[]): IContext {
-        for (let i in configs) {
-            let config: Object = configs[i];
+    public configure(...configs: IConfig[]): IContext {
+        for (let i: number = 0; i < configs.length; i++) {
+            let config: IConfig = configs[i];
             this._configManager.addConfig(config);
         }
         return this;
@@ -335,8 +328,7 @@ export class Context extends EventDispatcher implements IContext {
             this._children.splice(childIndex, 1);
             child.injector.parent = null;
             child.removeEventListener(LifecycleEvent.POST_DESTROY, this.onChildDestroy);
-        }
-        else {
+        } else {
             this._logger.warn("Child context {0} must be a child of {1}", [child, this]);
         }
         return this;
@@ -369,7 +361,7 @@ export class Context extends EventDispatcher implements IContext {
      * @inheritDoc
      */
     public detain(...instances: any[]): IContext {
-        for (let i in instances) {
+        for (let i: number = 0; i < instances.length; i++) {
             let instance: any = instances[i];
             this._pin.detain(instance);
         }
@@ -380,7 +372,7 @@ export class Context extends EventDispatcher implements IContext {
      * @inheritDoc
      */
     public release(...instances: any[]): IContext {
-        for (let i in instances) {
+        for (let i: number = 0; i < instances.length; i++) {
             let instance: any = instances[i];
             this._pin.release(instance);
         }
@@ -390,7 +382,7 @@ export class Context extends EventDispatcher implements IContext {
     /**
      * @inheritDoc
      */
-    /*override*/ public toString(): string {
+    public toString(): string {
         return this._uid;
     }
 
@@ -402,14 +394,8 @@ export class Context extends EventDispatcher implements IContext {
      * Configures mandatory context dependencies
      */
     private setup(): void {
-        if (defaultInjector.isBound(IInjector)) {
-            this._logManager = new LogManager()
-            this._injector = new RobotlegsInjector(this._logManager);
-
-        } else {
-            this._logManager = (<RobotlegsInjector>defaultInjector).logManager;
-            this._injector = defaultInjector;
-        }
+        this._logManager = new LogManager();
+        this._injector = new RobotlegsInjector(this._logManager);
 
         this._injector.bind<IInjector>(IInjector).toConstantValue(this._injector);
         this._injector.bind<IContext>(IContext).toConstantValue(this);

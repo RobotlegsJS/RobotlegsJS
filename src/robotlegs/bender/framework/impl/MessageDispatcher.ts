@@ -28,12 +28,12 @@ export class MessageDispatcher {
      * @param handler The handler function
      */
     public addMessageHandler(message: Object, handler: Function): void {
-        var messageHandlers: any[] = this._handlers[<any>message];
+        let messageHandlers: any[] = this._handlers[<any>message];
         if (messageHandlers) {
-            if (messageHandlers.indexOf(handler) == -1)
+            if (messageHandlers.indexOf(handler) === -1) {
                 messageHandlers.push(handler);
-        }
-        else {
+            }
+        } else {
             this._handlers[<any>message] = [handler];
         }
     }
@@ -53,12 +53,13 @@ export class MessageDispatcher {
      * @param handler The handler function
      */
     public removeMessageHandler(message: Object, handler: Function): void {
-        var messageHandlers: any[] = this._handlers[<any>message];
-        var index: number = messageHandlers ? messageHandlers.indexOf(handler) : -1;
-        if (index != -1) {
+        let messageHandlers: any[] = this._handlers[<any>message];
+        let index: number = messageHandlers ? messageHandlers.indexOf(handler) : -1;
+        if (index !== -1) {
             messageHandlers.splice(index, 1);
-            if (messageHandlers.length == 0)
+            if (messageHandlers.length === 0) {
                 delete this._handlers[<any>message];
+            }
         }
     }
 
@@ -69,14 +70,17 @@ export class MessageDispatcher {
      * @param reverse Should handlers be called in reverse order
      */
     public dispatchMessage(message: Object, callback: Function = null, reverse: boolean = false): void {
-        var handlers: any[] = this._handlers[<any>message];
+        let handlers: any[] = this._handlers[<any>message];
         if (handlers) {
             handlers = handlers.concat();
-            reverse || handlers.reverse();
+            if (!reverse) {
+                handlers.reverse();
+            }
             new MessageRunner(message, handlers, callback).run();
-        }
-        else {
-            callback && safelyCallBack(callback);
+        } else {
+            if (callback) {
+                safelyCallBack(callback);
+            }
         }
     }
 }
@@ -125,38 +129,40 @@ class MessageRunner {
         // Try to keep things synchronous with a simple loop,
         // forcefully breaking out for async handlers and recursing.
         // We do this to avoid increasing the stack depth unnecessarily.
-        var handler: Function;
+        let handler: Function;
         while (handler = this._handlers.pop()) {
-            if (handler.length == 0) { // sync handler: ()
+            if (handler.length === 0) { // sync handler: ()
                 handler();
-            }
-            else if (handler.length == 1) { // sync handler: (message)
+            } else if (handler.length === 1) { // sync handler: (message)
                 handler(this._message);
-            }
-            else if (handler.length == 2) { // sync or async handler: (message, callback)
-                var handled: boolean;
+            } else if (handler.length === 2) { // sync or async handler: (message, callback)
+                let handled: boolean;
                 handler(this._message, function(error: Object = null, msg: Object = null): void {
                     // handler must not invoke the callback more than once
-                    if (handled) return;
+                    if (handled) {
+                        return;
+                    }
 
                     handled = true;
-                    if (this.error || this._handlers.length == 0) {
-                        this._callback && safelyCallBack(this._callback, this.error, this._message);
-                    }
-                    else {
+                    if (this.error || this._handlers.length === 0) {
+                        if (this._callback) {
+                            safelyCallBack(this._callback, this.error, this._message);
+                        }
+                    } else {
                         this.next();
                     }
                 });
                 // IMPORTANT: MUST break this loop with a RETURN. See top.
                 return;
-            }
-            else { // ERROR: this should NEVER happen
+            } else { // ERROR: this should NEVER happen
                 throw new Error("Bad handler signature");
             }
         }
         // If we got here then this loop finished synchronously.
         // Nobody broke out, so we are done.
         // This relies on the various return statements above. Be careful.
-        this._callback && safelyCallBack(this._callback, null, this._message);
+        if (this._callback) {
+            safelyCallBack(this._callback, null, this._message);
+        }
     }
 }

@@ -5,16 +5,14 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { IMatcher } from "../api/IMatcher"
+import { IConfig } from "../api/IConfig";
+import { IContext } from "../api/IContext";
+import { IInjector } from "../api/IInjector";
+import { ILogger } from "../api/ILogger";
+import { IMatcher } from "../api/IMatcher";
+import { LifecycleEvent } from "../api/LifecycleEvent";
 
-import {
-    IConfig,
-    IContext,
-    IInjector,
-    ILogger,
-    LifecycleEvent,
-    ObjectProcessor
-} from "../../../";
+import { ObjectProcessor } from "./ObjectProcessor";
 
 /**
  * The config manager handles configuration files and
@@ -95,8 +93,10 @@ export class ConfigManager {
         this._context.removeEventListener(LifecycleEvent.INITIALIZE, this.initialize);
         this._objectProcessor.removeAllHandlers();
         this._queue.length = 0;
-        for (var config in this._configs) {
-            delete this._configs[config];
+        for (let config in this._configs) {
+            if (this._configs.hasOwnProperty(config)) {
+                delete this._configs[config];
+            }
         }
     }
 
@@ -115,8 +115,7 @@ export class ConfigManager {
         if (this._initialized) {
             this._logger.debug("Already initialized. Instantiating config class {0}", [type]);
             this.processClass(type);
-        }
-        else {
+        } else {
             this._logger.debug("Not yet initialized. Queuing config class {0}", [type]);
             this._queue.push(type);
         }
@@ -126,8 +125,7 @@ export class ConfigManager {
         if (this._initialized) {
             this._logger.debug("Already initialized. Injecting into config object {0}", [object]);
             this.processObject(object);
-        }
-        else {
+        } else {
             this._logger.debug("Not yet initialized. Queuing config object {0}", [object]);
             this._queue.push(object);
         }
@@ -135,29 +133,32 @@ export class ConfigManager {
 
     private processQueue(): void {
         for (let i in this._queue) {
-            let config: any = this._queue[i];
-            if (typeof(config) === "function") { // instanceof Class
-                this._logger.debug("Now initializing. Instantiating config class {0}", [config]);
-                this.processClass(<FunctionConstructor>config );
-            }
-            else {
-                this._logger.debug("Now initializing. Injecting into config object {0}", [config]);
-                this.processObject(config);
+            if (this._queue.hasOwnProperty(i)) {
+                let config: any = this._queue[i];
+                if (typeof(config) === "function") { // instanceof Class
+                    this._logger.debug("Now initializing. Instantiating config class {0}", [config]);
+                    this.processClass(<FunctionConstructor>config );
+                } else {
+                    this._logger.debug("Now initializing. Injecting into config object {0}", [config]);
+                    this.processObject(config);
+                }
             }
         }
         this._queue.length = 0;
     }
 
     private processClass(type: FunctionConstructor): void {
-        // var config: IConfig = <IConfig>this._injector.getOrCreateNewInstance(type) ;
-        var config: IConfig = this._injector.instantiateUnmapped<IConfig>(type);
-        config && config.configure();
+        let config: IConfig = this._injector.instantiateUnmapped<IConfig>(type);
+        if (config) {
+            config.configure();
+        }
     }
 
     private processObject(object: any): void {
-        // this._injector.injectInto(object);
-        var config: IConfig = <IConfig>object ;
-        config && config.configure && config.configure();
+        let config: IConfig = <IConfig>object;
+        if (config && config.configure) {
+            config.configure();
+        }
     }
 }
 

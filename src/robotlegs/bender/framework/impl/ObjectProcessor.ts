@@ -38,7 +38,7 @@ export class ObjectProcessor {
      * @param object The object instance to process.
      */
     public processObject(object: any): void {
-        for (let i in this._handlers) {
+        for (let i: number = 0; i < this._handlers.length; i++) {
             let handler: ObjectHandler = this._handlers[i];
             handler.handle(object);
         }
@@ -82,6 +82,8 @@ class ObjectHandler {
      * @private
      */
     public handle(object: any): void {
-        this._matcher.matches(object) && this._handler(object);
+        if (this._matcher.matches(object)) {
+            this._handler(object);
+        }
     }
 }

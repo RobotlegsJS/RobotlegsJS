@@ -5,10 +5,8 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import {
-    IContext,
-    ILogger
-} from "../../../";
+import { IContext } from "../api/IContext";
+import { ILogger } from "../api/ILogger";
 
 /**
  * Installs custom extensions into a given context
@@ -49,14 +47,16 @@ export class ExtensionInstaller {
      */
     public install(extension: any): void {
         if (typeof(extension) === "function") {
-            this._classes[extension] || this.install(new extension);
+            if (!this._classes[extension]) {
+                this.install(new extension);
+            }
         } else {
-            var extensionClass: any = <any>extension.constructor ;
-            if (this._classes[extensionClass])
-                return;
-            this._logger.debug("Installing extension {0}", [extension]);
-            this._classes[extensionClass] = true;
-            extension.extend(this._context);
+            let extensionClass: any = <any>extension.constructor;
+            if (!this._classes[extensionClass]) {
+                this._logger.debug("Installing extension {0}", [extension]);
+                this._classes[extensionClass] = true;
+                extension.extend(this._context);
+            }
         }
     }
 
@@ -64,8 +64,10 @@ export class ExtensionInstaller {
      * Destroy
      */
     public destroy(): void {
-        for (var extensionClass in this._classes) {
-            delete this._classes[extensionClass];
+        for (let extensionClass in this._classes) {
+            if (this._classes.hasOwnProperty(extensionClass)) {
+                delete this._classes[extensionClass];
+            }
         }
     }
 }

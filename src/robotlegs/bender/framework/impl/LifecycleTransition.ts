@@ -67,7 +67,7 @@ export class LifecycleTransition {
      * @return Self
      */
     public fromStates(... states): LifecycleTransition {
-        for (let i in states) {
+        for (let i: number = 0; i < states.length; i++) {
             let state = states[i];
             this._fromStates.push(state);
         }
@@ -97,7 +97,9 @@ export class LifecycleTransition {
         this._preTransitionEvent = preTransitionEvent;
         this._transitionEvent = transitionEvent;
         this._postTransitionEvent = postTransitionEvent;
-        this._reverse && this._lifecycle.addReversedEventTypes(preTransitionEvent, transitionEvent, postTransitionEvent);
+        if (this._reverse) {
+            this._lifecycle.addReversedEventTypes(preTransitionEvent, transitionEvent, postTransitionEvent);
+        }
         return this;
     }
 
@@ -127,14 +129,18 @@ export class LifecycleTransition {
      */
     public enter(callback: Function = null): void {
         // immediately call back if we have already transitioned, and exit
-        if (this._lifecycle.state == this._finalState) {
-            callback && safelyCallBack(callback, null, this._name);
+        if (this._lifecycle.state === this._finalState) {
+            if (callback) {
+                safelyCallBack(callback, null, this._name);
+            }
             return;
         }
 
         // queue this callback if we are mid transition, and exit
-        if (this._lifecycle.state == this._transitionState) {
-            callback && this._callbacks.push(callback);
+        if (this._lifecycle.state === this._transitionState) {
+            if (callback) {
+                this._callbacks.push(callback);
+            }
             return;
         }
 
@@ -145,10 +151,12 @@ export class LifecycleTransition {
         }
 
         // store the initial lifecycle state in case we need to roll back
-        var initialState: string = this._lifecycle.state;
+        let initialState: string = this._lifecycle.state;
 
         // queue the first callback
-        callback && this._callbacks.push(callback);
+        if (callback) {
+            this._callbacks.push(callback);
+        }
 
         // put lifecycle into transition state
         this.setState(this._transitionState);
@@ -171,11 +179,11 @@ export class LifecycleTransition {
             this.setState(this._finalState);
 
             // process callback queue (dup and trash for safety)
-            var callbacks: any[] = this._callbacks.concat();
+            let callbacks: any[] = this._callbacks.concat();
             this._callbacks.length = 0;
-            for (let i in callbacks) {
-                let callback = callbacks[i];
-                safelyCallBack(callback, null, this._name);
+            for (let i: number; i < callbacks.length; i++) {
+                let callbackChild = callbacks[i];
+                safelyCallBack(callbackChild, null, this._name);
             }
 
             // dispatch post transition event
@@ -194,34 +202,38 @@ export class LifecycleTransition {
     }
 
     private setState(state: string): void {
-        state && this._lifecycle.setCurrentState(state);
+        if (state) {
+            this._lifecycle.setCurrentState(state);
+        }
     }
 
     private dispatch(type: string): void {
-        if (type && this._lifecycle.hasEventListener(type))
+        if (type && this._lifecycle.hasEventListener(type)) {
             this._lifecycle.dispatchEvent(new LifecycleEvent(type));
+        }
     }
 
     private reportError(message: any, callbacks: any[] = null): void {
         // turn message into Error
-        var error: Error = message instanceof Error
+        let error: Error = message instanceof Error
             ? <Error>message
             : new Error(message);
 
             // dispatch error event if a listener exists, or throw
             if (this._lifecycle.hasEventListener(LifecycleEvent.ERROR)) {
-                var event: LifecycleEvent = new LifecycleEvent(LifecycleEvent.ERROR, error);
+                let event: LifecycleEvent = new LifecycleEvent(LifecycleEvent.ERROR, error);
                 this._lifecycle.dispatchEvent(event);
                 // process callback queue
                 if (callbacks) {
                     for (let i = 0; i < callbacks.length; i++) {
                         let callback = callbacks[i];
-                        callback && safelyCallBack(callback, error, this._name);
+                        if (callback) {
+                            safelyCallBack(callback, error, this._name);
+                        }
                     }
                     callbacks.length = 0;
                 }
-            }
-            else {
+            } else {
                 // explode!
                 throw error;
             }

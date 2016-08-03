@@ -75,8 +75,9 @@ export class LogManager implements ILogTarget {
         message: string,
         params: any[] = null): void {
 
-        if (level > this._logLevel)
+        if (level > this._logLevel) {
             return;
+        }
 
         this._targets.forEach( (target: ILogTarget) => { target.log(source, level, timestamp, message, params); } );
     }

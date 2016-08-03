@@ -65,8 +65,10 @@ export class Pin {
      */
     public releaseAll(): void {
         for (let i in this._instances) {
-            let instance: any = this._instances[i];
-            this.release(instance);
+            if (this._instances.hasOwnProperty(i)) {
+                let instance: any = this._instances[i];
+                this.release(instance);
+            }
         }
     }
 }
