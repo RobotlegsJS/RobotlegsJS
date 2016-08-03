@@ -7,8 +7,8 @@
 
 import { ITypeFilter } from "../../matching/ITypeFilter";
 
-import { IGuard } from "../../../framework/api/IGuard.ts";
-import { IHook } from "../../../framework/api/IHook.ts";
+import { IGuard } from "../../../framework/api/IGuard";
+import { IHook } from "../../../framework/api/IHook";
 
 /**
  * Represents a Mediator mapping

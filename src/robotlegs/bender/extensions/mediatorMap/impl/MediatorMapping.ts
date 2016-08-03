@@ -5,8 +5,8 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { IGuard } from "../../../framework/api/IGuard.ts";
-import { IHook } from "../../../framework/api/IHook.ts";
+import { IGuard } from "../../../framework/api/IGuard";
+import { IHook } from "../../../framework/api/IHook";
 
 import { ITypeFilter } from "../../matching/ITypeFilter";
 
