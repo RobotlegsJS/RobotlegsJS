@@ -11,7 +11,7 @@ import { IContext } from "../../../framework/api/IContext";
 import { IInjector } from "../../../framework/api/IInjector";
 import { ILogger } from "../../../framework/api/ILogger";
 
-import { IEventDispatcher } from "../../../events/IEventDispatcher";
+import { IEventDispatcher } from "../../../events/api/IEventDispatcher";
 
 import { ICommandMapper } from "../../commandCenter/dsl/ICommandMapper";
 import { ICommandUnmapper } from "../../commandCenter/dsl/ICommandUnmapper";

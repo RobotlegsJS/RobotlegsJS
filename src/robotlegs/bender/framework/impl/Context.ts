@@ -24,7 +24,7 @@ import { Pin } from "./Pin";
 import { RobotlegsInjector } from "./RobotlegsInjector";
 import { UID } from "./UID";
 
-import { EventDispatcher } from "../../events/EventDispatcher";
+import { EventDispatcher } from "../../events/impl/EventDispatcher";
 
 /*[Event(name="destroy", type="robotlegs.bender.framework.api.LifecycleEvent")]*/
 /*[Event(name="detain", type="robotlegs.bender.framework.api.PinEvent")]*/

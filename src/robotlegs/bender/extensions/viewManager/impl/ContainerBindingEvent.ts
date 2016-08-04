@@ -14,7 +14,7 @@ export class ContainerBindingEvent extends Event {
     /* Public Static Properties                                                   */
     /*============================================================================*/
 
-    public static BINDING_EMPTY: string = 'bindingEmpty';
+    public static BINDING_EMPTY: string = "bindingEmpty";
 
     /*============================================================================*/
     /* Constructor                                                                */

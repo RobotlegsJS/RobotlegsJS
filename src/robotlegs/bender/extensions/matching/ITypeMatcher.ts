@@ -5,7 +5,7 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { ITypeFilter } from "./ITypeFilter"
+import { ITypeFilter } from "./ITypeFilter";
 
 /**
  * Type matcher interface

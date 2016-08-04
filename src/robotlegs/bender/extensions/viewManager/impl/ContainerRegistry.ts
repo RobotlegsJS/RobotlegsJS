@@ -6,7 +6,7 @@
 // ------------------------------------------------------------------------------
 
 import { ContainerBinding } from "./ContainerBinding";
-import { EventDispatcher } from "../../../events/EventDispatcher";
+import { EventDispatcher } from "../../../events/impl/EventDispatcher";
 
 import { ContainerBindingEvent } from "./ContainerBindingEvent";
 import { ContainerRegistryEvent } from "./ContainerRegistryEvent";

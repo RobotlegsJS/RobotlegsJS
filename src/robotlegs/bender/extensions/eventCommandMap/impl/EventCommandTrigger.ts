@@ -8,7 +8,7 @@
 import { IInjector } from "../../../framework/api/IInjector";
 import { ILogger } from "../../../framework/api/ILogger";
 
-import { IEventDispatcher } from "../../../events/IEventDispatcher";
+import { IEventDispatcher } from "../../../events/api/IEventDispatcher";
 import { ICommandExecutor } from "../../commandCenter/api/ICommandExecutor";
 import { ICommandMappingList } from "../../commandCenter/api/ICommandMappingList";
 import { ICommandTrigger } from "../../commandCenter/api/ICommandTrigger";

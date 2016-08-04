@@ -15,13 +15,13 @@ export class ContainerRegistryEvent { // extends CustomEvent
     /* Public Static Properties                                                   */
     /*============================================================================*/
 
-    public static CONTAINER_ADD: string = 'containerAdd';
+    public static CONTAINER_ADD: string = "containerAdd";
 
-    public static CONTAINER_REMOVE: string = 'containerRemove';
+    public static CONTAINER_REMOVE: string = "containerRemove";
 
-    public static ROOT_CONTAINER_ADD: string = 'rootContainerAdd';
+    public static ROOT_CONTAINER_ADD: string = "rootContainerAdd";
 
-    public static ROOT_CONTAINER_REMOVE: string = 'rootContainerRemove';
+    public static ROOT_CONTAINER_REMOVE: string = "rootContainerRemove";
 
     /*============================================================================*/
     /* Public Properties                                                          */

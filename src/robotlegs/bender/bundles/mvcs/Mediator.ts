@@ -9,7 +9,7 @@ import { injectable, inject } from "inversify";
 // import { injectProperty } from "../../../utils";
 
 import { IEventMap } from "../../extensions/localEventMap/api/IEventMap";
-import { IEventDispatcher } from "../../events/IEventDispatcher";
+import { IEventDispatcher } from "../../events/api/IEventDispatcher";
 import { IMediator } from "../../extensions/mediatorMap/api/IMediator";
 
 /**

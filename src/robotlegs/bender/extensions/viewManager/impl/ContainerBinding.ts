@@ -6,7 +6,7 @@
 // ------------------------------------------------------------------------------
 
 import { IViewHandler } from "../api/IViewHandler";
-import { EventDispatcher } from "../../../events/EventDispatcher";
+import { EventDispatcher } from "../../../events/impl/EventDispatcher";
 
 import { ContainerBindingEvent } from "./ContainerBindingEvent";
 

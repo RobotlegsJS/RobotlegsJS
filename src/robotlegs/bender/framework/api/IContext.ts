@@ -5,14 +5,12 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { IConfig } from "./IConfig";
-import { IExtension } from "./IExtension";
 import { IInjector } from "./IInjector";
 import { ILogger } from "./ILogger";
 import { ILogTarget } from "./ILogTarget";
 import { IMatcher } from "./IMatcher";
 
-import { IEventDispatcher } from "../../events/IEventDispatcher";
+import { IEventDispatcher } from "../../events/api/IEventDispatcher";
 
 /*[Event(name="destroy", type="robotlegs.bender.framework.api.LifecycleEvent")]*/
 /*[Event(name="detain", type="robotlegs.bender.framework.api.PinEvent")]*/

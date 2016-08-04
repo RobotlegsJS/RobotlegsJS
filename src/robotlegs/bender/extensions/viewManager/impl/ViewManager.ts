@@ -10,7 +10,7 @@ import { injectable } from "inversify";
 import { IViewHandler } from "../api/IViewHandler";
 import { IViewManager } from "../api/IViewManager";
 
-import { EventDispatcher } from "../../../events/EventDispatcher";
+import { EventDispatcher } from "../../../events/impl/EventDispatcher";
 import { ViewManagerEvent } from "./ViewManagerEvent";
 
 import { ContainerRegistry } from "../impl/ContainerRegistry";

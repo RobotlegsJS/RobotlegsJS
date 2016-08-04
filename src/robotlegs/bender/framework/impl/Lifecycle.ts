@@ -5,8 +5,7 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { EventDispatcher } from "../../events/EventDispatcher";
-import { IEventDispatcher } from "../../events/IEventDispatcher";
+import { IEventDispatcher } from "../../events/api/IEventDispatcher";
 
 import { ILifecycle } from "../api/ILifecycle";
 import { LifecycleError } from "../api/LifecycleError";

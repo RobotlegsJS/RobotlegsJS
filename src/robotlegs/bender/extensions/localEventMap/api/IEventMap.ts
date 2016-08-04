@@ -5,7 +5,7 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { IEventDispatcher } from "../../../events/IEventDispatcher";
+import { IEventDispatcher } from "../../../events/api/IEventDispatcher";
 
 /**
  * The Event Map keeps track of listeners and provides the ability

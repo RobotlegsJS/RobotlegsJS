@@ -7,7 +7,7 @@
 
 import { injectable } from "inversify";
 
-import { IEventDispatcher } from "../../../events/IEventDispatcher";
+import { IEventDispatcher } from "../../../events/api/IEventDispatcher";
 import { IEventMap } from "../api/IEventMap";
 import { EventMapConfig } from "./EventMapConfig";
 

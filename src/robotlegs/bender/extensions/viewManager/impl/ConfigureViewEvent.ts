@@ -16,7 +16,7 @@ export class ConfigureViewEvent extends Event {
     /* Public Static Properties                                                   */
     /*============================================================================*/
 
-    public static CONFIGURE_VIEW: string = 'configureView';
+    public static CONFIGURE_VIEW: string = "configureView";
 
     /*============================================================================*/
     /* Public Properties                                                          */

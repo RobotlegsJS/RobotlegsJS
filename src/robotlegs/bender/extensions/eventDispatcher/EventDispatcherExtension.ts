@@ -8,8 +8,9 @@
 import { IContext } from "../../framework/api/IContext";
 import { IExtension } from "../../framework/api/IExtension";
 
-import { EventDispatcher } from "../../events/EventDispatcher";
-import { IEventDispatcher } from "../../events/IEventDispatcher";
+import { IEventDispatcher } from "../../events/api/IEventDispatcher";
+import { EventDispatcher } from "../../events/impl/EventDispatcher";
+
 import { LifecycleEventRelay } from "./impl/LifecycleEventRelay";
 
 /**

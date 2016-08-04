@@ -48,8 +48,11 @@ export { applyHooks                   } from "./robotlegs/bender/framework/impl/
 export { guardsApprove                } from "./robotlegs/bender/framework/impl/guardsApprove";
 export { safelyCallBack               } from "./robotlegs/bender/framework/impl/safelyCallBack";
 
-export { EventDispatcher              } from "./robotlegs/bender/events/EventDispatcher";
-export { IEventDispatcher             } from "./robotlegs/bender/events/IEventDispatcher";
+/**
+ * Event Dispatcher
+ */
+export { IEventDispatcher             } from "./robotlegs/bender/events/api/IEventDispatcher";
+export { EventDispatcher              } from "./robotlegs/bender/events/impl/EventDispatcher";
 
 /**
  * Extensions

@@ -5,7 +5,7 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { IEventDispatcher } from "../../../events/IEventDispatcher";
+import { IEventDispatcher } from "../../../events/api/IEventDispatcher";
 import { LifecycleEvent } from "../../../framework/api/LifecycleEvent";
 
 import { EventRelay } from "./EventRelay";
