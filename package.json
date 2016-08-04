@@ -8,7 +8,8 @@
     "test": "mocha test/**.ts --require ts-node/register",
     "build": "tsc -d",
     "prepublish": "publish-please guard && rimraf ./lib && npm run build",
-    "publish-please": "publish-please"
+    "publish-please": "publish-please",
+    "install": "typings install && npm run build"
   },
   "repository": {
     "type": "git",
