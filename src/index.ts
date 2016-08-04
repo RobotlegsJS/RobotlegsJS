@@ -54,6 +54,7 @@ export { IEventDispatcher             } from "./robotlegs/bender/events/IEventDi
 /**
  * Extensions
  */
+
 // CommandCenter
 export { CommandPayload               } from "./robotlegs/bender/extensions/commandCenter/api/CommandPayload";
 export { ICommand                     } from "./robotlegs/bender/extensions/commandCenter/api/ICommand";
@@ -70,7 +71,6 @@ export { CommandMapping               } from "./robotlegs/bender/extensions/comm
 export { CommandMappingList           } from "./robotlegs/bender/extensions/commandCenter/impl/CommandMappingList";
 export { CommandTriggerMap            } from "./robotlegs/bender/extensions/commandCenter/impl/CommandTriggerMap";
 export { NullCommandTrigger           } from "./robotlegs/bender/extensions/commandCenter/impl/NullCommandTrigger";
-
 
 // ContextView
 export { ContextView                  } from "./robotlegs/bender/extensions/contextView/ContextView";
@@ -97,6 +97,11 @@ export { EventDispatcherExtension     } from "./robotlegs/bender/extensions/even
 export { IEventMap                    } from "./robotlegs/bender/extensions/localEventMap/api/IEventMap";
 export { LocalEventMapExtension       } from "./robotlegs/bender/extensions/localEventMap/LocalEventMapExtension";
 
+// MediatorMap
+export { IMediator                    } from "./robotlegs/bender/extensions/mediatorMap/api/IMediator";
+export { IMediatorMap                 } from "./robotlegs/bender/extensions/mediatorMap/api/IMediatorMap";
+export { MediatorMapExtension         } from "./robotlegs/bender/extensions/mediatorMap/MediatorMapExtension";
+
 // ViewManager
 export { ManualStageObserverExtension } from "./robotlegs/bender/extensions/viewManager/ManualStageObserverExtension";
 export { StageCrawlerExtension        } from "./robotlegs/bender/extensions/viewManager/StageCrawlerExtension";
@@ -104,12 +109,6 @@ export { StageObserverExtension       } from "./robotlegs/bender/extensions/view
 export { ViewManagerExtension         } from "./robotlegs/bender/extensions/viewManager/ViewManagerExtension";
 export { IViewHandler                 } from "./robotlegs/bender/extensions/viewManager/api/IViewHandler";
 export { IViewManager                 } from "./robotlegs/bender/extensions/viewManager/api/IViewManager";
-
-// MediatorMap
-export { IMediator                    } from "./robotlegs/bender/extensions/mediatorMap/api/IMediator";
-export { IMediatorMap                 } from "./robotlegs/bender/extensions/mediatorMap/api/IMediatorMap";
-export { MediatorMapExtension         } from "./robotlegs/bender/extensions/mediatorMap/MediatorMapExtension";
-
 
 /**
  * Bundles

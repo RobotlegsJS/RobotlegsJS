@@ -5,10 +5,8 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import {
-    ContainerRegistry,
-    StageObserver
-} from "./";
+import { ContainerRegistry } from "./impl/ContainerRegistry";
+import { StageObserver } from "./impl/StageObserver";
 
 import { IContext } from "../../framework/api/IContext";
 import { IExtension } from "../../framework/api/IExtension";

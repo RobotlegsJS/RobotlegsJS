@@ -5,8 +5,8 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { IMediatorMapping } from "../";
-import { IViewHandler } from "../../viewManager";
+import { IMediatorMapping } from "../api/IMediatorMapping";
+import { IViewHandler } from "../../viewManager/api/IViewHandler";
 
 import { MediatorFactory } from "./MediatorFactory";
 

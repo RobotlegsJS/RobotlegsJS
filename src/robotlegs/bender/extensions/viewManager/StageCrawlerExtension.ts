@@ -10,7 +10,7 @@ import { IExtension } from "../../framework/api/IExtension";
 import { IInjector } from "../../framework/api/IInjector";
 import { ILogger } from "../../framework/api/ILogger";
 
-import { ContextView } from "../contextView";
+import { ContextView } from "../contextView/ContextView";
 
 import { IViewManager } from "./api/IViewManager";
 import { ContainerBinding } from "./impl/ContainerBinding";

@@ -12,7 +12,7 @@ import { IContext } from "../../framework/api/IContext";
 import { IExtension } from "../../framework/api/IExtension";
 import { IInjector } from "../../framework/api/IInjector";
 
-import { IViewManager } from "../viewManager";
+import { IViewManager } from "../viewManager/api/IViewManager";
 
 /**
  * This extension installs a shared IMediatorMap into the context
