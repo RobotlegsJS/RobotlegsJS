@@ -25,10 +25,13 @@
     "inversify": "^2.0.0-rc.5"
   },
   "devDependencies": {
+    "inversify-dts": "^1.5.0",
     "pixi.js": "pixijs/pixi.js#dev",
+    "glslify": "^5.1.0",
+    "browserify-versionify": "^1.0.6",
+
     "awesome-typescript-loader": "^1.1.1",
     "chai": "^3.5.0",
-    "inversify-dts": "^1.5.0",
     "karma": "^0.13.22",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^1.0.1",
@@ -48,7 +51,7 @@
   "peerDependencies": {
     "reflect-metadata": "^0.1.3",
     "inversify-dts": "^1.5.0",
-    "pixi.js": "pixijs/pixi.js#dev",
+    "pixi.js": "*",
     "eventemitter3": "*"
   }
 }
