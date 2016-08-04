@@ -14,6 +14,7 @@ import { IViewHandler } from "./IViewHandler";
 /*[Event(name="containerRemove", type="robotlegs.bender.extensions.viewManager.impl.ViewManagerEvent")]*/
 /*[Event(name="handlerAdd", type="robotlegs.bender.extensions.viewManager.impl.ViewManagerEvent")]*/
 /*[Event(name="handlerRemove", type="robotlegs.bender.extensions.viewManager.impl.ViewManagerEvent")]*/
+
 /**
  * The View Manager allows you to add multiple "view root" containers to a context
  */
