@@ -54,6 +54,24 @@ export { IEventDispatcher             } from "./robotlegs/bender/events/IEventDi
 /**
  * Extensions
  */
+// CommandCenter
+export { CommandPayload               } from "./robotlegs/bender/extensions/commandCenter/api/CommandPayload";
+export { ICommand                     } from "./robotlegs/bender/extensions/commandCenter/api/ICommand";
+export { ICommandExecutor             } from "./robotlegs/bender/extensions/commandCenter/api/ICommandExecutor";
+export { ICommandMapping              } from "./robotlegs/bender/extensions/commandCenter/api/ICommandMapping";
+export { ICommandMappingList          } from "./robotlegs/bender/extensions/commandCenter/api/ICommandMappingList";
+export { ICommandTrigger              } from "./robotlegs/bender/extensions/commandCenter/api/ICommandTrigger";
+export { ICommandConfigurator         } from "./robotlegs/bender/extensions/commandCenter/dsl/ICommandConfigurator";
+export { ICommandMapper               } from "./robotlegs/bender/extensions/commandCenter/dsl/ICommandMapper";
+export { ICommandUnmapper             } from "./robotlegs/bender/extensions/commandCenter/dsl/ICommandUnmapper";
+export { CommandExecutor              } from "./robotlegs/bender/extensions/commandCenter/impl/CommandExecutor";
+export { CommandMapper                } from "./robotlegs/bender/extensions/commandCenter/impl/CommandMapper";
+export { CommandMapping               } from "./robotlegs/bender/extensions/commandCenter/impl/CommandMapping";
+export { CommandMappingList           } from "./robotlegs/bender/extensions/commandCenter/impl/CommandMappingList";
+export { CommandTriggerMap            } from "./robotlegs/bender/extensions/commandCenter/impl/CommandTriggerMap";
+export { NullCommandTrigger           } from "./robotlegs/bender/extensions/commandCenter/impl/NullCommandTrigger";
+
+
 // ContextView
 export { ContextView                  } from "./robotlegs/bender/extensions/contextView/ContextView";
 export { ContextViewExtension         } from "./robotlegs/bender/extensions/contextView/ContextViewExtension";
