@@ -181,7 +181,7 @@ export interface IInjector extends interfaces.Kernel {
      * @param name Optional name
      * @return True if the mapping exists
      */
-    hasMapping(type: any, name: String ): Boolean;
+    hasMapping(type: any, name: String): Boolean;
 
     /**
      * Does this injector have a direct mapping for the given type?
@@ -190,7 +190,7 @@ export interface IInjector extends interfaces.Kernel {
      * @param name Optional name
      * @return True if the mapping exists
      */
-    hasDirectMapping(type: any, name: String ): Boolean;
+    hasDirectMapping(type: any, name: String): Boolean;
 
     /**
      * Maps a request description, consisting of the <code>type</code> and, optionally, the
@@ -237,7 +237,7 @@ export interface IInjector extends interfaces.Kernel {
      *
      * @return <code>true</code> if the dependency can be satisfied, <code>false</code> if not
      */
-    satisfies(type: any, name: String ): Boolean;
+    satisfies(type: any, name: String): Boolean;
 
     /**
      * Indicates whether the injector can directly supply a response for the specified
@@ -251,7 +251,7 @@ export interface IInjector extends interfaces.Kernel {
      *
      * @return <code>true</code> if the dependency can be satisfied, <code>false</code> if not
      */
-    satisfiesDirectly(type: any, name: String ): Boolean;
+    satisfiesDirectly(type: any, name: String): Boolean;
 
     /**
      * Returns the mapping for the specified dependency class

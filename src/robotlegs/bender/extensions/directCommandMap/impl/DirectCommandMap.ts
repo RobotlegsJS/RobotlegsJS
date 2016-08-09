@@ -48,7 +48,7 @@ export class DirectCommandMap implements IDirectCommandMap {
      * Creates a Direct Command Map
      * @param context The context that owns this map
      */
-    constructor(@inject(IContext) context: IContext) {
+    constructor( @inject(IContext) context: IContext) {
         this._context = context;
         // Create a child injector
         let sandboxedInjector: IInjector = context.injector.createChild();

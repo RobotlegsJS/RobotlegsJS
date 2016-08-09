@@ -66,7 +66,7 @@ export class LifecycleTransition {
      * @param states Allowed states
      * @return Self
      */
-    public fromStates(... states): LifecycleTransition {
+    public fromStates(...states): LifecycleTransition {
         for (let i: number = 0; i < states.length; i++) {
             let state = states[i];
             this._fromStates.push(state);
@@ -162,7 +162,7 @@ export class LifecycleTransition {
         this.setState(this._transitionState);
 
         // run before handlers
-        this._dispatcher.dispatchMessage(this._name, function (error: any): void {
+        this._dispatcher.dispatchMessage(this._name, function(error: any): void {
             // revert state, report error, and exit
             if (error) {
                 this.setState(initialState);
@@ -198,7 +198,7 @@ export class LifecycleTransition {
 
     private invalidTransition(): boolean {
         return this._fromStates.length > 0
-        && this._fromStates.indexOf(this._lifecycle.state) == -1;
+            && this._fromStates.indexOf(this._lifecycle.state) == -1;
     }
 
     private setState(state: string): void {
@@ -219,23 +219,23 @@ export class LifecycleTransition {
             ? <Error>message
             : new Error(message);
 
-            // dispatch error event if a listener exists, or throw
-            if (this._lifecycle.hasEventListener(LifecycleEvent.ERROR)) {
-                let event: LifecycleEvent = new LifecycleEvent(LifecycleEvent.ERROR, error);
-                this._lifecycle.dispatchEvent(event);
-                // process callback queue
-                if (callbacks) {
-                    for (let i = 0; i < callbacks.length; i++) {
-                        let callback = callbacks[i];
-                        if (callback) {
-                            safelyCallBack(callback, error, this._name);
-                        }
+        // dispatch error event if a listener exists, or throw
+        if (this._lifecycle.hasEventListener(LifecycleEvent.ERROR)) {
+            let event: LifecycleEvent = new LifecycleEvent(LifecycleEvent.ERROR, error);
+            this._lifecycle.dispatchEvent(event);
+            // process callback queue
+            if (callbacks) {
+                for (let i = 0; i < callbacks.length; i++) {
+                    let callback = callbacks[i];
+                    if (callback) {
+                        safelyCallBack(callback, error, this._name);
                     }
-                    callbacks.length = 0;
                 }
-            } else {
-                // explode!
-                throw error;
+                callbacks.length = 0;
             }
+        } else {
+            // explode!
+            throw error;
+        }
     }
 }

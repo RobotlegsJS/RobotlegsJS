@@ -95,7 +95,7 @@ export class ContainerBinding extends EventDispatcher {
     public handleView(view: any, type: FunctionConstructor): void {
         var length: number = this._handlers.length;
         for (var i: number = 0; i < length; i++) {
-            var handler: IViewHandler = <IViewHandler>this._handlers[i] ;
+            var handler: IViewHandler = <IViewHandler>this._handlers[i];
             handler.handleView(view, type);
         }
     }

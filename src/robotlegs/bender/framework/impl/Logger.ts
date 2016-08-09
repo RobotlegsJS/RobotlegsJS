@@ -45,7 +45,7 @@ export class Logger implements ILogger {
     /**
      * @inheritDoc
      */
-    public set source (source: any) {
+    public set source(source: any) {
         this._source = source;
     }
 

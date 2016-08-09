@@ -61,7 +61,7 @@ export class ViewManagerEvent { // extends CustomEvent
      * @param container The container associated with this event
      * @param handler The view handler associated with this event
      */
-    constructor( type: string, container?: any, handler?: IViewHandler) {
+    constructor(type: string, container?: any, handler?: IViewHandler) {
         // super(type);
         this._type = type;
         this._container = container;

@@ -38,7 +38,7 @@ export class InjectableLoggerExtension implements IExtension {
     public extend(context: IContext): void {
         // Map the literal string "ILogger"
         context.injector.bind<ILogger>("ILogger").toDynamicValue(() => {
-            return context.getLogger ( null );
+            return context.getLogger(null);
         }).onActivation((ctx, logger) => {
             logger.source = ctx.plan.rootRequest.serviceIdentifier;
             return logger;
@@ -46,7 +46,7 @@ export class InjectableLoggerExtension implements IExtension {
 
         // Map the Symbol ILogger
         context.injector.bind<ILogger>(ILogger).toDynamicValue(() => {
-            return context.getLogger( null );
+            return context.getLogger(null);
         }).onActivation((ctx, logger) => {
             logger.source = ctx.plan.rootRequest.serviceIdentifier;
             return logger;

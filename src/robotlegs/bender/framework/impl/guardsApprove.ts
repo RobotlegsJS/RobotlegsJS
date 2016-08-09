@@ -32,14 +32,14 @@ export function guardsApprove(guards: any[], injector?: IInjector): boolean {
     for (let i = 0; i < guards.length; i++) {
         let guard: any = guards[i];
 
-        if ((typeof(guard) === "function") && (guard.prototype.approve === undefined)) {
+        if ((typeof (guard) === "function") && (guard.prototype.approve === undefined)) {
             if ((<Function>guard)()) {
                 continue;
             }
             return false;
         }
 
-        if ((typeof(guard) === "function") && (guard.prototype.approve !== undefined)) {
+        if ((typeof (guard) === "function") && (guard.prototype.approve !== undefined)) {
             guard = injector ? injector.instantiateUnmapped(guard) : new guard();
         }
 

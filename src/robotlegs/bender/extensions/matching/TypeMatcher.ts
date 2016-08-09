@@ -43,7 +43,7 @@ export class TypeMatcher implements ITypeMatcher, ITypeMatcherFactory {
     /**
      * Any types that an item must extend or implement
      */
-    public anyOf(... types: any[]): TypeMatcher {
+    public anyOf(...types: any[]): TypeMatcher {
         this.pushAddedTypesTo(types, this._anyOfTypes);
         return this;
     }
@@ -106,7 +106,7 @@ export class TypeMatcher implements ITypeMatcher, ITypeMatcherFactory {
     }
 
     protected pushValuesToClassVector(values: any[], vector: FunctionConstructor[]): void {
-        if (values.length === 1 && (typeof(values[0]) === "array")) {
+        if (values.length === 1 && (typeof (values[0]) === "array")) {
             for (let i: number; i < values[0].length; i++) {
                 let type: FunctionConstructor = values[0][i];
                 vector.push(type);

@@ -135,9 +135,9 @@ export class ConfigManager {
         for (let i in this._queue) {
             if (this._queue.hasOwnProperty(i)) {
                 let config: any = this._queue[i];
-                if (typeof(config) === "function") { // instanceof Class
+                if (typeof (config) === "function") { // instanceof Class
                     this._logger.debug("Now initializing. Instantiating config class {0}", [config]);
-                    this.processClass(<FunctionConstructor>config );
+                    this.processClass(<FunctionConstructor>config);
                 } else {
                     this._logger.debug("Now initializing. Injecting into config object {0}", [config]);
                     this.processObject(config);
@@ -175,7 +175,7 @@ class ClassMatcher implements IMatcher {
      * @private
      */
     public matches(item: any): boolean {
-        return typeof(item) === "function";
+        return typeof (item) === "function";
     }
 }
 
@@ -192,6 +192,6 @@ class ObjectMatcher implements IMatcher {
      * @private
      */
     public matches(item: any): boolean {
-        return typeof(item) === "object";
+        return typeof (item) === "object";
     }
 }

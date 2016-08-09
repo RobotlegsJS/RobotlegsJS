@@ -97,7 +97,7 @@ export class EventCommandTrigger implements ICommandTrigger {
     /*============================================================================*/
 
     private eventHandler(event: Event): void {
-        let eventConstructor: Object = <Object>event["constructor"] ;
+        let eventConstructor: Object = <Object>event["constructor"];
         let payloadEventClass: Object;
         // not pretty, but optimized to avoid duplicate checks and shortest paths
         if (eventConstructor === this._eventClass || (!this._eventClass)) {

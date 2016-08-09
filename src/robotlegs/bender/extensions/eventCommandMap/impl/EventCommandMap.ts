@@ -96,7 +96,7 @@ export class EventCommandMap implements IEventCommandMap {
     }
 
     private getTrigger(type: string, eventClass: Object): EventCommandTrigger {
-        return <EventCommandTrigger>this._triggerMap.getTrigger(type, eventClass) ;
+        return <EventCommandTrigger>this._triggerMap.getTrigger(type, eventClass);
     }
 
     private createTrigger(type: string, eventClass: Object): EventCommandTrigger {

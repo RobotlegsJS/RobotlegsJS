@@ -67,7 +67,7 @@ export class DirectCommandMapper implements IDirectCommandConfigurator {
     /**
      * @inheritDoc
      */
-    public withHooks(... hooks: any[]): IDirectCommandConfigurator {
+    public withHooks(...hooks: any[]): IDirectCommandConfigurator {
         this._mapping.addHooks(...hooks);
         return this;
     }

@@ -89,7 +89,7 @@ export class StageObserver {
     }
 
     private onViewAddedToStage(event: Event): void {
-        var view: any = <any>event.target ;
+        var view: any = <any>event.target;
 
         //
         // // FIXME: ?

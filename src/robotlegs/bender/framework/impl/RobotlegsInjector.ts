@@ -52,7 +52,7 @@ export class RobotlegsInjector extends Kernel implements IInjector {
     /**
      * @inheritDoc
      */
-    public hasMapping(type: any, name: String ): Boolean {
+    public hasMapping(type: any, name: String): Boolean {
         // TODO: implement method using Kernel API
         this._logger.error("hasMapping method is not implemented.");
         return true;
@@ -61,7 +61,7 @@ export class RobotlegsInjector extends Kernel implements IInjector {
     /**
      * @inheritDoc
      */
-    public hasDirectMapping(type: any, name: String ): Boolean {
+    public hasDirectMapping(type: any, name: String): Boolean {
         // TODO: implement method using Kernel API
         this._logger.error("hasDirectMapping method is not implemented.");
         return true;
@@ -70,7 +70,7 @@ export class RobotlegsInjector extends Kernel implements IInjector {
     /**
      * @inheritDoc
      */
-    public satisfies(type: any, name: String ): Boolean {
+    public satisfies(type: any, name: String): Boolean {
         // TODO: implement method using Kernel API
         this._logger.error("satisfies method is not implemented.");
         return true;
@@ -79,7 +79,7 @@ export class RobotlegsInjector extends Kernel implements IInjector {
     /**
      * @inheritDoc
      */
-    public satisfiesDirectly(type: any, name: String ): Boolean {
+    public satisfiesDirectly(type: any, name: String): Boolean {
         // TODO: implement method using Kernel API
         this._logger.error("satisfiesDirectly method is not implemented.");
         return true;

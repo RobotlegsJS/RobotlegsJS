@@ -53,7 +53,7 @@ export abstract class Mediator implements IMediator {
     // @injectProperty(IEventDispatcher)
     // protected eventDispatcher: IEventDispatcher;
 
-    constructor (
+    constructor(
         @inject(IEventMap) protected eventMap: IEventMap,
         @inject(IEventDispatcher) protected eventDispatcher: IEventDispatcher
     ) {

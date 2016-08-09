@@ -98,12 +98,12 @@ export class EventRelay {
     /*============================================================================*/
 
     private addListener(type: string): void {
-        this._listeners[ type ] = this._destination.dispatchEvent.bind(this._destination.dispatchEvent);
-        this._source.addEventListener(type, this._listeners[ type ]);
+        this._listeners[type] = this._destination.dispatchEvent.bind(this._destination.dispatchEvent);
+        this._source.addEventListener(type, this._listeners[type]);
     }
 
     private removeListener(type: string): void {
-        this._source.removeEventListener(type, this._listeners[ type ]);
+        this._source.removeEventListener(type, this._listeners[type]);
     }
 
     private addListeners(): void {

@@ -14,5 +14,5 @@ export interface IConfig {
     /**
      * Configure will be invoked after dependencies have been supplied
      */
-     configure(): void;
+    configure(): void;
 }

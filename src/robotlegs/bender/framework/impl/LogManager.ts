@@ -79,7 +79,7 @@ export class LogManager implements ILogTarget {
             return;
         }
 
-        this._targets.forEach( (target: ILogTarget) => { target.log(source, level, timestamp, message, params); } );
+        this._targets.forEach((target: ILogTarget) => { target.log(source, level, timestamp, message, params); });
     }
 
     public removeAllTargets(): void {

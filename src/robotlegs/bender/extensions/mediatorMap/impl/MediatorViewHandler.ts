@@ -112,6 +112,6 @@ export class MediatorViewHandler implements IViewHandler {
         }
 
         // these mappings really do care
-        return this._knownMappings[type] ;
+        return this._knownMappings[type];
     }
 }

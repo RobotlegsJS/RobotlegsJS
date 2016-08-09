@@ -51,7 +51,7 @@ export class StageCrawler {
             // TODO: abstract view layer (pixi.js/three.js)
             var child: any = container.getChildAt(i);
             child['addChild'] // is a container?
-                ? this.scanContainer(<any>child )
+                ? this.scanContainer(<any>child)
                 : this.processView(child);
         }
     }

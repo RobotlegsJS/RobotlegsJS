@@ -11,7 +11,7 @@ import { IInjector } from "../../framework/api/IInjector";
 import { ILogger } from "../../framework/api/ILogger";
 
 import { ContainerRegistry } from "./impl/ContainerRegistry";
-import { ManualStageObserver  } from "./impl/ManualStageObserver";
+import { ManualStageObserver } from "./impl/ManualStageObserver";
 
 let installCount: number = 0;
 

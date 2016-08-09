@@ -172,6 +172,6 @@ export class ContainerRegistry extends EventDispatcher {
     }
 
     private onBindingEmpty(event: ContainerBindingEvent): void {
-        this.removeBinding(<any>event.target );
+        this.removeBinding(<any>event.target);
     }
 }

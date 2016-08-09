@@ -37,7 +37,7 @@ export class ContainerRegistryEvent { // extends CustomEvent
         return this._container;
     }
 
-    public get type (): string {
+    public get type(): string {
         return this._type;
     }
 

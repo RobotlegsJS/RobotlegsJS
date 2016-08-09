@@ -435,7 +435,7 @@ export class Context extends EventDispatcher implements IContext {
     }
 
     private onChildDestroy(event: LifecycleEvent): void {
-        this.removeChild(<IContext>event.target );
+        this.removeChild(<IContext>event.target);
     }
 
     private removeChildren(): void {

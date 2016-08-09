@@ -46,7 +46,7 @@ export class ExtensionInstaller {
      * @param extension An object or class implementing IExtension
      */
     public install(extension: any): void {
-        if (typeof(extension) === "function") {
+        if (typeof (extension) === "function") {
             if (!this._classes[extension]) {
                 this.install(new extension);
             }

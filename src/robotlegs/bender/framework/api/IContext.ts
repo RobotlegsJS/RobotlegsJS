@@ -138,7 +138,7 @@ export interface IContext extends IEventDispatcher {
      * @param instances Instances to unpin
      * @return this
      */
-    release(... instances): IContext;
+    release(...instances): IContext;
 
     /**
      * Initializes this context

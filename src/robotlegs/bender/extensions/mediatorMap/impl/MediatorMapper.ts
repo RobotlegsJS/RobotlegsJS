@@ -98,9 +98,9 @@ export class MediatorMapper implements IMediatorMapper, IMediatorUnmapper {
 
     private overwriteMapping(mapping: IMediatorMapping): IMediatorConfigurator {
         this._logger && this._logger.warn('{0} already mapped to {1}\n' +
-                                          'If you have overridden this mapping intentionally you can use "unmap()" ' +
-                                          'prior to your replacement mapping in order to avoid seeing this message.\n',
-        [this._typeFilter, mapping]);
+            'If you have overridden this mapping intentionally you can use "unmap()" ' +
+            'prior to your replacement mapping in order to avoid seeing this message.\n',
+            [this._typeFilter, mapping]);
         this.deleteMapping(mapping);
         return this.createMapping(mapping.mediatorClass);
     }

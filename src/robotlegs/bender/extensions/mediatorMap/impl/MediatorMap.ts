@@ -67,10 +67,9 @@ export class MediatorMap implements IMediatorMap, IViewHandler {
      * @inheritDoc
      */
     public mapMatcher(matcher: ITypeMatcher): IMediatorMapper {
-        return (
-            this._mappers[matcher.createTypeFilter().descriptor] =
-                this._mappers[matcher.createTypeFilter().descriptor] || this.createMapper(matcher)
-        );
+        this._mappers[matcher.createTypeFilter().descriptor] =
+            this._mappers[matcher.createTypeFilter().descriptor] || this.createMapper(matcher);
+        return this._mappers[matcher.createTypeFilter().descriptor];
     }
 
     /**
@@ -105,7 +104,7 @@ export class MediatorMap implements IMediatorMap, IViewHandler {
      * @inheritDoc
      */
     public mediate(item: any): void {
-        this._viewHandler.handleItem(item, <any>item['constructor'] );
+        this._viewHandler.handleItem(item, <any>item['constructor']);
     }
 
     /**
