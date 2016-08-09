@@ -26,7 +26,7 @@ export interface IEventMap {
      * @param useWeakReference
      */
     mapListener(
-        dispatcher: IEventDispatcher,
+        dispatcher: IEventDispatcher | EventTarget,
         type: string,
         listener: Function,
         eventClass?: Object,

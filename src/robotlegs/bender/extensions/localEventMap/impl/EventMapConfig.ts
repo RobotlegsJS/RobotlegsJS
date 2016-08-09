@@ -16,12 +16,12 @@ export class EventMapConfig {
     /* Public Properties                                                          */
     /*============================================================================*/
 
-    private _dispatcher: IEventDispatcher;
+    private _dispatcher: IEventDispatcher | EventTarget;
 
     /**
      * @private
      */
-    public get dispatcher(): IEventDispatcher {
+    public get dispatcher(): IEventDispatcher | EventTarget {
         return this._dispatcher;
     }
 
@@ -78,7 +78,7 @@ export class EventMapConfig {
      * @private
      */
     constructor(
-        dispatcher: IEventDispatcher,
+        dispatcher: IEventDispatcher | EventTarget,
         eventString: string,
         listener: Function,
         eventClass: Object,
@@ -94,7 +94,7 @@ export class EventMapConfig {
     }
 
     public equalTo(
-        dispatcher: IEventDispatcher,
+        dispatcher: IEventDispatcher | EventTarget,
         eventString: string,
         listener: Function,
         eventClass: Object,

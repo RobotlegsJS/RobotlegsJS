@@ -115,3 +115,5 @@ export { IViewManager                 } from "./robotlegs/bender/extensions/view
  * Bundles
  */
 export { MVCSBundle                   } from "./robotlegs/bender/bundles/mvcs/MVCSBundle";
+export { Mediator                     } from "./robotlegs/bender/bundles/mvcs/Mediator";
+export { Command                      } from "./robotlegs/bender/bundles/mvcs/Command";
