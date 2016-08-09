@@ -17,6 +17,6 @@
     "not-ported-extensions"
   ],
   "rootDirs": [
-      "src/"
+    "src/"
   ]
 }
