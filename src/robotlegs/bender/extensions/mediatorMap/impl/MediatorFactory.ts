@@ -49,7 +49,7 @@ export class MediatorFactory {
      * @private
      */
     public getMediator(item: any, mapping: IMediatorMapping): any {
-        return this._mediators[item] ? this._mediators[item][<any>mapping] : null;
+        return this._mediators.get(item) ? this._mediators.get(item)[<any>mapping] : null;
     }
 
     /**
@@ -78,7 +78,7 @@ export class MediatorFactory {
      * @private
      */
     public removeMediators(item: any): void {
-        var mediators: Map<any, IMediatorMapping> = this._mediators[item];
+        var mediators: Map<any, IMediatorMapping> = this._mediators.get(item);
         if (!mediators)
             return;
 
@@ -86,16 +86,14 @@ export class MediatorFactory {
             this._manager.removeMediator(mediators[mapping], item, <any>mapping);
         }
 
-        delete this._mediators[item];
+        this._mediators.delete(item);
     }
 
     /**
      * @private
      */
     public removeAllMediators(): void {
-        for (var item in this._mediators) {
-            this.removeMediators(item);
-        }
+        this._mediators.forEach((item) => this.removeMediators(item));
     }
 
     /*============================================================================*/
@@ -122,8 +120,8 @@ export class MediatorFactory {
     }
 
     private addMediator(mediator: any, item: any, mapping: IMediatorMapping): void {
-        this._mediators[item] = this._mediators[item] || new Map<any, IMediatorMapping>();
-        this._mediators[item][<any>mapping] = mediator;
+        this._mediators.set(item, this._mediators[item] || new Map<any, IMediatorMapping>());
+        this._mediators.get(item)[<any>mapping] = mediator;
         this._manager.addMediator(mediator, item, mapping);
     }
 
