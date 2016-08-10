@@ -320,7 +320,7 @@ export class Lifecycle implements ILifecycle {
     public addReversedEventTypes(...types): void {
         for (let i: number = 0; i < types.length; i++) {
             let type = types[i];
-            this._reversedEventTypes[type] = true;
+            this._reversedEventTypes.set(type, true);
         }
     }
 
@@ -353,7 +353,7 @@ export class Lifecycle implements ILifecycle {
     }
 
     private flipPriority(type: string, priority: number): number {
-        return (priority === 0 && this._reversedEventTypes[type])
+        return (priority === 0 && this._reversedEventTypes.get(type))
             ? this._reversePriority++
             : priority;
     }

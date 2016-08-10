@@ -28,13 +28,13 @@ export class MessageDispatcher {
      * @param handler The handler function
      */
     public addMessageHandler(message: Object, handler: Function): void {
-        let messageHandlers: any[] = this._handlers[<any>message];
+        let messageHandlers: any[] = this._handlers.get(<any>message);
         if (messageHandlers) {
             if (messageHandlers.indexOf(handler) === -1) {
                 messageHandlers.push(handler);
             }
         } else {
-            this._handlers[<any>message] = [handler];
+            this._handlers.set(<any>message, handler);
         }
     }
 
@@ -44,7 +44,7 @@ export class MessageDispatcher {
      * @return A value of true if a handler of the specified message is registered; false otherwise.
      */
     public hasMessageHandler(message: Object): boolean {
-        return this._handlers[<any>message];
+        return this._handlers.get(<any>message);
     }
 
     /**
@@ -53,12 +53,12 @@ export class MessageDispatcher {
      * @param handler The handler function
      */
     public removeMessageHandler(message: Object, handler: Function): void {
-        let messageHandlers: any[] = this._handlers[<any>message];
+        let messageHandlers: any[] = this._handlers.get(<any>message);
         let index: number = messageHandlers ? messageHandlers.indexOf(handler) : -1;
         if (index !== -1) {
             messageHandlers.splice(index, 1);
             if (messageHandlers.length === 0) {
-                delete this._handlers[<any>message];
+                this._handlers.delete(<any>message);
             }
         }
     }
@@ -70,7 +70,7 @@ export class MessageDispatcher {
      * @param reverse Should handlers be called in reverse order
      */
     public dispatchMessage(message: Object, callback: Function = null, reverse: boolean = false): void {
-        let handlers: any[] = this._handlers[<any>message];
+        let handlers: any[] = this._handlers.get(<any>message);
         if (handlers) {
             handlers = handlers.concat();
             if (!reverse) {

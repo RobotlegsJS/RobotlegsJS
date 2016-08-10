@@ -81,7 +81,7 @@ export class CommandMappingList implements ICommandMappingList {
     public addMapping(mapping: ICommandMapping): void {
         this._sorted = false;
         this.applyProcessors(mapping);
-        let oldMapping: ICommandMapping = this._mappingsByCommand[<any>mapping.commandClass];
+        let oldMapping: ICommandMapping = this._mappingsByCommand.get(<any>mapping.commandClass);
         if (oldMapping) {
             this.overwriteMapping(oldMapping, mapping);
         } else {
@@ -96,7 +96,7 @@ export class CommandMappingList implements ICommandMappingList {
      * @inheritDoc
      */
     public removeMapping(mapping: ICommandMapping): void {
-        if (this._mappingsByCommand[<any>mapping.commandClass]) {
+        if (this._mappingsByCommand.get(<any>mapping.commandClass)) {
             this.deleteMapping(mapping);
             if (this._mappings.length === 0) {
                 this._trigger.deactivate();
@@ -108,7 +108,7 @@ export class CommandMappingList implements ICommandMappingList {
      * @inheritDoc
      */
     public removeMappingFor(commandClass: Object): void {
-        let mapping: ICommandMapping = this._mappingsByCommand[<any>commandClass];
+        let mapping: ICommandMapping = this._mappingsByCommand.get(<any>commandClass);
         if (mapping) {
             this.removeMapping(mapping);
         }
@@ -133,7 +133,7 @@ export class CommandMappingList implements ICommandMappingList {
     /*============================================================================*/
 
     private storeMapping(mapping: ICommandMapping): void {
-        this._mappingsByCommand[<any>mapping.commandClass] = mapping;
+        this._mappingsByCommand.set(<any>mapping.commandClass, mapping);
         this._mappings.push(mapping);
         if (this._logger) {
             this._logger.debug("{0} mapped to {1}", [this._trigger, mapping]);
@@ -141,7 +141,7 @@ export class CommandMappingList implements ICommandMappingList {
     }
 
     private deleteMapping(mapping: ICommandMapping): void {
-        delete this._mappingsByCommand[<any>mapping.commandClass];
+        this._mappingsByCommand.delete(<any>mapping.commandClass);
         this._mappings.splice(this._mappings.indexOf(mapping), 1);
         if (this._logger) {
             this._logger.debug("{0} unmapped from {1}", [this._trigger, mapping]);

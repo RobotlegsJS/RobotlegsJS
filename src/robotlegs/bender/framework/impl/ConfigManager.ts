@@ -71,8 +71,8 @@ export class ConfigManager {
      * @param config The configuration object or class
      */
     public addConfig(config: any): void {
-        if (!this._configs[config]) {
-            this._configs[config] = true;
+        if (!this._configs.get(config)) {
+            this._configs.set(config, true);
             this._objectProcessor.processObject(config);
         }
     }
@@ -93,11 +93,7 @@ export class ConfigManager {
         this._context.removeEventListener(LifecycleEvent.INITIALIZE, this.initialize);
         this._objectProcessor.removeAllHandlers();
         this._queue.length = 0;
-        for (let config in this._configs) {
-            if (this._configs.hasOwnProperty(config)) {
-                delete this._configs[config];
-            }
-        }
+        this._configs.clear();
     }
 
     /*============================================================================*/

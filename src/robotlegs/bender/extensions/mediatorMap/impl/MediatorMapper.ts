@@ -54,7 +54,7 @@ export class MediatorMapper implements IMediatorMapper, IMediatorUnmapper {
      * @inheritDoc
      */
     public toMediator(mediatorClass: any): IMediatorConfigurator {
-        var mapping: IMediatorMapping = this._mappings[<any>mediatorClass];
+        var mapping: IMediatorMapping = this._mappings.get(<any>mediatorClass);
         return mapping
             ? this.overwriteMapping(mapping)
             : this.createMapping(mediatorClass);
@@ -64,7 +64,7 @@ export class MediatorMapper implements IMediatorMapper, IMediatorUnmapper {
      * @inheritDoc
      */
     public fromMediator(mediatorClass: any): void {
-        var mapping: IMediatorMapping = this._mappings[<any>mediatorClass];
+        var mapping: IMediatorMapping = this._mappings.get(<any>mediatorClass);
         mapping && this.deleteMapping(mapping);
     }
 
@@ -72,10 +72,7 @@ export class MediatorMapper implements IMediatorMapper, IMediatorUnmapper {
      * @inheritDoc
      */
     public fromAll(): void {
-        for (let i in this._mappings) {
-            let mapping: IMediatorMapping = this._mappings[i];
-            this.deleteMapping(mapping);
-        }
+        this._mappings.forEach((value, key) => this.deleteMapping(key));
     }
 
     /*============================================================================*/
@@ -85,14 +82,14 @@ export class MediatorMapper implements IMediatorMapper, IMediatorUnmapper {
     private createMapping(mediatorClass: any): MediatorMapping {
         var mapping: MediatorMapping = new MediatorMapping(this._typeFilter, mediatorClass);
         this._handler.addMapping(mapping);
-        this._mappings[<any>mediatorClass] = mapping;
+        this._mappings.set(<any>mediatorClass, mapping);
         this._logger && this._logger.debug('{0} mapped to {1}', [this._typeFilter, mapping]);
         return mapping;
     }
 
     private deleteMapping(mapping: IMediatorMapping): void {
         this._handler.removeMapping(mapping);
-        delete this._mappings[<any>mapping.mediatorClass];
+        this._mappings.delete(<any>mapping.mediatorClass);
         this._logger && this._logger.debug('{0} unmapped from {1}', [this._typeFilter, mapping]);
     }
 

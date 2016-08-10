@@ -93,7 +93,7 @@ export class MediatorFactory {
      * @private
      */
     public removeAllMediators(): void {
-        this._mediators.forEach((item) => this.removeMediators(item));
+        this._mediators.forEach((value, key) => this.removeMediators(key));
     }
 
     /*============================================================================*/
@@ -120,7 +120,7 @@ export class MediatorFactory {
     }
 
     private addMediator(mediator: any, item: any, mapping: IMediatorMapping): void {
-        this._mediators.set(item, this._mediators[item] || new Map<any, IMediatorMapping>());
+        this._mediators.set(item, this._mediators.get(item) || new Map<any, IMediatorMapping>());
         this._mediators.get(item)[<any>mapping] = mediator;
         this._manager.addMediator(mediator, item, mapping);
     }
