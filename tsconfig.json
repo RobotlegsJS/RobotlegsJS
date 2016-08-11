@@ -22,6 +22,8 @@
   "filesGlob": [
     "src/*.ts",
     "src/**/*.ts",
+    "test/*.ts",
+    "test/**/*.ts",
     "!node_modules/**"
   ]
 }
