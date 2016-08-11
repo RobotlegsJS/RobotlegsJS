@@ -38,11 +38,13 @@ export class RobotlegsInjector extends Kernel implements IInjector {
     /**
      * Creates a new Injector
      */
-    constructor(logManager: LogManager) {
+    constructor(logManager?: LogManager) {
         super();
 
-        this._logManager = logManager;
-        this._logger = this._logManager.getLogger(this);
+        if (logManager) {
+            this._logManager = logManager;
+            this._logger = this._logManager.getLogger(this);
+        }
     }
 
     /*============================================================================*/
@@ -54,7 +56,9 @@ export class RobotlegsInjector extends Kernel implements IInjector {
      */
     public hasMapping(type: any, name: String): Boolean {
         // TODO: implement method using Kernel API
-        this._logger.error("hasMapping method is not implemented.");
+        if (this._logger) {
+            this._logger.error("hasMapping method is not implemented.");
+        }
         return true;
     }
 
@@ -63,7 +67,9 @@ export class RobotlegsInjector extends Kernel implements IInjector {
      */
     public hasDirectMapping(type: any, name: String): Boolean {
         // TODO: implement method using Kernel API
-        this._logger.error("hasDirectMapping method is not implemented.");
+        if (this._logger) {
+            this._logger.error("hasDirectMapping method is not implemented.");
+        }
         return true;
     }
 
@@ -72,7 +78,9 @@ export class RobotlegsInjector extends Kernel implements IInjector {
      */
     public satisfies(type: any, name: String): Boolean {
         // TODO: implement method using Kernel API
-        this._logger.error("satisfies method is not implemented.");
+        if (this._logger) {
+            this._logger.error("satisfies method is not implemented.");
+        }
         return true;
     }
 
@@ -81,7 +89,9 @@ export class RobotlegsInjector extends Kernel implements IInjector {
      */
     public satisfiesDirectly(type: any, name: String): Boolean {
         // TODO: implement method using Kernel API
-        this._logger.error("satisfiesDirectly method is not implemented.");
+        if (this._logger) {
+            this._logger.error("satisfiesDirectly method is not implemented.");
+        }
         return true;
     }
 
