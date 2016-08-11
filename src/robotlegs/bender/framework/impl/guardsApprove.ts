@@ -43,7 +43,7 @@ export function guardsApprove(guards: any[], injector?: IInjector): boolean {
             guard = injector ? injector.instantiateUnmapped(guard) : new guard();
         }
 
-        if (guard.approve() === false) {
+        if (!guard.approve()) {
             return false;
         }
     }
