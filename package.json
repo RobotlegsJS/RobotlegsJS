@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "scripts": {
-    "test": "mocha test/**/*.ts --require ts-node/register",
+    "test": "mocha test/**/*.test.ts --require ts-node/register",
     "build": "cp node_modules/inversify-dts/inversify/inversify.d.ts . && tsc -d",
     "prepublish": "publish-please guard && rimraf ./lib && npm run build",
     "publish-please": "publish-please"
@@ -43,6 +43,7 @@
     "phantomjs-prebuilt": "^2.1.11",
     "pixi.js": "pixijs/pixi.js#dev",
     "publish-please": "^2.1.4",
+    "reflect-metadata": "^0.1.8",
     "rimraf": "^2.5.2",
     "sinon": "^1.17.5",
     "ts-loader": "^0.8.2",
