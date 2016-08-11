@@ -43,8 +43,8 @@ export class Pin {
      * @param instance Instance to pin
      */
     public detain(instance: any): void {
-        if (!this._instances.get(instance)) {
-            this._instances.set(instance, true);
+        if (!this._instances[instance]) {
+            this._instances[instance] = true;
             this._dispatcher.dispatchEvent(new PinEvent(PinEvent.DETAIN, instance));
         }
     }
@@ -54,8 +54,8 @@ export class Pin {
      * @param instance Instance to unpin
      */
     public release(instance: any): void {
-        if (this._instances.get(instance)) {
-            this._instances.delete(instance);
+        if (this._instances[instance]) {
+            delete this._instances[instance];
             this._dispatcher.dispatchEvent(new PinEvent(PinEvent.RELEASE, instance));
         }
     }
@@ -64,6 +64,11 @@ export class Pin {
      * Removes all pins
      */
     public releaseAll(): void {
-        this._instances.forEach((value, key) => this.release(key));
+        for (let i in this._instances) {
+            if (this._instances.hasOwnProperty(i)) {
+                let instance: any = this._instances[i];
+                this.release(instance);
+            }
+        }
     }
 }

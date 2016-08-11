@@ -47,14 +47,14 @@ export class ExtensionInstaller {
      */
     public install(extension: any): void {
         if (typeof (extension) === "function") {
-            if (!this._classes.get(extension)) {
+            if (!this._classes[extension]) {
                 this.install(new extension);
             }
         } else {
             let extensionClass: any = <any>extension.constructor;
-            if (!this._classes.get(extensionClass)) {
+            if (!this._classes[extensionClass]) {
                 this._logger.debug("Installing extension {0}", [extension]);
-                this._classes.set(extensionClass, true);
+                this._classes[extensionClass] = true;
                 extension.extend(this._context);
             }
         }
@@ -64,6 +64,10 @@ export class ExtensionInstaller {
      * Destroy
      */
     public destroy(): void {
-        this._classes.clear();
+        for (let extensionClass in this._classes) {
+            if (this._classes.hasOwnProperty(extensionClass)) {
+                delete this._classes[extensionClass];
+            }
+        }
     }
 }

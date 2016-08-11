@@ -16,7 +16,7 @@ export class CommandTriggerMap {
     /* Private Properties                                                         */
     /*============================================================================*/
 
-    private _triggers: Map<any, ICommandTrigger> = new Map<any, ICommandTrigger>();
+    private _triggers: Map<any, any> = new Map<any, any>();
 
     private _keyFactory: Function;
 
@@ -45,9 +45,7 @@ export class CommandTriggerMap {
      */
     public getTrigger(...params): ICommandTrigger {
         let key: any = this.getKey(params);
-        let commandTrigger = this._triggers.get(key) || this.createTrigger(params);
-        this._triggers.set(key, commandTrigger);
-        return commandTrigger;
+        return this._triggers[key] = this._triggers[key] || this.createTrigger(params);
     }
 
     /**
@@ -70,10 +68,10 @@ export class CommandTriggerMap {
     }
 
     private destroyTrigger(key: any): ICommandTrigger {
-        let trigger: ICommandTrigger = this._triggers.get(key);
+        let trigger: ICommandTrigger = this._triggers[key];
         if (trigger) {
             trigger.deactivate();
-            this._triggers.delete(key);
+            delete this._triggers[key];
         }
         return trigger;
     }
