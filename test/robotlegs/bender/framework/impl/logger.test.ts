@@ -18,7 +18,7 @@ import { Logger } from "../../../../../src/robotlegs/bender/framework/impl/Logge
 import { CallbackLogTarget } from "./loggingSupport/CallbackLogTarget";
 import { LogParams } from "./loggingSupport/LogParams";
 
-describe("logger", () => {
+describe("Logger", () => {
 
     let source: Object;
 

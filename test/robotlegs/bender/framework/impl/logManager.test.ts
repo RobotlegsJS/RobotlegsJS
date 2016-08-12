@@ -19,7 +19,7 @@ import { LogManager } from "../../../../../src/robotlegs/bender/framework/impl/L
 import { CallbackLogTarget } from "./loggingSupport/CallbackLogTarget";
 import { LogParams } from "./loggingSupport/LogParams";
 
-describe("logManager", () => {
+describe("LogManager", () => {
 
     let source: Object;
     let logManager: LogManager;
