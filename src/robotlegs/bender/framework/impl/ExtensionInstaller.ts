@@ -46,15 +46,15 @@ export class ExtensionInstaller {
      * @param extension An object or class implementing IExtension
      */
     public install(extension: any): void {
-        if (typeof (extension) === "function") {
-            if (!this._classes[extension]) {
-                this.install(new extension);
+        if ((typeof (extension) === "function") && (extension.prototype.extend !== undefined)) {
+            if (!this._classes.get(extension)) {
+                this.install(new extension());
             }
         } else {
             let extensionClass: any = <any>extension.constructor;
-            if (!this._classes[extensionClass]) {
+            if (!this._classes.get(extensionClass)) {
                 this._logger.debug("Installing extension {0}", [extension]);
-                this._classes[extensionClass] = true;
+                this._classes.set(extensionClass, true);
                 extension.extend(this._context);
             }
         }
@@ -64,10 +64,6 @@ export class ExtensionInstaller {
      * Destroy
      */
     public destroy(): void {
-        for (let extensionClass in this._classes) {
-            if (this._classes.hasOwnProperty(extensionClass)) {
-                delete this._classes[extensionClass];
-            }
-        }
+        this._classes.clear();
     }
 }
