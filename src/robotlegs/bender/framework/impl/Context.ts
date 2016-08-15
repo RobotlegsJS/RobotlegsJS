@@ -395,7 +395,7 @@ export class Context extends EventDispatcher implements IContext {
      */
     private setup(): void {
         this._logManager = new LogManager();
-        this._injector = new RobotlegsInjector(this._logManager);
+        this._injector = new RobotlegsInjector();
 
         this._injector.bind<IInjector>(IInjector).toConstantValue(this._injector);
         this._injector.bind<IContext>(IContext).toConstantValue(this);

@@ -7,8 +7,6 @@
 
 import { Kernel, injectable } from "inversify";
 import { IInjector } from "../api/IInjector";
-import { ILogger } from "../api/ILogger";
-import { LogManager } from "../impl/LogManager";
 
 /**
  * Robotlegs IInjector Adapter
@@ -17,34 +15,14 @@ import { LogManager } from "../impl/LogManager";
 export class RobotlegsInjector extends Kernel implements IInjector {
 
     /*============================================================================*/
-    /* Private Properties                                                         */
-    /*============================================================================*/
-
-    private _logManager: LogManager;
-    private _logger: ILogger;
-
-    /*============================================================================*/
-    /* Public Properties                                                          */
-    /*============================================================================*/
-
-    public get logManager(): LogManager {
-        return this._logManager;
-    }
-
-    /*============================================================================*/
     /* Constructor                                                                */
     /*============================================================================*/
 
     /**
      * Creates a new Injector
      */
-    constructor(logManager?: LogManager) {
+    constructor() {
         super();
-
-        if (logManager) {
-            this._logManager = logManager;
-            this._logger = this._logManager.getLogger(this);
-        }
     }
 
     /*============================================================================*/
@@ -56,10 +34,7 @@ export class RobotlegsInjector extends Kernel implements IInjector {
      */
     public hasMapping(type: any, name: String): Boolean {
         // TODO: implement method using Kernel API
-        if (this._logger) {
-            this._logger.error("hasMapping method is not implemented.");
-        }
-        return true;
+        throw new Error("hasMapping method is not implemented.");
     }
 
     /**
@@ -67,10 +42,7 @@ export class RobotlegsInjector extends Kernel implements IInjector {
      */
     public hasDirectMapping(type: any, name: String): Boolean {
         // TODO: implement method using Kernel API
-        if (this._logger) {
-            this._logger.error("hasDirectMapping method is not implemented.");
-        }
-        return true;
+        throw new Error("hasDirectMapping method is not implemented.");
     }
 
     /**
@@ -78,10 +50,7 @@ export class RobotlegsInjector extends Kernel implements IInjector {
      */
     public satisfies(type: any, name: String): Boolean {
         // TODO: implement method using Kernel API
-        if (this._logger) {
-            this._logger.error("satisfies method is not implemented.");
-        }
-        return true;
+        throw new Error("satisfies method is not implemented.");
     }
 
     /**
@@ -89,10 +58,7 @@ export class RobotlegsInjector extends Kernel implements IInjector {
      */
     public satisfiesDirectly(type: any, name: String): Boolean {
         // TODO: implement method using Kernel API
-        if (this._logger) {
-            this._logger.error("satisfiesDirectly method is not implemented.");
-        }
-        return true;
+        throw new Error("satisfiesDirectly method is not implemented.");
     }
 
     /**
@@ -116,7 +82,7 @@ export class RobotlegsInjector extends Kernel implements IInjector {
      * @inheritDoc
      */
     public createChild(): IInjector {
-        let childInjector: IInjector = new RobotlegsInjector(this._logManager);
+        let childInjector: IInjector = new RobotlegsInjector();
         childInjector.parent = this;
         return childInjector;
     }
