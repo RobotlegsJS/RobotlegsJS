@@ -5,6 +5,8 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import { interfaces } from "inversify";
+
 import { IConfig } from "../api/IConfig";
 import { IContext } from "../api/IContext";
 import { IInjector } from "../api/IInjector";
@@ -111,7 +113,7 @@ export class ConfigManager {
         }
     }
 
-    private handleClass(type: FunctionConstructor): void {
+    private handleClass(type: interfaces.Newable<IConfig>): void {
         if (this._initialized) {
             this._logger.debug("Already initialized. Instantiating config class {0}", [type]);
             this.processClass(type);
@@ -137,7 +139,7 @@ export class ConfigManager {
                 let config: any = this._queue[i];
                 if (typeof (config) === "function") { // instanceof Class
                     this._logger.debug("Now initializing. Instantiating config class {0}", [config]);
-                    this.processClass(<FunctionConstructor>config);
+                    this.processClass(config);
                 } else {
                     this._logger.debug("Now initializing. Injecting into config object {0}", [config]);
                     this.processObject(config);
@@ -147,7 +149,7 @@ export class ConfigManager {
         this._queue.length = 0;
     }
 
-    private processClass(type: FunctionConstructor): void {
+    private processClass(type: interfaces.Newable<IConfig>): void {
         let config: IConfig = this._injector.instantiateUnmapped<IConfig>(type);
         if (config) {
             config.configure();

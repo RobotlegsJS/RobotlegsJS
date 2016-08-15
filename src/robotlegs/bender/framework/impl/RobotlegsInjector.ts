@@ -5,7 +5,7 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { Kernel, injectable } from "inversify";
+import { Kernel, injectable, interfaces } from "inversify";
 import { IInjector } from "../api/IInjector";
 
 /**
@@ -71,7 +71,7 @@ export class RobotlegsInjector extends Kernel implements IInjector {
     /**
      * @inheritDoc
      */
-    public instantiateUnmapped<T>(type: FunctionConstructor): T {
+    public instantiateUnmapped<T>(type: interfaces.Newable<T>): T {
         this.bind(type).to(type);
         let instance: T = this.get<T>(type);
         this.unbind(type);
