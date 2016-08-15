@@ -34,7 +34,9 @@ export function safelyCallBack(callback: Function, error?: Object, message?: Obj
         callback();
     } else if (callback.length === 1) {
         callback(error);
-    } else {
+    } else if (callback.length === 2) {
         callback(error, message);
+    } else {
+        throw new TypeError("Callback function accepts more than two parameters.");
     }
 }
