@@ -139,7 +139,7 @@ import { interfaces } from "inversify";
  * injections are started.
  */
 export let IInjector = Symbol("IInjector");
-export interface IInjector extends interfaces.Kernel {
+export interface IInjector {
 
     /**
      * Fallback Dependency Provider
@@ -209,8 +209,7 @@ export interface IInjector extends interfaces.Kernel {
      * @see #unmap()
      * @see org.swiftsuspenders.mapping.InjectionMapping
      */
-    // TODO: use bind from Kernel instead
-    // map(type: Class, name: String = ''): InjectionMapping;
+    map<T>(serviceIdentifier: interfaces.ServiceIdentifier<T>): interfaces.BindingToSyntax<T>;
 
     /**
      *  Removes the mapping described by the given <code>type</code> and <code>name</code>.
@@ -225,8 +224,7 @@ export interface IInjector extends interfaces.Kernel {
      * @see org.swiftsuspenders.mapping.InjectionMapping
      * @see org.swiftsuspenders.mapping.InjectionMapping#unseal()
      */
-    // TODO: use unbind from Kernel instead
-    // unmap(type: Class, name: String = ''): void;
+    unmap(serviceIdentifier: interfaces.ServiceIdentifier<any>): void;
 
     /**
      * Indicates whether the injector can supply a response for the specified dependency either

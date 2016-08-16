@@ -86,4 +86,14 @@ export class RobotlegsInjector extends Kernel implements IInjector {
         childInjector.parent = this;
         return childInjector;
     }
+
+    // alias #map to Kernel#bind
+    public map<T>(serviceIdentifier: interfaces.ServiceIdentifier<T>): interfaces.BindingToSyntax<T> {
+        return this.bind(serviceIdentifier);
+    }
+
+    // alias #unmap to Kernel#unbind
+    public unmap(serviceIdentifier: interfaces.ServiceIdentifier<any>): void {
+        return this.unbind(serviceIdentifier);
+    }
 }
