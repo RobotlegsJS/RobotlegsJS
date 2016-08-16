@@ -178,14 +178,14 @@ describe("Lifecycle", () => {
         function whenInitializingWrongHandler(): void {
             lifecycle.whenInitializing(function(phase: string, callback: Function): void { ; });
         }
-        assert.throws(whenInitializingWrongHandler, Error);
+        assert.throws(whenInitializingWrongHandler, LifecycleError, "Error: When and After handlers must accept 0 or 1 arguments");
     });
 
     it("afterHandler with more than 1 argument throws", () => {
         function afterInitializingWrongHandler(): void {
             lifecycle.afterInitializing(function(phase: string, callback: Function): void { ; });
         }
-        assert.throws(afterInitializingWrongHandler, Error);
+        assert.throws(afterInitializingWrongHandler, LifecycleError, "Error: When and After handlers must accept 0 or 1 arguments");
     });
 
     it("when and afterHandlers with single arguments receive event types", () => {
@@ -392,7 +392,7 @@ describe("Lifecycle", () => {
             lifecycle.initialize();
             lifecycle.beforeInitializing(nop);
         }
-        assert.throws(beforeInitializingWrongHandler, Error);
+        assert.throws(beforeInitializingWrongHandler, LifecycleError, "Error: Handler added late and will never fire");
     });
 
     it("adding whenInitializing handler after initialization throws error", () => {
@@ -400,7 +400,7 @@ describe("Lifecycle", () => {
             lifecycle.initialize();
             lifecycle.whenInitializing(nop);
         }
-        assert.throws(whenInitializingWrongHandler, Error);
+        assert.throws(whenInitializingWrongHandler, LifecycleError, "Error: Handler added late and will never fire");
     });
 
     it("adding whenInitializing handler during initialization does NOT throw error", (done: Function) => {
