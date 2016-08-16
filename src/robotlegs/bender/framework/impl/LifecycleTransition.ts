@@ -181,7 +181,7 @@ export class LifecycleTransition {
             // process callback queue (dup and trash for safety)
             let callbacks: any[] = this._callbacks.concat();
             this._callbacks.length = 0;
-            for (let i: number; i < callbacks.length; i++) {
+            for (let i: number = 0; i < callbacks.length; i++) {
                 let callbackChild = callbacks[i];
                 safelyCallBack(callbackChild, null, this._name);
             }
@@ -225,7 +225,7 @@ export class LifecycleTransition {
             this._lifecycle.dispatchEvent(event);
             // process callback queue
             if (callbacks) {
-                for (let i = 0; i < callbacks.length; i++) {
+                for (let i: number = 0; i < callbacks.length; i++) {
                     let callback = callbacks[i];
                     if (callback) {
                         safelyCallBack(callback, error, this._name);
