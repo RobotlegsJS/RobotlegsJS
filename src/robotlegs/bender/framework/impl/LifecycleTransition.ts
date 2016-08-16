@@ -41,7 +41,7 @@ export class LifecycleTransition {
 
     private _postTransitionEvent: string;
 
-    private _reverse: boolean;
+    private _reverse: boolean = false;
 
     /*============================================================================*/
     /* Constructor                                                                */
@@ -198,7 +198,7 @@ export class LifecycleTransition {
 
     private invalidTransition(): boolean {
         return this._fromStates.length > 0
-            && this._fromStates.indexOf(this._lifecycle.state) == -1;
+            && this._fromStates.indexOf(this._lifecycle.state) === -1;
     }
 
     private setState(state: string): void {
