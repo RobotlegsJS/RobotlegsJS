@@ -144,6 +144,7 @@ class MessageRunner {
                     }
 
                     handled = true;
+
                     if (this.error || this._handlers.length === 0) {
                         if (this._callback) {
                             safelyCallBack(this._callback, this.error, this._message);
@@ -151,7 +152,7 @@ class MessageRunner {
                     } else {
                         this.next();
                     }
-                });
+                }.bind(this));
                 // IMPORTANT: MUST break this loop with a RETURN. See top.
                 return;
             } else { // ERROR: this should NEVER happen
