@@ -125,7 +125,7 @@ export class Context extends EventDispatcher implements IContext {
 
     private _logManager: LogManager;
 
-    private _children: any[] = [];
+    private _children: IContext[] = [];
 
     private _pin: Pin;
 
@@ -308,7 +308,7 @@ export class Context extends EventDispatcher implements IContext {
             if (!child.uninitialized) {
                 this._logger.warn("Child context {0} must be uninitialized", [child]);
             }
-            if (child.injector.parent) {
+            if ((<any>child.injector)._parentKernel) {
                 this._logger.warn("Child context {0} must not have a parent Injector", [child]);
             }
             this._children.push(child);
@@ -439,13 +439,8 @@ export class Context extends EventDispatcher implements IContext {
     }
 
     private removeChildren(): void {
-        let i = this._children.length;
-
-        while (i--) {
-            let child: IContext = this._children[i];
-            this.removeChild(child);
+        while (this._children.length > 0) {
+            this.removeChild(this._children.pop());
         }
-
-        this._children.length = 0;
     }
 };
