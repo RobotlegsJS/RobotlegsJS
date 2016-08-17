@@ -136,7 +136,7 @@ class MessageRunner {
             } else if (handler.length === 1) { // sync handler: (message)
                 handler(this._message);
             } else if (handler.length === 2) { // sync or async handler: (message, callback)
-                let handled: boolean;
+                let handled: boolean = false;
                 handler(this._message, function(error: Object = null, msg: Object = null): void {
                     // handler must not invoke the callback more than once
                     if (handled) {
@@ -145,9 +145,9 @@ class MessageRunner {
 
                     handled = true;
 
-                    if (this.error || this._handlers.length === 0) {
+                    if (error || this._handlers.length === 0) {
                         if (this._callback) {
-                            safelyCallBack(this._callback, this.error, this._message);
+                            safelyCallBack(this._callback, error, this._message);
                         }
                     } else {
                         this.next();
