@@ -1,4 +1,4 @@
-import { IEvent, IEventInit } from "../api/IEvent.ts";
+import { IEvent, IEventInit } from "../api/IEvent";
 
 export class Event implements IEvent {
 

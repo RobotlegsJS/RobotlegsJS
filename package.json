@@ -58,6 +58,7 @@
   "peerDependencies": {
     "reflect-metadata": "^0.1.3",
     "inversify-dts": "^1.5.0",
-    "pixi.js": "*"
+    "pixi.js": "*",
+    "eventemitter3": "*"
   }
 }

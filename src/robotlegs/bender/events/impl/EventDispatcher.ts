@@ -1,8 +1,8 @@
-// https://github.com/mrdoob/eventdispatcher.js
+// Implementation reference: https://github.com/egret-labs/egret-core/blob/master/src/egret/events/EventDispatcher.ts
 
 import { injectable } from "inversify";
 
-import { IEvent } from "../api/IEvent.ts";
+import { IEvent } from "../api/IEvent";
 import { IEventDispatcher } from "../api/IEventDispatcher";
 
 import { Event } from "../impl/Event";
@@ -212,7 +212,6 @@ export class EventDispatcher implements IEventDispatcher {
             return true;
         }
         var onceList = ONCE_EVENT_LIST;
-        //做个标记，防止外部修改原始数组导致遍历错误。这里不直接调用list.concat()因为dispatch()方法调用通常比on()等方法频繁。
         values[Keys.notifyLevel]++;
         for (var i = 0; i < length; i++) {
             var eventBin = list[i];
