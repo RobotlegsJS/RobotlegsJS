@@ -49,6 +49,7 @@ export { safelyCallBack } from "./robotlegs/bender/framework/impl/safelyCallBack
 /**
  * Event Dispatcher
  */
+export { IEvent } from "./robotlegs/bender/events/api/IEvent";
 export { IEventDispatcher } from "./robotlegs/bender/events/api/IEventDispatcher";
 export { EventDispatcher } from "./robotlegs/bender/events/impl/EventDispatcher";
 

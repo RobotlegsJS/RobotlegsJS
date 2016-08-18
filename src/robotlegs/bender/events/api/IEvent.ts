@@ -1,9 +1,9 @@
 export interface IEvent {
     type: string,
-    defaultPrevented: boolean,
+    defaultPrevented?: boolean,
     bubbles?: boolean,
-    target: any,
-    currentTarget: any,
+    target?: any,
+    currentTarget?: any,
     detail?: any,
 }
 

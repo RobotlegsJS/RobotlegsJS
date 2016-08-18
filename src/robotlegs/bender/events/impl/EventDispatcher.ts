@@ -243,7 +243,7 @@ export class EventDispatcher implements IEventDispatcher {
      */
     public dispatchEventWith(type:string, bubbles?:boolean, data?:any):boolean {
         if (bubbles || this.hasEventListener(type)) {
-            var event:Event = new CustomEvent(type, { bubbles: bubbles, detail: data });
+            var event: Event = new Event(type, { bubbles: bubbles, detail: data });
             var result = this.dispatchEvent(event);
             return result;
         }

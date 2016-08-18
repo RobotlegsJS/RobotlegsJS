@@ -27,7 +27,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////
 
-import { Event } from "../impl/Event";
+import { IEvent } from "./IEvent";
 
 export let IEventDispatcher = Symbol("IEventDispatcher");
 
@@ -152,7 +152,7 @@ export interface IEventDispatcher {
      * @version Egret 2.4
      * @platform Web,Native
      */
-    dispatchEvent(event:Event):boolean;
+    dispatchEvent(event:IEvent):boolean;
 
     /**
      * @language en_US

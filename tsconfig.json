@@ -14,7 +14,8 @@
     "node_modules",
     "bower_components",
     "test",
-    "not-ported-extensions"
+    "not-ported-extensions",
+    "definitions"
   ],
   "rootDirs": [
     "src/"
