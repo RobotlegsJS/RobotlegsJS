@@ -5,10 +5,13 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import { Event } from "../../events/impl/Event";
+
 /**
  * Detain/release pin Event
  */
-export class PinEvent {
+
+export class PinEvent extends Event {
 
     /*============================================================================*/
     /* Public Static Properties                                                   */
@@ -22,33 +25,13 @@ export class PinEvent {
     /* Public Properties                                                          */
     /*============================================================================*/
 
-    private _type: string;
     private _instance: Object;
-    private _target: any;
-
-    /**
-     * The type of event
-     */
-    public get type(): string {
-        return this._type;
-    }
 
     /**
      * The instance being detained or released
      */
     public get instance(): Object {
         return this._instance;
-    }
-
-    /**
-     * The target of event
-     */
-    public get target(): any {
-        return this._target;
-    }
-
-    public set target(value: any) {
-        this._target = value;
     }
 
     /*============================================================================*/
@@ -61,7 +44,7 @@ export class PinEvent {
      * @param instance The associated instance
      */
     constructor(type: string, instance: Object) {
-        this._type = type;
+        super(type);
         this._instance = instance;
     }
 

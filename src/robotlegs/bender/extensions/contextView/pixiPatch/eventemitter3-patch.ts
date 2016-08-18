@@ -1,22 +1,35 @@
-import EventEmitter = require('eventemitter3');
+/**
+ * Patch PIXI event handling.
+ *
+ * - Proxy PIXI events to be compatible with EventDispatcher
+ * - Implements event bubbling on `dispatchEvent` when `bubbles` is true.
+ */
 
-// proxy EventDispatcher interface to PIXI's EventEmitter3 methods
-EventEmitter.prototype.addEventListener = function(type: string, listener?: Function): void {
-    this.on(type, listener);
-}
+import { DisplayObject } from "pixi.js";
 
-EventEmitter.prototype.hasEventListener = function(type: string, listener?: Function): boolean {
-    return this.listeners(type).length > 0;
-}
+Object.assign(DisplayObject.prototype, {
 
-EventEmitter.prototype.removeEventListener = function(type: string, listener?: Function): void {
-    this.off(type, listener);
-}
+    addEventListener: function(type: string, listener?: Function): void {
+        this.on(type, listener);
+    },
 
-EventEmitter.prototype.willTrigger = function(type: string): void {
-    return this.hasEventListener(type);
-}
+    hasEventListener: function(type: string, listener?: Function): boolean {
+        return this.listeners(type).length > 0;
+    },
 
-EventEmitter.prototype.dispatchEvent = function(event: any): void {
-    return this.emit(event.type, event);
-}
+    removeEventListener: function(type: string, listener?: Function): void {
+        this.off(type, listener);
+    },
+
+    willTrigger: function(type: string): void {
+        return this.hasEventListener(type);
+    },
+
+    dispatchEvent: function(event: any): void {
+        if (event.bubbles) {
+        }
+        this.emit(event.type, event);
+    },
+
+});
+

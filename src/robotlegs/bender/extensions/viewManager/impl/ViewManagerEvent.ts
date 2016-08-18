@@ -6,12 +6,13 @@
 // ------------------------------------------------------------------------------
 
 import { IViewHandler } from "../api/IViewHandler";
+import { Event } from "../../../events/impl/Event";
 
 /**
  * Container existence event
  * @private
  */
-export class ViewManagerEvent { // extends CustomEvent
+export class ViewManagerEvent extends Event {
 
     /*============================================================================*/
     /* Public Static Properties                                                   */
@@ -30,8 +31,6 @@ export class ViewManagerEvent { // extends CustomEvent
     /*============================================================================*/
 
     private _container: any;
-    private _type: string;
-    public target: any;
 
     /**
      * The container associated with this event
@@ -49,8 +48,6 @@ export class ViewManagerEvent { // extends CustomEvent
         return this._handler;
     }
 
-    public get type(): string { return this._type; }
-
     /*============================================================================*/
     /* Constructor                                                                */
     /*============================================================================*/
@@ -62,8 +59,7 @@ export class ViewManagerEvent { // extends CustomEvent
      * @param handler The view handler associated with this event
      */
     constructor(type: string, container?: any, handler?: IViewHandler) {
-        // super(type);
-        this._type = type;
+        super(type);
         this._container = container;
         this._handler = handler;
     }

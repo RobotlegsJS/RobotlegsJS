@@ -9,7 +9,9 @@
  * Container existence event
  * @private
  */
-export class ContainerRegistryEvent { // extends CustomEvent
+import { Event } from "../../../events/impl/Event";
+
+export class ContainerRegistryEvent extends Event {
 
     /*============================================================================*/
     /* Public Static Properties                                                   */
@@ -28,17 +30,12 @@ export class ContainerRegistryEvent { // extends CustomEvent
     /*============================================================================*/
 
     private _container: any;
-    private _type: string;
 
     /**
      * The container associated with this event
      */
     public get container(): any {
         return this._container;
-    }
-
-    public get type(): string {
-        return this._type;
     }
 
     /*============================================================================*/
@@ -51,7 +48,7 @@ export class ContainerRegistryEvent { // extends CustomEvent
      * @param container The container associated with this event
      */
     constructor(type: string, container: any) {
-        this._type = type;
+        super(type);
         this._container = container;
     }
 

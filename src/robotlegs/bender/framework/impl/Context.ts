@@ -313,7 +313,7 @@ export class Context extends EventDispatcher implements IContext {
             }
             this._children.push(child);
             child.injector.parent = this.injector;
-            child.addEventListener(LifecycleEvent.POST_DESTROY, this.onChildDestroy);
+            child.addEventListener(LifecycleEvent.POST_DESTROY, this.onChildDestroy, this);
         }
         return this;
     }
@@ -327,7 +327,7 @@ export class Context extends EventDispatcher implements IContext {
             this._logger.info("Removing child context {0}", [child]);
             this._children.splice(childIndex, 1);
             child.injector.parent = null;
-            child.removeEventListener(LifecycleEvent.POST_DESTROY, this.onChildDestroy);
+            child.removeEventListener(LifecycleEvent.POST_DESTROY, this.onChildDestroy, this);
         } else {
             this._logger.warn("Child context {0} must be a child of {1}", [child, this]);
         }

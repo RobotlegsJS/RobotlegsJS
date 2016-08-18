@@ -37,8 +37,6 @@ export class EventCommandTrigger implements ICommandTrigger {
 
     private _executor: ICommandExecutor;
 
-    private _eventHandler: Function; // this.eventHandler binded to `this` scope.
-
     /*============================================================================*/
     /* Constructor                                                                */
     /*============================================================================*/
@@ -59,8 +57,6 @@ export class EventCommandTrigger implements ICommandTrigger {
         this._eventClass = eventClass;
         this._mappings = new CommandMappingList(this, processors, logger);
         this._executor = new CommandExecutor(injector, this._mappings.removeMapping.bind(this._mappings));
-
-        this._eventHandler = this.eventHandler.bind(this);
     }
 
     /*============================================================================*/
@@ -78,14 +74,14 @@ export class EventCommandTrigger implements ICommandTrigger {
      * @inheritDoc
      */
     public activate(): void {
-        this._dispatcher.addEventListener(this._type, this._eventHandler);
+        this._dispatcher.addEventListener(this._type, this.eventHandler, this);
     }
 
     /**
      * @inheritDoc
      */
     public deactivate(): void {
-        this._dispatcher.removeEventListener(this._type, this._eventHandler);
+        this._dispatcher.removeEventListener(this._type, this.eventHandler, this);
     }
 
     public toString(): string {

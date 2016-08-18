@@ -275,7 +275,7 @@ export class Lifecycle implements ILifecycle {
     ): void {
         priority = this.flipPriority(type, priority);
         // this._dispatcher.addEventListener(type, listener, useCapture, priority, useWeakReference);
-        this._dispatcher.addEventListener(type, listener);
+        this._dispatcher.addEventListener(type, listener, undefined, useCapture, priority);
     }
 
     /**

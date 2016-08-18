@@ -11,6 +11,7 @@ import { injectable, inject } from "inversify";
 import { IEventMap } from "../../extensions/localEventMap/api/IEventMap";
 import { IEventDispatcher } from "../../events/api/IEventDispatcher";
 import { IMediator } from "../../extensions/mediatorMap/api/IMediator";
+import { Event } from "../../events/impl/Event";
 
 /**
  * Classic Robotlegs mediator implementation
