@@ -440,7 +440,7 @@ export class Context extends EventDispatcher implements IContext {
 
     private removeChildren(): void {
         while (this._children.length > 0) {
-            this.removeChild(this._children.pop());
+            this.removeChild(this._children[this._children.length - 1]);
         }
     }
 };
