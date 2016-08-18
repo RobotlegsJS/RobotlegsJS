@@ -60,7 +60,7 @@ export class ConfigManager {
         // The ConfigManager should process the config queue
         // at the end of the INITIALIZE phase,
         // but *before* POST_INITIALIZE, so use low event priority
-        context.addEventListener(LifecycleEvent.INITIALIZE, this.initialize.bind(this)); // , false, -100
+        context.addEventListener(LifecycleEvent.INITIALIZE, this.initialize, this, false, -100);
     }
 
     /*============================================================================*/
