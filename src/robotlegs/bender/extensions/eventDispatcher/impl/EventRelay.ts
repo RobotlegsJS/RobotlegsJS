@@ -20,8 +20,6 @@ export class EventRelay {
 
     private _destination: IEventDispatcher;
 
-    private _listeners: Map<string, Function> = new Map<string, Function>();
-
     private _types: any[];
 
     private _active: boolean;
@@ -98,12 +96,11 @@ export class EventRelay {
     /*============================================================================*/
 
     private addListener(type: string): void {
-        this._listeners[type] = this._destination.dispatchEvent;
-        this._source.addEventListener(type, this._listeners[type], this);
+        this._source.addEventListener(type, this._destination.dispatchEvent, this._destination);
     }
 
     private removeListener(type: string): void {
-        this._source.removeEventListener(type, this._listeners[type], this);
+        this._source.removeEventListener(type, this._destination.dispatchEvent, this._destination);
     }
 
     private addListeners(): void {
