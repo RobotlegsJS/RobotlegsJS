@@ -6,31 +6,59 @@ version is a direct port from the [ActionScript 3.0
 codebase](https://github.com/robotlegs/robotlegs-framework) to
 JavaScript/TypeScript. See the [motivation](#motivation) behind it.
 
+Right now, this framework only works together with
+[pixi.js v4](https://github.com/pixijs/pixi.js).
+
 **Features**
 
 - Dependency injection (through [InversifyJS](https://github.com/inversify/InversifyJS))
 - Command management
 - View management
 
+Installation
+===
+
+You can get the latest release and the type definitions using npm:
+
+```
+npm install robotlegs reflect-metadata --save
+npm install inversify-dts --save-dev
+```
+
+Include the type definition references in your project:
+
+```ts
+/// <reference path="node_modules/inversify-dts/inversify/inversify.d.ts" />
+/// <reference path="node_modules/reflect-metadata/reflect-metadata.d.ts" />
+/// <reference path="node_modules/robotlegs/definitions/pixi.d.ts" />
+```
+
 Quickstart
 ===
 
 ## Creating A Context
 
-To create a Robotlegs application or module you need to instantiate a Context. A context won't do much without some configuration.
+To create a Robotlegs application or module you need to instantiate a Context. A
+context won't do much without some configuration.
 
 Plain ActionScript:
 
+
 ```ts
+let renderer = PIXI.autoDetectRenderer(800, 600, {});
 let context = new Context()
         .install(MVCSBundle)
         .configure(MyAppConfig, SomeOtherConfig)
-        .configure(new ContextView(this));
+        .configure(new ContextView((<any>this.renderer).plugins.interaction));
 ```
 
-We install the MVCSBundle, which in turn installs a number of commonly used Extensions. We then add some custom application configurations.
+We install the MVCSBundle, which in turn installs a number of commonly used
+Extensions. We then add some custom application configurations.
 
-We pass the instance "this" through as the "contextView" which is required by many of the view related extensions. It must be installed after the bundle or it won't be processed. Also, it should always be added as the final configuration as it may trigger context initialization.
+We pass the instance "this" through as the "contextView" which is required by
+many of the view related extensions. It must be installed after the bundle or it
+won't be processed. Also, it should always be added as the final configuration
+as it may trigger context initialization.
 
 Note: You must hold on to the context instance or it will be garbage collected.
 
@@ -38,7 +66,9 @@ Note: You must hold on to the context instance or it will be garbage collected.
 
 ## Context Initialization
 
-If a ContextView is provided the Context is automatically initialized when the supplied view lands on stage. Be sure to install the ContextView last, as it may trigger context initialization.
+If a ContextView is provided the Context is automatically initialized when the
+supplied view lands on stage. Be sure to install the ContextView last, as it may
+trigger context initialization.
 
 If a ContextView is not supplied then the Context must be manually initialized.
 
@@ -49,7 +79,8 @@ let context = new Context()
         .initialize();
 ```
 
-Note: This does not apply to Flex MXML configuration as the ContextView is automatically determined and initialization will be automatic.
+Note: This does not apply to Flex MXML configuration as the ContextView is
+automatically determined and initialization will be automatic.
 
 [See ContextView docs.](docs/robotlegs/extensions/contextView)
 
@@ -97,9 +128,11 @@ public class MyAppConfig implements IConfig
 }
 ```
 
-The configuration file above implements IConfig. An instance of this class will be created automatically when the context initializes.
+The configuration file above implements IConfig. An instance of this class will
+be created automatically when the context initializes.
 
-We Inject the utilities that we want to configure, and add our Main View to the Context View.
+We Inject the utilities that we want to configure, and add our Main View to the
+Context View.
 
 [See Framework documentation](docs/robotlegs/framework)
 

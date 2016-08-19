@@ -1,7 +1,7 @@
 {
   "name": "robotlegs",
-  "version": "0.0.1",
-  "description": "TypeScript port of Robotlegs Framework",
+  "version": "0.1.0",
+  "description": "An architecture-based framework for JavaScript/TypeScript canvas applications.",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "scripts": {
