@@ -20,6 +20,7 @@ export interface IEventMap {
      * @param dispatcher The <code>IEventDispatcher</code> to listen to
      * @param type The <code>Event</code> type to listen for
      * @param listener The <code>Event</code> handler
+     * @param thisObject the listener function's "this"
      * @param eventClass Optional Event class for a stronger mapping. Defaults to <code>flash.events.Event</code>.
      * @param useCapture
      * @param priority
@@ -29,6 +30,7 @@ export interface IEventMap {
         dispatcher: IEventDispatcher | EventTarget,
         type: string,
         listener: Function,
+        thisObject?: any,
         eventClass?: Object,
         useCapture?: Boolean,
         priority?: number,
@@ -42,10 +44,11 @@ export interface IEventMap {
      * @param dispatcher The <code>IEventDispatcher</code>
      * @param type The <code>Event</code> type
      * @param listener The <code>Event</code> handler
+     * @param thisObject the listener function's "this"
      * @param eventClass Optional Event class for a stronger mapping. Defaults to <code>flash.events.Event</code>.
      * @param useCapture
      */
-    unmapListener(dispatcher: IEventDispatcher, type: string, listener: Function, eventClass?: Object, useCapture?: Boolean): void;
+    unmapListener(dispatcher: IEventDispatcher, type: string, listener: Function, thisObject?: any, eventClass?: Object, useCapture?: Boolean): void;
 
     /**
      * Removes all listeners registered through <code>mapListener</code>

@@ -10,6 +10,7 @@ import { injectable } from "inversify";
 import { IEventDispatcher } from "../../../events/api/IEventDispatcher";
 import { IEventMap } from "../api/IEventMap";
 import { EventMapConfig } from "./EventMapConfig";
+import { Event } from "../../../events/impl/Event";
 
 /**
  * @private
@@ -38,6 +39,7 @@ export class EventMap implements IEventMap {
         dispatcher: IEventDispatcher | EventTarget,
         eventString: string,
         listener: Function,
+        thisObject?: any,
         eventClass?: Object,
         useCapture: boolean = false,        // Not used in browser environment
         priority: number = 0,               // Not used in browser environment
@@ -54,7 +56,7 @@ export class EventMap implements IEventMap {
         let i: number = currentListeners.length;
         while (i--) {
             config = currentListeners[i];
-            if (config.equalTo(dispatcher, eventString, listener, eventClass, useCapture)) {
+            if (config.equalTo(dispatcher, eventString, listener, thisObject, eventClass, useCapture)) {
                 return;
             }
         }
@@ -69,6 +71,7 @@ export class EventMap implements IEventMap {
             dispatcher,
             eventString,
             listener,
+            thisObject,
             eventClass,
             callback,
             useCapture
@@ -77,7 +80,7 @@ export class EventMap implements IEventMap {
         currentListeners.push(config);
 
         if (!this._suspended) {
-            (<IEventDispatcher>dispatcher).addEventListener(eventString, callback);
+            (<IEventDispatcher>dispatcher).addEventListener(eventString, callback, thisObject);
         }
     }
 
@@ -88,6 +91,7 @@ export class EventMap implements IEventMap {
         dispatcher: IEventDispatcher | EventTarget,
         eventString: string,
         listener: Function,
+        thisObject?: any,
         eventClass?: Object,
         useCapture: boolean = false
     ): void {
@@ -100,9 +104,9 @@ export class EventMap implements IEventMap {
         let i: number = currentListeners.length;
         while (i--) {
             let config: EventMapConfig = currentListeners[i];
-            if (config.equalTo(dispatcher, eventString, listener, eventClass, useCapture)) {
+            if (config.equalTo(dispatcher, eventString, listener, thisObject, eventClass, useCapture)) {
                 if (!this._suspended) {
-                    (<IEventDispatcher>dispatcher).removeEventListener(eventString, config.callback);
+                    (<IEventDispatcher>dispatcher).removeEventListener(eventString, config.callback, thisObject);
                 }
                 currentListeners.splice(i, 1);
                 return;
@@ -121,7 +125,7 @@ export class EventMap implements IEventMap {
         while (eventConfig = currentListeners.pop()) {
             if (!this._suspended) {
                 dispatcher = eventConfig.dispatcher;
-                (<IEventDispatcher>dispatcher).removeEventListener(eventConfig.eventString, eventConfig.callback);
+                (<IEventDispatcher>dispatcher).removeEventListener(eventConfig.eventString, eventConfig.callback, eventConfig.thisObject);
             }
         }
     }
@@ -140,7 +144,7 @@ export class EventMap implements IEventMap {
         let dispatcher: IEventDispatcher | EventTarget;
         while (eventConfig = this._listeners.pop()) {
             dispatcher = eventConfig.dispatcher;
-            (<IEventDispatcher>dispatcher).removeEventListener(eventConfig.eventString, eventConfig.callback);
+            (<IEventDispatcher>dispatcher).removeEventListener(eventConfig.eventString, eventConfig.callback, eventConfig.thisObject);
             this._suspendedListeners.push(eventConfig);
         }
     }
@@ -159,7 +163,7 @@ export class EventMap implements IEventMap {
         let dispatcher: IEventDispatcher | EventTarget;
         while (eventConfig = this._suspendedListeners.pop()) {
             dispatcher = eventConfig.dispatcher;
-            (<IEventDispatcher>dispatcher).addEventListener(eventConfig.eventString, eventConfig.callback);
+            (<IEventDispatcher>dispatcher).addEventListener(eventConfig.eventString, eventConfig.callback, eventConfig.thisObject);
             this._listeners.push(eventConfig);
         }
     }

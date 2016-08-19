@@ -35,12 +35,20 @@ export class EventMapConfig {
     }
 
     private _listener: Function;
+    private _thisObject: any;
 
     /**
      * @private
      */
     public get listener(): Function {
         return this._listener;
+    }
+
+    /**
+     * @private
+     */
+    public get thisObject(): Function {
+        return this._thisObject;
     }
 
     private _eventClass: Object;
@@ -81,6 +89,7 @@ export class EventMapConfig {
         dispatcher: IEventDispatcher | EventTarget,
         eventString: string,
         listener: Function,
+        thisObject: any,
         eventClass: Object,
         callback: Function,
         useCapture: boolean
@@ -88,6 +97,7 @@ export class EventMapConfig {
         this._dispatcher = dispatcher;
         this._eventString = eventString;
         this._listener = listener;
+        this._thisObject = thisObject;
         this._eventClass = eventClass;
         this._callback = callback;
         this._useCapture = useCapture;
@@ -97,11 +107,13 @@ export class EventMapConfig {
         dispatcher: IEventDispatcher | EventTarget,
         eventString: string,
         listener: Function,
+        thisObject: any,
         eventClass: Object,
         useCapture: boolean
     ): boolean {
         return this._eventString === eventString
             && this._eventClass === eventClass
+            && this._thisObject === thisObject
             && this._dispatcher === dispatcher
             && this._listener === listener
             && this._useCapture === useCapture;
