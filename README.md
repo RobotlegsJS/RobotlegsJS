@@ -63,22 +63,20 @@ import {
    IInjector,
    IMediatorMap,
    IEventCommandMap,
-   ContextView
+   ContextView,
+   inject
 } from "robotlegs";
 
 public class MyAppConfig implements IConfig
 {
-    [Inject]
-    public var injector: IInjector;
 
-    [Inject]
-    public var mediatorMap: IMediatorMap;
-
-    [Inject]
-    public var commandMap: IEventCommandMap;
-
-    [Inject]
-    public var contextView: ContextView;
+    constructor(
+        @inject(IInjector) public injector: IInjector,
+        @inject(IMediatorMap) public mediatorMap: IMediatorMap,
+        @inject(IEventCommandMap) public commandMap: IEventCommandMap,
+        @inject(IContextView) public contextView: IEventCommandMap,
+    ) {
+    }
 
     public function configure(): void
     {
@@ -114,8 +112,10 @@ The mediator we mapped above might look like this:
 ```ts
 public class UserProfileMediator extends Mediator
 {
-    [Inject]
-    public var view: UserProfileView;
+    constructor (
+        @inject(UserProfileView) public view
+    ) {
+    }
 
     public function initialize():void
     {
@@ -138,11 +138,11 @@ import { Command } fro "robotlegs";
 
 public class UserSignInCommand extends Command
 {
-    [Inject]
-    public var event: UserEvent;
-
-    [Inject]
-    public var model: UserModel;
+    constructor (
+        @inject(UserEvent) event: UserEvent,
+        @inject(UserModel) model: UserModel
+    ) {
+    }
 
     public function execute(): void
     {
