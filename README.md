@@ -92,8 +92,6 @@ public class MyAppConfig implements IConfig
         this.commandMap.map(UserEvent.SIGN_IN).toCommand(UserSignInCommand);
 
         // The "view" property is a DisplayObjectContainer reference.
-        // If this was a Flex application we would need to cast it
-        // as an IVisualElementContainer and call addElement().
         this.contextView.view.addChild(new MainView());
     }
 }
@@ -110,6 +108,8 @@ We Inject the utilities that we want to configure, and add our Main View to the 
 The mediator we mapped above might look like this:
 
 ```ts
+import { inject, Mediator } from "robotlegs";
+
 public class UserProfileMediator extends Mediator
 {
     constructor (
