@@ -41,9 +41,6 @@ Quickstart
 To create a Robotlegs application or module you need to instantiate a Context. A
 context won't do much without some configuration.
 
-Plain ActionScript:
-
-
 ```ts
 let renderer = PIXI.autoDetectRenderer(800, 600, {});
 let context = new Context()
@@ -141,13 +138,17 @@ Context View.
 The mediator we mapped above might look like this:
 
 ```ts
-import { inject, Mediator } from "robotlegs";
+import { inject, IEventMap, IEventDispatcher, Mediator } from "robotlegs";
 
 public class UserProfileMediator extends Mediator
 {
     constructor (
+        @inject(IEventMap) protected eventMap: IEventMap,
+        @inject(IEventDispatcher) protected eventDispatcher: IEventDispatcher
+        // Inject any registered provider on constructor
         @inject(UserProfileView) public view
     ) {
+        super(eventMap, eventDispatcher);
     }
 
     public function initialize():void
