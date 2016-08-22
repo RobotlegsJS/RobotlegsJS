@@ -37,7 +37,7 @@ import { Event } from "../impl/Event";
 /**
  * @private
  */
-const enum Keys{
+const enum Keys {
     eventTarget,
     eventsMap,
     captureEventsMap,
@@ -48,16 +48,16 @@ const enum Keys{
  * @private
  */
 export interface EventBin {
-    type:string;
+    type: string;
     listener: Function;
-    thisObject:any;
-    priority:number;
-    target:IEventDispatcher;
-    useCapture:boolean;
-    dispatchOnce:boolean;
+    thisObject: any;
+    priority: number;
+    target: IEventDispatcher;
+    useCapture: boolean;
+    dispatchOnce: boolean;
 }
 
-var ONCE_EVENT_LIST:EventBin[] = [];
+var ONCE_EVENT_LIST: EventBin[] = [];
 
 @injectable()
 export class EventDispatcher implements IEventDispatcher {
@@ -71,7 +71,7 @@ export class EventDispatcher implements IEventDispatcher {
      * @version Egret 2.4
      * @platform Web,Native
      */
-    public constructor(target:IEventDispatcher = null) {
+    public constructor(target: IEventDispatcher = null) {
         this.$EventDispatcher = {
             0: target ? target : this,
             1: {},
@@ -83,16 +83,16 @@ export class EventDispatcher implements IEventDispatcher {
     /**
      * @private
      */
-    $EventDispatcher:Object;
+    $EventDispatcher: Object;
 
     /**
      * @private
      *
      * @param useCapture
      */
-    $getEventMap(useCapture?:boolean) {
+    $getEventMap(useCapture?: boolean) {
         var values = this.$EventDispatcher;
-        var eventMap:any = useCapture ? values[Keys.captureEventsMap] : values[Keys.eventsMap];
+        var eventMap: any = useCapture ? values[Keys.captureEventsMap] : values[Keys.eventsMap];
         return eventMap;
     }
 
@@ -101,7 +101,7 @@ export class EventDispatcher implements IEventDispatcher {
      * @version Egret 2.4
      * @platform Web,Native
      */
-    public addEventListener(type:string, listener:Function, thisObject?:any, useCapture?:boolean, priority?:number):void {
+    public addEventListener(type: string, listener: Function, thisObject?: any, useCapture?: boolean, priority?: number): void {
         this.$addListener(type, listener, thisObject, useCapture, priority);
     }
 
@@ -110,17 +110,17 @@ export class EventDispatcher implements IEventDispatcher {
      * @version Egret 2.4
      * @platform Web,Native
      */
-    public once(type:string, listener:Function, thisObject?:any, useCapture?:boolean, priority?:number):void {
+    public once(type: string, listener: Function, thisObject?: any, useCapture?: boolean, priority?: number): void {
         this.$addListener(type, listener, thisObject, useCapture, priority, true);
     }
 
     /**
      * @private
      */
-    $addListener(type:string, listener:Function, thisObject?:any, useCapture?:boolean, priority?:number, dispatchOnce?:boolean):void {
+    $addListener(type: string, listener: Function, thisObject?: any, useCapture?: boolean, priority?: number, dispatchOnce?: boolean): void {
         var values = this.$EventDispatcher;
-        var eventMap:any = useCapture ? values[Keys.captureEventsMap] : values[Keys.eventsMap];
-        var list:EventBin[] = eventMap[type];
+        var eventMap: any = useCapture ? values[Keys.captureEventsMap] : values[Keys.eventsMap];
+        var list: EventBin[] = eventMap[type];
         if (!list) {
             list = eventMap[type] = [];
         }
@@ -131,7 +131,7 @@ export class EventDispatcher implements IEventDispatcher {
         this.$insertEventBin(list, type, listener, thisObject, useCapture, priority, dispatchOnce);
     }
 
-    $insertEventBin(list:Array<any>, type:string, listener:Function, thisObject?:any, useCapture?:boolean, priority?:number, dispatchOnce?:boolean):boolean {
+    $insertEventBin(list: Array<any>, type: string, listener: Function, thisObject?: any, useCapture?: boolean, priority?: number, dispatchOnce?: boolean): boolean {
         priority = +priority | 0;
         var insertIndex = -1;
         var length = list.length;
@@ -144,7 +144,7 @@ export class EventDispatcher implements IEventDispatcher {
                 insertIndex = i;
             }
         }
-        var eventBin:EventBin = {
+        var eventBin: EventBin = {
             type: type, listener: listener, thisObject: thisObject, priority: priority,
             target: this, useCapture: useCapture, dispatchOnce: !!dispatchOnce
         };
@@ -162,10 +162,10 @@ export class EventDispatcher implements IEventDispatcher {
      * @version Egret 2.4
      * @platform Web,Native
      */
-    public removeEventListener(type:string, listener:Function, thisObject?:any, useCapture?:boolean):void {
+    public removeEventListener(type: string, listener: Function, thisObject?: any, useCapture?: boolean): void {
         var values = this.$EventDispatcher;
-        var eventMap:Object = useCapture ? values[Keys.captureEventsMap] : values[Keys.eventsMap];
-        var list:EventBin[] = eventMap[type];
+        var eventMap: Object = useCapture ? values[Keys.captureEventsMap] : values[Keys.eventsMap];
+        var list: EventBin[] = eventMap[type];
         if (!list) {
             return;
         }
@@ -180,7 +180,7 @@ export class EventDispatcher implements IEventDispatcher {
         }
     }
 
-    $removeEventBin(list:Array<any>, listener:Function, thisObject?:any):boolean {
+    $removeEventBin(list: Array<any>, listener: Function, thisObject?: any): boolean {
         var length = list.length;
         for (var i = 0; i < length; i++) {
             var bin = list[i];
@@ -198,7 +198,7 @@ export class EventDispatcher implements IEventDispatcher {
      * @version Egret 2.4
      * @platform Web,Native
      */
-    public hasEventListener(type:string):boolean {
+    public hasEventListener(type: string): boolean {
         var values = this.$EventDispatcher;
         return !!(values[Keys.eventsMap][type] || values[Keys.captureEventsMap][type]);
     }
@@ -208,7 +208,7 @@ export class EventDispatcher implements IEventDispatcher {
      * @version Egret 2.4
      * @platform Web,Native
      */
-    public willTrigger(type:string):boolean {
+    public willTrigger(type: string): boolean {
         return this.hasEventListener(type);
     }
 
@@ -218,7 +218,7 @@ export class EventDispatcher implements IEventDispatcher {
      * @version Egret 2.4
      * @platform Web,Native
      */
-    public dispatchEvent(event:IEvent):boolean {
+    public dispatchEvent(event: IEvent): boolean {
         event.currentTarget = this.$EventDispatcher[Keys.eventTarget];
         event.target = event.currentTarget;
         return this.$notifyListener(event, false);
@@ -227,10 +227,10 @@ export class EventDispatcher implements IEventDispatcher {
     /**
      * @private
      */
-    $notifyListener(event:IEvent, capturePhase:boolean):boolean {
+    $notifyListener(event: IEvent, capturePhase: boolean): boolean {
         var values = this.$EventDispatcher;
-        var eventMap:Object = capturePhase ? values[Keys.captureEventsMap] : values[Keys.eventsMap];
-        var list:EventBin[] = eventMap[event.type];
+        var eventMap: Object = capturePhase ? values[Keys.captureEventsMap] : values[Keys.eventsMap];
+        var list: EventBin[] = eventMap[event.type];
         if (!list) {
             return true;
         }
@@ -268,7 +268,7 @@ export class EventDispatcher implements IEventDispatcher {
      * @version Egret 2.4
      * @platform Web,Native
      */
-    public dispatchEventWith(type:string, bubbles?:boolean, data?:any):boolean {
+    public dispatchEventWith(type: string, bubbles?: boolean, data?: any): boolean {
         if (bubbles || this.hasEventListener(type)) {
             var event: Event = new Event(type, { bubbles: bubbles, detail: data });
             var result = this.dispatchEvent(event);

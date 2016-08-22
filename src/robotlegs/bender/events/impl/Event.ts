@@ -9,18 +9,18 @@ export class Event implements IEvent {
     public currentTarget: any;
     public detail: any;
 
-    constructor (type: string, eventInit: IEventInit = { bubbles: false }) {
+    constructor(type: string, eventInit: IEventInit = { bubbles: false }) {
         this.type = type;
         this.bubbles = false;
         this.defaultPrevented = false;
         this.detail = eventInit.detail;
     }
 
-    public preventDefault (): void {
+    public preventDefault(): void {
         this.defaultPrevented = true;
     }
 
-    public stopPropagation (): void {
+    public stopPropagation(): void {
         this.bubbles = false;
     }
 
