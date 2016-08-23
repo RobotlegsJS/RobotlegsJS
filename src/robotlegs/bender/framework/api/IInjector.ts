@@ -209,7 +209,8 @@ export interface IInjector extends interfaces.Kernel {
      * @see #unmap()
      * @see org.swiftsuspenders.mapping.InjectionMapping
      */
-    map<T>(serviceIdentifier: interfaces.ServiceIdentifier<T>): interfaces.BindingToSyntax<T>;
+    // TODO: use bind from Kernel instead
+    // map(type: Class, name: String = ''): InjectionMapping;
 
     /**
      *  Removes the mapping described by the given <code>type</code> and <code>name</code>.
@@ -224,7 +225,8 @@ export interface IInjector extends interfaces.Kernel {
      * @see org.swiftsuspenders.mapping.InjectionMapping
      * @see org.swiftsuspenders.mapping.InjectionMapping#unseal()
      */
-    unmap(serviceIdentifier: interfaces.ServiceIdentifier<any>): void;
+    // TODO: use unbind from Kernel instead
+    // unmap(type: Class, name: String = ''): void;
 
     /**
      * Indicates whether the injector can supply a response for the specified dependency either
