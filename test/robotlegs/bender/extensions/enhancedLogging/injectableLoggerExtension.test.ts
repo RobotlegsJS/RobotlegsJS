@@ -31,10 +31,19 @@ describe("InjectableLoggerExtension", () => {
         context = null;
     });
 
-    it("logger is mapped into injector", () => {
+    it("logger is mapped into injector through ILogger symbol", () => {
         let actual: Object = null;
         context.whenInitializing(function(): void {
             actual = context.injector.get<ILogger>(ILogger);
+        });
+        context.initialize();
+        assert.instanceOf(actual, Logger);
+    });
+
+    it("logger is mapped into injector through ILogger string", () => {
+        let actual: Object = null;
+        context.whenInitializing(function(): void {
+            actual = context.injector.get<ILogger>("ILogger");
         });
         context.initialize();
         assert.instanceOf(actual, Logger);
