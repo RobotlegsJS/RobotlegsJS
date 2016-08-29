@@ -46,13 +46,11 @@ export class CommandTriggerMap {
     public getTrigger(...params): ICommandTrigger {
         let key: any = this.getKey(params);
         let trigger = this._triggers.get(key);
-
         if (!trigger) {
             trigger = this.createTrigger(params);
             this._triggers.set(key, trigger);
         }
-
-        return trigger
+        return trigger;
     }
 
     /**
