@@ -48,19 +48,11 @@ export abstract class Mediator implements IMediator {
      */
     public abstract destroy(): void;
 
-    // @injectProperty(IEventMap)
-    // protected eventMap: IEventMap;
-    //
-    // @injectProperty(IEventDispatcher)
-    // protected eventDispatcher: IEventDispatcher;
+    @inject(IEventMap)
+    protected eventMap: IEventMap;
 
-    constructor(
-        @inject(IEventMap) protected eventMap: IEventMap,
-        @inject(IEventDispatcher) protected eventDispatcher: IEventDispatcher
-    ) {
-        this.eventMap = eventMap;
-        this.eventDispatcher = eventDispatcher;
-    }
+    @inject(IEventDispatcher)
+    protected eventDispatcher: IEventDispatcher;
 
     /**
      * Runs after the mediator has been destroyed.

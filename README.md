@@ -98,13 +98,17 @@ import {
 public class MyAppConfig implements IConfig
 {
 
-    constructor(
-        @inject(IInjector) public injector: IInjector,
-        @inject(IMediatorMap) public mediatorMap: IMediatorMap,
-        @inject(IEventCommandMap) public commandMap: IEventCommandMap,
-        @inject(IContextView) public contextView: IEventCommandMap,
-    ) {
-    }
+    @inject(IInjector)
+    injector: IInjector;
+
+    @inject(IMediatorMap)
+    mediatorMap: IMediatorMap;
+
+    @inject(IEventCommandMap)
+    commandMap: IEventCommandMap;
+
+    @inject(IContextView)
+    contextView: IEventCommandMap;
 
     public function configure(): void
     {
@@ -142,14 +146,8 @@ import { inject, IEventMap, IEventDispatcher, Mediator } from "robotlegs";
 
 public class UserProfileMediator extends Mediator
 {
-    constructor (
-        @inject(IEventMap) protected eventMap: IEventMap,
-        @inject(IEventDispatcher) protected eventDispatcher: IEventDispatcher
-        // Inject any registered provider on constructor
-        @inject(UserProfileView) public view
-    ) {
-        super(eventMap, eventDispatcher);
-    }
+    @inject(UserProfileView)
+    view: UserProfileView;
 
     public function initialize():void
     {
@@ -168,15 +166,15 @@ The view that caused this mediator to be created is available for Injection.
 The command we mapped above might look like this:
 
 ```ts
-import { Command } fro "robotlegs";
+import { Command, inject } fro "robotlegs";
 
 public class UserSignInCommand extends Command
 {
-    constructor (
-        @inject(UserEvent) event: UserEvent,
-        @inject(UserModel) model: UserModel
-    ) {
-    }
+    @inject(UserEvent)
+    event: UserEvent;
+
+    @inject(UserModel)
+    model: UserModel;
 
     public function execute(): void
     {
