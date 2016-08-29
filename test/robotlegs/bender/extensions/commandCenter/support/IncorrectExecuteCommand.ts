@@ -1,5 +1,5 @@
 // ------------------------------------------------------------------------------
-//  Copyright (c) 2011 the original author or authors. All Rights Reserved.
+//  Copyright (c) 2009-2013 the original author or authors. All Rights Reserved.
 //
 //  NOTICE: You are permitted to use, modify, and distribute this file
 //  in accordance with the terms of the license agreement accompanying it.
@@ -7,11 +7,7 @@
 
 import { injectable } from "inversify";
 
-import { IGuard } from "../../../../../../src/robotlegs/bender/framework/api/IGuard";
-
 @injectable()
-export class GrumpyGuard implements IGuard {
-    public approve(): boolean {
-        return false;
-    }
+export class IncorrectExecuteCommand {
+    public execute: string = "execute";
 }

@@ -7,11 +7,9 @@
 
 import { injectable } from "inversify";
 
-import { IGuard } from "../../../../../../src/robotlegs/bender/framework/api/IGuard";
-
 @injectable()
-export class GrumpyGuard implements IGuard {
-    public approve(): boolean {
-        return false;
+export class NullCommand {
+    public execute(): void {
+        ;
     }
 }
