@@ -78,10 +78,7 @@ export class CommandExecutor implements ICommandExecutor {
                 this._removeMapping(mapping);
             }
 
-            // command = this._injector.getOrCreateNewInstance(commandClass);
             command = this._injector.instantiateUnmapped<any>(<any>commandClass);
-
-            // this._injector.map(commandClass).toValue(command);
 
             if (mapping.hooks.length > 0) {
                 this._injector.bind(commandClass).toConstantValue(command);
