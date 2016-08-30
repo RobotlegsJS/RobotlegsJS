@@ -11,7 +11,6 @@
 import "reflect-metadata";
 
 import { assert } from "chai";
-import sinon = require("sinon");
 
 import { ICommandMapping } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/api/ICommandMapping";
 import { CommandPayload } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/api/CommandPayload";
@@ -30,7 +29,12 @@ import { ClassReportingCallbackGuard2 } from "../support/ClassReportingCallbackG
 import { ClassReportingCallbackHook } from "../support/ClassReportingCallbackHook";
 import { ExecutelessCommand } from "../support/ExecutelessCommand";
 import { IncorrectExecuteCommand } from "../support/IncorrectExecuteCommand";
+import { MessageReturningCommand } from "../support/MessageReturningCommand";
+import { MethodParametersCommand } from "../support/MethodParametersCommand";
 import { NullCommand } from "../support/NullCommand";
+import { PayloadInjectionPointsCommand } from "../support/PayloadInjectionPointsCommand";
+import { PayloadInjectionPointsGuard } from "../support/PayloadInjectionPointsGuard";
+import { PayloadInjectionPointsHook } from "../support/PayloadInjectionPointsHook";
 import { ReportMethodCommand } from "../support/ReportMethodCommand";
 import { SelfReportingCallbackCommand } from "../support/SelfReportingCallbackCommand";
 import { SelfReportingCallbackHook } from "../support/SelfReportingCallbackHook";
@@ -60,6 +64,11 @@ describe("CommandExecutor", () => {
 
     function reportingFunction(item: Object): void {
         reported.push(item);
+    }
+
+    function resultReporter(result: any, command: Object, mapping: ICommandMapping): void {
+        reported.push(result);
+        reported.push(mapping);
     }
 
     beforeEach(() => {
@@ -190,38 +199,56 @@ describe("CommandExecutor", () => {
     });
 
     it("payload is injected into command", () => {
-        // TODO: migrate test
+        addMapping(PayloadInjectionPointsCommand);
+        let payload: CommandPayload = new CommandPayload(["message", 1], [String, Number]);
+        executeCommands(payload);
+        assert.deepEqual(reported, payload.values);
     });
 
     it("payload is injected into hook", () => {
-        // TODO: migrate test
+        addMapping(NullCommand).addHooks(PayloadInjectionPointsHook);
+        let payload: CommandPayload = new CommandPayload(["message", 1], [String, Number]);
+        executeCommands(payload);
+        assert.deepEqual(reported, payload.values);
     });
 
     it("payload is injected into guard", () => {
-        // TODO: migrate test
+        addMapping(NullCommand).addGuards(PayloadInjectionPointsGuard);
+        let payload: CommandPayload = new CommandPayload(["message", 1], [String, Number]);
+        executeCommands(payload);
+        assert.deepEqual(reported, payload.values);
     });
 
     it("payload is passed to execute method", () => {
-        // TODO: migrate test
+        addMapping(MethodParametersCommand);
+        let payload: CommandPayload = new CommandPayload(["message", 1], [String, Number]);
+        executeCommands(payload);
+        assert.deepEqual(reported, payload.values);
     });
 
     it("payloadInjection is disabled", () => {
-        // TODO: migrate test
-    });
-
-    it("payload doesnt leak into class instantiated by command", () => {
-        // TODO: migrate test
+        function payloadInjectionDisabledThrowsError(): void {
+            addMapping(PayloadInjectionPointsCommand).setPayloadInjectionEnabled(false);
+            let payload: CommandPayload = new CommandPayload(["message", 1], [String, Number]);
+            executeCommands(payload);
+        }
+        assert.throws(payloadInjectionDisabledThrowsError, Error, "No bindings found for serviceIdentifier: String");
     });
 
     it("result is handled", () => {
-        // TODO: migrate test
+        let mapping: ICommandMapping = new CommandMapping(MessageReturningCommand);
+        subject = new CommandExecutor(injector, null, resultReporter);
+        injector.bind(String).toConstantValue("message");
+        subject.executeCommand(mapping);
+        assert.deepEqual(reported, ["message", mapping]);
     });
 
     it("uses injector mapped command instance", () => {
-        // TODO: migrate test
-    });
-
-    it("command mapped to interface is executed", () => {
-        // TODO: migrate test
+        injector.bind("Function").toConstantValue(reportingFunction).whenTargetNamed("executeCallback");
+        injector.bind(SelfReportingCallbackCommand).toSelf();
+        let expected: Object = injector.get(SelfReportingCallbackCommand);
+        let mapping: ICommandMapping = addMapping(SelfReportingCallbackCommand);
+        subject.executeCommand(mapping);
+        assert.deepEqual(reported, [expected]);
     });
 });
