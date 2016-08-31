@@ -97,7 +97,7 @@ export class CommandMapping implements ICommandMapping {
      * @inheritDoc
      */
     public addGuards(...guards: any[]): ICommandMapping {
-        this._guards = this._guards.concat(guards);
+        this._guards = this._guards.concat.apply(this._guards, guards);
         return this;
     }
 
@@ -105,7 +105,7 @@ export class CommandMapping implements ICommandMapping {
      * @inheritDoc
      */
     public addHooks(...hooks: any[]): ICommandMapping {
-        this._hooks = this._hooks.concat(hooks);
+        this._hooks = this._hooks.concat.apply(this._hooks, hooks);
         return this;
     }
 
