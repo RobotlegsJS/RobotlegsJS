@@ -8,10 +8,10 @@ module.exports = function(config) {
     basePath: "",
     frameworks: ["mocha", "chai", "sinon"],
     files: [
-      "./test/**.test.ts"
+      "./test/**/**/**.test.ts"
     ],
     preprocessors: {
-      "./test/**.test.ts": ["webpack"]
+      "./test/**/**/**.test.ts": ["webpack"]
     },
     webpack: webpackConfig,
     webpackMiddleware: {

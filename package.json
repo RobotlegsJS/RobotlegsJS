@@ -1,6 +1,6 @@
 {
   "name": "robotlegs",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "An architecture-based framework for JavaScript/TypeScript canvas applications.",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@source.services.ggs-net.com:game-core/typescript-robotlegs-framework.git"
+    "url": "git://github.com/GoodgameStudios/RobotlegsJS.git"
   },
   "keywords": [
     "TypeScript",
@@ -28,6 +28,7 @@
     "chai": "^3.5.0",
     "glslify": "^5.1.0",
     "inversify-dts": "^2.2.0",
+    "istanbul": "^0.4.5",
     "karma": "^0.13.22",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^1.0.1",

@@ -16,6 +16,7 @@ module.exports = (function(options) {
     devtool: 'source-map',
 
     module: {
+      noParse: [ /sinon\.js/ ],
       loaders: [
         { test: /\.ts$/, loader: "awesome-typescript-loader" }
       ]
