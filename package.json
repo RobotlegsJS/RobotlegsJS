@@ -26,8 +26,10 @@
   },
   "devDependencies": {
     "awesome-typescript-loader": "^1.1.1",
+    "bluebird": "^3.4.6",
     "browserify-versionify": "^1.0.6",
     "chai": "^3.5.0",
+    "es6-map": "^0.1.4",
     "es6-symbol": "^3.1.0",
     "glslify": "^5.1.0",
     "imports-loader": "^0.6.5",
@@ -40,6 +42,7 @@
     "karma-chrome-launcher": "^1.0.1",
     "karma-coverage": "^1.1.1",
     "karma-mocha": "^1.1.1",
+    "karma-phantomjs-launcher": "^1.0.2",
     "karma-remap-istanbul": "^0.2.1",
     "karma-sinon": "^1.0.5",
     "karma-sourcemap-loader": "^0.3.7",

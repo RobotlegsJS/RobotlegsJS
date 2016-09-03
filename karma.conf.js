@@ -8,15 +8,16 @@ const webpackConfig = require('./webpack.config.js')
 delete webpackConfig.entry;
 
 module.exports = function(config) {
-  const coverage = config.singleRun ? ['coverage'] : [];
 
   var configuration = {
     basePath: "",
     frameworks: ["mocha"],
     files: [
-      // "./test/robotlegs/bender/framework/impl/context.test.ts",
       "./test/entry.test.ts",
       "./test/**/**/**.test.ts",
+      // "./test/robotlegs/bender/framework/impl/context.test.ts",
+      // { pattern: "node_modules/reflect-metadata/Reflect.js", include: true },
+      // { pattern: "node_modules/bluebird/js/browser/bluebird.js", include: true },
       {
         pattern: '**/*.map',
         served: true,
@@ -41,24 +42,24 @@ module.exports = function(config) {
       "karma-chai",
       "karma-sinon",
       "karma-coverage",
-      "karma-chrome-launcher",
     ],
-    reporters: ["dots", "coverage"],
+    reporters: (config.singleRun
+      ? ["dots", "coverage"]
+      : ["dots"]),
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
-    customLaunchers: {
-      Chrome_travis_ci: {
-        base: 'Chrome',
-        flags: ['--no-sandbox']
-      }
-    },
+    browsers: ['Chrome']
   };
 
   if (process.env.TRAVIS) {
-    configuration.browsers = ['Chrome_travis_ci'];
+    configuration.browsers = ['PhantomJS'];
+    configuration.plugins.push("karma-phantomjs-launcher");
+
+  } else {
+    configuration.plugins.push("karma-chrome-launcher");
+    configuration.browsers = ['Chrome'];
   }
 
   config.set(configuration);
