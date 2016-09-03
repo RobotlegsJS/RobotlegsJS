@@ -5,11 +5,11 @@ module.exports = (function(options) {
 
   return {
     entry: {
-      main: __dirname + "/src/index.ts"
+      main: path.join(__dirname, "src/index.ts")
     },
 
     output: {
-      path: __dirname + "/dist",
+      path: path.join(__dirname, "dist"),
       filename: "bundle.js"
     },
 
@@ -27,8 +27,8 @@ module.exports = (function(options) {
     ],
 
     resolve: {
-      extensions: ['.ts', '.js', '.json'],
-      root: [ path.join(__dirname, "./node_modules"), path.join(__dirname, "./src") ]
+      extensions: ['', '.ts', '.js', '.json'],
+      root: [ path.join(__dirname, "./src") ]
     }
 
 

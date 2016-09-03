@@ -6,7 +6,7 @@ const webpackConfig = require('./webpack.config.js')
 module.exports = function(config) {
   config.set({
     basePath: "",
-    frameworks: ["mocha", "chai", "sinon"],
+    frameworks: ["mocha", "chai", "sinon", "chai-sinon"],
     files: [
       "./test/**/**/**.test.ts"
     ],
@@ -22,6 +22,7 @@ module.exports = function(config) {
       require("karma-mocha"),
       require("karma-chai"),
       require("karma-sinon"),
+      require("karma-chai-sinon"),
       require("karma-chrome-launcher"),
     ],
     reporters: ["dots"],
