@@ -10,7 +10,7 @@ delete webpackConfig.entry;
 module.exports = function(config) {
   const coverage = config.singleRun ? ['coverage'] : [];
 
-  config.set({
+  var configuration = {
     basePath: "",
     frameworks: ["mocha"],
     files: [
@@ -48,6 +48,18 @@ module.exports = function(config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ["Chrome"]
-  });
+    browsers: ['Chrome'],
+    customLaunchers: {
+      Chrome_travis_ci: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
+    },
+  };
+
+  if (process.env.TRAVIS) {
+    configuration.browsers = ['Chrome_travis_ci'];
+  }
+
+  config.set(configuration);
 };
