@@ -14,7 +14,7 @@ import { assert } from "chai";
 
 import { safelyCallBack } from "../../../../../src/robotlegs/bender/framework/impl/safelyCallBack";
 
-describe("safelyCallback", () => {
+describe("safelyCallBack", () => {
 
     it("callback with no params is called", () => {
         let callCount: number = 0;

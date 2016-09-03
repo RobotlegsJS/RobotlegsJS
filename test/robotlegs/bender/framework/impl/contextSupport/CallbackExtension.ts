@@ -7,7 +7,7 @@
 
 import { IContext } from "../../../../../../src/robotlegs/bender/framework/api/IContext";
 import { IExtension } from "../../../../../../src/robotlegs/bender/framework/api/IExtension";
-import { safelyCallBack } from "../../../../../../src/robotlegs/bender/framework/impl/safelyCallback";
+import { safelyCallBack } from "../../../../../../src/robotlegs/bender/framework/impl/safelyCallBack";
 
 export class CallbackExtension implements IExtension {
 
