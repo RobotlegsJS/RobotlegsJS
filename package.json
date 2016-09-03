@@ -6,6 +6,7 @@
   "typings": "lib/index.d.ts",
   "scripts": {
     "test": "mocha test/**/*.test.ts --require ts-node/register",
+    "autoformat": "tsfmt -r",
     "build": "cp node_modules/inversify-dts/inversify/inversify.d.ts . && tsc -d"
   },
   "repository": {
