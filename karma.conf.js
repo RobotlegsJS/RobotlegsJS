@@ -1,35 +1,52 @@
+process.env.TEST = true;
+process.env.NODE_ENV = 'test';
+
 const webpack = require("webpack")
 const path = require("path")
-
 const webpackConfig = require('./webpack.config.js')
 
+delete webpackConfig.entry;
+
 module.exports = function(config) {
+  const coverage = config.singleRun ? ['coverage'] : [];
+
   config.set({
     basePath: "",
-    frameworks: ["mocha", "chai", "sinon"],
+    frameworks: ["mocha"],
     files: [
-      "./test/**.test.ts"
+      // "./test/robotlegs/bender/framework/impl/context.test.ts",
+      "./test/**/**/**.test.ts",
+      {
+        pattern: '**/*.map',
+        served: true,
+        included: false,
+        watched: true,
+      },
     ],
     preprocessors: {
-      "./test/**.test.ts": ["webpack"]
+      "./**/**/**/**.ts": ["sourcemap"],
+      "./test/**/**/**.test.ts": ["webpack"]
     },
     webpack: webpackConfig,
     webpackMiddleware: {
       noInfo: true
     },
     plugins: [
-      require("karma-webpack"),
-      require("karma-mocha"),
-      require("karma-chai"),
-      require("karma-sinon"),
-      require("karma-chrome-launcher"),
+      "karma-webpack",
+      "karma-sourcemap-writer",
+      "karma-sourcemap-loader",
+      "karma-remap-istanbul",
+      "karma-mocha",
+      "karma-chai",
+      "karma-sinon",
+      "karma-coverage",
+      "karma-chrome-launcher",
     ],
-    reporters: ["dots"],
+    reporters: ["dots", "coverage"],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ["Chrome"],
-    singleRun: false
+    browsers: ["Chrome"]
   });
 };

@@ -1,5 +1,4 @@
 {
-  "baseUrl": "src",
   "compilerOptions": {
     "outDir": "lib",
     "target": "es5",
@@ -10,21 +9,11 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
-  "exclude": [
-    "node_modules",
-    "bower_components",
-    "test",
-    "not-ported-extensions",
-    "definitions"
+  "include": [
+    "./src/**/*.ts"
   ],
-  "rootDirs": [
-    "src/"
-  ],
-  "filesGlob": [
-    "src/*.ts",
-    "src/**/*.ts",
-    "test/*.ts",
-    "test/**/*.ts",
-    "!node_modules/**"
+  "files": [
+    "./node_modules/inversify-dts/inversify/inversify.d.ts",
+    "./typings/index.d.ts"
   ]
 }
