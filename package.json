@@ -5,9 +5,10 @@
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "scripts": {
-    "test": "mocha test/**/*.test.ts --require ts-node/register",
+    "test": "node ./node_modules/istanbul/lib/cli.js cover ./node_modules/.bin/_mocha test/**/*.test.ts -- --compilers ts:ts-node/register && ./node_modules/.bin/remap-istanbul -i ./coverage/coverage.raw.json -o ./coverage/html-report -t html",
+    "mocha": "mocha test/**/*.test.ts --require ts-node/register",
     "autoformat": "tsfmt -r",
-    "build": "cp node_modules/inversify-dts/inversify/inversify.d.ts . && tsc -d"
+    "prepublish": "cp node_modules/inversify-dts/inversify/inversify.d.ts . && tsc -d"
   },
   "repository": {
     "type": "git",
@@ -30,7 +31,7 @@
     "glslify": "^5.1.0",
     "imports-loader": "^0.6.5",
     "inversify-dts": "^2.2.0",
-    "istanbul": "^0.4.5",
+    "istanbul": "^1.0.0-alpha.2",
     "istanbul-instrumenter-loader": "^0.2.0",
     "karma": "^0.13.22",
     "karma-chai": "^0.1.0",
@@ -51,6 +52,7 @@
     "pixi.js": "pixijs/pixi.js#dev",
     "publish-please": "^2.1.4",
     "reflect-metadata": "^0.1.8",
+    "remap-istanbul": "^0.6.4",
     "rimraf": "^2.5.2",
     "sinon": "^2.0.0-pre",
     "sinon-chai": "^2.8.0",

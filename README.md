@@ -1,6 +1,9 @@
 RobotlegsJS
 ===
 
+[![Join the chat at https://gitter.im/GoodgameStudios/RobotlegsJS](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/GoodgameStudios/RobotlegsJS?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build Status](https://secure.travis-ci.org/GoodgameStudios/RobotlegsJS.svg?branch=master)](https://travis-ci.org/GoodgameStudios/RobotlegsJS)
+
 Robotlegs is a architecture-based framework for canvas applications. This
 version is a direct port from the [ActionScript 3.0
 codebase](https://github.com/robotlegs/robotlegs-framework) to
