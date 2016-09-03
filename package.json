@@ -28,6 +28,7 @@
     "awesome-typescript-loader": "^1.1.1",
     "browserify-versionify": "^1.0.6",
     "chai": "^3.5.0",
+    "es6-symbol": "^3.1.0",
     "glslify": "^5.1.0",
     "imports-loader": "^0.6.5",
     "inversify-dts": "^2.2.0",
