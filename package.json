@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "scripts": {
-    "test": "node ./node_modules/istanbul/lib/cli.js cover ./node_modules/.bin/_mocha test/**/*.test.ts -- --compilers ts:ts-node/register && ./node_modules/.bin/remap-istanbul -i ./coverage/coverage.raw.json -o ./coverage/html-report -t html",
+    "test": "karma start --single-run",
     "mocha": "mocha test/**/*.test.ts --require ts-node/register",
     "autoformat": "tsfmt -r",
     "prepublish": "cp node_modules/inversify-dts/inversify/inversify.d.ts . && tsc -d"
@@ -39,7 +39,6 @@
     "karma-chrome-launcher": "^1.0.1",
     "karma-coverage": "^1.1.1",
     "karma-mocha": "^1.1.1",
-    "karma-phantomjs-launcher": "^1.0.1",
     "karma-remap-istanbul": "^0.2.1",
     "karma-sinon": "^1.0.5",
     "karma-sourcemap-loader": "^0.3.7",
@@ -48,7 +47,6 @@
     "karma-typescript-preprocessor2": "^1.2.1",
     "karma-webpack": "^1.8.0",
     "mocha": "^2.5.3",
-    "phantomjs-prebuilt": "^2.1.11",
     "pixi.js": "pixijs/pixi.js#dev",
     "publish-please": "^2.1.4",
     "reflect-metadata": "^0.1.8",

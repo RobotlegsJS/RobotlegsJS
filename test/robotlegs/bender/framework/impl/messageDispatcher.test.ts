@@ -1,14 +1,9 @@
 // ------------------------------------------------------------------------------
-//  Copyright (c) 2011 the original author or authors. All Rights Reserved.
+//  Copyright (c) 2016 Goodgame Studios. All Rights Reserved.
 //
 //  NOTICE: You are permitted to use, modify, and distribute this file
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
-
-/// <reference path="../../../../../node_modules/reflect-metadata/reflect-metadata.d.ts" />
-/// <reference path="../../../../../typings/index.d.ts" />
-
-import "reflect-metadata";
 
 import { assert } from "chai";
 

@@ -5,8 +5,6 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import "reflect-metadata";
-
 import { assert } from "chai";
 
 import { applyHooks } from "../../../../../src/robotlegs/bender/framework/impl/applyHooks";

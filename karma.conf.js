@@ -15,6 +15,7 @@ module.exports = function(config) {
     frameworks: ["mocha"],
     files: [
       // "./test/robotlegs/bender/framework/impl/context.test.ts",
+      "./test/entry.test.ts",
       "./test/**/**/**.test.ts",
       {
         pattern: '**/*.map',

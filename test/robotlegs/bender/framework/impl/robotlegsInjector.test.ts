@@ -5,11 +5,6 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-/// <reference path="../../../../../node_modules/reflect-metadata/reflect-metadata.d.ts" />
-/// <reference path="../../../../../typings/index.d.ts" />
-
-import "reflect-metadata";
-
 import { assert } from "chai";
 
 import { RobotlegsInjector } from "../../../../../src/robotlegs/bender/framework/impl/RobotlegsInjector";
