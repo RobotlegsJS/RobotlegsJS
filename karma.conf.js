@@ -11,7 +11,7 @@ module.exports = function(config) {
 
   var configuration = {
     basePath: "",
-    frameworks: ["mocha"],
+    frameworks: ["mocha", "es6-shim"],
     files: [
       "./test/entry.test.ts",
       "./test/**/**/**.test.ts",
@@ -41,6 +41,7 @@ module.exports = function(config) {
       "karma-mocha",
       "karma-chai",
       "karma-sinon",
+      "karma-es6-shim",
       "karma-coverage",
     ],
     reporters: (config.singleRun
