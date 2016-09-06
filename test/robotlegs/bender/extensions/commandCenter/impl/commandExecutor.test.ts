@@ -190,7 +190,7 @@ describe("CommandExecutor", () => {
             addMapping(IncorrectExecuteCommand);
             executeCommands();
         }
-        assert.throws(invalidExecuteMethod, TypeError, "command[mapping.executeMethod].bind is not a function");
+        assert.throws(invalidExecuteMethod, TypeError);
     });
 
     it("payload is injected into command", () => {

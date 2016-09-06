@@ -96,6 +96,6 @@ describe("guardsApprove", () => {
     });
 
     it("guard instance without approve throws error", () => {
-        assert.throws(guardInstanceWithoutApprove, TypeError, "guard.approve is not a function");
+        assert.throws(guardInstanceWithoutApprove, TypeError);
     });
 });

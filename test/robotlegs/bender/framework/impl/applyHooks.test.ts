@@ -39,6 +39,6 @@ describe("applyHooks", () => {
         function hookInstanceWithoutHook(): void {
             applyHooks([{}]);
         }
-        assert.throws(hookInstanceWithoutHook, TypeError, "hook.hook is not a function");
+        assert.throws(hookInstanceWithoutHook, TypeError);
     });
 });
