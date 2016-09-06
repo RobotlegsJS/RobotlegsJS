@@ -3,5 +3,6 @@ build
 lib
 node_modules
 typings
+coverage
 inversify.d.ts
 *.as
