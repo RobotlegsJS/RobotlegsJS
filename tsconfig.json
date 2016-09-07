@@ -10,7 +10,8 @@
     "emitDecoratorMetadata": true
   },
   "include": [
-    "./src/**/*.ts"
+    "./src/**/*.ts",
+    "./test/**/*.ts"
   ],
   "files": [
     "./node_modules/inversify-dts/inversify/inversify.d.ts",
