@@ -22,6 +22,7 @@ export { LifecycleEvent } from "./robotlegs/bender/framework/api/LifecycleEvent"
 export { LifecycleState } from "./robotlegs/bender/framework/api/LifecycleState";
 export { LogLevel } from "./robotlegs/bender/framework/api/LogLevel";
 export { PinEvent } from "./robotlegs/bender/framework/api/PinEvent";
+export { instanceOfType } from "./robotlegs/bender/extensions/matching/instanceOfType";
 
 /**
  * Framework Implementation

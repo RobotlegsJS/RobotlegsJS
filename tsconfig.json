@@ -2,7 +2,10 @@
   "compilerOptions": {
     "outDir": "lib",
     "target": "es5",
+    "lib": ["es6", "dom"],
+    "types": ["reflect-metadata"],
     "module": "commonjs",
+    "moduleResolution": "node",
     "declaration": false,
     "noImplicitAny": false,
     "sourceMap": true,
@@ -14,8 +17,6 @@
     "./test/**/*.ts"
   ],
   "files": [
-    "./node_modules/inversify-dts/inversify/inversify.d.ts",
-    "./node_modules/reflect-metadata/reflect-metadata.d.ts",
     "./typings/index.d.ts"
   ]
 }

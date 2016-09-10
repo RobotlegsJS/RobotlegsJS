@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const path = require('path')
 
 module.exports = (function(options) {
+    console.log(options)
 
   return {
     entry: {
@@ -16,9 +17,7 @@ module.exports = (function(options) {
     devtool: 'inline-source-map',
 
     module: {
-      // noParse: [/sinon/],
       loaders: [
-        // { test: /sinon.*\.js/, loader: "imports?define=>false" },
         { test: /\.ts$/, loader: "awesome-typescript-loader" }
       ],
       postLoaders: [

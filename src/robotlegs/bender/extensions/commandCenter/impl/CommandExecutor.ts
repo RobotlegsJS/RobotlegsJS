@@ -72,13 +72,13 @@ export class CommandExecutor implements ICommandExecutor {
         }
 
         if (mapping.guards.length === 0 || guardsApprove(mapping.guards, this._injector)) {
-            let commandClass: Object = mapping.commandClass;
+            let commandClass: any = mapping.commandClass;
 
             if (mapping.fireOnce && this._removeMapping) {
                 this._removeMapping(mapping);
             }
 
-            command = this._injector.instantiateUnmapped<any>(<any>commandClass);
+            command = this._injector.instantiateUnmapped<any>(commandClass);
 
             if (mapping.hooks.length > 0) {
                 this._injector.bind(commandClass).toConstantValue(command);

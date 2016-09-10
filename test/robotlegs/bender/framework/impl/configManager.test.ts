@@ -8,7 +8,7 @@
 import { assert } from "chai";
 
 import { IConfig } from "../../../../../src/robotlegs/bender/framework/api/IConfig";
-import { RobotlegsInjector } from "../../../../../src/robotlegs/bender/framework/impl/RobotlegsInjector";
+import { IInjector } from "../../../../../src/robotlegs/bender/framework/api/IInjector";
 import { Context } from "../../../../../src/robotlegs/bender/framework/impl/Context";
 import { ConfigManager } from "../../../../../src/robotlegs/bender/framework/impl/ConfigManager";
 
@@ -20,7 +20,7 @@ import { TestObject } from "./objectSupport/TestObject";
 describe("ConfigManager", () => {
 
     let context: Context;
-    let injector: RobotlegsInjector;
+    let injector: IInjector;
     let configManager: ConfigManager;
 
     beforeEach(() => {
