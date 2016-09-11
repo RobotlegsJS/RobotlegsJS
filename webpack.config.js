@@ -2,7 +2,6 @@ const webpack = require('webpack')
 const path = require('path')
 
 module.exports = (function(options) {
-    console.log(options)
 
   return {
     entry: {
