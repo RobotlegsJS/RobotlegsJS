@@ -8,12 +8,12 @@
     "test": "karma start --single-run",
     "mocha": "mocha test/**/*.test.ts --require ts-node/register",
     "autoformat": "tsfmt -r",
-    "prepublish": "publish-please guard && tsc -d",
+    "prepublish": "tsc -d && publish-please guard",
     "publish-please": "publish-please"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/GoodgameStudios/RobotlegsJS.git"
+    "url": "https://github.com/GoodgameStudios/RobotlegsJS.git"
   },
   "keywords": [
     "TypeScript",
@@ -21,7 +21,15 @@
     "IoC"
   ],
   "author": "Goodgame Studios",
+  "contributors": [
+    "Endel Dreyer <endel.dreyer@gmail.com>",
+    "Tiago Schenkel <tiago.tche@gmail.com>"
+  ],
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GoodgameStudios/RobotlegsJS/issues"
+  },
+  "homepage": "https://github.com/GoodgameStudios/RobotlegsJS#readme",
   "dependencies": {
     "inversify": "^2.0.0"
   },
