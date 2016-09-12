@@ -15,9 +15,6 @@ module.exports = function(config) {
     files: [
       "./test/entry.test.ts",
       "./test/**/**/**.test.ts",
-      // "./test/robotlegs/bender/framework/impl/context.test.ts",
-      // { pattern: "node_modules/reflect-metadata/Reflect.js", include: true },
-      // { pattern: "node_modules/bluebird/js/browser/bluebird.js", include: true },
       {
         pattern: '**/*.map',
         served: true,
@@ -51,8 +48,12 @@ module.exports = function(config) {
     coverageReporter: {
       dir: "coverage",
       reporters: [
+        { type: 'html', subdir: 'report-html' },
         { type: 'lcov', subdir: 'report-lcov' }
-      ]
+      ],
+      instrumenterOptions: {
+        istanbul: { noCompact: true }
+      }
     },
     port: 9876,
     colors: true,
