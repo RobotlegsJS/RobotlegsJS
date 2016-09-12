@@ -1,9 +1,9 @@
 process.env.TEST = true;
 process.env.NODE_ENV = 'test';
 
-const webpack = require("webpack")
-const path = require("path")
-const webpackConfig = require('./webpack.config.js')
+const webpack = require("webpack");
+const path = require("path");
+const webpackConfig = require('./webpack.config.js');
 
 delete webpackConfig.entry;
 
@@ -11,7 +11,12 @@ module.exports = function(config) {
 
   var configuration = {
     basePath: "",
-    frameworks: ["mocha", "chai", "sinon", "es6-shim"],
+    frameworks: [
+      "mocha",
+      "chai",
+      "sinon",
+      "es6-shim"
+    ],
     files: [
       "./test/entry.test.ts",
       "./test/**/**/**.test.ts",
@@ -65,7 +70,6 @@ module.exports = function(config) {
   if (process.env.TRAVIS) {
     configuration.browsers = ['PhantomJS'];
     configuration.plugins.push("karma-phantomjs-launcher");
-
   } else {
     configuration.plugins.push("karma-chrome-launcher");
     configuration.browsers = ['Chrome'];
