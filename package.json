@@ -2,8 +2,8 @@
   "name": "robotlegs",
   "version": "0.1.1",
   "description": "An architecture-based framework for JavaScript/TypeScript canvas applications.",
-  "main": "lib/index.js",
-  "typings": "lib/index.d.ts",
+  "main": "lib/src/index.js",
+  "typings": "lib/src/index.d.ts",
   "scripts": {
     "test": "karma start --single-run",
     "mocha": "mocha test/**/*.test.ts --require ts-node/register",
@@ -22,7 +22,7 @@
   "author": "Goodgame Studios",
   "license": "MIT",
   "dependencies": {
-    "inversify": "^2.0.0-rc.12"
+    "inversify": "^2.0.0"
   },
   "devDependencies": {
     "awesome-typescript-loader": "^2.2.4",
@@ -33,7 +33,6 @@
     "es6-symbol": "^3.1.0",
     "glslify": "^5.1.0",
     "imports-loader": "^0.6.5",
-    "inversify-dts": "^3.0.0",
     "istanbul": "^1.0.0-alpha.2",
     "istanbul-instrumenter-loader": "^0.2.0",
     "karma": "^1.3.0",
@@ -71,7 +70,6 @@
   },
   "peerDependencies": {
     "reflect-metadata": "^0.1.3",
-    "inversify-dts": "^2.2.0",
     "pixi.js": "*",
     "eventemitter3": "*"
   }
