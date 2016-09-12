@@ -43,6 +43,7 @@
     "karma-es6-shim": "^1.0.0",
     "karma-jasmine": "^1.0.2",
     "karma-mocha": "^1.1.1",
+    "karma-mocha-reporter": "^2.1.0",
     "karma-phantomjs-launcher": "^1.0.2",
     "karma-remap-istanbul": "^0.2.1",
     "karma-sinon": "^1.0.5",

@@ -11,7 +11,7 @@ module.exports = function(config) {
 
   var configuration = {
     basePath: "",
-    frameworks: ["mocha", "es6-shim"],
+    frameworks: ["mocha", "chai", "sinon", "es6-shim"],
     files: [
       "./test/entry.test.ts",
       "./test/**/**/**.test.ts",
@@ -38,6 +38,7 @@ module.exports = function(config) {
       "karma-sourcemap-writer",
       "karma-sourcemap-loader",
       "karma-remap-istanbul",
+      "karma-mocha-reporter",
       "karma-mocha",
       "karma-chai",
       "karma-sinon",
@@ -45,8 +46,14 @@ module.exports = function(config) {
       "karma-coverage",
     ],
     reporters: (config.singleRun
-      ? ["dots", "coverage"]
-      : ["dots"]),
+      ? ["dots", "mocha", "coverage"]
+      : ["dots", "mocha"]),
+    coverageReporter: {
+      dir: "coverage",
+      reporters: [
+        { type: 'lcov', subdir: 'report-lcov' }
+      ]
+    },
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
