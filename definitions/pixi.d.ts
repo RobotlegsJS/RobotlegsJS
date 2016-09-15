@@ -1,4 +1,4 @@
-/// <reference path="../lib/index.d.ts" />
+/// <reference path="../lib/src/index.d.ts" />
 
 import { IEvent } from "robotlegs";
 
@@ -25,5 +25,4 @@ declare module "pixi.js" {
         export interface Loader extends IEventDispatcher {}
         export interface Resource extends IEventDispatcher {}
     }
-
 }
