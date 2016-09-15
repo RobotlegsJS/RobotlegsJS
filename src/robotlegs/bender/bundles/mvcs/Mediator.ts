@@ -6,7 +6,6 @@
 // ------------------------------------------------------------------------------
 
 import { injectable, inject } from "inversify";
-// import { injectProperty } from "../../../utils";
 
 import { IEventMap } from "../../extensions/localEventMap/api/IEventMap";
 import { IEventDispatcher } from "../../events/api/IEventDispatcher";
@@ -22,10 +21,20 @@ import { Event } from "../../events/impl/Event";
 export abstract class Mediator implements IMediator {
 
     /*============================================================================*/
-    /* Public Properties                                                          */
+    /* Protected Properties                                                       */
     /*============================================================================*/
 
+    @inject(IEventMap)
+    protected eventMap: IEventMap;
+
+    @inject(IEventDispatcher)
+    protected eventDispatcher: IEventDispatcher;
+
     protected _viewComponent: any;
+
+    /*============================================================================*/
+    /* Public Properties                                                          */
+    /*============================================================================*/
 
     /**
      * @private
@@ -47,12 +56,6 @@ export abstract class Mediator implements IMediator {
      * @inheritDoc
      */
     public abstract destroy(): void;
-
-    @inject(IEventMap)
-    protected eventMap: IEventMap;
-
-    @inject(IEventDispatcher)
-    protected eventDispatcher: IEventDispatcher;
 
     /**
      * Runs after the mediator has been destroyed.
