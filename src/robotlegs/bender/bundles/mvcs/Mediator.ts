@@ -30,7 +30,7 @@ export abstract class Mediator implements IMediator {
     @inject(IEventDispatcher)
     protected eventDispatcher: IEventDispatcher;
 
-    protected _viewComponent: any;
+    protected _viewComponent: IEventDispatcher;
 
     /*============================================================================*/
     /* Public Properties                                                          */
@@ -39,7 +39,7 @@ export abstract class Mediator implements IMediator {
     /**
      * @private
      */
-    public set viewComponent(view: any) {
+    public set viewComponent(view: IEventDispatcher) {
         this._viewComponent = view;
     }
 
@@ -70,7 +70,7 @@ export abstract class Mediator implements IMediator {
     /*============================================================================*/
 
     protected addViewListener(eventString: string, listener: Function, eventClass?: Object): void {
-        this.eventMap.mapListener((<IEventDispatcher>this._viewComponent), eventString, listener, eventClass);
+        this.eventMap.mapListener(this._viewComponent, eventString, listener, eventClass);
     }
 
     protected addContextListener(eventString: string, listener: Function, eventClass?: Object): void {
@@ -78,7 +78,7 @@ export abstract class Mediator implements IMediator {
     }
 
     protected removeViewListener(eventString: string, listener: Function, eventClass?: Object): void {
-        this.eventMap.unmapListener((<IEventDispatcher>this._viewComponent), eventString, listener, eventClass);
+        this.eventMap.unmapListener(this._viewComponent, eventString, listener, eventClass);
     }
 
     protected removeContextListener(eventString: string, listener: Function, eventClass?: Object): void {
