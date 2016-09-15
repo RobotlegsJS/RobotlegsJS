@@ -50,14 +50,13 @@ export class StageSyncExtension implements IExtension {
 
     private handleContextView(contextView: ContextView): void {
         if (this._contextView) {
-            this._logger.warn('A contextView has already been installed, ignoring {0}', [contextView.view]);
+            this._logger.warn("A contextView has already been installed, ignoring {0}", [contextView.view]);
             return;
         }
         this._contextView = contextView.view;
         if (this._contextView.stage) {
             this.initializeContext();
-        }
-        else {
+        } else {
             this._logger.debug("Context view is not yet on stage. Waiting...");
             // this._contextView.addEventListener(Event.ADDED_TO_STAGE, this.onAddedToStage);
         }

@@ -52,14 +52,12 @@ export class ContextViewExtension implements IExtension {
 
     private handleContextView(contextView: ContextView): void {
         if (this._injector.isBound(ContextView)) {
-            this._logger.warn('A contextView has already been installed, ignoring {0}', [contextView.view]);
-        }
-        else {
+            this._logger.warn("A contextView has already been installed, ignoring {0}", [contextView.view]);
+        } else {
             this._logger.debug("Mapping {0} as contextView", [contextView.view]);
 
             applyPixiPatch(contextView.view);
 
-            // this._injector.map(ContextView).toValue(contextView);
             this._injector.bind(ContextView).toConstantValue(contextView);
         }
     }
