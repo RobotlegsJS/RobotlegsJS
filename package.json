@@ -1,6 +1,6 @@
 {
   "name": "robotlegs",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.3",
   "description": "An architecture-based framework for JavaScript/TypeScript canvas applications.",
   "main": "lib/src/index.js",
   "typings": "lib/src/index.d.ts",
