@@ -7,7 +7,8 @@
 
 import { instanceOfType } from "../matching/instanceOfType";
 
-import { ContextView } from "./ContextView";
+import { IContextView } from "./api/IContextView";
+import { ContextView } from "./impl/ContextView";
 
 import { IContext } from "../../framework/api/IContext";
 import { IExtension } from "../../framework/api/IExtension";
@@ -50,20 +51,20 @@ export class ContextViewExtension implements IExtension {
     /* Private Functions                                                          */
     /*============================================================================*/
 
-    private handleContextView(contextView: ContextView): void {
-        if (this._injector.isBound(ContextView)) {
+    private handleContextView(contextView: IContextView): void {
+        if (this._injector.isBound(IContextView)) {
             this._logger.warn("A contextView has already been installed, ignoring {0}", [contextView.view]);
         } else {
             this._logger.debug("Mapping {0} as contextView", [contextView.view]);
 
             applyPixiPatch(contextView.view);
 
-            this._injector.bind(ContextView).toConstantValue(contextView);
+            this._injector.bind(IContextView).toConstantValue(contextView);
         }
     }
 
     private beforeInitializing(): void {
-        if (!this._injector.isBound(ContextView)) {
+        if (!this._injector.isBound(IContextView)) {
             this._logger.error("A ContextView must be installed if you install the ContextViewExtension.");
         }
     }

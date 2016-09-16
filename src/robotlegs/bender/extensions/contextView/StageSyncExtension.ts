@@ -7,7 +7,7 @@
 
 import { instanceOfType } from "../matching/instanceOfType";
 
-import { ContextView } from "./ContextView"
+import { ContextView } from "./impl/ContextView";
 
 import { IContext } from "../../framework/api/IContext";
 import { IExtension } from "../../framework/api/IExtension";

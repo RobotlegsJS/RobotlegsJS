@@ -10,7 +10,7 @@ import { IExtension } from "../../framework/api/IExtension";
 import { IInjector } from "../../framework/api/IInjector";
 import { ILogger } from "../../framework/api/ILogger";
 
-import { ContextView } from "../contextView/ContextView";
+import { IContextView } from "../contextView/api/IContextView";
 
 import { IViewManager } from "./api/IViewManager";
 import { ContainerBinding } from "./impl/ContainerBinding";
@@ -71,7 +71,7 @@ export class StageCrawlerExtension implements IExtension {
 
     private scanContextView(): void {
         this._logger.debug("ViewManager is not installed. Checking the ContextView...");
-        var contextView: ContextView = this._injector.get<ContextView>(ContextView);
+        var contextView: IContextView = this._injector.get<IContextView>(IContextView);
         contextView.view.stage && this.scanContainer(contextView.view);
     }
 

@@ -6,7 +6,7 @@
 // ------------------------------------------------------------------------------
 
 import { ContextViewExtension } from "../../extensions/contextView/ContextViewExtension";
-import { ContextViewListenerConfig } from "../../extensions/contextView/ContextViewListenerConfig";
+import { ContextViewListenerConfig } from "../../extensions/contextView/impl/ContextViewListenerConfig";
 import { StageSyncExtension } from "../../extensions/contextView/StageSyncExtension";
 import { DirectCommandMapExtension } from "../../extensions/directCommandMap/DirectCommandMapExtension";
 import { InjectableLoggerExtension } from "../../extensions/enhancedLogging/InjectableLoggerExtension";
@@ -58,7 +58,8 @@ export class MVCSBundle implements IBundle {
             MediatorMapExtension,
             // ViewProcessorMapExtension,
             StageCrawlerExtension,
-            StageSyncExtension);
+            StageSyncExtension
+        );
 
         context.configure(ContextViewListenerConfig);
     }

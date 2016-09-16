@@ -7,10 +7,10 @@
 
 import { injectable, inject } from "inversify";
 
-import { IConfig } from "../../framework/api/IConfig";
+import { IConfig } from "../../../framework/api/IConfig";
 
-import { ContextView } from "./ContextView";
-import { IViewManager } from "../viewManager/api/IViewManager";
+import { IContextView } from "../api/IContextView";
+import { IViewManager } from "../../viewManager/api/IViewManager";
 
 /**
  * This configuration file adds the ContextView to the viewManager.
@@ -25,7 +25,7 @@ export class ContextViewListenerConfig implements IConfig {
     /* Public Properties                                                          */
     /*============================================================================*/
 
-    private _contextView: ContextView;
+    private _contextView: IContextView;
 
     private _viewManager: IViewManager;
 
@@ -34,7 +34,7 @@ export class ContextViewListenerConfig implements IConfig {
     /*============================================================================*/
 
     constructor(
-        @inject(ContextView) contextView: ContextView,
+        @inject(IContextView) contextView: IContextView,
         @inject(IViewManager) viewManager: IViewManager
     ) {
         this._contextView = contextView;

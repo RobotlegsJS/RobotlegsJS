@@ -76,9 +76,9 @@ export { CommandTriggerMap } from "./robotlegs/bender/extensions/commandCenter/i
 export { NullCommandTrigger } from "./robotlegs/bender/extensions/commandCenter/impl/NullCommandTrigger";
 
 // ContextView
-export { ContextView } from "./robotlegs/bender/extensions/contextView/ContextView";
+export { ContextView } from "./robotlegs/bender/extensions/contextView/impl/ContextView";
 export { ContextViewExtension } from "./robotlegs/bender/extensions/contextView/ContextViewExtension";
-export { ContextViewListenerConfig } from "./robotlegs/bender/extensions/contextView/ContextViewListenerConfig";
+export { ContextViewListenerConfig } from "./robotlegs/bender/extensions/contextView/impl/ContextViewListenerConfig";
 export { StageSyncExtension } from "./robotlegs/bender/extensions/contextView/StageSyncExtension";
 
 // DirectCommandMap
