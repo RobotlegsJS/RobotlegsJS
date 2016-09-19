@@ -61,5 +61,5 @@ export interface IMediatorMap {
     /**
      * Removes all mediators
      */
-    unmediateAll(): void
+    unmediateAll(): void;
 }
