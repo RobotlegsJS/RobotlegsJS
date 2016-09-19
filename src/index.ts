@@ -52,6 +52,7 @@ export { safelyCallBack } from "./robotlegs/bender/framework/impl/safelyCallBack
  */
 export { IEvent } from "./robotlegs/bender/events/api/IEvent";
 export { IEventDispatcher } from "./robotlegs/bender/events/api/IEventDispatcher";
+export { Event } from "./robotlegs/bender/events/impl/Event";
 export { EventDispatcher } from "./robotlegs/bender/events/impl/EventDispatcher";
 
 /**
@@ -75,13 +76,6 @@ export { CommandMappingList } from "./robotlegs/bender/extensions/commandCenter/
 export { CommandTriggerMap } from "./robotlegs/bender/extensions/commandCenter/impl/CommandTriggerMap";
 export { NullCommandTrigger } from "./robotlegs/bender/extensions/commandCenter/impl/NullCommandTrigger";
 
-// ContextView
-export { IContextView } from "./robotlegs/bender/extensions/contextView/api/IContextView";
-export { ContextView } from "./robotlegs/bender/extensions/contextView/impl/ContextView";
-export { ContextViewListenerConfig } from "./robotlegs/bender/extensions/contextView/impl/ContextViewListenerConfig";
-export { ContextViewExtension } from "./robotlegs/bender/extensions/contextView/ContextViewExtension";
-export { StageSyncExtension } from "./robotlegs/bender/extensions/contextView/StageSyncExtension";
-
 // DirectCommandMap
 export { IDirectCommandMap } from "./robotlegs/bender/extensions/directCommandMap/api/IDirectCommandMap";
 export { DirectCommandMapExtension } from "./robotlegs/bender/extensions/directCommandMap/DirectCommandMapExtension";
@@ -101,23 +95,13 @@ export { EventDispatcherExtension } from "./robotlegs/bender/extensions/eventDis
 export { IEventMap } from "./robotlegs/bender/extensions/localEventMap/api/IEventMap";
 export { LocalEventMapExtension } from "./robotlegs/bender/extensions/localEventMap/LocalEventMapExtension";
 
-// MediatorMap
-export { IMediator } from "./robotlegs/bender/extensions/mediatorMap/api/IMediator";
-export { IMediatorMap } from "./robotlegs/bender/extensions/mediatorMap/api/IMediatorMap";
-export { IMediatorMapping } from "./robotlegs/bender/extensions/mediatorMap/api/IMediatorMapping";
-export { MediatorMapExtension } from "./robotlegs/bender/extensions/mediatorMap/MediatorMapExtension";
-
-// ViewManager
-export { IViewHandler } from "./robotlegs/bender/extensions/viewManager/api/IViewHandler";
-export { IViewManager } from "./robotlegs/bender/extensions/viewManager/api/IViewManager";
-export { ManualStageObserverExtension } from "./robotlegs/bender/extensions/viewManager/ManualStageObserverExtension";
-export { StageCrawlerExtension } from "./robotlegs/bender/extensions/viewManager/StageCrawlerExtension";
-export { StageObserverExtension } from "./robotlegs/bender/extensions/viewManager/StageObserverExtension";
-export { ViewManagerExtension } from "./robotlegs/bender/extensions/viewManager/ViewManagerExtension";
+// Matching
+export { ITypeFilter } from "./robotlegs/bender/extensions/matching/ITypeFilter";
+export { ITypeMatcher } from "./robotlegs/bender/extensions/matching/ITypeMatcher";
+export { TypeMatcher } from "./robotlegs/bender/extensions/matching/TypeMatcher";
 
 /**
  * Bundles
  */
 export { MVCSBundle } from "./robotlegs/bender/bundles/mvcs/MVCSBundle";
-export { Mediator } from "./robotlegs/bender/bundles/mvcs/Mediator";
 export { Command } from "./robotlegs/bender/bundles/mvcs/Command";
