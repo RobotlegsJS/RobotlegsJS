@@ -73,7 +73,7 @@
     "tslint": "^3.14.0",
     "typedoc": "^0.4.4",
     "typescript": "^2.0.2",
-    "typescript-formatter": "^2.3.0",
+    "typescript-formatter": "^3.0.1",
     "webpack": "^2.1.0-beta.20",
     "webpack-dev-server": "^2.1.0-beta.0"
   },
