@@ -58,8 +58,6 @@
     "karma-sinon": "^1.0.5",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-sourcemap-writer": "^0.1.2",
-    "karma-typescript-preprocessor": "^0.2.0",
-    "karma-typescript-preprocessor2": "^1.2.1",
     "karma-webpack": "^1.8.0",
     "mocha": "^3.0.2",
     "publish-please": "^2.2.0",
