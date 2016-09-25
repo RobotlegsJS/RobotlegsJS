@@ -16,16 +16,16 @@ module.exports = (function(options) {
     devtool: 'inline-source-map',
 
     module: {
-      loaders: [
-        { test: /\.ts$/, loader: "awesome-typescript-loader" }
-      ],
-      postLoaders: [
+      rules: [
+        { test: /\.ts$/, loader: "awesome-typescript-loader" },
+
         {
           test: /^(.(?!\.test))*\.ts$/,
           loader: "istanbul-instrumenter-loader",
           query: {
             embedSource: true,
           },
+          enforce: "post"
         }
       ],
     },
@@ -36,8 +36,7 @@ module.exports = (function(options) {
     ],
 
     resolve: {
-      extensions: ['', '.ts', '.js', '.json'],
-      root: [ path.join(__dirname, "./src") ],
+      extensions: ['.ts', '.js', '.json'],
       alias: {
          // sinon: 'sinon/pkg/sinon'
       }
