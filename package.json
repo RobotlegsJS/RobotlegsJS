@@ -62,7 +62,7 @@
     "mocha": "^3.0.2",
     "publish-please": "^2.2.0",
     "reflect-metadata": "^0.1.8",
-    "remap-istanbul": "^0.6.4",
+    "remap-istanbul": "^0.7.0",
     "rimraf": "^2.5.2",
     "sinon": "^2.0.0-pre",
     "sinon-chai": "^2.8.0",
