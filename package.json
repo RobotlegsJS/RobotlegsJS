@@ -31,7 +31,7 @@
   },
   "homepage": "https://github.com/GoodgameStudios/RobotlegsJS#readme",
   "dependencies": {
-    "inversify": "^2.0.0"
+    "inversify": "^2.0.1"
   },
   "devDependencies": {
     "awesome-typescript-loader": "^2.2.4",
