@@ -67,7 +67,7 @@ export class DirectCommandMap implements IDirectCommandMap {
     /**
      * @inheritDoc
      */
-    public map(commandClass: FunctionConstructor): IDirectCommandConfigurator {
+    public map(commandClass: Object): IDirectCommandConfigurator {
         return new DirectCommandMapper(this._executor, this._mappings, commandClass);
     }
 
