@@ -6,8 +6,8 @@ RobotlegsJS
 [![Code Climate](https://codeclimate.com/github/GoodgameStudios/RobotlegsJS/badges/gpa.svg)](https://codeclimate.com/github/GoodgameStudios/RobotlegsJS)
 [![Test Coverage](https://codeclimate.com/github/GoodgameStudios/RobotlegsJS/badges/coverage.svg)](https://codeclimate.com/github/GoodgameStudios/RobotlegsJS/coverage)
 [![npm version](https://badge.fury.io/js/robotlegs.svg)](https://badge.fury.io/js/robotlegs)
-[![Dependency Status](https://david-dm.org/GoodgameStudios/RobotlegsJS/status.svg)](https://david-dm.org/GoodgameStudios/RobotlegsJS)
-[![DevDependency Status](https://david-dm.org/GoodgameStudios/RobotlegsJS/dev-status.svg)](https://david-dm.org/GoodgameStudios/RobotlegsJS?type=dev)
+[![Dependency Status](https://img.shields.io/david/GoodgameStudios/RobotlegsJS.svg?style=flat)](https://david-dm.org/GoodgameStudios/RobotlegsJS)
+[![DevDependency Status](https://img.shields.io/david/dev/GoodgameStudios/RobotlegsJS.svg?style=flat)](https://david-dm.org/GoodgameStudios/RobotlegsJS?type=dev)
 
 [![NPM](https://nodei.co/npm/robotlegs.png?downloads=true&downloadRank=true)](https://nodei.co/npm/robotlegs/)
 [![NPM](https://nodei.co/npm-dl/robotlegs.png?months=9&height=3)](https://nodei.co/npm/robotlegs/)
