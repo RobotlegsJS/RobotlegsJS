@@ -1,8 +1,8 @@
 // ------------------------------------------------------------------------------
-//  Copyright (c) 2016 Goodgame Studios. All Rights Reserved. 
-// 
-//  NOTICE: You are permitted to use, modify, and distribute this file 
-//  in accordance with the terms of the license agreement accompanying it. 
+//  Copyright (c) 2016 Goodgame Studios. All Rights Reserved.
+//
+//  NOTICE: You are permitted to use, modify, and distribute this file
+//  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
 import { IContext } from "../../../framework/api/IContext";
@@ -44,6 +44,10 @@ export class ConsoleLogTarget implements ILogTarget {
      * @inheritDoc
      */
     public log(source: any, level: number, timestamp: number, message: string, params: any[] = null): void {
+        if (this._context.logLevel < level) {
+            return;
+        }
+
         switch (level) {
             case LogLevel.DEBUG:
                 console.log(timestamp, this._context, source, this._messageParser.parseMessage(message, params));

@@ -32,8 +32,6 @@ export class MVCSBundle implements IBundle {
      * @inheritDoc
      */
     public extend(context: IContext): void {
-        context.logLevel = LogLevel.DEBUG;
-
         context.install(
             ConsoleLoggingExtension,
             InjectableLoggerExtension,

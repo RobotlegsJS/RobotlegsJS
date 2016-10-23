@@ -304,7 +304,7 @@ export class Context extends EventDispatcher implements IContext {
      */
     public addChild(child: IContext): IContext {
         if (this._children.indexOf(child) === -1) {
-            this._logger.info("Adding child context {0}", [child]);
+            this._logger.debug("Adding child context {0}", [child]);
             if (!child.uninitialized) {
                 this._logger.warn("Child context {0} must be uninitialized", [child]);
             }
@@ -324,7 +324,7 @@ export class Context extends EventDispatcher implements IContext {
     public removeChild(child: IContext): IContext {
         let childIndex: number = this._children.indexOf(child);
         if (childIndex > -1) {
-            this._logger.info("Removing child context {0}", [child]);
+            this._logger.debug("Removing child context {0}", [child]);
             this._children.splice(childIndex, 1);
             child.injector.parent = null;
             child.removeEventListener(LifecycleEvent.POST_DESTROY, this.onChildDestroy, this);
@@ -413,15 +413,15 @@ export class Context extends EventDispatcher implements IContext {
     }
 
     private beforeInitializingCallback(): void {
-        this._logger.info("Initializing...");
+        this._logger.debug("Initializing...");
     }
 
     private afterInitializingCallback(): void {
-        this._logger.info("Initialize complete");
+        this._logger.debug("Initialize complete");
     }
 
     private beforeDestroyingCallback(): void {
-        this._logger.info("Destroying...");
+        this._logger.debug("Destroying...");
     }
 
     private afterDestroyingCallback(): void {
@@ -430,7 +430,7 @@ export class Context extends EventDispatcher implements IContext {
         this._pin.releaseAll();
         this._injector.teardown();
         this.removeChildren();
-        this._logger.info("Destroy complete");
+        this._logger.debug("Destroy complete");
         this._logManager.removeAllTargets();
     }
 
