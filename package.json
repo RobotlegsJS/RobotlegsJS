@@ -1,6 +1,6 @@
 {
   "name": "robotlegs",
-  "version": "1.0.0-alpha.7",
+  "version": "1.0.0-alpha.8",
   "description": "An architecture-based framework for JavaScript/TypeScript canvas applications.",
   "main": "lib/src/index.js",
   "typings": "lib/src/index.d.ts",
@@ -34,6 +34,10 @@
     "inversify": "^2.0.1"
   },
   "devDependencies": {
+    "@types/bluebird": "^3.0.35",
+    "@types/chai": "^3.4.34",
+    "@types/mocha": "^2.2.32",
+    "@types/sinon": "^1.16.31",
     "awesome-typescript-loader": "^2.2.4",
     "bluebird": "^3.4.6",
     "browserify-versionify": "^1.0.6",
