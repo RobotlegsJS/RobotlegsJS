@@ -1,9 +1,12 @@
+/.idea
+/.vscode
 /coverage
 /docs
 /lib/test
 /not-ported-extensions
 /src
 /test
+/transpiled-code
 /typings
 CONTRIBUTING.md
 bower.json
@@ -22,4 +25,3 @@ webpack.config.js
 .npmignore
 .publishrc
 .travis.yml
-.vscode
