@@ -1,18 +1,18 @@
 {
-  "compilerOptions": {
-    "outDir": "lib",
-    "target": "es5",
-    "lib": ["es6", "dom"],
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "declaration": false,
-    "noImplicitAny": false,
-    "sourceMap": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
-  },
-  "include": [
-    "./src/**/*.ts",
-    "./test/**/*.ts"
-  ]
+    "compilerOptions": {
+        "outDir": "lib",
+        "target": "es5",
+        "lib": ["es6", "dom"],
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "declaration": false,
+        "noImplicitAny": false,
+        "sourceMap": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
+    },
+    "include": [
+        "./src/**/*.ts",
+        "./test/**/*.ts"
+    ]
 }

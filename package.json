@@ -1,84 +1,84 @@
 {
-  "name": "robotlegs",
-  "version": "1.0.0-alpha.9",
-  "description": "An architecture-based framework for JavaScript/TypeScript canvas applications.",
-  "main": "lib/src/index.js",
-  "typings": "lib/src/index.d.ts",
-  "scripts": {
-    "test": "karma start --single-run",
-    "mocha": "mocha test/**/*.test.ts --require ts-node/register",
-    "autoformat": "tsfmt -r",
-    "prepublish": "tsc -d && publish-please guard",
-    "publish-please": "publish-please"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/GoodgameStudios/RobotlegsJS.git"
-  },
-  "keywords": [
-    "TypeScript",
-    "Robotlegs",
-    "IoC"
-  ],
-  "author": "Goodgame Studios",
-  "contributors": [
-    "Endel Dreyer <endel.dreyer@gmail.com>",
-    "Tiago Schenkel <tiago.tche@gmail.com>"
-  ],
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/GoodgameStudios/RobotlegsJS/issues"
-  },
-  "homepage": "https://github.com/GoodgameStudios/RobotlegsJS#readme",
-  "dependencies": {
-    "inversify": "^2.0.1"
-  },
-  "devDependencies": {
-    "@types/bluebird": "^3.0.35",
-    "@types/chai": "^3.4.34",
-    "@types/mocha": "^2.2.32",
-    "@types/sinon": "^1.16.31",
-    "awesome-typescript-loader": "^2.2.4",
-    "bluebird": "^3.4.6",
-    "browserify-versionify": "^1.0.6",
-    "chai": "^3.5.0",
-    "es6-map": "^0.1.4",
-    "es6-symbol": "^3.1.0",
-    "glslify": "^6.0.1",
-    "imports-loader": "^0.6.5",
-    "istanbul": "^1.1.0-alpha.1",
-    "istanbul-instrumenter-loader": "^0.2.0",
-    "karma": "^1.3.0",
-    "karma-chai": "^0.1.0",
-    "karma-chai-sinon": "^0.1.5",
-    "karma-chrome-launcher": "^2.0.0",
-    "karma-coverage": "^1.1.1",
-    "karma-es6-shim": "^1.0.0",
-    "karma-jasmine": "^1.0.2",
-    "karma-mocha": "^1.2.0",
-    "karma-mocha-reporter": "^2.2.0",
-    "karma-phantomjs-launcher": "^1.0.2",
-    "karma-remap-istanbul": "^0.2.1",
-    "karma-sinon": "^1.0.5",
-    "karma-sourcemap-loader": "^0.3.7",
-    "karma-sourcemap-writer": "^0.1.2",
-    "karma-webpack": "^1.8.0",
-    "mocha": "^3.1.2",
-    "publish-please": "^2.2.0",
-    "reflect-metadata": "^0.1.8",
-    "remap-istanbul": "^0.7.0",
-    "rimraf": "^2.5.4",
-    "sinon": "^2.0.0-pre.3",
-    "sinon-chai": "^2.8.0",
-    "ts-node": "^1.6.0",
-    "tslint": "^3.15.1",
-    "typedoc": "^0.5.0",
-    "typescript": "^2.0.3",
-    "typescript-formatter": "^4.0.0",
-    "webpack": "^2.1.0-beta.25",
-    "webpack-dev-server": "^2.1.0-beta.9"
-  },
-  "peerDependencies": {
-    "reflect-metadata": "^0.1.3"
-  }
+    "name": "robotlegs",
+    "version": "1.0.0-alpha.9",
+    "description": "An architecture-based framework for JavaScript/TypeScript canvas applications.",
+    "main": "lib/src/index.js",
+    "typings": "lib/src/index.d.ts",
+    "scripts": {
+        "test": "karma start --single-run",
+        "mocha": "mocha test/**/*.test.ts --require ts-node/register",
+        "autoformat": "tsfmt -r",
+        "prepublish": "tsc -d && publish-please guard",
+        "publish-please": "publish-please"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/GoodgameStudios/RobotlegsJS.git"
+    },
+    "keywords": [
+        "TypeScript",
+        "Robotlegs",
+        "IoC"
+    ],
+    "author": "Goodgame Studios",
+    "contributors": [
+        "Endel Dreyer <endel.dreyer@gmail.com>",
+        "Tiago Schenkel <tiago.tche@gmail.com>"
+    ],
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/GoodgameStudios/RobotlegsJS/issues"
+    },
+    "homepage": "https://github.com/GoodgameStudios/RobotlegsJS#readme",
+    "dependencies": {
+        "inversify": "^2.0.1"
+    },
+    "devDependencies": {
+        "@types/bluebird": "^3.0.35",
+        "@types/chai": "^3.4.34",
+        "@types/mocha": "^2.2.32",
+        "@types/sinon": "^1.16.31",
+        "awesome-typescript-loader": "^2.2.4",
+        "bluebird": "^3.4.6",
+        "browserify-versionify": "^1.0.6",
+        "chai": "^3.5.0",
+        "es6-map": "^0.1.4",
+        "es6-symbol": "^3.1.0",
+        "glslify": "^6.0.1",
+        "imports-loader": "^0.6.5",
+        "istanbul": "^1.1.0-alpha.1",
+        "istanbul-instrumenter-loader": "^0.2.0",
+        "karma": "^1.3.0",
+        "karma-chai": "^0.1.0",
+        "karma-chai-sinon": "^0.1.5",
+        "karma-chrome-launcher": "^2.0.0",
+        "karma-coverage": "^1.1.1",
+        "karma-es6-shim": "^1.0.0",
+        "karma-jasmine": "^1.0.2",
+        "karma-mocha": "^1.2.0",
+        "karma-mocha-reporter": "^2.2.0",
+        "karma-phantomjs-launcher": "^1.0.2",
+        "karma-remap-istanbul": "^0.2.1",
+        "karma-sinon": "^1.0.5",
+        "karma-sourcemap-loader": "^0.3.7",
+        "karma-sourcemap-writer": "^0.1.2",
+        "karma-webpack": "^1.8.0",
+        "mocha": "^3.1.2",
+        "publish-please": "^2.2.0",
+        "reflect-metadata": "^0.1.8",
+        "remap-istanbul": "^0.7.0",
+        "rimraf": "^2.5.4",
+        "sinon": "^2.0.0-pre.3",
+        "sinon-chai": "^2.8.0",
+        "ts-node": "^1.6.0",
+        "tslint": "^3.15.1",
+        "typedoc": "^0.5.0",
+        "typescript": "^2.0.3",
+        "typescript-formatter": "^4.0.0",
+        "webpack": "^2.1.0-beta.25",
+        "webpack-dev-server": "^2.1.0-beta.9"
+    },
+    "peerDependencies": {
+        "reflect-metadata": "^0.1.3"
+    }
 }
