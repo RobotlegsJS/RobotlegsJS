@@ -9,6 +9,8 @@ import { assert } from "chai";
 
 import { RobotlegsInjector } from "../../../../../src/robotlegs/bender/framework/impl/RobotlegsInjector";
 
+import { TestObject } from "./objectSupport/TestObject";
+
 describe("RobotlegsInjector", () => {
 
     let parentInjector: RobotlegsInjector;
@@ -32,5 +34,27 @@ describe("RobotlegsInjector", () => {
     it("createChild remembers parent", () => {
         childInjector = <RobotlegsInjector>parentInjector.createChild();
         assert.equal(parentInjector, (<any>childInjector)._parentKernel);
+    });
+
+    it("hasMapping check if a identifier is mapped", () => {
+        parentInjector = new RobotlegsInjector();
+        childInjector = new RobotlegsInjector();
+        childInjector.parent = parentInjector;
+
+        parentInjector.bind(TestObject).to(TestObject);
+
+        assert.isTrue(parentInjector.hasMapping(TestObject));
+        assert.isTrue(childInjector.hasMapping(TestObject));
+    });
+
+    it("satisfies check if a identifier is mapped", () => {
+        parentInjector = new RobotlegsInjector();
+        childInjector = new RobotlegsInjector();
+        childInjector.parent = parentInjector;
+
+        parentInjector.bind(TestObject).to(TestObject);
+
+        assert.isTrue(parentInjector.satisfies(TestObject));
+        assert.isTrue(childInjector.satisfies(TestObject));
     });
 });

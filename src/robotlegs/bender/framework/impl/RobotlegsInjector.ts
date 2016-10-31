@@ -32,33 +32,15 @@ export class RobotlegsInjector extends Kernel implements IInjector {
     /**
      * @inheritDoc
      */
-    public hasMapping(type: any, name: String): Boolean {
-        // TODO: implement method using Kernel API
-        throw new Error("hasMapping method is not implemented.");
+    public hasMapping(serviceIdentifier: interfaces.ServiceIdentifier<any>): boolean {
+        return this.isBound(serviceIdentifier);
     }
 
     /**
      * @inheritDoc
      */
-    public hasDirectMapping(type: any, name: String): Boolean {
-        // TODO: implement method using Kernel API
-        throw new Error("hasDirectMapping method is not implemented.");
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public satisfies(type: any, name: String): Boolean {
-        // TODO: implement method using Kernel API
-        throw new Error("satisfies method is not implemented.");
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public satisfiesDirectly(type: any, name: String): Boolean {
-        // TODO: implement method using Kernel API
-        throw new Error("satisfiesDirectly method is not implemented.");
+    public satisfies(serviceIdentifier: interfaces.ServiceIdentifier<any>): boolean {
+        return this.isBound(serviceIdentifier);
     }
 
     /**

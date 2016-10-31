@@ -175,22 +175,12 @@ export interface IInjector extends interfaces.Kernel {
     // getTypeDescription(type: Class): TypeDescription;
 
     /**
-     * Does this injector (or any parents) have a mapping for the given type?
+     * Does this injector (or any parents) have a mapping for the given serviceIdentifier?
      *
-     * @param type The type
-     * @param name Optional name
+     * @param serviceIdentifier The service identifier
      * @return True if the mapping exists
      */
-    hasMapping(type: any, name: String): Boolean;
-
-    /**
-     * Does this injector have a direct mapping for the given type?
-     *
-     * @param type The type
-     * @param name Optional name
-     * @return True if the mapping exists
-     */
-    hasDirectMapping(type: any, name: String): Boolean;
+    hasMapping(serviceIdentifier: interfaces.ServiceIdentifier<any>): boolean;
 
     /**
      * Maps a request description, consisting of the <code>type</code> and, optionally, the
@@ -232,26 +222,11 @@ export interface IInjector extends interfaces.Kernel {
      * Indicates whether the injector can supply a response for the specified dependency either
      * by using a mapping of its own or by querying one of its ancestor injectors.
      *
-     * @param type The type of the dependency under query
-     * @param name The name of the dependency under query
+     * @param serviceIdentifier The service identifier
      *
      * @return <code>true</code> if the dependency can be satisfied, <code>false</code> if not
      */
-    satisfies(type: any, name: String): Boolean;
-
-    /**
-     * Indicates whether the injector can directly supply a response for the specified
-     * dependency.
-     *
-     * <p>In contrast to <code>#satisfies()</code>, <code>satisfiesDirectly</code> only informs
-     * about mappings on this injector itself, without querying its ancestor injectors.</p>
-     *
-     * @param type The type of the dependency under query
-     * @param name The name of the dependency under query
-     *
-     * @return <code>true</code> if the dependency can be satisfied, <code>false</code> if not
-     */
-    satisfiesDirectly(type: any, name: String): Boolean;
+    satisfies(serviceIdentifier: interfaces.ServiceIdentifier<any>): boolean;
 
     /**
      * Returns the mapping for the specified dependency class
