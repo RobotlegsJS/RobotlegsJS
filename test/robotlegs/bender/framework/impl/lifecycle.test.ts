@@ -10,7 +10,6 @@ import { assert } from "chai";
 import { IEventDispatcher } from "../../../../../src/robotlegs/bender/events/api/IEventDispatcher";
 import { EventDispatcher } from "../../../../../src/robotlegs/bender/events/impl/EventDispatcher";
 
-import { LifecycleError } from "../../../../../src/robotlegs/bender/framework/api/LifecycleError";
 import { LifecycleEvent } from "../../../../../src/robotlegs/bender/framework/api/LifecycleEvent";
 import { LifecycleState } from "../../../../../src/robotlegs/bender/framework/api/LifecycleState";
 import { Lifecycle } from "../../../../../src/robotlegs/bender/framework/impl/Lifecycle";
@@ -173,14 +172,14 @@ describe("Lifecycle", () => {
         function whenInitializingWrongHandler(): void {
             lifecycle.whenInitializing(function(phase: string, callback: Function): void { ; });
         }
-        assert.throws(whenInitializingWrongHandler, LifecycleError, "LifecycleError: When and After handlers must accept 0 or 1 arguments");
+        assert.throws(whenInitializingWrongHandler, Error, "When and After handlers must accept 0 or 1 arguments");
     });
 
     it("afterHandler with more than 1 argument throws", () => {
         function afterInitializingWrongHandler(): void {
             lifecycle.afterInitializing(function(phase: string, callback: Function): void { ; });
         }
-        assert.throws(afterInitializingWrongHandler, LifecycleError, "LifecycleError: When and After handlers must accept 0 or 1 arguments");
+        assert.throws(afterInitializingWrongHandler, Error, "When and After handlers must accept 0 or 1 arguments");
     });
 
     it("when and afterHandlers with single arguments receive event types", () => {
@@ -387,7 +386,7 @@ describe("Lifecycle", () => {
             lifecycle.initialize();
             lifecycle.beforeInitializing(nop);
         }
-        assert.throws(beforeInitializingWrongHandler, LifecycleError, "LifecycleError: Handler added late and will never fire");
+        assert.throws(beforeInitializingWrongHandler, Error, "Handler added late and will never fire");
     });
 
     it("adding whenInitializing handler after initialization throws error", () => {
@@ -395,7 +394,7 @@ describe("Lifecycle", () => {
             lifecycle.initialize();
             lifecycle.whenInitializing(nop);
         }
-        assert.throws(whenInitializingWrongHandler, LifecycleError, "LifecycleError: Handler added late and will never fire");
+        assert.throws(whenInitializingWrongHandler, Error, "Handler added late and will never fire");
     });
 
     it("adding whenInitializing handler during initialization does NOT throw error", (done: Function) => {
@@ -416,7 +415,7 @@ describe("Lifecycle", () => {
             lifecycle.initialize();
             lifecycle.afterInitializing(nop);
         }
-        assert.throws(afterInitializingWrongHandler, LifecycleError, "LifecycleError: Handler added late and will never fire");
+        assert.throws(afterInitializingWrongHandler, Error, "Handler added late and will never fire");
     });
 
     it("adding afterInitializing handler during initialization does NOT throw error", () => {
