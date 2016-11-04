@@ -12,10 +12,9 @@ RobotlegsJS
 [![NPM](https://nodei.co/npm/robotlegs.png?downloads=true&downloadRank=true)](https://nodei.co/npm/robotlegs/)
 [![NPM](https://nodei.co/npm-dl/robotlegs.png?months=9&height=3)](https://nodei.co/npm/robotlegs/)
 
-Robotlegs is a architecture-based framework for canvas applications. This
+Robotlegs is a architecture-based IoC framework for JavaScript/TypeScript. This
 version is a direct port from the [ActionScript 3.0
-codebase](https://github.com/robotlegs/robotlegs-framework) to
-JavaScript/TypeScript. See the [motivation](#motivation) behind it.
+codebase](https://github.com/robotlegs/robotlegs-framework). See the [motivation](#motivation) behind it.
 
 Right now, this framework only works together with
 [pixi.js v4](https://github.com/pixijs/pixi.js).
@@ -50,7 +49,6 @@ RobotlegsJS requires TypeScript 2.0 and the `experimentalDecorators`,
     "compilerOptions": {
         "target": "es5",
         "lib": ["es6", "dom"],
-        "types": ["reflect-metadata"],
         "module": "commonjs",
         "moduleResolution": "node",
         "experimentalDecorators": true,
@@ -169,12 +167,10 @@ The mediator we mapped above might look like this:
 
 ```ts
 import { inject, IEventMap, IEventDispatcher, Mediator } from "robotlegs";
+import { UserProfileView } from "./UserProfileView";
 
-public class UserProfileMediator extends Mediator
+public class UserProfileMediator extends Mediator<UserProfileView>
 {
-    @inject(UserProfileView)
-    view: UserProfileView;
-
     public function initialize():void
     {
         // Redispatch an event from the view to the framework
