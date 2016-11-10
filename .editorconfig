@@ -8,4 +8,13 @@ indent_style = space
 indent_size = 4
 
 [*.{ts}]
+indent_style = space
 indent_size = 4
+
+[*.{js,json}]
+indent_style = space
+indent_size = 2
+
+[{.codeclimate.yml,.eslintignore,.eslintrc,.istanbul.yml,.publishrc,.travis.yml}]
+indent_style = space
+indent_size = 2
