@@ -5,7 +5,7 @@
     "lib": ["es6", "dom"],
     "module": "commonjs",
     "moduleResolution": "node",
-    "declaration": false,
+    "declaration": true,
     "noImplicitAny": false,
     "sourceMap": true,
     "experimentalDecorators": true,
