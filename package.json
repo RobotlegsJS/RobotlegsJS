@@ -2,8 +2,8 @@
   "name": "robotlegs",
   "version": "1.0.0-alpha.10",
   "description": "An architecture-based IoC framework for JavaScript/TypeScript",
-  "main": "lib/src/index.js",
-  "typings": "lib/src/index.d.ts",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
   "scripts": {
     "test": "karma start --single-run",
     "mocha": "mocha test/**/*.test.ts --require ts-node/register",
