@@ -9,7 +9,7 @@
     "mocha": "mocha test/**/*.test.ts --require ts-node/register",
     "autoformat": "tsfmt -r",
     "prepublish": "tsc -d && publish-please guard",
-    "publish-please": "publish-please"
+    "publish-please": "npm run autoformat && publish-please"
   },
   "repository": {
     "type": "git",
