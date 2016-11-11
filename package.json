@@ -16,6 +16,9 @@
     "type": "git",
     "url": "https://github.com/GoodgameStudios/RobotlegsJS.git"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
   "keywords": [
     "TypeScript",
     "Robotlegs",
