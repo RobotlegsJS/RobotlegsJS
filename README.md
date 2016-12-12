@@ -34,12 +34,6 @@ You can get the latest release and the type definitions using npm:
 npm install robotlegs reflect-metadata --save
 ```
 
-Include the type definition references in your project:
-
-```ts
-/// <reference path="node_modules/robotlegs/definitions/pixi.d.ts" />
-```
-
 RobotlegsJS requires TypeScript 2.0 and the `experimentalDecorators`,
 `emitDecoratorMetadata`, `types` and `lib` compilation options in your
 `tsconfig.json` file:
