@@ -75,7 +75,7 @@
     "sinon-chai": "^2.8.0",
     "ts-loader": "^1.1.0",
     "ts-node": "^2.0.0",
-    "tslint": "^3.15.1",
+    "tslint": "^4.3.1",
     "typedoc": "^0.5.1",
     "typescript": "^2.1.0-dev.20161110",
     "typescript-formatter": "^4.0.0",
