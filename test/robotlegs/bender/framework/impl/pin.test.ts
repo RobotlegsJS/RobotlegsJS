@@ -31,7 +31,7 @@ describe("Pin", () => {
     });
 
     it("detain dispatches event", () => {
-        let dispatcherSpy: Sinon.SinonSpy = sinon.spy(dispatcher, "dispatchEvent");
+        let dispatcherSpy = sinon.spy(dispatcher, "dispatchEvent");
         pin.detain(instance);
         let pinEvent: PinEvent = <PinEvent>(dispatcherSpy.firstCall.args[0]);
         assert.isTrue(dispatcherSpy.calledOnce);
@@ -40,7 +40,7 @@ describe("Pin", () => {
     });
 
     it("detain dispatches event once per valid detainment", () => {
-        let dispatcherSpy: Sinon.SinonSpy = sinon.spy(dispatcher, "dispatchEvent");
+        let dispatcherSpy = sinon.spy(dispatcher, "dispatchEvent");
         pin.detain(instance);
         pin.detain(instance);
         let pinEvent: PinEvent = <PinEvent>(dispatcherSpy.firstCall.args[0]);
@@ -50,7 +50,7 @@ describe("Pin", () => {
     });
 
     it("release dispatches event", () => {
-        let dispatcherSpy: Sinon.SinonSpy = sinon.spy(dispatcher, "dispatchEvent");
+        let dispatcherSpy = sinon.spy(dispatcher, "dispatchEvent");
         pin.detain(instance);
         pin.release(instance);
         let pinEvent: PinEvent = <PinEvent>(dispatcherSpy.secondCall.args[0]);
@@ -60,7 +60,7 @@ describe("Pin", () => {
     });
 
     it("release dispatches event once per valid release", () => {
-        let dispatcherSpy: Sinon.SinonSpy = sinon.spy(dispatcher, "dispatchEvent");
+        let dispatcherSpy = sinon.spy(dispatcher, "dispatchEvent");
         pin.detain(instance);
         pin.release(instance);
         pin.release(instance);
@@ -71,13 +71,13 @@ describe("Pin", () => {
     });
 
     it("release does not dispatch event if instance was not detained", () => {
-        let dispatcherSpy: Sinon.SinonSpy = sinon.spy(dispatcher, "dispatchEvent");
+        let dispatcherSpy = sinon.spy(dispatcher, "dispatchEvent");
         pin.release(instance);
         assert.isTrue(dispatcherSpy.notCalled);
     });
 
     it("releaseAll dispatches events for all instances", () => {
-        let dispatcherSpy: Sinon.SinonSpy = sinon.spy(dispatcher, "dispatchEvent");
+        let dispatcherSpy = sinon.spy(dispatcher, "dispatchEvent");
         let instanceA: Object = {};
         let instanceB: Object = {};
         let instanceC: Object = {};
