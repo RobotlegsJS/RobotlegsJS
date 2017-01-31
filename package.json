@@ -35,11 +35,11 @@
   },
   "homepage": "https://github.com/GoodgameStudios/RobotlegsJS#readme",
   "dependencies": {
-    "inversify": "^2.0.1"
+    "inversify": "^3.0.0"
   },
   "devDependencies": {
     "@types/bluebird": "^3.0.37",
-    "@types/chai": "^2.0.0",
+    "@types/chai": "^3.4.34",
     "@types/mocha": "^2.2.38",
     "@types/sinon": "^1.16.34",
     "bluebird": "^3.4.7",
@@ -50,7 +50,7 @@
     "glslify": "^6.0.1",
     "imports-loader": "^0.7.0",
     "istanbul": "^1.1.0-alpha.1",
-    "istanbul-instrumenter-loader": "^0.2.0",
+    "istanbul-instrumenter-loader": "^1.2.0",
     "karma": "^1.4.0",
     "karma-chai": "^0.1.0",
     "karma-chai-sinon": "^0.1.5",
