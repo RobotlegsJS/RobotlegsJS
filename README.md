@@ -1,13 +1,12 @@
 RobotlegsJS
 ===
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/GoodgameStudios/RobotlegsJS.svg)](https://greenkeeper.io/)
-
 [![Join the chat at https://gitter.im/GoodgameStudios/RobotlegsJS](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/GoodgameStudios/RobotlegsJS)
 [![Build Status](https://secure.travis-ci.org/GoodgameStudios/RobotlegsJS.svg?branch=master)](https://travis-ci.org/GoodgameStudios/RobotlegsJS)
 [![Code Climate](https://codeclimate.com/github/GoodgameStudios/RobotlegsJS/badges/gpa.svg)](https://codeclimate.com/github/GoodgameStudios/RobotlegsJS)
 [![Test Coverage](https://codeclimate.com/github/GoodgameStudios/RobotlegsJS/badges/coverage.svg)](https://codeclimate.com/github/GoodgameStudios/RobotlegsJS/coverage)
 [![npm version](https://badge.fury.io/js/robotlegs.svg)](https://badge.fury.io/js/robotlegs)
+[![Greenkeeper badge](https://badges.greenkeeper.io/GoodgameStudios/RobotlegsJS.svg)](https://greenkeeper.io/)
 
 [![NPM](https://nodei.co/npm/robotlegs.png?downloads=true&downloadRank=true)](https://nodei.co/npm/robotlegs/)
 [![NPM](https://nodei.co/npm-dl/robotlegs.png?months=9&height=3)](https://nodei.co/npm/robotlegs/)
