@@ -50,9 +50,9 @@
   dependencies:
     "@types/node" "*"
 
-"@types/sinon@^1.16.34":
-  version "1.16.34"
-  resolved "https://registry.npmjs.org/@types/sinon/-/sinon-1.16.34.tgz#a9761fff33d0f7b3fe61875b577778a2576a9a03"
+"@types/sinon@^1.16.35":
+  version "1.16.35"
+  resolved "https://registry.npmjs.org/@types/sinon/-/sinon-1.16.35.tgz#ee687cc42d1a79448256f1c012a33a0840e85c5c"
 
 abbrev@1, abbrev@1.0.x:
   version "1.0.9"
@@ -1590,15 +1590,12 @@ fs-access@^1.0.0:
   dependencies:
     null-check "^1.0.0"
 
-fs-extra@^0.30.0:
-  version "0.30.0"
-  resolved "https://registry.npmjs.org/fs-extra/-/fs-extra-0.30.0.tgz#f233ffcc08d4da7d432daa449776989db1df93f0"
+fs-extra@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/fs-extra/-/fs-extra-2.0.0.tgz#337352bded4a0b714f3eb84de8cea765e9d37600"
   dependencies:
     graceful-fs "^4.1.2"
     jsonfile "^2.1.0"
-    klaw "^1.0.0"
-    path-is-absolute "^1.0.0"
-    rimraf "^2.2.8"
 
 fs-extra@~1.0.0:
   version "1.0.0"
@@ -3713,9 +3710,9 @@ registry-url@^3.0.3:
   dependencies:
     rc "^1.0.1"
 
-remap-istanbul@^0.9.0:
-  version "0.9.0"
-  resolved "https://registry.npmjs.org/remap-istanbul/-/remap-istanbul-0.9.0.tgz#d115406b8422bfe42cb8c51be056844000947695"
+remap-istanbul@^0.9.0, remap-istanbul@^0.9.1:
+  version "0.9.1"
+  resolved "https://registry.npmjs.org/remap-istanbul/-/remap-istanbul-0.9.1.tgz#db68ca092667dab31b3ce5b8297f3ebd3359e849"
   dependencies:
     amdefine "^1.0.0"
     gulp-util "3.0.7"
@@ -3819,7 +3816,7 @@ right-align@^0.1.1:
   dependencies:
     align-text "^0.1.1"
 
-rimraf@2, rimraf@^2.2.8, rimraf@^2.3.3, rimraf@^2.5.4, rimraf@~2.5.1, rimraf@~2.5.4:
+rimraf@2, rimraf@^2.3.3, rimraf@^2.5.4, rimraf@~2.5.1, rimraf@~2.5.4:
   version "2.5.4"
   resolved "https://registry.npmjs.org/rimraf/-/rimraf-2.5.4.tgz#96800093cbf1a0c86bd95b4625467535c29dfa04"
   dependencies:
@@ -4392,9 +4389,9 @@ ts-loader@^2.0.0:
     loader-utils "^0.2.6"
     semver "^5.0.1"
 
-ts-node@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.npmjs.org/ts-node/-/ts-node-2.0.0.tgz#16e4fecc949088238b4cbf1c39c9582526b66f74"
+ts-node@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npmjs.org/ts-node/-/ts-node-2.1.0.tgz#aa2bf4b2e25c5fb6a7c54701edc3666d3a9db25d"
   dependencies:
     arrify "^1.0.0"
     chalk "^1.1.1"
@@ -4468,13 +4465,13 @@ typedarray@^0.0.6, typedarray@~0.0.5:
   version "0.0.6"
   resolved "https://registry.npmjs.org/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-typedoc-default-themes@^0.4.0:
+typedoc-default-themes@^0.4.2:
   version "0.4.2"
   resolved "https://registry.npmjs.org/typedoc-default-themes/-/typedoc-default-themes-0.4.2.tgz#640b854fd7ef19e6774496ea7741ec31a0dcaddc"
 
-typedoc@^0.5.5:
-  version "0.5.5"
-  resolved "https://registry.npmjs.org/typedoc/-/typedoc-0.5.5.tgz#7fde3f80eeeecad23100e0d7e4f321c5b79f11fa"
+typedoc@^0.5.6:
+  version "0.5.6"
+  resolved "https://registry.npmjs.org/typedoc/-/typedoc-0.5.6.tgz#9e4ec239a6a371ead17843092514d0c68c9271bc"
   dependencies:
     "@types/fs-extra" "0.0.33"
     "@types/handlebars" "^4.0.31"
@@ -4483,7 +4480,7 @@ typedoc@^0.5.5:
     "@types/marked" "0.0.28"
     "@types/minimatch" "^2.0.29"
     "@types/shelljs" "^0.3.32"
-    fs-extra "^0.30.0"
+    fs-extra "^2.0.0"
     handlebars "4.0.5"
     highlight.js "^9.0.0"
     lodash "^4.13.1"
@@ -4491,20 +4488,20 @@ typedoc@^0.5.5:
     minimatch "^3.0.0"
     progress "^1.1.8"
     shelljs "^0.7.0"
-    typedoc-default-themes "^0.4.0"
-    typescript "2.1.5"
+    typedoc-default-themes "^0.4.2"
+    typescript "2.1.6"
 
-typescript-formatter@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.npmjs.org/typescript-formatter/-/typescript-formatter-4.1.0.tgz#d43544ab44d82c2f7dd60da2699ca203eefb7443"
+typescript-formatter@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.npmjs.org/typescript-formatter/-/typescript-formatter-4.1.1.tgz#1175b63d3ee2cb9ec130ecec38fc01e479ee350d"
   dependencies:
     commandpost "^1.0.0"
     editorconfig "^0.13.2"
     glob-expand "^0.2.1"
 
-typescript@2.1.5, typescript@^2.1.5:
-  version "2.1.5"
-  resolved "https://registry.npmjs.org/typescript/-/typescript-2.1.5.tgz#6fe9479e00e01855247cea216e7561bafcdbcd4a"
+typescript@2.1.6, typescript@^2.1.6:
+  version "2.1.6"
+  resolved "https://registry.npmjs.org/typescript/-/typescript-2.1.6.tgz#40c7e6e9e5da7961b7718b55505f9cac9487a607"
 
 uglify-js@^2.6, uglify-js@^2.7.5:
   version "2.7.5"
