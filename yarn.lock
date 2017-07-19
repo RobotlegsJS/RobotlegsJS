@@ -4909,9 +4909,9 @@ typescript-formatter@^5.2.0:
     commandpost "^1.0.0"
     editorconfig "^0.13.2"
 
-typescript@^2.1.6:
-  version "2.1.6"
-  resolved "https://registry.npmjs.org/typescript/-/typescript-2.1.6.tgz#40c7e6e9e5da7961b7718b55505f9cac9487a607"
+typescript@^2.4.2:
+  version "2.4.2"
+  resolved "https://registry.npmjs.org/typescript/-/typescript-2.4.2.tgz#f8395f85d459276067c988aa41837a8f82870844"
 
 uglify-js@^2.6:
   version "2.7.5"
