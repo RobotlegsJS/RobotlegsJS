@@ -6,9 +6,9 @@
   version "3.0.37"
   resolved "https://registry.npmjs.org/@types/bluebird/-/bluebird-3.0.37.tgz#2e76b394aa9bea40d04241a31c0887a260283388"
 
-"@types/chai@^3.4.35":
-  version "3.4.35"
-  resolved "https://registry.npmjs.org/@types/chai/-/chai-3.4.35.tgz#e8d65f83492d2944f816fc620741821c28a8c900"
+"@types/chai@^4.0.1":
+  version "4.0.1"
+  resolved "https://registry.npmjs.org/@types/chai/-/chai-4.0.1.tgz#37fea779617cfec3fd2b19a0247e8bbdd5133bf6"
 
 "@types/fs-extra@0.0.33":
   version "0.0.33"
