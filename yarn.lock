@@ -50,9 +50,9 @@
   dependencies:
     "@types/node" "*"
 
-"@types/sinon@^1.16.35":
-  version "1.16.35"
-  resolved "https://registry.npmjs.org/@types/sinon/-/sinon-1.16.35.tgz#ee687cc42d1a79448256f1c012a33a0840e85c5c"
+"@types/sinon@^2.3.3":
+  version "2.3.3"
+  resolved "https://registry.npmjs.org/@types/sinon/-/sinon-2.3.3.tgz#1f20b96f954b4997a09c1c0a20264aaba6b00147"
 
 abbrev@1, abbrev@1.0.x:
   version "1.0.9"
