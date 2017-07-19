@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@types/bluebird@^3.0.37":
-  version "3.0.37"
-  resolved "https://registry.npmjs.org/@types/bluebird/-/bluebird-3.0.37.tgz#2e76b394aa9bea40d04241a31c0887a260283388"
+"@types/bluebird@^3.5.8":
+  version "3.5.8"
+  resolved "https://registry.npmjs.org/@types/bluebird/-/bluebird-3.5.8.tgz#242a83379f06c90f96acf6d1aeab3af6faebdb98"
 
 "@types/chai@^4.0.1":
   version "4.0.1"
