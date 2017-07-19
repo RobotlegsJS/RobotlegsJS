@@ -74,7 +74,7 @@
     "sinon": "^2.3.8",
     "sinon-chai": "^2.12.0",
     "ts-loader": "^2.3.0",
-    "ts-node": "^2.1.0",
+    "ts-node": "^3.2.0",
     "tslint": "^4.5.1",
     "typedoc": "^0.5.7",
     "typescript": "^2.1.6",
