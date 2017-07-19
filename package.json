@@ -80,7 +80,7 @@
     "typescript": "^2.1.6",
     "typescript-formatter": "^5.1.0",
     "webpack": "^3.3.0",
-    "webpack-dev-server": "^2.4.1"
+    "webpack-dev-server": "^2.5.1"
   },
   "peerDependencies": {
     "reflect-metadata": "^0.1.8"
