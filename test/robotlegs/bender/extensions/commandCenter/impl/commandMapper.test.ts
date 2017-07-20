@@ -5,6 +5,8 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import "../../../../../entry.ts";
+
 import { assert } from "chai";
 
 import sinon = require("sinon");
@@ -14,9 +16,9 @@ import { CommandMapper } from "../../../../../../src/robotlegs/bender/extensions
 import { CommandMappingList } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/impl/CommandMappingList";
 import { NullCommandTrigger } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/impl/NullCommandTrigger";
 
-import { HappyGuard } from "./../../../framework/impl/guardSupport/HappyGuard";
-import { GrumpyGuard } from "./../../../framework/impl/guardSupport/GrumpyGuard";
-import { CallbackHook } from "./../../../framework/impl/hookSupport/CallbackHook";
+import { HappyGuard } from "../../../framework/impl/guardSupport/HappyGuard";
+import { GrumpyGuard } from "../../../framework/impl/guardSupport/GrumpyGuard";
+import { CallbackHook } from "../../../framework/impl/hookSupport/CallbackHook";
 
 describe("CommandMapper", () => {
 

@@ -5,6 +5,8 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import "../../../../../entry.ts";
+
 import { assert } from "chai";
 
 import { ICommandMapping } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/api/ICommandMapping";
@@ -14,8 +16,8 @@ import { CommandMapping } from "../../../../../../src/robotlegs/bender/extension
 import { IInjector } from "../../../../../../src/robotlegs/bender/framework/api/IInjector";
 import { RobotlegsInjector } from "../../../../../../src/robotlegs/bender/framework/impl/RobotlegsInjector";
 
-import { HappyGuard } from "./../../../framework/impl/guardSupport/HappyGuard";
-import { GrumpyGuard } from "./../../../framework/impl/guardSupport/GrumpyGuard";
+import { HappyGuard } from "../../../framework/impl/guardSupport/HappyGuard";
+import { GrumpyGuard } from "../../../framework/impl/guardSupport/GrumpyGuard";
 
 import { ClassReportingCallbackCommand } from "../support/ClassReportingCallbackCommand";
 import { ClassReportingCallbackCommand2 } from "../support/ClassReportingCallbackCommand2";
