@@ -45,8 +45,8 @@ describe("RobotlegsInjector", () => {
 
         parentInjector.bind(TestObject).to(TestObject);
 
-        assert.isTrue(parentInjector.hasMapping(TestObject));
-        assert.isTrue(childInjector.hasMapping(TestObject));
+        assert.isTrue(parentInjector.isBound(TestObject));
+        assert.isTrue(childInjector.isBound(TestObject));
     });
 
     it("satisfies check if a identifier is mapped", () => {

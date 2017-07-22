@@ -180,7 +180,7 @@ export interface IInjector extends interfaces.Kernel {
      * @param serviceIdentifier The service identifier
      * @return True if the mapping exists
      */
-    hasMapping(serviceIdentifier: interfaces.ServiceIdentifier<any>): boolean;
+    // hasMapping(serviceIdentifier: interfaces.ServiceIdentifier<any>): boolean;
 
     /**
      * Maps a request description, consisting of the <code>type</code> and, optionally, the
