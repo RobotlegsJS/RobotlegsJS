@@ -32,13 +32,6 @@ export class RobotlegsInjector extends Kernel implements IInjector {
     /**
      * @inheritDoc
      */
-    public teardown(): void {
-        this.unbindAll();
-    }
-
-    /**
-     * @inheritDoc
-     */
     public createChild(): IInjector {
         let childInjector: IInjector = new RobotlegsInjector();
         childInjector.parent = this;

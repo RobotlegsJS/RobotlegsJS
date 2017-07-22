@@ -428,7 +428,7 @@ export class Context extends EventDispatcher implements IContext {
         this._extensionInstaller.destroy();
         this._configManager.destroy();
         this._pin.releaseAll();
-        this._injector.teardown();
+        this._injector.unbindAll();
         this.removeChildren();
         this._logger.debug("Destroy complete");
         this._logManager.removeAllTargets();

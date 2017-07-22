@@ -329,7 +329,7 @@ export interface IInjector extends interfaces.Kernel {
      * destruction. Implementers of custom implementations of <link>DependencyProviders</link>
      * are encouraged to do likewise.
      */
-    teardown(): void;
+    // teardown(): void;
 
     /**
      * Creates a new <code>Injector</code> and sets itself as that new <code>Injector</code>'s
