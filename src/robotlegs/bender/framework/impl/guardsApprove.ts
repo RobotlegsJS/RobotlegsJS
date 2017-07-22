@@ -7,6 +7,8 @@
 
 import { IInjector } from "../api/IInjector";
 
+import { instantiateUnmapped } from "./instantiateUnmapped";
+
 /*============================================================================*/
 /* Public Functions                                                           */
 /*============================================================================*/
@@ -40,7 +42,7 @@ export function guardsApprove(guards: any[], injector?: IInjector): boolean {
         }
 
         if ((typeof (guard) === "function") && (guard.prototype.approve !== undefined)) {
-            guard = injector ? injector.instantiateUnmapped(guard) : new guard();
+            guard = injector ? instantiateUnmapped(injector, guard) : new guard();
         }
 
         if (!guard.approve()) {

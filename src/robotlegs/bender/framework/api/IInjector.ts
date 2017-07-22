@@ -305,7 +305,7 @@ export interface IInjector extends interfaces.Kernel {
      * @throws org.swiftsuspenders.errors.InjectorMissingMappingError if no mapping is found
      * for one of the type's dependencies and no <code>fallbackProvider</code> is set
      */
-    instantiateUnmapped<T>(type: interfaces.Newable<T>): T;
+    // instantiateUnmapped<T>(type: interfaces.Newable<T>): T;
 
     /**
      * Uses the <code>TypeDescription</code> the injector associates with the given instance's

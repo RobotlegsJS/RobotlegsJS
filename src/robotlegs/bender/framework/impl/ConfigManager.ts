@@ -15,6 +15,7 @@ import { IMatcher } from "../api/IMatcher";
 import { LifecycleEvent } from "../api/LifecycleEvent";
 
 import { ObjectProcessor } from "./ObjectProcessor";
+import { instantiateUnmapped } from "./instantiateUnmapped";
 
 /**
  * The config manager handles configuration files and
@@ -146,7 +147,7 @@ export class ConfigManager {
     }
 
     private processClass(type: interfaces.Newable<IConfig>): void {
-        let config: IConfig = this._injector.instantiateUnmapped<IConfig>(type);
+        let config: IConfig = instantiateUnmapped<IConfig>(this._injector, type);
         if (config) {
             config.configure();
         }

@@ -13,6 +13,7 @@ import { IInjector } from "../../../framework/api/IInjector";
 
 import { applyHooks } from "../../../framework/impl/applyHooks";
 import { guardsApprove } from "../../../framework/impl/guardsApprove";
+import { instantiateUnmapped } from "../../../framework/impl/instantiateUnmapped";
 
 /**
  * @private
@@ -78,7 +79,7 @@ export class CommandExecutor implements ICommandExecutor {
                 this._removeMapping(mapping);
             }
 
-            command = this._injector.instantiateUnmapped<any>(commandClass);
+            command = instantiateUnmapped(this._injector, commandClass);
 
             if (mapping.hooks.length > 0) {
                 this._injector.bind(commandClass).toConstantValue(command);

@@ -53,16 +53,6 @@ export class RobotlegsInjector extends Kernel implements IInjector {
     /**
      * @inheritDoc
      */
-    public instantiateUnmapped<T>(type: interfaces.Newable<T>): T {
-        this.bind(type).to(type);
-        let instance: T = this.get<T>(type);
-        this.unbind(type);
-        return instance;
-    }
-
-    /**
-     * @inheritDoc
-     */
     public createChild(): IInjector {
         let childInjector: IInjector = new RobotlegsInjector();
         childInjector.parent = this;
