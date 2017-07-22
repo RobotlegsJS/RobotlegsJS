@@ -3,7 +3,7 @@ process.env.NODE_ENV = 'test';
 
 const webpack = require("webpack");
 const path = require("path");
-const webpackConfig = require('./webpack.config.js')({isTest: true});
+const webpackConfig = require('./webpack.config.js')({ isTest: true });
 
 delete webpackConfig.entry;
 
@@ -18,35 +18,10 @@ module.exports = function(config) {
       "es6-shim"
     ],
     files: [
-      // "./test/**/**/commandExecutor.test.ts",
-      // "./test/**/**/commandMapper.test.ts",
-      // "./test/**/**/commandMapping.test.ts",
-      // "./test/**/**/commandMappingList.test.ts",
-      // "./test/**/**/commandPayload.test.ts",
-      // "./test/**/**/commandTriggerMap.test.ts",
-      // "./test/**/**/directCommandMap.test.ts",
-      // "./test/**/**/injectableLoggerExtension.test.ts",
-      // "./test/**/**/applyHooks.test.ts",
-      // "./test/**/**/configManager.test.ts",
-      // "./test/**/**/context.test.ts",
-      // "./test/**/**/extensionInstaller.test.ts",
-      // "./test/**/**/guardsApprove.test.ts",
-      // "./test/**/**/lifecycle.test.ts",
-      // "./test/**/**/lifecycleTransition.test.ts",
-      // "./test/**/**/logger.test.ts",
-      // "./test/**/**/logManager.test.ts",
-      // "./test/**/**/messageDispatcher.test.ts",
-      // "./test/**/**/objectProcessor.test.ts",
-      // "./test/**/**/pin.test.ts",
-      // "./test/**/**/robotlegsInjector.test.ts",
-      // "./test/**/**/safelyCallBack.test.ts",
-      "./test/**/**/**.test.ts",
-      {
-        pattern: '**/*.map',
-        served: true,
-        included: false,
-        watched: true
-      }
+      { pattern: "node_modules/reflect-metadata/Reflect.js", include: true },
+      { pattern: "node_modules/bluebird/js/browser/bluebird.js", include: true },
+      { pattern: "./test/**/**/**.test.ts", include: true },
+      { pattern: '**/*.map', served: true, included: false, watched: true }
     ],
     preprocessors: {
       "./**/**/**/**.ts": ["sourcemap"],
