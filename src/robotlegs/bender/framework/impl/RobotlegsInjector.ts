@@ -32,13 +32,6 @@ export class RobotlegsInjector extends Kernel implements IInjector {
     /**
      * @inheritDoc
      */
-    public satisfies(serviceIdentifier: interfaces.ServiceIdentifier<any>): boolean {
-        return this.isBound(serviceIdentifier);
-    }
-
-    /**
-     * @inheritDoc
-     */
     public teardown(): void {
         this.unbindAll();
     }

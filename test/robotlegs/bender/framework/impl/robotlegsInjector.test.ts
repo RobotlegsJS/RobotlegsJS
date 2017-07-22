@@ -38,7 +38,7 @@ describe("RobotlegsInjector", () => {
         assert.equal(parentInjector, (<any>childInjector)._parentKernel);
     });
 
-    it("hasMapping check if a identifier is mapped", () => {
+    it("isBound check if a identifier is mapped", () => {
         parentInjector = new RobotlegsInjector();
         childInjector = new RobotlegsInjector();
         childInjector.parent = parentInjector;
@@ -47,16 +47,5 @@ describe("RobotlegsInjector", () => {
 
         assert.isTrue(parentInjector.isBound(TestObject));
         assert.isTrue(childInjector.isBound(TestObject));
-    });
-
-    it("satisfies check if a identifier is mapped", () => {
-        parentInjector = new RobotlegsInjector();
-        childInjector = new RobotlegsInjector();
-        childInjector.parent = parentInjector;
-
-        parentInjector.bind(TestObject).to(TestObject);
-
-        assert.isTrue(parentInjector.satisfies(TestObject));
-        assert.isTrue(childInjector.satisfies(TestObject));
     });
 });

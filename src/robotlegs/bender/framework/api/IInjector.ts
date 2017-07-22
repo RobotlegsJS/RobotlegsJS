@@ -226,7 +226,7 @@ export interface IInjector extends interfaces.Kernel {
      *
      * @return <code>true</code> if the dependency can be satisfied, <code>false</code> if not
      */
-    satisfies(serviceIdentifier: interfaces.ServiceIdentifier<any>): boolean;
+    // satisfies(serviceIdentifier: interfaces.ServiceIdentifier<any>): boolean;
 
     /**
      * Returns the mapping for the specified dependency class
