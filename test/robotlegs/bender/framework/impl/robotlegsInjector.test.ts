@@ -30,12 +30,12 @@ describe("RobotlegsInjector", () => {
     it("parent get set", () => {
         childInjector = new RobotlegsInjector();
         childInjector.parent = parentInjector;
-        assert.equal(parentInjector, (<any>childInjector)._parentKernel);
+        assert.equal(parentInjector, childInjector.parent);
     });
 
     it("createChild remembers parent", () => {
         childInjector = <RobotlegsInjector>parentInjector.createChild();
-        assert.equal(parentInjector, (<any>childInjector)._parentKernel);
+        assert.equal(parentInjector, childInjector.parent);
     });
 
     it("isBound check if a identifier is mapped", () => {

@@ -10,12 +10,12 @@ import { injectable, inject, named } from "inversify";
 @injectable()
 export class ExecutelessCommand {
 
-    protected _reportingFunc: Function;
+    protected _reportingFunction: Function;
 
     constructor(
         @inject("Function") @named("reportingFunction") reportingFunction: Function
     ) {
-        this._reportingFunc = reportingFunction;
-        this._reportingFunc(ExecutelessCommand);
+        this._reportingFunction = reportingFunction;
+        this._reportingFunction(ExecutelessCommand);
     }
 }

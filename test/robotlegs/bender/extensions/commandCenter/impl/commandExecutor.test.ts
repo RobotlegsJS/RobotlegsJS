@@ -229,7 +229,7 @@ describe("CommandExecutor", () => {
             let payload: CommandPayload = new CommandPayload(["message", 1], [String, Number]);
             executeCommands(payload);
         }
-        assert.throws(payloadInjectionDisabledThrowsError, Error, "No bindings found for serviceIdentifier: String");
+        assert.throws(payloadInjectionDisabledThrowsError, Error, "No matching bindings found for serviceIdentifier: String");
     });
 
     it("result is handled", () => {

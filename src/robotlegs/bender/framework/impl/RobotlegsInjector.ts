@@ -5,14 +5,14 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { Kernel, injectable, interfaces } from "inversify";
+import { Container, injectable } from "inversify";
 import { IInjector } from "../api/IInjector";
 
 /**
  * Robotlegs IInjector Adapter
  */
 @injectable()
-export class RobotlegsInjector extends Kernel implements IInjector {
+export class RobotlegsInjector extends Container implements IInjector {
 
     /*============================================================================*/
     /* Constructor                                                                */
@@ -23,18 +23,5 @@ export class RobotlegsInjector extends Kernel implements IInjector {
      */
     constructor() {
         super();
-    }
-
-    /*============================================================================*/
-    /* Public Functions                                                           */
-    /*============================================================================*/
-
-    /**
-     * @inheritDoc
-     */
-    public createChild(): IInjector {
-        let childInjector: IInjector = new RobotlegsInjector();
-        childInjector.parent = this;
-        return childInjector;
     }
 }

@@ -10,17 +10,17 @@ import { injectable, inject, named } from "inversify";
 @injectable()
 export class ClassReportingCallbackGuard2 {
 
-    protected _reportingFunc: Function;
+    protected _reportingFunction: Function;
 
     constructor(
-        @inject("Function") @named("reportingFunc") reportingFunc: Function
+        @inject("Function") @named("reportingFunction") reportingFunction: Function
     ) {
-        this._reportingFunc = reportingFunc;
+        this._reportingFunction = reportingFunction;
     }
 
     public approve(): boolean {
-        if (this._reportingFunc) {
-            this._reportingFunc(ClassReportingCallbackGuard2);
+        if (this._reportingFunction) {
+            this._reportingFunction(ClassReportingCallbackGuard2);
         }
         return true;
     }

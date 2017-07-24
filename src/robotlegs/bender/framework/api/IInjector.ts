@@ -139,7 +139,7 @@ import { interfaces } from "inversify";
  * injections are started.
  */
 export let IInjector = Symbol("IInjector");
-export interface IInjector extends interfaces.Kernel {
+export interface IInjector extends interfaces.Container {
 
     /**
      * Fallback Dependency Provider
@@ -341,5 +341,5 @@ export interface IInjector extends interfaces.Kernel {
      *
      * @see #parent
      */
-    createChild(): IInjector;
+    // createChild(): IInjector;
 }

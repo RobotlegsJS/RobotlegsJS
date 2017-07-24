@@ -9,18 +9,18 @@ import { injectable, inject, named } from "inversify";
 
 @injectable()
 export class MethodParametersCommand {
-    protected _reportingFunc: Function;
+    protected _reportingFunction: Function;
 
     constructor(
-        @inject("Function") @named("reportingFunc") reportingFunc: Function
+        @inject("Function") @named("reportingFunction") reportingFunction: Function
     ) {
-        this._reportingFunc = reportingFunc;
+        this._reportingFunction = reportingFunction;
     }
 
     public execute(message: String, code: Number): void {
-        if (this._reportingFunc) {
-            this._reportingFunc(message);
-            this._reportingFunc(code);
+        if (this._reportingFunction) {
+            this._reportingFunction(message);
+            this._reportingFunction(code);
         }
     }
 }
