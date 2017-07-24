@@ -5,6 +5,8 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import "../../../../entry.ts";
+
 import { assert } from "chai";
 
 import { IConfig } from "../../../../../src/robotlegs/bender/framework/api/IConfig";
@@ -92,7 +94,7 @@ describe("Context", () => {
     it("addChild sets child parentInjector", () => {
         let child: Context = new Context();
         context.addChild(child);
-        assert.strictEqual((<any>child.injector)._parentKernel, context.injector);
+        assert.strictEqual(child.injector.parent, context.injector);
     });
 
     it("addChild logs warning unless child is uninitialized", () => {
@@ -143,7 +145,7 @@ describe("Context", () => {
         let child: Context = new Context();
         context.addChild(child);
         context.removeChild(child);
-        assert.isNull((<any>child.injector)._parentKernel);
+        assert.isNull(child.injector.parent);
     });
 
     it("child is removed when child is destroyed", () => {
@@ -151,7 +153,7 @@ describe("Context", () => {
         context.addChild(child);
         child.initialize();
         child.destroy();
-        assert.isNull((<any>child.injector)._parentKernel);
+        assert.isNull(child.injector.parent);
     });
 
     it("children are removed when parent is destroyed", () => {
@@ -161,8 +163,8 @@ describe("Context", () => {
         context.addChild(child2);
         context.initialize();
         context.destroy();
-        assert.isNull((<any>child1.injector)._parentKernel);
-        assert.isNull((<any>child2.injector)._parentKernel);
+        assert.isNull(child1.injector.parent);
+        assert.isNull(child2.injector.parent);
     });
 
     it("removed child is not removed again when destroyed", () => {

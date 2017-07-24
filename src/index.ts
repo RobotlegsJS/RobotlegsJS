@@ -45,6 +45,7 @@ export { UID } from "./robotlegs/bender/framework/impl/UID";
  */
 export { applyHooks } from "./robotlegs/bender/framework/impl/applyHooks";
 export { guardsApprove } from "./robotlegs/bender/framework/impl/guardsApprove";
+export { instantiateUnmapped } from "./robotlegs/bender/framework/impl/instantiateUnmapped";
 export { safelyCallBack } from "./robotlegs/bender/framework/impl/safelyCallBack";
 
 /**

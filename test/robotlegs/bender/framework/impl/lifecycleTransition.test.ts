@@ -5,6 +5,8 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import "../../../../entry.ts";
+
 import { assert } from "chai";
 
 import { IEventDispatcher } from "../../../../../src/robotlegs/bender/events/api/IEventDispatcher";

@@ -3,29 +3,40 @@ process.env.NODE_ENV = 'test';
 
 const webpack = require("webpack");
 const path = require("path");
-const webpackConfig = require('./webpack.config.js')({isTest: true});
+const webpackConfig = require('./webpack.config.js')({ isTest: true });
 
 delete webpackConfig.entry;
+
+let frameworks = [
+  "mocha",
+  "chai",
+  "sinon",
+  "es6-shim"
+];
+
+let plugins = [
+  "karma-webpack",
+  "karma-sourcemap-writer",
+  "karma-sourcemap-loader",
+  "karma-mocha-reporter",
+  "karma-mocha",
+  "karma-chai",
+  "karma-sinon",
+  "karma-es6-shim",
+  "karma-remap-istanbul",
+  "karma-coverage-istanbul-reporter"
+];
 
 module.exports = function(config) {
 
   var configuration = {
     basePath: "",
-    frameworks: [
-      "mocha",
-      "chai",
-      "sinon",
-      "es6-shim"
-    ],
+    frameworks: frameworks,
     files: [
-      "./test/entry.test.ts",
-      "./test/**/**/**.test.ts",
-      {
-        pattern: '**/*.map',
-        served: true,
-        included: false,
-        watched: true
-      }
+      { pattern: "node_modules/reflect-metadata/Reflect.js", include: true },
+      { pattern: "node_modules/bluebird/js/browser/bluebird.js", include: true },
+      { pattern: "./test/**/**/**.test.ts", include: true },
+      { pattern: '**/*.map', served: true, included: false, watched: true }
     ],
     preprocessors: {
       "./**/**/**/**.ts": ["sourcemap"],
@@ -35,18 +46,7 @@ module.exports = function(config) {
     webpackMiddleware: {
       noInfo: true
     },
-    plugins: [
-      "karma-webpack",
-      "karma-sourcemap-writer",
-      "karma-sourcemap-loader",
-      "karma-remap-istanbul",
-      "karma-mocha-reporter",
-      "karma-mocha",
-      "karma-chai",
-      "karma-sinon",
-      "karma-es6-shim",
-      "karma-coverage-istanbul-reporter"
-    ],
+    plugins: plugins,
     reporters: (
       config.singleRun ?
         ["dots", "mocha", "coverage-istanbul"] :
@@ -66,7 +66,7 @@ module.exports = function(config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome']
+    browsers: []
   };
 
   if (process.env.TRAVIS) {

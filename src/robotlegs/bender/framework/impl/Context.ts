@@ -308,7 +308,7 @@ export class Context extends EventDispatcher implements IContext {
             if (!child.uninitialized) {
                 this._logger.warn("Child context {0} must be uninitialized", [child]);
             }
-            if ((<any>child.injector)._parentKernel) {
+            if (child.injector.parent) {
                 this._logger.warn("Child context {0} must not have a parent Injector", [child]);
             }
             this._children.push(child);
@@ -428,7 +428,7 @@ export class Context extends EventDispatcher implements IContext {
         this._extensionInstaller.destroy();
         this._configManager.destroy();
         this._pin.releaseAll();
-        this._injector.teardown();
+        this._injector.unbindAll();
         this.removeChildren();
         this._logger.debug("Destroy complete");
         this._logManager.removeAllTargets();

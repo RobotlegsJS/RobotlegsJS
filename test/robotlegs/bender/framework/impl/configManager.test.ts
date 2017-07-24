@@ -5,12 +5,15 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import "../../../../entry.ts";
+
 import { assert } from "chai";
 
 import { IConfig } from "../../../../../src/robotlegs/bender/framework/api/IConfig";
 import { IInjector } from "../../../../../src/robotlegs/bender/framework/api/IInjector";
 import { Context } from "../../../../../src/robotlegs/bender/framework/impl/Context";
 import { ConfigManager } from "../../../../../src/robotlegs/bender/framework/impl/ConfigManager";
+import { instantiateUnmapped } from "../../../../../src/robotlegs/bender/framework/impl/instantiateUnmapped";
 
 import { instanceOfType } from "../../../../../src/robotlegs/bender/extensions/matching/instanceOfType";
 
@@ -58,7 +61,7 @@ describe("ConfigManager", () => {
         injector.bind("Function").toConstantValue(function(config: IConfig): void {
             actual = config;
         }).whenTargetNamed("callback");
-        let expected: TypedConfig = injector.instantiateUnmapped<TypedConfig>(TypedConfig);
+        let expected: TypedConfig = instantiateUnmapped<TypedConfig>(injector, TypedConfig);
         configManager.addConfig(expected);
         context.initialize();
         assert.equal(actual, expected);

@@ -7,6 +7,8 @@
 
 import { IInjector } from "../api/IInjector";
 
+import { instantiateUnmapped } from "./instantiateUnmapped";
+
 /*============================================================================*/
 /* Public Functions                                                           */
 /*============================================================================*/
@@ -33,7 +35,7 @@ export function applyHooks(hooks: any[], injector?: IInjector): void {
         }
 
         if ((typeof (hook) === "function") && (hook.prototype.hook !== undefined)) {
-            hook = injector ? injector.instantiateUnmapped(hook) : new hook();
+            hook = injector ? instantiateUnmapped(injector, hook) : new hook();
         }
 
         hook.hook();

@@ -35,7 +35,7 @@
   },
   "homepage": "https://github.com/GoodgameStudios/RobotlegsJS#readme",
   "dependencies": {
-    "inversify": "^2.0.1"
+    "inversify": "^4.3.0"
   },
   "devDependencies": {
     "@types/bluebird": "^3.5.8",
@@ -68,7 +68,7 @@
     "karma-webpack": "^2.0.4",
     "mocha": "^3.4.2",
     "publish-please": "^2.3.1",
-    "reflect-metadata": "0.1.8",
+    "reflect-metadata": "^0.1.10",
     "remap-istanbul": "^0.9.5",
     "rimraf": "^2.6.1",
     "sinon": "^2.3.8",
@@ -82,6 +82,6 @@
     "webpack-dev-server": "^2.5.1"
   },
   "peerDependencies": {
-    "reflect-metadata": "^0.1.8"
+    "reflect-metadata": "^0.1.10"
   }
 }

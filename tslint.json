@@ -32,7 +32,7 @@
     "no-duplicate-variable": true,
     "no-empty": true,
     "no-eval": true,
-    "no-inferrable-types": true,
+    "no-inferrable-types": false,
     "no-internal-module": true,
     "no-shadowed-variable": true,
     "no-string-literal": true,
