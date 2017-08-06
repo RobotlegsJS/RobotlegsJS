@@ -7,24 +7,19 @@
 $ git clone https://github.com/YOUR_USERNAME/RobotlegsJS.git
 ```
 
-2 - Install typings:
+2 - Install npm dependencies using yarn:
 ```
-$ npm install -g typings
-```
-
-3 - Install type definitions:
-```
-$ typings install
+$ yarn install
 ```
 
-4 - Install npm dependencies:
+3 - Run start process
 ```
-$ npm install
+$ yarn start
 ```
 
-5 - Run build process
+4 - Run test process
 ```
-$ npm run build
+$ yarn test
 ```
 
 ## Guidelines
@@ -33,14 +28,14 @@ $ npm run build
 pushing](http://stackoverflow.com/questions/6934752/combining-multiple-commits-before-pushing-in-git)
 
 - Please use `TDD` when fixing bugs. This means that you should write a unit
-test that fails because it reproduces the issue, then fix the issue finally run
+test that fails because it reproduces the issue, then fix the issue and finally run
 the test to ensure that the issue has been resolved. This helps us to prevent
 fixed bugs from happening again in the future.
-- Always format your code using `npm run autoformat`.
+- Always format your code using `yarn run autoformat`.
 - Please keep the test coverage at 100%. Write additional unit test if
 necessary
--  Please create an issue before sending a PR ff your it is going to change the
-public interface of RobotlegsJS or it includes significant architecture
+-  Please create an issue before sending a PR if your commit is going to change the
+public interface of RobotlegsJS-Phaser or it includes significant architecture
 changes.
 - Feel free to ask for help from other members of the RobotlegsJS team via the
 chat or github issues.
