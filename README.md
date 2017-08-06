@@ -7,9 +7,6 @@ RobotlegsJS
 [![npm version](https://badge.fury.io/js/%40robotlegsjs%2Fcore.svg)](https://badge.fury.io/js/%40robotlegsjs%2Fcore)
 [![Greenkeeper badge](https://badges.greenkeeper.io/RobotlegsJS/RobotlegsJS.svg)](https://greenkeeper.io/)
 
-[![NPM](https://nodei.co/npm/robotlegs.png?downloads=true&downloadRank=true)](https://nodei.co/npm/robotlegs/)
-[![NPM](https://nodei.co/npm-dl/robotlegs.png?months=9&height=3)](https://nodei.co/npm/robotlegs/)
-
 Robotlegs is a architecture-based IoC framework for JavaScript/TypeScript. This
 version is a direct port from the [ActionScript 3.0
 codebase](https://github.com/robotlegs/robotlegs-framework). See the [motivation](#motivation) behind it.
