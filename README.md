@@ -110,7 +110,7 @@ import {
    IEventCommandMap,
    ContextView,
    inject
-} from "robotlegs";
+} from @robotlegsjs/core;
 
 public class MyAppConfig implements IConfig
 {
@@ -159,7 +159,7 @@ Context View.
 The mediator we mapped above might look like this:
 
 ```ts
-import { inject, IEventMap, IEventDispatcher, Mediator } from "robotlegs";
+import { inject, IEventMap, IEventDispatcher, Mediator } from @robotlegsjs/core;
 import { UserProfileView } from "./UserProfileView";
 
 public class UserProfileMediator extends Mediator<UserProfileView>
@@ -181,7 +181,7 @@ The view that caused this mediator to be created is available for Injection.
 The command we mapped above might look like this:
 
 ```ts
-import { Command, inject } fro "robotlegs";
+import { Command, inject } fro @robotlegsjs/core;
 
 public class UserSignInCommand extends Command
 {
@@ -216,4 +216,4 @@ community for interactive experiences.
 License
 ---
 
-[MIT](LICENSE.md)
+[MIT](LICENSE)

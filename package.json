@@ -1,6 +1,6 @@
 {
-  "name": "robotlegs",
-  "version": "1.0.1",
+  "name": "@robotlegsjs/core",
+  "version": "0.0.1",
   "description": "An architecture-based IoC framework for JavaScript/TypeScript",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/GoodgameStudios/RobotlegsJS.git"
+    "url": "git@github.com:RobotlegsJS/RobotlegsJS.git"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
@@ -24,16 +24,16 @@
     "Robotlegs",
     "IoC"
   ],
-  "author": "Goodgame Studios",
+  "author": "RobotlegsJS",
   "contributors": [
     "Endel Dreyer <endel.dreyer@gmail.com>",
-    "Tiago Schenkel <tiago.tche@gmail.com>"
+    "Tiago Schenkel <tiago.schenkel@gmail.com>"
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/GoodgameStudios/RobotlegsJS/issues"
+    "url": "https://github.com/RobotlegsJS/RobotlegsJS/issues"
   },
-  "homepage": "https://github.com/GoodgameStudios/RobotlegsJS#readme",
+  "homepage": "https://github.com/RobotlegsJS/RobotlegsJS#readme",
   "dependencies": {
     "inversify": "^4.3.0"
   },
