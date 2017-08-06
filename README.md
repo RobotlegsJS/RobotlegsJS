@@ -1,11 +1,11 @@
 RobotlegsJS
 ===
 
-[![Build Status](https://secure.travis-ci.org/GoodgameStudios/RobotlegsJS.svg?branch=master)](https://travis-ci.org/GoodgameStudios/RobotlegsJS)
-[![Code Climate](https://codeclimate.com/github/GoodgameStudios/RobotlegsJS/badges/gpa.svg)](https://codeclimate.com/github/GoodgameStudios/RobotlegsJS)
-[![Test Coverage](https://codeclimate.com/github/GoodgameStudios/RobotlegsJS/badges/coverage.svg)](https://codeclimate.com/github/GoodgameStudios/RobotlegsJS/coverage)
-[![npm version](https://badge.fury.io/js/robotlegs.svg)](https://badge.fury.io/js/robotlegs)
-[![Greenkeeper badge](https://badges.greenkeeper.io/GoodgameStudios/RobotlegsJS.svg)](https://greenkeeper.io/)
+[![Build Status](https://secure.travis-ci.org/RobotlegsJS/RobotlegsJS.svg?branch=master)](https://travis-ci.org/RobotlegsJS/RobotlegsJS)
+[![Code Climate](https://codeclimate.com/github/RobotlegsJS/RobotlegsJS/badges/gpa.svg)](https://codeclimate.com/github/RobotlegsJS/RobotlegsJS)
+[![Test Coverage](https://codeclimate.com/github/RobotlegsJS/RobotlegsJS/badges/coverage.svg)](https://codeclimate.com/github/RobotlegsJS/RobotlegsJS/coverage)
+[![npm version](https://badge.fury.io/js/%40robotlegsjs%2Fcore.svg)](https://badge.fury.io/js/%40robotlegsjs%2Fcore)
+[![Greenkeeper badge](https://badges.greenkeeper.io/RobotlegsJS/RobotlegsJS.svg)](https://greenkeeper.io/)
 
 [![NPM](https://nodei.co/npm/robotlegs.png?downloads=true&downloadRank=true)](https://nodei.co/npm/robotlegs/)
 [![NPM](https://nodei.co/npm-dl/robotlegs.png?months=9&height=3)](https://nodei.co/npm/robotlegs/)
