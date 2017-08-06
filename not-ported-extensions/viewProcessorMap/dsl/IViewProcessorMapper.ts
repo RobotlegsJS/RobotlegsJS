@@ -1,8 +1,8 @@
 // ------------------------------------------------------------------------------
-//  Copyright (c) 2016 Goodgame Studios. All Rights Reserved. 
-// 
-//  NOTICE: You are permitted to use, modify, and distribute this file 
-//  in accordance with the terms of the license agreement accompanying it. 
+//  Copyright (c) 2017 RobotlegsJS. All Rights Reserved.
+//
+//  NOTICE: You are permitted to use, modify, and distribute this file
+//  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
 namespace robotlegs.bender.extensions.viewProcessorMap.dsl {
@@ -13,7 +13,7 @@ namespace robotlegs.bender.extensions.viewProcessorMap.dsl {
     export interface IViewProcessorMapper {
         /**
          * Specifies the process to be mapped against the type or matcher.
-         * @param processClassOrInstance An instance of a class, or a class implementing the following methods: 
+         * @param processClassOrInstance An instance of a class, or a class implementing the following methods:
          * process(view: ISkinnable, class: Class, injector: Injector): void;
          * unprocess(view: ISkinnable, class: Class, injector: Injector): void;
          * @return the mapping config so that you can specify further details.

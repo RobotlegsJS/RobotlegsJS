@@ -1,8 +1,8 @@
 // ------------------------------------------------------------------------------
-//  Copyright (c) 2016 Goodgame Studios. All Rights Reserved. 
-// 
-//  NOTICE: You are permitted to use, modify, and distribute this file 
-//  in accordance with the terms of the license agreement accompanying it. 
+//  Copyright (c) 2017 RobotlegsJS. All Rights Reserved.
+//
+//  NOTICE: You are permitted to use, modify, and distribute this file
+//  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
 import { IContext } from "../../framework/api/IContext";
@@ -11,17 +11,17 @@ import { ILogger } from "../../framework/api/ILogger";
 
 /**
  * Allows you to @inject unique loggers into your objects.
- * 
- * There are two ways to inject the logger on the constructor of your class: 
- * 
+ *
+ * There are two ways to inject the logger on the constructor of your class:
+ *
  * * Using the literal string "ILogger":
  *
  * <code>
  *     constructor( @inject("ILogger") logger: ILogger ) { ... }
  * </code>
- * 
+ *
  * * Using the ILogger Symbol:
- * 
+ *
  * <code>
  *     constructor( @inject(ILogger) logger: ILogger ) { ... }
  * </code>
