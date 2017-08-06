@@ -3,13 +3,12 @@
     "vulnerableDependencies": true,
     "uncommittedChanges": true,
     "untrackedFiles": true,
-    "sensitiveData": {
-      "ignore": []
-    },
+    "sensitiveData": true,
     "branch": "master",
     "gitTag": true
   },
   "confirm": true,
-  "publishTag": "latest",
-  "prePublishScript": "npm test"
+  "publishTag": "latest --access public",
+  "prePublishScript": "npm test",
+  "postPublishScript": false
 }
