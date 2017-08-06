@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@types/bluebird": "^3.5.8",
-    "@types/chai": "^4.0.1",
+    "@types/chai": "^4.0.2",
     "@types/mocha": "^2.2.41",
     "@types/sinon": "^2.3.3",
     "bluebird": "^3.5.0",
