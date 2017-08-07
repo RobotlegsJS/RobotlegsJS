@@ -1,6 +1,8 @@
 RobotlegsJS
 ===
 
+[![Join the chat at https://gitter.im/RobotlegsJS/RobotlegsJS](https://badges.gitter.im/RobotlegsJS/RobotlegsJS.svg)](https://gitter.im/RobotlegsJS/RobotlegsJS?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Build Status](https://secure.travis-ci.org/RobotlegsJS/RobotlegsJS.svg?branch=master)](https://travis-ci.org/RobotlegsJS/RobotlegsJS)
 [![Code Climate](https://codeclimate.com/github/RobotlegsJS/RobotlegsJS/badges/gpa.svg)](https://codeclimate.com/github/RobotlegsJS/RobotlegsJS)
 [![Test Coverage](https://codeclimate.com/github/RobotlegsJS/RobotlegsJS/badges/coverage.svg)](https://codeclimate.com/github/RobotlegsJS/RobotlegsJS/coverage)
