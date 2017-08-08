@@ -1,4 +1,4 @@
-RobotlegsJS
+RobotlegsJS <img src="media/robotlegs.png?raw=true" width="30" height="30" />
 ===
 
 [![Gitter chat](https://badges.gitter.im/RobotlegsJS/RobotlegsJS.svg)](https://gitter.im/RobotlegsJS/RobotlegsJS)
