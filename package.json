@@ -7,7 +7,7 @@
   "scripts": {
     "test": "karma start --single-run",
     "mocha": "mocha test/**/*.test.ts --require ts-node/register",
-    "autoformat": "tsfmt -r",
+    "autoformat": "tsfmt -r --useTsconfig tsconfig.test.json",
     "clean-up": "rm -rf coverage && rm -rf lib",
     "prepublish": "tsc -d && publish-please guard",
     "publish-please": "npm run autoformat && npm run clean-up && publish-please"
