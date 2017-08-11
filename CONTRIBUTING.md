@@ -38,9 +38,9 @@ fixed bugs from happening again in the future.
 necessary.
 
 -  Please create an issue before sending a PR if your commit is going to change the
-public interface of RobotlegsJS or it includes significant architecture
+public interface of the package or it includes significant architecture
 changes.
 
 - Feel free to ask for help from other members of the RobotlegsJS team via the
-[gitter chat]((https://gitter.im/RobotlegsJS/RobotlegsJS)) or
+[gitter chat](https://gitter.im/RobotlegsJS/RobotlegsJS) or
 [github issues](https://github.com/RobotlegsJS/RobotlegsJS/issues).
