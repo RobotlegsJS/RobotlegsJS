@@ -8,12 +8,12 @@ RobotlegsJS <img src="media/robotlegs.png?raw=true" width="30" height="30" />
 [![npm version](https://badge.fury.io/js/%40robotlegsjs%2Fcore.svg)](https://badge.fury.io/js/%40robotlegsjs%2Fcore)
 [![Greenkeeper badge](https://badges.greenkeeper.io/RobotlegsJS/RobotlegsJS.svg)](https://greenkeeper.io/)
 
-Robotlegs is a architecture-based IoC framework for JavaScript/TypeScript. This
-version is a direct port from the [ActionScript 3.0
-codebase](https://github.com/robotlegs/robotlegs-framework). See the [motivation](#motivation) behind it.
+RobotlegsJS is a architecture-based IoC framework for JavaScript/TypeScript. This
+version is a direct port from the [ActionScript 3.0 codebase](https://github.com/robotlegs/robotlegs-framework).
+See the [motivation](#motivation) behind it.
 
-Right now, this framework only works together with
-[pixi.js v4](https://github.com/pixijs/pixi.js).
+Right now, this framework have extensions for [pixi.js v4](http://www.pixijs.com) and
+[phaser-ce v2.8](http://phaser.io).
 
 **Features**
 
@@ -27,7 +27,7 @@ Installation
 You can get the latest release and the type definitions using npm:
 
 ```
-npm install robotlegs reflect-metadata --save
+npm install @robotlegsjs/core reflect-metadata --save
 ```
 
 RobotlegsJS requires TypeScript 2.0 and the `experimentalDecorators`,
@@ -39,6 +39,7 @@ RobotlegsJS requires TypeScript 2.0 and the `experimentalDecorators`,
     "compilerOptions": {
         "target": "es5",
         "lib": ["es6", "dom"],
+        "types": ["reflect-metadata"],
         "module": "commonjs",
         "moduleResolution": "node",
         "experimentalDecorators": true,
@@ -107,7 +108,7 @@ import {
    IEventCommandMap,
    ContextView,
    inject
-} from @robotlegsjs/core;
+} from "@robotlegsjs/core";
 
 public class MyAppConfig implements IConfig
 {
@@ -156,7 +157,7 @@ Context View.
 The mediator we mapped above might look like this:
 
 ```ts
-import { inject, IEventMap, IEventDispatcher, Mediator } from @robotlegsjs/core;
+import { inject, IEventMap, IEventDispatcher, Mediator } from "@robotlegsjs/core";
 import { UserProfileView } from "./UserProfileView";
 
 public class UserProfileMediator extends Mediator<UserProfileView>
@@ -178,7 +179,7 @@ The view that caused this mediator to be created is available for Injection.
 The command we mapped above might look like this:
 
 ```ts
-import { Command, inject } fro @robotlegsjs/core;
+import { Command, inject } from "@robotlegsjs/core";
 
 public class UserSignInCommand extends Command
 {
@@ -207,7 +208,7 @@ There is plenty of frameworks and patterns out there that helps you to write
 DOM-based applications. There is no scalable solution yet to architecture a
 canvas-based application though.
 
-Robotlegs has proven itself of being a mature solution from the ActionScript
+[Robotlegs](http://www.robotlegs.org) has proven itself of being a mature solution from the ActionScript
 community for interactive experiences.
 
 License
