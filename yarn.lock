@@ -2908,9 +2908,9 @@ karma-webpack@^2.0.4:
     source-map "^0.1.41"
     webpack-dev-middleware "^1.0.11"
 
-karma@^1.7.0:
-  version "1.7.0"
-  resolved "https://registry.npmjs.org/karma/-/karma-1.7.0.tgz#6f7a1a406446fa2e187ec95398698f4cee476269"
+karma@^1.7.1:
+  version "1.7.1"
+  resolved "https://registry.npmjs.org/karma/-/karma-1.7.1.tgz#85cc08e9e0a22d7ce9cca37c4a1be824f6a2b1ae"
   dependencies:
     bluebird "^3.3.0"
     body-parser "^1.16.1"
