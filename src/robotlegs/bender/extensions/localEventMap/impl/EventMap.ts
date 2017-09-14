@@ -61,7 +61,7 @@ export class EventMap implements IEventMap {
             }
         }
 
-        let callback: Function = (eventClass == Event)
+        let callback: Function = (eventClass === Event)
             ? listener
             : function(event: Event): void {
                 this.routeEventToListener(this.event, listener, eventClass);
