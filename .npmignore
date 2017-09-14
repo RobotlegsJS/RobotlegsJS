@@ -25,5 +25,6 @@ yarn.lock
 .gitignore
 .istanbul.yml
 .npmignore
+.prettierrc
 .publishrc
 .travis.yml
