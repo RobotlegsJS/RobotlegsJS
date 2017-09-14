@@ -24,7 +24,6 @@ export function instanceOfType(type: any): IMatcher {
  * @private
  */
 class InstanceOfMatcher implements IMatcher {
-
     /*============================================================================*/
     /* Private Properties                                                         */
     /*============================================================================*/

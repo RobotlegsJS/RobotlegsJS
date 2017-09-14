@@ -15,24 +15,34 @@ import { RobotlegsInjector } from "../../../../../src/robotlegs/bender/framework
 import { CallbackHook } from "./hookSupport/CallbackHook";
 
 describe("applyHooks", () => {
-
     it("function hooks run", () => {
         let callCount: number = 0;
-        applyHooks([function(): void { callCount++; }]);
+        applyHooks([
+            function(): void {
+                callCount++;
+            }
+        ]);
         assert.equal(callCount, 1);
     });
 
     it("class hooks run", () => {
         let callCount: number = 0;
         let injector: RobotlegsInjector = new RobotlegsInjector();
-        injector.bind("Function").toConstantValue(function(): void { callCount++; }).whenTargetNamed("hookCallback");
+        injector
+            .bind("Function")
+            .toConstantValue(function(): void {
+                callCount++;
+            })
+            .whenTargetNamed("hookCallback");
         applyHooks([CallbackHook], injector);
         assert.equal(callCount, 1);
     });
 
     it("instance hooks run", () => {
         let callCount: number = 0;
-        let hook: CallbackHook = new CallbackHook(function(): void { callCount++; });
+        let hook: CallbackHook = new CallbackHook(function(): void {
+            callCount++;
+        });
         applyHooks([hook]);
         assert.equal(callCount, 1);
     });

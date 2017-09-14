@@ -15,7 +15,6 @@ import { TypeMatcherError } from "./TypeMatcherError";
  * A Type Matcher matches objects that satisfy type matching rules
  */
 export class TypeMatcher implements ITypeMatcher, ITypeMatcherFactory {
-
     /*============================================================================*/
     /* Protected Properties                                                       */
     /*============================================================================*/
@@ -77,7 +76,10 @@ export class TypeMatcher implements ITypeMatcher, ITypeMatcherFactory {
      * @inheritDoc
      */
     public clone(): TypeMatcher {
-        return (new TypeMatcher()).allOf(this._allOfTypes).anyOf(this._anyOfTypes).noneOf(this._noneOfTypes);
+        return new TypeMatcher()
+            .allOf(this._allOfTypes)
+            .anyOf(this._anyOfTypes)
+            .noneOf(this._noneOfTypes);
     }
 
     /*============================================================================*/
@@ -85,15 +87,24 @@ export class TypeMatcher implements ITypeMatcher, ITypeMatcherFactory {
     /*============================================================================*/
 
     protected buildTypeFilter(): ITypeFilter {
-        if ((this._allOfTypes.length === 0) &&
-            (this._anyOfTypes.length === 0) &&
-            (this._noneOfTypes.length === 0)) {
+        if (
+            this._allOfTypes.length === 0 &&
+            this._anyOfTypes.length === 0 &&
+            this._noneOfTypes.length === 0
+        ) {
             throw new TypeMatcherError(TypeMatcherError.EMPTY_MATCHER);
         }
-        return new TypeFilter(this._allOfTypes, this._anyOfTypes, this._noneOfTypes);
+        return new TypeFilter(
+            this._allOfTypes,
+            this._anyOfTypes,
+            this._noneOfTypes
+        );
     }
 
-    protected pushAddedTypesTo(types: any[], targetSet: FunctionConstructor[]): void {
+    protected pushAddedTypesTo(
+        types: any[],
+        targetSet: FunctionConstructor[]
+    ): void {
         if (this._typeFilter) {
             this.throwSealedMatcherError();
         }
@@ -105,8 +116,11 @@ export class TypeMatcher implements ITypeMatcher, ITypeMatcherFactory {
         throw new TypeMatcherError(TypeMatcherError.SEALED_MATCHER);
     }
 
-    protected pushValuesToClassVector(values: any[], vector: FunctionConstructor[]): void {
-        if (values.length === 1 && (values[0] instanceof Array)) {
+    protected pushValuesToClassVector(
+        values: any[],
+        vector: FunctionConstructor[]
+    ): void {
+        if (values.length === 1 && values[0] instanceof Array) {
             for (let i: number; i < values[0].length; i++) {
                 let type: FunctionConstructor = values[0][i];
                 vector.push(type);

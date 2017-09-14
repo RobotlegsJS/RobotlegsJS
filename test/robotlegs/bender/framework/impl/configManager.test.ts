@@ -21,7 +21,6 @@ import { TypedConfig } from "./configSupport/TypedConfig";
 import { TestObject } from "./objectSupport/TestObject";
 
 describe("ConfigManager", () => {
-
     let context: Context;
     let injector: IInjector;
     let configManager: ConfigManager;
@@ -43,13 +42,18 @@ describe("ConfigManager", () => {
     });
 
     it("addHandler works", () => {
-        configManager.addConfigHandler(instanceOfType(TestObject), new Function());
+        configManager.addConfigHandler(
+            instanceOfType(TestObject),
+            new Function()
+        );
     });
 
     it("handler is called", () => {
         let expected: TestObject = new TestObject("config");
         let actual: Object = null;
-        configManager.addConfigHandler(instanceOfType(TestObject), function(config: Object): void {
+        configManager.addConfigHandler(instanceOfType(TestObject), function(
+            config: Object
+        ): void {
             actual = config;
         });
         configManager.addConfig(expected);
@@ -58,10 +62,16 @@ describe("ConfigManager", () => {
 
     it("configure is invoked for IConfig object", () => {
         let actual: IConfig = null;
-        injector.bind("Function").toConstantValue(function(config: IConfig): void {
-            actual = config;
-        }).whenTargetNamed("callback");
-        let expected: TypedConfig = instantiateUnmapped<TypedConfig>(injector, TypedConfig);
+        injector
+            .bind("Function")
+            .toConstantValue(function(config: IConfig): void {
+                actual = config;
+            })
+            .whenTargetNamed("callback");
+        let expected: TypedConfig = instantiateUnmapped<TypedConfig>(
+            injector,
+            TypedConfig
+        );
         configManager.addConfig(expected);
         context.initialize();
         assert.equal(actual, expected);
@@ -69,9 +79,12 @@ describe("ConfigManager", () => {
 
     it("configure is invoked for IConfig class", () => {
         let actual: IConfig = null;
-        injector.bind("Function").toConstantValue(function(config: IConfig): void {
-            actual = config;
-        }).whenTargetNamed("callback");
+        injector
+            .bind("Function")
+            .toConstantValue(function(config: IConfig): void {
+                actual = config;
+            })
+            .whenTargetNamed("callback");
         configManager.addConfig(TypedConfig);
         context.initialize();
         assert.isTrue(actual instanceof TypedConfig);
@@ -79,9 +92,12 @@ describe("ConfigManager", () => {
 
     it("config queue is processed after other initialize listeners", () => {
         let actual: string[] = [];
-        injector.bind("Function").toConstantValue(function(config: IConfig): void {
-            actual.push("config");
-        }).whenTargetNamed("callback");
+        injector
+            .bind("Function")
+            .toConstantValue(function(config: IConfig): void {
+                actual.push("config");
+            })
+            .whenTargetNamed("callback");
         configManager.addConfig(TypedConfig);
         context.whenInitializing(function(): void {
             actual.push("listener1");
@@ -94,7 +110,9 @@ describe("ConfigManager", () => {
     });
 
     it("destroy", () => {
-        configManager.addConfigHandler(instanceOfType(String), function(config: Object): void {
+        configManager.addConfigHandler(instanceOfType(String), function(
+            config: Object
+        ): void {
             throw new Error("Handler should not fire after call to destroy");
         });
         configManager.destroy();

@@ -12,16 +12,16 @@ import { assert } from "chai";
 import { CommandPayload } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/api/CommandPayload";
 
 describe("CommandPayload", () => {
-
     let subject: CommandPayload;
 
-    function createConfig(values: any[] = null, classes: any[] = null): CommandPayload {
-        return subject = new CommandPayload(values, classes);
+    function createConfig(
+        values: any[] = null,
+        classes: any[] = null
+    ): CommandPayload {
+        return (subject = new CommandPayload(values, classes));
     }
 
-    beforeEach(() => {
-        ;
-    });
+    beforeEach(() => {});
 
     afterEach(() => {
         subject = null;

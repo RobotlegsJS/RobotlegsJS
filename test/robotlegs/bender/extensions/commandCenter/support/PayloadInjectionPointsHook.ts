@@ -9,16 +9,16 @@ import { injectable, inject, named } from "inversify";
 
 @injectable()
 export class PayloadInjectionPointsHook {
-
     protected _message: String;
     protected _code: Number;
     protected _reportingFunction: Function;
 
     constructor(
-        @inject("Function") @named("reportingFunction") reportingFunction: Function,
+        @inject("Function")
+        @named("reportingFunction")
+        reportingFunction: Function,
         @inject(String) message: String,
         @inject(Number) code: Number
-
     ) {
         this._reportingFunction = reportingFunction;
         this._message = message;

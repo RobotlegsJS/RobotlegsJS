@@ -9,7 +9,5 @@ import { injectable } from "inversify";
 
 @injectable()
 export class NullCommand3 {
-    public execute(): void {
-        ;
-    }
+    public execute(): void {}
 }

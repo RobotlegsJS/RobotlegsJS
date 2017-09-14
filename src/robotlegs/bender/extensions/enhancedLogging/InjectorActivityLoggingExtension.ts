@@ -15,7 +15,6 @@ import { IExtension } from "../../framework/api/IExtension";
  * Warning: this extension will degrade the performance of your application.
  */
 export class InjectorActivityLoggingExtension implements IExtension {
-
     /*============================================================================*/
     /* Public Functions                                                           */
     /*============================================================================*/

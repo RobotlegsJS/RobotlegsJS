@@ -13,7 +13,6 @@ import { IInjector } from "../api/IInjector";
  */
 @injectable()
 export class RobotlegsInjector extends Container implements IInjector {
-
     /*============================================================================*/
     /* Constructor                                                                */
     /*============================================================================*/

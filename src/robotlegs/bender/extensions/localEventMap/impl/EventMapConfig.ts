@@ -11,7 +11,6 @@ import { IEventDispatcher } from "../../../events/api/IEventDispatcher";
  * @private
  */
 export class EventMapConfig {
-
     /*============================================================================*/
     /* Public Properties                                                          */
     /*============================================================================*/
@@ -111,11 +110,13 @@ export class EventMapConfig {
         eventClass: Object,
         useCapture: boolean
     ): boolean {
-        return this._eventString === eventString
-            && this._eventClass === eventClass
-            && this._thisObject === thisObject
-            && this._dispatcher === dispatcher
-            && this._listener === listener
-            && this._useCapture === useCapture;
+        return (
+            this._eventString === eventString &&
+            this._eventClass === eventClass &&
+            this._thisObject === thisObject &&
+            this._dispatcher === dispatcher &&
+            this._listener === listener &&
+            this._useCapture === useCapture
+        );
     }
 }

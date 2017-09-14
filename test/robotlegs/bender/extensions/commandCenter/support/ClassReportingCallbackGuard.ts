@@ -9,11 +9,12 @@ import { injectable, inject, named } from "inversify";
 
 @injectable()
 export class ClassReportingCallbackGuard {
-
     protected _reportingFunction: Function;
 
     constructor(
-        @inject("Function") @named("reportingFunction") reportingFunction: Function
+        @inject("Function")
+        @named("reportingFunction")
+        reportingFunction: Function
     ) {
         this._reportingFunction = reportingFunction;
     }

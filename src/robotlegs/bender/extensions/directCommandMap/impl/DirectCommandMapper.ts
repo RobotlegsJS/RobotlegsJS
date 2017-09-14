@@ -18,7 +18,6 @@ import { IDirectCommandConfigurator } from "../../directCommandMap/dsl/IDirectCo
  * @private
  */
 export class DirectCommandMapper implements IDirectCommandConfigurator {
-
     /*============================================================================*/
     /* Private Properties                                                         */
     /*============================================================================*/
@@ -36,7 +35,11 @@ export class DirectCommandMapper implements IDirectCommandConfigurator {
     /**
      * @private
      */
-    constructor(executor: ICommandExecutor, mappings: ICommandMappingList, commandClass: Object) {
+    constructor(
+        executor: ICommandExecutor,
+        mappings: ICommandMappingList,
+        commandClass: Object
+    ) {
         this._executor = executor;
         this._mappings = mappings;
         this._mapping = new CommandMapping(commandClass);
@@ -75,7 +78,9 @@ export class DirectCommandMapper implements IDirectCommandConfigurator {
     /**
      * @inheritDoc
      */
-    public withPayloadInjection(value: boolean = true): IDirectCommandConfigurator {
+    public withPayloadInjection(
+        value: boolean = true
+    ): IDirectCommandConfigurator {
         this._mapping.setPayloadInjectionEnabled(value);
         return this;
     }
@@ -91,6 +96,10 @@ export class DirectCommandMapper implements IDirectCommandConfigurator {
      * @inheritDoc
      */
     public map(commandClass: Object): IDirectCommandConfigurator {
-        return new DirectCommandMapper(this._executor, this._mappings, commandClass);
+        return new DirectCommandMapper(
+            this._executor,
+            this._mappings,
+            commandClass
+        );
     }
 }

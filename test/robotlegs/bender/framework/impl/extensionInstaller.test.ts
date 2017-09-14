@@ -16,7 +16,6 @@ import { ExtensionInstaller } from "../../../../../src/robotlegs/bender/framewor
 import { CallbackExtension } from "./contextSupport/CallbackExtension";
 
 describe("ExtensionInstaller", () => {
-
     let installer: ExtensionInstaller;
 
     beforeEach(() => {
@@ -29,9 +28,11 @@ describe("ExtensionInstaller", () => {
 
     it("extension instance is installed", () => {
         let callCount: number = 0;
-        installer.install(new CallbackExtension(function(): void {
-            callCount++;
-        }));
+        installer.install(
+            new CallbackExtension(function(): void {
+                callCount++;
+            })
+        );
         assert.equal(callCount, 1);
     });
 

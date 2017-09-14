@@ -1,7 +1,6 @@
 import { IEvent, IEventInit } from "../api/IEvent";
 
 export class Event implements IEvent {
-
     public type: string;
     public defaultPrevented: boolean;
     public bubbles: boolean;
@@ -23,5 +22,4 @@ export class Event implements IEvent {
     public stopPropagation(): void {
         this.bubbles = false;
     }
-
 }

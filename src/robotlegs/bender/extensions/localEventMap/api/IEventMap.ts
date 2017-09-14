@@ -48,7 +48,14 @@ export interface IEventMap {
      * @param eventClass Optional Event class for a stronger mapping. Defaults to <code>flash.events.Event</code>.
      * @param useCapture
      */
-    unmapListener(dispatcher: IEventDispatcher | EventTarget, type: string, listener: Function, thisObject?: any, eventClass?: Object, useCapture?: Boolean): void;
+    unmapListener(
+        dispatcher: IEventDispatcher | EventTarget,
+        type: string,
+        listener: Function,
+        thisObject?: any,
+        eventClass?: Object,
+        useCapture?: Boolean
+    ): void;
 
     /**
      * Removes all listeners registered through <code>mapListener</code>

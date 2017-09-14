@@ -14,17 +14,24 @@ import { EventRelay } from "./EventRelay";
  * @private
  */
 export class LifecycleEventRelay {
-
     /*============================================================================*/
     /* Private Static Properties                                                  */
     /*============================================================================*/
 
     private static TYPES: any[] = [
         LifecycleEvent.STATE_CHANGE,
-        LifecycleEvent.PRE_INITIALIZE, LifecycleEvent.INITIALIZE, LifecycleEvent.POST_INITIALIZE,
-        LifecycleEvent.PRE_SUSPEND, LifecycleEvent.SUSPEND, LifecycleEvent.POST_SUSPEND,
-        LifecycleEvent.PRE_RESUME, LifecycleEvent.RESUME, LifecycleEvent.POST_RESUME,
-        LifecycleEvent.PRE_DESTROY, LifecycleEvent.DESTROY, LifecycleEvent.POST_DESTROY
+        LifecycleEvent.PRE_INITIALIZE,
+        LifecycleEvent.INITIALIZE,
+        LifecycleEvent.POST_INITIALIZE,
+        LifecycleEvent.PRE_SUSPEND,
+        LifecycleEvent.SUSPEND,
+        LifecycleEvent.POST_SUSPEND,
+        LifecycleEvent.PRE_RESUME,
+        LifecycleEvent.RESUME,
+        LifecycleEvent.POST_RESUME,
+        LifecycleEvent.PRE_DESTROY,
+        LifecycleEvent.DESTROY,
+        LifecycleEvent.POST_DESTROY
     ];
 
     /*============================================================================*/
@@ -41,7 +48,11 @@ export class LifecycleEventRelay {
      * @private
      */
     constructor(source: IEventDispatcher, destination: IEventDispatcher) {
-        this._relay = new EventRelay(source, destination, LifecycleEventRelay.TYPES).start();
+        this._relay = new EventRelay(
+            source,
+            destination,
+            LifecycleEventRelay.TYPES
+        ).start();
     }
 
     /*============================================================================*/

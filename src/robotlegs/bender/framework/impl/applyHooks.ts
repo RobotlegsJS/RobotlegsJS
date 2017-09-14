@@ -29,12 +29,12 @@ export function applyHooks(hooks: any[], injector?: IInjector): void {
     for (let i = 0; i < hooks.length; i++) {
         let hook: any = hooks[i];
 
-        if ((typeof (hook) === "function") && (hook.prototype.hook === undefined)) {
+        if (typeof hook === "function" && hook.prototype.hook === undefined) {
             (<Function>hook)();
             continue;
         }
 
-        if ((typeof (hook) === "function") && (hook.prototype.hook !== undefined)) {
+        if (typeof hook === "function" && hook.prototype.hook !== undefined) {
             hook = injector ? instantiateUnmapped(injector, hook) : new hook();
         }
 

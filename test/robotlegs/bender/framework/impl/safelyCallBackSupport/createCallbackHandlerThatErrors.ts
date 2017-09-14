@@ -14,7 +14,10 @@
  * that invokes the supplied closure with the given params
  * (if provided).
  */
-export function createCallbackHandlerThatErrors(closure: Function = null, ...params): Function {
+export function createCallbackHandlerThatErrors(
+    closure: Function = null,
+    ...params
+): Function {
     return function(message: Object, callback: Function): void {
         if (closure) {
             closure.apply(null, params);

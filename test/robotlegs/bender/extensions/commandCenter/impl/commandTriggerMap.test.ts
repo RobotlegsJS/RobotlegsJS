@@ -16,7 +16,6 @@ import { CommandTriggerMap } from "../../../../../../src/robotlegs/bender/extens
 import { NullCommandTrigger } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/impl/NullCommandTrigger";
 
 describe("CommandTriggerMap", () => {
-
     let subject: CommandTriggerMap;
 
     function getKey(type: string, eventClass: Object): string {
@@ -37,7 +36,10 @@ describe("CommandTriggerMap", () => {
 
     it("keyFactory is called with params", () => {
         let subjectMock = sinon.mock(subject);
-        subjectMock.expects("_keyFactory").once().withArgs("hi", 5);
+        subjectMock
+            .expects("_keyFactory")
+            .once()
+            .withArgs("hi", 5);
         subject.getTrigger("hi", 5);
         subjectMock.restore();
         subjectMock.verify();
@@ -45,7 +47,10 @@ describe("CommandTriggerMap", () => {
 
     it("triggerFactory is called with params", () => {
         let subjectMock = sinon.mock(subject);
-        subjectMock.expects("_triggerFactory").once().withArgs("hi", 5);
+        subjectMock
+            .expects("_triggerFactory")
+            .once()
+            .withArgs("hi", 5);
         subject.getTrigger("hi", 5);
         subjectMock.restore();
         subjectMock.verify();

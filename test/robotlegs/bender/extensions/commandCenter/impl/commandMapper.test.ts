@@ -21,7 +21,6 @@ import { GrumpyGuard } from "../../../framework/impl/guardSupport/GrumpyGuard";
 import { CallbackHook } from "../../../framework/impl/hookSupport/CallbackHook";
 
 describe("CommandMapper", () => {
-
     let mappings: CommandMappingList;
     let subject: CommandMapper;
 
@@ -49,7 +48,10 @@ describe("CommandMapper", () => {
 
     it("fromCommand delegates to MappingList", () => {
         let mappingsMock = sinon.mock(mappings);
-        mappingsMock.expects("removeMappingFor").once().withArgs(String);
+        mappingsMock
+            .expects("removeMappingFor")
+            .once()
+            .withArgs(String);
         subject.fromCommand(String);
         mappingsMock.restore();
         mappingsMock.verify();
@@ -67,7 +69,10 @@ describe("CommandMapper", () => {
         subject.toCommand(String);
         let list: ICommandMapping[] = mappings.getList();
         let mappingMock = sinon.mock(list[0]);
-        mappingMock.expects("setFireOnce").once().withArgs(true);
+        mappingMock
+            .expects("setFireOnce")
+            .once()
+            .withArgs(true);
         subject.once(true);
         mappingMock.restore();
         mappingMock.verify();
@@ -77,7 +82,10 @@ describe("CommandMapper", () => {
         subject.toCommand(String);
         let list: ICommandMapping[] = mappings.getList();
         let mappingMock = sinon.mock(list[0]);
-        mappingMock.expects("addGuards").once().withArgs(HappyGuard, GrumpyGuard);
+        mappingMock
+            .expects("addGuards")
+            .once()
+            .withArgs(HappyGuard, GrumpyGuard);
         subject.withGuards(HappyGuard, GrumpyGuard);
         mappingMock.restore();
         mappingMock.verify();
@@ -87,7 +95,10 @@ describe("CommandMapper", () => {
         subject.toCommand(String);
         let list: ICommandMapping[] = mappings.getList();
         let mappingMock = sinon.mock(list[0]);
-        mappingMock.expects("addHooks").once().withArgs(CallbackHook);
+        mappingMock
+            .expects("addHooks")
+            .once()
+            .withArgs(CallbackHook);
         subject.withHooks(CallbackHook);
         mappingMock.restore();
         mappingMock.verify();
@@ -97,7 +108,10 @@ describe("CommandMapper", () => {
         subject.toCommand(String);
         let list: ICommandMapping[] = mappings.getList();
         let mappingMock = sinon.mock(list[0]);
-        mappingMock.expects("setExecuteMethod").once().withArgs("execute");
+        mappingMock
+            .expects("setExecuteMethod")
+            .once()
+            .withArgs("execute");
         subject.withExecuteMethod("execute");
         mappingMock.restore();
         mappingMock.verify();
@@ -107,7 +121,10 @@ describe("CommandMapper", () => {
         subject.toCommand(String);
         let list: ICommandMapping[] = mappings.getList();
         let mappingMock = sinon.mock(list[0]);
-        mappingMock.expects("setPayloadInjectionEnabled").once().withArgs(true);
+        mappingMock
+            .expects("setPayloadInjectionEnabled")
+            .once()
+            .withArgs(true);
         subject.withPayloadInjection(true);
         mappingMock.restore();
         mappingMock.verify();

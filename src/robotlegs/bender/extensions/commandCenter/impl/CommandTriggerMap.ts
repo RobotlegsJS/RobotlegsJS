@@ -11,7 +11,6 @@ import { ICommandTrigger } from "../api/ICommandTrigger";
  * @private
  */
 export class CommandTriggerMap {
-
     /*============================================================================*/
     /* Private Properties                                                         */
     /*============================================================================*/

@@ -12,7 +12,6 @@ import { ILogger } from "../../../framework/api/ILogger";
  * @private
  */
 export class InjectorListener {
-
     /*============================================================================*/
     /* Private Static Properties                                                  */
     /*============================================================================*/

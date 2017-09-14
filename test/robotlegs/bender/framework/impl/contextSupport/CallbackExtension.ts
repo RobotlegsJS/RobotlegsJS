@@ -10,7 +10,6 @@ import { IExtension } from "../../../../../../src/robotlegs/bender/framework/api
 import { safelyCallBack } from "../../../../../../src/robotlegs/bender/framework/impl/safelyCallBack";
 
 export class CallbackExtension implements IExtension {
-
     public static staticCallback: Function;
 
     private _callback: Function;

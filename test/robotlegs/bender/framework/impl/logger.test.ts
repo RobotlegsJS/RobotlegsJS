@@ -16,7 +16,6 @@ import { CallbackLogTarget } from "./loggingSupport/CallbackLogTarget";
 import { LogParams } from "./loggingSupport/LogParams";
 
 describe("Logger", () => {
-
     let source: Object;
 
     beforeEach(() => {
@@ -30,19 +29,31 @@ describe("Logger", () => {
     it("source is passed", () => {
         let expected: Object = source;
         let actual: Object = null;
-        let logger: Logger = new Logger(source, new CallbackLogTarget(function(result: LogParams): void {
-            actual = result.source;
-        }));
+        let logger: Logger = new Logger(
+            source,
+            new CallbackLogTarget(function(result: LogParams): void {
+                actual = result.source;
+            })
+        );
         logger.debug("hello");
         assert.equal(actual, expected);
     });
 
     it("level is passed", () => {
-        let expected: number[] = [LogLevel.FATAL, LogLevel.ERROR, LogLevel.WARN, LogLevel.INFO, LogLevel.DEBUG];
+        let expected: number[] = [
+            LogLevel.FATAL,
+            LogLevel.ERROR,
+            LogLevel.WARN,
+            LogLevel.INFO,
+            LogLevel.DEBUG
+        ];
         let actual: number[] = [];
-        let logger: Logger = new Logger(source, new CallbackLogTarget(function(result: LogParams): void {
-            actual.push(result.level);
-        }));
+        let logger: Logger = new Logger(
+            source,
+            new CallbackLogTarget(function(result: LogParams): void {
+                actual.push(result.level);
+            })
+        );
         logger.fatal("fatal");
         logger.error("error");
         logger.warn("warn");
@@ -54,9 +65,12 @@ describe("Logger", () => {
     it("message is passed", () => {
         let expected: string = "hello";
         let actual: string = null;
-        let logger: Logger = new Logger(source, new CallbackLogTarget(function(result: LogParams): void {
-            actual = result.message;
-        }));
+        let logger: Logger = new Logger(
+            source,
+            new CallbackLogTarget(function(result: LogParams): void {
+                actual = result.message;
+            })
+        );
         logger.debug(expected);
         assert.equal(actual, expected);
     });
@@ -64,9 +78,12 @@ describe("Logger", () => {
     it("params are passed", () => {
         let expected: number[] = [1, 2, 3];
         let actual: number[] = null;
-        let logger: Logger = new Logger(source, new CallbackLogTarget(function(result: LogParams): void {
-            actual = result.params;
-        }));
+        let logger: Logger = new Logger(
+            source,
+            new CallbackLogTarget(function(result: LogParams): void {
+                actual = result.params;
+            })
+        );
         logger.debug("hello", expected);
         assert.deepEqual(actual, expected);
     });

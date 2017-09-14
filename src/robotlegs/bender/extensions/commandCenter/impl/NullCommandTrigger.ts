@@ -11,7 +11,6 @@ import { ICommandTrigger } from "../api/ICommandTrigger";
  * @private
  */
 export class NullCommandTrigger implements ICommandTrigger {
-
     /*============================================================================*/
     /* Public Functions                                                           */
     /*============================================================================*/
@@ -19,10 +18,10 @@ export class NullCommandTrigger implements ICommandTrigger {
     /**
      * @private
      */
-    public activate(): void { }
+    public activate(): void {}
 
     /**
      * @private
      */
-    public deactivate(): void { }
+    public deactivate(): void {}
 }

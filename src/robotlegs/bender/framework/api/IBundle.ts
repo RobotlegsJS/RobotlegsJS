@@ -10,4 +10,4 @@ import { IExtension } from "./IExtension";
 /**
  * A bundle installs a set of Extensions and Configurations into a Context
  */
-export interface IBundle extends IExtension { }
+export interface IBundle extends IExtension {}

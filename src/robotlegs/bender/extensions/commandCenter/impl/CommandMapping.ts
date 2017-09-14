@@ -11,7 +11,6 @@ import { ICommandMapping } from "../api/ICommandMapping";
  * @private
  */
 export class CommandMapping implements ICommandMapping {
-
     /*============================================================================*/
     /* Public Properties                                                          */
     /*============================================================================*/

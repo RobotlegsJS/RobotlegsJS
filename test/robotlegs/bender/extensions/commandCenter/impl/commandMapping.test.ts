@@ -14,7 +14,6 @@ import { CommandMapping } from "../../../../../../src/robotlegs/bender/extension
 import { NullCommand } from "../support/NullCommand";
 
 describe("CommandMapping", () => {
-
     let mapping: CommandMapping;
     let commandClass: any;
 

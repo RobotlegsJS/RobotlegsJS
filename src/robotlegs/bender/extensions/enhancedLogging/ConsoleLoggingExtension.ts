@@ -13,7 +13,6 @@ import { IExtension } from "../../framework/api/IExtension";
  * Adds a TraceLogTarget to the context
  */
 export class ConsoleLoggingExtension implements IExtension {
-
     /*============================================================================*/
     /* Public Functions                                                           */
     /*============================================================================*/

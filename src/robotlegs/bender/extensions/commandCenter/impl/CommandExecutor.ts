@@ -19,7 +19,6 @@ import { instantiateUnmapped } from "../../../framework/impl/instantiateUnmapped
  * @private
  */
 export class CommandExecutor implements ICommandExecutor {
-
     /*============================================================================*/
     /* Private Properties                                                         */
     /*============================================================================*/
@@ -40,7 +39,11 @@ export class CommandExecutor implements ICommandExecutor {
      * @param removeMapping Remove mapping handler (optional)
      * @param handleResult Result handler (optional)
      */
-    constructor(injector: IInjector, removeMapping?: Function, handleResult?: Function) {
+    constructor(
+        injector: IInjector,
+        removeMapping?: Function,
+        handleResult?: Function
+    ) {
         this._injector = injector.createChild();
         this._removeMapping = removeMapping;
         this._handleResult = handleResult;
@@ -53,7 +56,10 @@ export class CommandExecutor implements ICommandExecutor {
     /**
      * @inheritDoc
      */
-    public executeCommands(mappings: ICommandMapping[], payload?: CommandPayload): void {
+    public executeCommands(
+        mappings: ICommandMapping[],
+        payload?: CommandPayload
+    ): void {
         let length: number = mappings.length;
         for (let i: number = 0; i < length; i++) {
             this.executeCommand(mappings[i], payload);
@@ -63,16 +69,23 @@ export class CommandExecutor implements ICommandExecutor {
     /**
      * @inheritDoc
      */
-    public executeCommand(mapping: ICommandMapping, payload?: CommandPayload): void {
+    public executeCommand(
+        mapping: ICommandMapping,
+        payload?: CommandPayload
+    ): void {
         let hasPayload: boolean = payload && payload.hasPayload();
-        let injectionEnabled: boolean = hasPayload && mapping.payloadInjectionEnabled;
+        let injectionEnabled: boolean =
+            hasPayload && mapping.payloadInjectionEnabled;
         let command: any = null;
 
         if (injectionEnabled) {
             this.mapPayload(payload);
         }
 
-        if (mapping.guards.length === 0 || guardsApprove(mapping.guards, this._injector)) {
+        if (
+            mapping.guards.length === 0 ||
+            guardsApprove(mapping.guards, this._injector)
+        ) {
             let commandClass: any = mapping.commandClass;
 
             if (mapping.fireOnce && this._removeMapping) {
@@ -93,10 +106,13 @@ export class CommandExecutor implements ICommandExecutor {
         }
 
         if (command && mapping.executeMethod) {
-            let executeMethod: Function = command[mapping.executeMethod].bind(command);
-            let result: any = (hasPayload && executeMethod.length > 0)
-                ? executeMethod.apply(command, payload.values)
-                : executeMethod();
+            let executeMethod: Function = command[mapping.executeMethod].bind(
+                command
+            );
+            let result: any =
+                hasPayload && executeMethod.length > 0
+                    ? executeMethod.apply(command, payload.values)
+                    : executeMethod();
             if (this._handleResult) {
                 this._handleResult(result, command, mapping);
             }
@@ -110,7 +126,9 @@ export class CommandExecutor implements ICommandExecutor {
     private mapPayload(payload: CommandPayload): void {
         let i: number = payload.length;
         while (i--) {
-            this._injector.bind(payload.classes[i]).toConstantValue(payload.values[i]);
+            this._injector
+                .bind(payload.classes[i])
+                .toConstantValue(payload.values[i]);
         }
     }
 

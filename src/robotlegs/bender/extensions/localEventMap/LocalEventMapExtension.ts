@@ -15,7 +15,6 @@ import { IExtension } from "../../framework/api/IExtension";
  * to unregister all listeners with a single method call.
  */
 export class LocalEventMapExtension implements IExtension {
-
     /*============================================================================*/
     /* Public Functions                                                           */
     /*============================================================================*/

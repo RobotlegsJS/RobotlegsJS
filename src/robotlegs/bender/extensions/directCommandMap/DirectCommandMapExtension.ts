@@ -15,7 +15,6 @@ import { DirectCommandMap } from "./impl/DirectCommandMap";
  * Maps commands for direct (manual) execution
  */
 export class DirectCommandMapExtension implements IExtension {
-
     /*============================================================================*/
     /* Public Functions                                                           */
     /*============================================================================*/

@@ -10,7 +10,6 @@
  */
 export let ILogger = Symbol("ILogger");
 export interface ILogger {
-
     /**
      * Source indentifier
      */

@@ -12,7 +12,6 @@ import { IDirectCommandConfigurator } from "../dsl/IDirectCommandConfigurator";
  * @private
  */
 export interface IDirectCommandMapper {
-
     /**
      * Creates a mapping for a command class
      * @param commandClass The concrete Command class

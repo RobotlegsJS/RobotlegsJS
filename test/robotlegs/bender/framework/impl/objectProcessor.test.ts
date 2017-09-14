@@ -15,7 +15,6 @@ import { instanceOfType } from "../../../../../src/robotlegs/bender/extensions/m
 import { TestObject } from "./objectSupport/TestObject";
 
 describe("ObjectProcessor", () => {
-
     let objectProcessor: ObjectProcessor;
 
     beforeEach(() => {
@@ -29,7 +28,9 @@ describe("ObjectProcessor", () => {
     it("handler handles object", () => {
         let expected: Object = new TestObject("TestObject");
         let actual: Object = null;
-        objectProcessor.addObjectHandler(instanceOfType(TestObject), function(object: Object): void {
+        objectProcessor.addObjectHandler(instanceOfType(TestObject), function(
+            object: Object
+        ): void {
             actual = object;
         });
         objectProcessor.processObject(expected);
@@ -38,7 +39,9 @@ describe("ObjectProcessor", () => {
 
     it("handler does not handle wrong object", () => {
         let actual: Object = null;
-        objectProcessor.addObjectHandler(instanceOfType(TestObject), function(object: Object): void {
+        objectProcessor.addObjectHandler(instanceOfType(TestObject), function(
+            object: Object
+        ): void {
             actual = object;
         });
         objectProcessor.processObject({});
@@ -48,13 +51,19 @@ describe("ObjectProcessor", () => {
     it("handlers handle object", () => {
         let expected: string[] = ["handler1", "handler2", "handler3"];
         let actual: string[] = [];
-        objectProcessor.addObjectHandler(instanceOfType(TestObject), function(object: Object): void {
+        objectProcessor.addObjectHandler(instanceOfType(TestObject), function(
+            object: Object
+        ): void {
             actual.push("handler1");
         });
-        objectProcessor.addObjectHandler(instanceOfType(TestObject), function(object: Object): void {
+        objectProcessor.addObjectHandler(instanceOfType(TestObject), function(
+            object: Object
+        ): void {
             actual.push("handler2");
         });
-        objectProcessor.addObjectHandler(instanceOfType(TestObject), function(object: Object): void {
+        objectProcessor.addObjectHandler(instanceOfType(TestObject), function(
+            object: Object
+        ): void {
             actual.push("handler3");
         });
         objectProcessor.processObject(new TestObject("TestObject"));
@@ -64,14 +73,26 @@ describe("ObjectProcessor", () => {
     it("remove all handlers", () => {
         let expected: string[] = [];
         let actual: string[] = [];
-        objectProcessor.addObjectHandler(instanceOfType(TestObject), function(object: Object): void {
-            actual.push("Handler should not fire after call to removeAllHandlers.");
+        objectProcessor.addObjectHandler(instanceOfType(TestObject), function(
+            object: Object
+        ): void {
+            actual.push(
+                "Handler should not fire after call to removeAllHandlers."
+            );
         });
-        objectProcessor.addObjectHandler(instanceOfType(TestObject), function(object: Object): void {
-            actual.push("Handler should not fire after call to removeAllHandlers.");
+        objectProcessor.addObjectHandler(instanceOfType(TestObject), function(
+            object: Object
+        ): void {
+            actual.push(
+                "Handler should not fire after call to removeAllHandlers."
+            );
         });
-        objectProcessor.addObjectHandler(instanceOfType(TestObject), function(object: Object): void {
-            actual.push("Handler should not fire after call to removeAllHandlers.");
+        objectProcessor.addObjectHandler(instanceOfType(TestObject), function(
+            object: Object
+        ): void {
+            actual.push(
+                "Handler should not fire after call to removeAllHandlers."
+            );
         });
         objectProcessor.removeAllHandlers();
         objectProcessor.processObject(new TestObject("TestObject"));

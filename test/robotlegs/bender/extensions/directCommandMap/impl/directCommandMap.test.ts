@@ -27,7 +27,6 @@ import { CallbackCommand2 } from "../../commandCenter/support/CallbackCommand2";
 import { DirectCommandMapReportingCommand } from "../support/DirectCommandMapReportingCommand";
 
 describe("DirectCommandMap", () => {
-
     let context: IContext;
     let subject: DirectCommandMap;
     let injector: IInjector;
@@ -39,9 +38,7 @@ describe("DirectCommandMap", () => {
         subject = injector.get<DirectCommandMap>(IDirectCommandMap);
     });
 
-    afterEach(() => {
-
-    });
+    afterEach(() => {});
 
     it("map creates IDirectCommandConfigurator", () => {
         assert.instanceOf(subject.map(NullCommand), DirectCommandMapper);
@@ -50,9 +47,12 @@ describe("DirectCommandMap", () => {
     it("successfully executes command classes", () => {
         let executionCount: number = 0;
 
-        injector.bind("Function").toFunction(function(): void {
-            executionCount++;
-        }).whenTargetNamed("executeCallback");
+        injector
+            .bind("Function")
+            .toFunction(function(): void {
+                executionCount++;
+            })
+            .whenTargetNamed("executeCallback");
 
         subject
             .map(CallbackCommand)
@@ -65,9 +65,12 @@ describe("DirectCommandMap", () => {
     it("commands get injected with DirectCommandMap instance", () => {
         let actual: IDirectCommandMap = null;
 
-        injector.bind("Function").toFunction(function(passed: IDirectCommandMap): void {
-            actual = passed;
-        }).whenTargetNamed("reportingFunction");
+        injector
+            .bind("Function")
+            .toFunction(function(passed: IDirectCommandMap): void {
+                actual = passed;
+            })
+            .whenTargetNamed("reportingFunction");
 
         subject.map(DirectCommandMapReportingCommand).execute();
 
@@ -77,9 +80,12 @@ describe("DirectCommandMap", () => {
     it("commands are disposed after execution", () => {
         let executionCount: number = 0;
 
-        injector.bind("Function").toFunction(function(): void {
-            executionCount++;
-        }).whenTargetNamed("executeCallback");
+        injector
+            .bind("Function")
+            .toFunction(function(): void {
+                executionCount++;
+            })
+            .whenTargetNamed("executeCallback");
 
         subject.map(CallbackCommand).execute();
         subject.map(CallbackCommand).execute();
@@ -88,7 +94,9 @@ describe("DirectCommandMap", () => {
     });
 
     it("sandboxed directCommandMap instance does not leak into system", () => {
-        var actual: IDirectCommandMap = injector.get<IDirectCommandMap>(IDirectCommandMap);
+        var actual: IDirectCommandMap = injector.get<IDirectCommandMap>(
+            IDirectCommandMap
+        );
 
         assert.notEqual(actual, subject);
     });
@@ -125,9 +133,12 @@ describe("DirectCommandMap", () => {
     it("executes command", () => {
         let executionCount: number = 0;
 
-        injector.bind("Function").toFunction(function(): void {
-            executionCount++;
-        }).whenTargetNamed("executeCallback");
+        injector
+            .bind("Function")
+            .toFunction(function(): void {
+                executionCount++;
+            })
+            .whenTargetNamed("executeCallback");
 
         subject.map(CallbackCommand);
         subject.execute();
