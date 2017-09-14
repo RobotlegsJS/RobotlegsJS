@@ -85,9 +85,9 @@ export class TypeMatcher implements ITypeMatcher, ITypeMatcherFactory {
     /*============================================================================*/
 
     protected buildTypeFilter(): ITypeFilter {
-        if ((this._allOfTypes.length == 0) &&
-            (this._anyOfTypes.length == 0) &&
-            (this._noneOfTypes.length == 0)) {
+        if ((this._allOfTypes.length === 0) &&
+            (this._anyOfTypes.length === 0) &&
+            (this._noneOfTypes.length === 0)) {
             throw new TypeMatcherError(TypeMatcherError.EMPTY_MATCHER);
         }
         return new TypeFilter(this._allOfTypes, this._anyOfTypes, this._noneOfTypes);
