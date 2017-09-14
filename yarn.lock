@@ -14,9 +14,9 @@
   version "2.2.43"
   resolved "https://registry.npmjs.org/@types/mocha/-/mocha-2.2.43.tgz#03c54589c43ad048cbcbfd63999b55d0424eec27"
 
-"@types/sinon@^2.3.3":
-  version "2.3.3"
-  resolved "https://registry.npmjs.org/@types/sinon/-/sinon-2.3.3.tgz#1f20b96f954b4997a09c1c0a20264aaba6b00147"
+"@types/sinon@^2.3.4":
+  version "2.3.4"
+  resolved "https://registry.npmjs.org/@types/sinon/-/sinon-2.3.4.tgz#2b3aa82dfc791eeff1d970b657a77eafff2899ff"
 
 abbrev@1:
   version "1.1.0"
