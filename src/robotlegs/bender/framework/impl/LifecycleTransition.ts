@@ -16,7 +16,6 @@ import { safelyCallBack } from "./safelyCallBack";
  * @private
  */
 export class LifecycleTransition {
-
     /*============================================================================*/
     /* Private Properties                                                         */
     /*============================================================================*/
@@ -80,7 +79,10 @@ export class LifecycleTransition {
      * @param finalState The state that the target is put into after the transition
      * @return
      */
-    public toStates(transitionState: string, finalState: string): LifecycleTransition {
+    public toStates(
+        transitionState: string,
+        finalState: string
+    ): LifecycleTransition {
         this._transitionState = transitionState;
         this._finalState = finalState;
         return this;
@@ -93,12 +95,20 @@ export class LifecycleTransition {
      * @param postTransitionEvent
      * @return Self
      */
-    public withEvents(preTransitionEvent: string, transitionEvent: string, postTransitionEvent: string): LifecycleTransition {
+    public withEvents(
+        preTransitionEvent: string,
+        transitionEvent: string,
+        postTransitionEvent: string
+    ): LifecycleTransition {
         this._preTransitionEvent = preTransitionEvent;
         this._transitionEvent = transitionEvent;
         this._postTransitionEvent = postTransitionEvent;
         if (this._reverse) {
-            this._lifecycle.addReversedEventTypes(preTransitionEvent, transitionEvent, postTransitionEvent);
+            this._lifecycle.addReversedEventTypes(
+                preTransitionEvent,
+                transitionEvent,
+                postTransitionEvent
+            );
         }
         return this;
     }
@@ -109,7 +119,11 @@ export class LifecycleTransition {
      */
     public inReverse(): LifecycleTransition {
         this._reverse = true;
-        this._lifecycle.addReversedEventTypes(this._preTransitionEvent, this._transitionEvent, this._postTransitionEvent);
+        this._lifecycle.addReversedEventTypes(
+            this._preTransitionEvent,
+            this._transitionEvent,
+            this._postTransitionEvent
+        );
         return this;
     }
 
@@ -162,34 +176,37 @@ export class LifecycleTransition {
         this.setState(this._transitionState);
 
         // run before handlers
-        this._dispatcher.dispatchMessage(this._name, function(error: any): void {
-            // revert state, report error, and exit
-            if (error) {
-                this.setState(initialState);
-                this.reportError(error, this._callbacks);
-                return;
-            }
+        this._dispatcher.dispatchMessage(
+            this._name,
+            function(error: any): void {
+                // revert state, report error, and exit
+                if (error) {
+                    this.setState(initialState);
+                    this.reportError(error, this._callbacks);
+                    return;
+                }
 
-            // dispatch pre transition and transition events
-            this.dispatch(this._preTransitionEvent);
+                // dispatch pre transition and transition events
+                this.dispatch(this._preTransitionEvent);
 
-            this.dispatch(this._transitionEvent);
+                this.dispatch(this._transitionEvent);
 
-            // put lifecycle into final state
-            this.setState(this._finalState);
+                // put lifecycle into final state
+                this.setState(this._finalState);
 
-            // process callback queue (dup and trash for safety)
-            let callbacks: any[] = this._callbacks.concat();
-            this._callbacks.length = 0;
-            for (let i: number = 0; i < callbacks.length; i++) {
-                let callbackChild = callbacks[i];
-                safelyCallBack(callbackChild, null, this._name);
-            }
+                // process callback queue (dup and trash for safety)
+                let callbacks: any[] = this._callbacks.concat();
+                this._callbacks.length = 0;
+                for (let i: number = 0; i < callbacks.length; i++) {
+                    let callbackChild = callbacks[i];
+                    safelyCallBack(callbackChild, null, this._name);
+                }
 
-            // dispatch post transition event
-            this.dispatch(this._postTransitionEvent);
-
-        }.bind(this), this._reverse);
+                // dispatch post transition event
+                this.dispatch(this._postTransitionEvent);
+            }.bind(this),
+            this._reverse
+        );
     }
 
     /*============================================================================*/
@@ -197,8 +214,10 @@ export class LifecycleTransition {
     /*============================================================================*/
 
     private invalidTransition(): boolean {
-        return this._fromStates.length > 0
-            && this._fromStates.indexOf(this._lifecycle.state) === -1;
+        return (
+            this._fromStates.length > 0 &&
+            this._fromStates.indexOf(this._lifecycle.state) === -1
+        );
     }
 
     private setState(state: string): void {
@@ -215,13 +234,15 @@ export class LifecycleTransition {
 
     private reportError(message: any, callbacks: any[] = null): void {
         // turn message into Error
-        let error: Error = message instanceof Error
-            ? <Error>message
-            : new Error(message);
+        let error: Error =
+            message instanceof Error ? <Error>message : new Error(message);
 
         // dispatch error event if a listener exists, or throw
         if (this._lifecycle.hasEventListener(LifecycleEvent.ERROR)) {
-            let event: LifecycleEvent = new LifecycleEvent(LifecycleEvent.ERROR, error);
+            let event: LifecycleEvent = new LifecycleEvent(
+                LifecycleEvent.ERROR,
+                error
+            );
             this._lifecycle.dispatchEvent(event);
             // process callback queue
             if (callbacks) {

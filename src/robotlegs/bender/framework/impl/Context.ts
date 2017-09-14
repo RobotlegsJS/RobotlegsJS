@@ -47,7 +47,6 @@ import { EventDispatcher } from "../../events/impl/EventDispatcher";
  */
 @injectable()
 export class Context extends EventDispatcher implements IContext {
-
     /*============================================================================*/
     /* Public Properties                                                          */
     /*============================================================================*/
@@ -306,14 +305,23 @@ export class Context extends EventDispatcher implements IContext {
         if (this._children.indexOf(child) === -1) {
             this._logger.debug("Adding child context {0}", [child]);
             if (!child.uninitialized) {
-                this._logger.warn("Child context {0} must be uninitialized", [child]);
+                this._logger.warn("Child context {0} must be uninitialized", [
+                    child
+                ]);
             }
             if (child.injector.parent) {
-                this._logger.warn("Child context {0} must not have a parent Injector", [child]);
+                this._logger.warn(
+                    "Child context {0} must not have a parent Injector",
+                    [child]
+                );
             }
             this._children.push(child);
             child.injector.parent = this.injector;
-            child.addEventListener(LifecycleEvent.POST_DESTROY, this.onChildDestroy, this);
+            child.addEventListener(
+                LifecycleEvent.POST_DESTROY,
+                this.onChildDestroy,
+                this
+            );
         }
         return this;
     }
@@ -327,9 +335,16 @@ export class Context extends EventDispatcher implements IContext {
             this._logger.debug("Removing child context {0}", [child]);
             this._children.splice(childIndex, 1);
             child.injector.parent = null;
-            child.removeEventListener(LifecycleEvent.POST_DESTROY, this.onChildDestroy, this);
+            child.removeEventListener(
+                LifecycleEvent.POST_DESTROY,
+                this.onChildDestroy,
+                this
+            );
         } else {
-            this._logger.warn("Child context {0} must be a child of {1}", [child, this]);
+            this._logger.warn("Child context {0} must be a child of {1}", [
+                child,
+                this
+            ]);
         }
         return this;
     }
@@ -397,7 +412,9 @@ export class Context extends EventDispatcher implements IContext {
         this._logManager = new LogManager();
         this._injector = new RobotlegsInjector();
 
-        this._injector.bind<IInjector>(IInjector).toConstantValue(this._injector);
+        this._injector
+            .bind<IInjector>(IInjector)
+            .toConstantValue(this._injector);
         this._injector.bind<IContext>(IContext).toConstantValue(this);
 
         this._logger = this._logManager.getLogger(this);
@@ -443,4 +460,4 @@ export class Context extends EventDispatcher implements IContext {
             this.removeChild(this._children[this._children.length - 1]);
         }
     }
-};
+}

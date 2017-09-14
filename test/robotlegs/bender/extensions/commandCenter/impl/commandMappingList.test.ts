@@ -30,7 +30,6 @@ import { NullCommand3 } from "../support/NullCommand3";
 import { PriorityMapping } from "../support/PriorityMapping";
 
 describe("CommandMappingList", () => {
-
     let logger: ILogger;
     let warnLogParams: LogParams;
     let trigger: ICommandTrigger;
@@ -48,11 +47,14 @@ describe("CommandMappingList", () => {
 
     beforeEach(() => {
         processors = [];
-        logger = new Logger({}, new CallbackLogTarget(function(result: LogParams): void {
-            if (result.level === LogLevel.WARN) {
-                warnLogParams = result;
-            }
-        }));
+        logger = new Logger(
+            {},
+            new CallbackLogTarget(function(result: LogParams): void {
+                if (result.level === LogLevel.WARN) {
+                    warnLogParams = result;
+                }
+            })
+        );
         trigger = new NullCommandTrigger();
         subject = new CommandMappingList(trigger, processors, logger);
         mapping1 = new CommandMapping(NullCommand);
@@ -149,7 +151,10 @@ describe("CommandMappingList", () => {
     it("warning logged when mapping overwritten", () => {
         subject.addMapping(new CommandMapping(NullCommand));
         subject.addMapping(new CommandMapping(NullCommand));
-        assert.equal(warnLogParams.message.indexOf("{0} already mapped to {1}"), 0);
+        assert.equal(
+            warnLogParams.message.indexOf("{0} already mapped to {1}"),
+            0
+        );
     });
 
     it("list is empty", () => {
@@ -196,24 +201,43 @@ describe("CommandMappingList", () => {
     });
 
     it("sortFunction is used", () => {
-        subject.withSortFunction(function(a: PriorityMapping, b: PriorityMapping): number {
+        subject.withSortFunction(function(
+            a: PriorityMapping,
+            b: PriorityMapping
+        ): number {
             if (a.priority === b.priority) {
                 return 0;
             }
             return a.priority > b.priority ? 1 : -1;
         });
-        let priorityMapping1: PriorityMapping = new PriorityMapping(NullCommand, 1);
-        let priorityMapping2: PriorityMapping = new PriorityMapping(NullCommand2, 2);
-        let priorityMapping3: PriorityMapping = new PriorityMapping(NullCommand3, 3);
+        let priorityMapping1: PriorityMapping = new PriorityMapping(
+            NullCommand,
+            1
+        );
+        let priorityMapping2: PriorityMapping = new PriorityMapping(
+            NullCommand2,
+            2
+        );
+        let priorityMapping3: PriorityMapping = new PriorityMapping(
+            NullCommand3,
+            3
+        );
         subject.addMapping(priorityMapping3);
         subject.addMapping(priorityMapping1);
         subject.addMapping(priorityMapping2);
-        assert.deepEqual(subject.getList(), [priorityMapping1, priorityMapping2, priorityMapping3]);
+        assert.deepEqual(subject.getList(), [
+            priorityMapping1,
+            priorityMapping2,
+            priorityMapping3
+        ]);
     });
 
     it("sortFunction is called after mappings are added", () => {
         let called: boolean = false;
-        subject.withSortFunction(function(a: PriorityMapping, b: PriorityMapping): number {
+        subject.withSortFunction(function(
+            a: PriorityMapping,
+            b: PriorityMapping
+        ): number {
             called = true;
             return 0;
         });
@@ -224,7 +248,10 @@ describe("CommandMappingList", () => {
 
     it("sortFunction is only called once after mappings are added", () => {
         let called: boolean = false;
-        subject.withSortFunction(function(a: PriorityMapping, b: PriorityMapping): number {
+        subject.withSortFunction(function(
+            a: PriorityMapping,
+            b: PriorityMapping
+        ): number {
             called = true;
             return 0;
         });
@@ -237,7 +264,10 @@ describe("CommandMappingList", () => {
 
     it("sortFunction is not called after a mapping is removed", () => {
         let called: boolean = false;
-        subject.withSortFunction(function(a: PriorityMapping, b: PriorityMapping): number {
+        subject.withSortFunction(function(
+            a: PriorityMapping,
+            b: PriorityMapping
+        ): number {
             called = true;
             return 0;
         });

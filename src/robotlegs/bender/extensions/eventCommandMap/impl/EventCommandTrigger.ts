@@ -22,7 +22,6 @@ import { CommandMappingList } from "../../commandCenter/impl/CommandMappingList"
  * @private
  */
 export class EventCommandTrigger implements ICommandTrigger {
-
     /*============================================================================*/
     /* Private Properties                                                         */
     /*============================================================================*/
@@ -56,7 +55,10 @@ export class EventCommandTrigger implements ICommandTrigger {
         this._type = type;
         this._eventClass = eventClass;
         this._mappings = new CommandMappingList(this, processors, logger);
-        this._executor = new CommandExecutor(injector, this._mappings.removeMapping.bind(this._mappings));
+        this._executor = new CommandExecutor(
+            injector,
+            this._mappings.removeMapping.bind(this._mappings)
+        );
     }
 
     /*============================================================================*/
@@ -81,7 +83,11 @@ export class EventCommandTrigger implements ICommandTrigger {
      * @inheritDoc
      */
     public deactivate(): void {
-        this._dispatcher.removeEventListener(this._type, this.eventHandler, this);
+        this._dispatcher.removeEventListener(
+            this._type,
+            this.eventHandler,
+            this
+        );
     }
 
     public toString(): string {
@@ -96,13 +102,16 @@ export class EventCommandTrigger implements ICommandTrigger {
         let eventConstructor: Object = <Object>event["constructor"];
         let payloadEventClass: Object;
         // not pretty, but optimized to avoid duplicate checks and shortest paths
-        if (eventConstructor === this._eventClass || (!this._eventClass)) {
+        if (eventConstructor === this._eventClass || !this._eventClass) {
             payloadEventClass = eventConstructor;
         } else if (this._eventClass === Event) {
             payloadEventClass = this._eventClass;
         } else {
             return;
         }
-        this._executor.executeCommands(this._mappings.getList(), new CommandPayload([event], [payloadEventClass]));
+        this._executor.executeCommands(
+            this._mappings.getList(),
+            new CommandPayload([event], [payloadEventClass])
+        );
     }
 }

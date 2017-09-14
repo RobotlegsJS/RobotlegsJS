@@ -16,7 +16,6 @@ import { createCallbackHandlerThatErrors } from "./safelyCallBackSupport/createC
 import { createHandler } from "./safelyCallBackSupport/createHandler";
 
 describe("MessageDispatcher", () => {
-
     let dispatcher: MessageDispatcher;
     let message: Object;
 
@@ -31,7 +30,11 @@ describe("MessageDispatcher", () => {
     });
 
     it("function length assumptions", () => {
-        let func: Function = function(a: string, b: string, c: string = ""): void {
+        let func: Function = function(
+            a: string,
+            b: string,
+            c: string = ""
+        ): void {
             assert.equal(arguments.length, 2);
         };
         func("", "");
@@ -144,7 +147,10 @@ describe("MessageDispatcher", () => {
 
     it("handler with callback handles message", () => {
         let actualMessage: Object = null;
-        dispatcher.addMessageHandler(message, function(msg: Object, callback: Function): void {
+        dispatcher.addMessageHandler(message, function(
+            msg: Object,
+            callback: Function
+        ): void {
             actualMessage = msg;
             callback();
         });
@@ -154,7 +160,10 @@ describe("MessageDispatcher", () => {
 
     it("async handler handles message", (done: Function) => {
         let actualMessage: Object;
-        dispatcher.addMessageHandler(message, function(msg: Object, callback: Function): void {
+        dispatcher.addMessageHandler(message, function(
+            msg: Object,
+            callback: Function
+        ): void {
             actualMessage = msg;
             setTimeout(callback, 5);
         });
@@ -197,7 +206,9 @@ describe("MessageDispatcher", () => {
         }, 50);
     });
 
-    it("callback is called once after sync and async handlers", (done: Function) => {
+    it("callback is called once after sync and async handlers", (
+        done: Function
+    ) => {
         let callbackCount: number = 0;
         dispatcher.addMessageHandler(message, createAsyncHandler());
         dispatcher.addMessageHandler(message, createHandler());
@@ -215,7 +226,10 @@ describe("MessageDispatcher", () => {
     it("handler passes error to callback", () => {
         let expectedError: Object = "Error";
         let actualError: Object = null;
-        dispatcher.addMessageHandler(message, function(msg: Object, callback: Function): void {
+        dispatcher.addMessageHandler(message, function(
+            msg: Object,
+            callback: Function
+        ): void {
             callback(expectedError);
         });
         dispatcher.dispatchMessage(message, function(error: Object): void {
@@ -227,7 +241,10 @@ describe("MessageDispatcher", () => {
     it("async_handler_passes_error_to_callback", (done: Function) => {
         let expectedError: Object = "Error";
         let actualError: Object = null;
-        dispatcher.addMessageHandler(message, function(msg: Object, callback: Function): void {
+        dispatcher.addMessageHandler(message, function(
+            msg: Object,
+            callback: Function
+        ): void {
             setTimeout(callback, 5, expectedError);
         });
         dispatcher.dispatchMessage(message, function(error: Object): void {
@@ -241,7 +258,10 @@ describe("MessageDispatcher", () => {
 
     it("handler that calls back more than once is ignored", () => {
         var callbackCount: number = 0;
-        dispatcher.addMessageHandler(message, function(msg: Object, callback: Function): void {
+        dispatcher.addMessageHandler(message, function(
+            msg: Object,
+            callback: Function
+        ): void {
             callback();
             callback();
         });
@@ -251,14 +271,19 @@ describe("MessageDispatcher", () => {
         assert.equal(callbackCount, 1);
     });
 
-    it("async handler that calls back more than once is ignored", (done: Function) => {
+    it("async handler that calls back more than once is ignored", (
+        done: Function
+    ) => {
         let callbackCount: number = 0;
-        dispatcher.addMessageHandler(message, function(msg: Object, callback: Function): void {
+        dispatcher.addMessageHandler(message, function(
+            msg: Object,
+            callback: Function
+        ): void {
             callback();
             callback();
         });
         dispatcher.dispatchMessage(message, function(error: Object): void {
-            callbackCount++
+            callbackCount++;
         });
         setTimeout(function(): void {
             assert.equal(callbackCount, 1);
@@ -271,7 +296,10 @@ describe("MessageDispatcher", () => {
         let results: string[] = [];
         for (let i: number = 0; i < expected.length; i++) {
             let id: string = expected[i];
-            dispatcher.addMessageHandler(message, createHandler(results.push.bind(results), id));
+            dispatcher.addMessageHandler(
+                message,
+                createHandler(results.push.bind(results), id)
+            );
         }
         dispatcher.dispatchMessage(message);
         assert.deepEqual(results, expected);
@@ -282,7 +310,10 @@ describe("MessageDispatcher", () => {
         let results: string[] = [];
         for (let i: number = 0; i < expected.length; i++) {
             let id: string = expected[i];
-            dispatcher.addMessageHandler(message, createHandler(results.push.bind(results), id));
+            dispatcher.addMessageHandler(
+                message,
+                createHandler(results.push.bind(results), id)
+            );
         }
         dispatcher.dispatchMessage(message, null, true);
         assert.deepEqual(results, expected.reverse());
@@ -293,7 +324,10 @@ describe("MessageDispatcher", () => {
         let results: string[] = [];
         for (let i: number = 0; i < expected.length; i++) {
             let id: string = expected[i];
-            dispatcher.addMessageHandler(message, createAsyncHandler(results.push.bind(results), id));
+            dispatcher.addMessageHandler(
+                message,
+                createAsyncHandler(results.push.bind(results), id)
+            );
         }
         dispatcher.dispatchMessage(message);
         setTimeout(function(): void {
@@ -302,12 +336,17 @@ describe("MessageDispatcher", () => {
         }, 50);
     });
 
-    it("async handlers should run in reverse order when reversed", (done: Function) => {
+    it("async handlers should run in reverse order when reversed", (
+        done: Function
+    ) => {
         let expected: string[] = ["A", "B", "C", "D"];
         let results: string[] = [];
         for (let i: number = 0; i < expected.length; i++) {
             let id: string = expected[i];
-            dispatcher.addMessageHandler(message, createAsyncHandler(results.push.bind(results), id));
+            dispatcher.addMessageHandler(
+                message,
+                createAsyncHandler(results.push.bind(results), id)
+            );
         }
         dispatcher.dispatchMessage(message, null, true);
         setTimeout(function(): void {
@@ -319,10 +358,22 @@ describe("MessageDispatcher", () => {
     it("async and sync handlers should run in order", (done: Function) => {
         let expected: string[] = ["A", "B", "C", "D"];
         let results: string[] = [];
-        dispatcher.addMessageHandler(message, createAsyncHandler(results.push.bind(results), "A"));
-        dispatcher.addMessageHandler(message, createHandler(results.push.bind(results), "B"));
-        dispatcher.addMessageHandler(message, createAsyncHandler(results.push.bind(results), "C"));
-        dispatcher.addMessageHandler(message, createHandler(results.push.bind(results), "D"));
+        dispatcher.addMessageHandler(
+            message,
+            createAsyncHandler(results.push.bind(results), "A")
+        );
+        dispatcher.addMessageHandler(
+            message,
+            createHandler(results.push.bind(results), "B")
+        );
+        dispatcher.addMessageHandler(
+            message,
+            createAsyncHandler(results.push.bind(results), "C")
+        );
+        dispatcher.addMessageHandler(
+            message,
+            createHandler(results.push.bind(results), "D")
+        );
         dispatcher.dispatchMessage(message);
         setTimeout(function(): void {
             assert.deepEqual(results, expected);
@@ -330,13 +381,27 @@ describe("MessageDispatcher", () => {
         }, 50);
     });
 
-    it("async and sync handlers should run in order when reversed", (done: Function) => {
+    it("async and sync handlers should run in order when reversed", (
+        done: Function
+    ) => {
         let expected: string[] = ["A", "B", "C", "D"];
         let results: string[] = [];
-        dispatcher.addMessageHandler(message, createAsyncHandler(results.push.bind(results), "A"));
-        dispatcher.addMessageHandler(message, createHandler(results.push.bind(results), "B"));
-        dispatcher.addMessageHandler(message, createAsyncHandler(results.push.bind(results), "C"));
-        dispatcher.addMessageHandler(message, createHandler(results.push.bind(results), "D"));
+        dispatcher.addMessageHandler(
+            message,
+            createAsyncHandler(results.push.bind(results), "A")
+        );
+        dispatcher.addMessageHandler(
+            message,
+            createHandler(results.push.bind(results), "B")
+        );
+        dispatcher.addMessageHandler(
+            message,
+            createAsyncHandler(results.push.bind(results), "C")
+        );
+        dispatcher.addMessageHandler(
+            message,
+            createHandler(results.push.bind(results), "D")
+        );
         dispatcher.dispatchMessage(message, null, true);
         setTimeout(function(): void {
             assert.deepEqual(results, expected.reverse());
@@ -347,10 +412,25 @@ describe("MessageDispatcher", () => {
     it("terminated message should not reach further handlers", () => {
         let expected: string[] = ["A", "B", "C (with error)"];
         let results: string[] = [];
-        dispatcher.addMessageHandler(message, createHandler(results.push.bind(results), "A"));
-        dispatcher.addMessageHandler(message, createHandler(results.push.bind(results), "B"));
-        dispatcher.addMessageHandler(message, createCallbackHandlerThatErrors(results.push.bind(results), "C (with error)"));
-        dispatcher.addMessageHandler(message, createHandler(results.push.bind(results), "D"));
+        dispatcher.addMessageHandler(
+            message,
+            createHandler(results.push.bind(results), "A")
+        );
+        dispatcher.addMessageHandler(
+            message,
+            createHandler(results.push.bind(results), "B")
+        );
+        dispatcher.addMessageHandler(
+            message,
+            createCallbackHandlerThatErrors(
+                results.push.bind(results),
+                "C (with error)"
+            )
+        );
+        dispatcher.addMessageHandler(
+            message,
+            createHandler(results.push.bind(results), "D")
+        );
         dispatcher.dispatchMessage(message);
         assert.deepEqual(results, expected);
     });
@@ -358,21 +438,53 @@ describe("MessageDispatcher", () => {
     it("terminated message should not reach further handlers when reversed", () => {
         let expected: string[] = ["D", "C (with error)"];
         let results: string[] = [];
-        dispatcher.addMessageHandler(message, createHandler(results.push.bind(results), "A"));
-        dispatcher.addMessageHandler(message, createHandler(results.push.bind(results), "B"));
-        dispatcher.addMessageHandler(message, createCallbackHandlerThatErrors(results.push.bind(results), "C (with error)"));
-        dispatcher.addMessageHandler(message, createHandler(results.push.bind(results), "D"));
+        dispatcher.addMessageHandler(
+            message,
+            createHandler(results.push.bind(results), "A")
+        );
+        dispatcher.addMessageHandler(
+            message,
+            createHandler(results.push.bind(results), "B")
+        );
+        dispatcher.addMessageHandler(
+            message,
+            createCallbackHandlerThatErrors(
+                results.push.bind(results),
+                "C (with error)"
+            )
+        );
+        dispatcher.addMessageHandler(
+            message,
+            createHandler(results.push.bind(results), "D")
+        );
         dispatcher.dispatchMessage(message, null, true);
         assert.deepEqual(results, expected);
     });
 
-    it("terminated async message should not reach further handlers", (done: Function) => {
+    it("terminated async message should not reach further handlers", (
+        done: Function
+    ) => {
         let expected: string[] = ["A", "B", "C (with error)"];
         let results: string[] = [];
-        dispatcher.addMessageHandler(message, createAsyncHandler(results.push.bind(results), "A"));
-        dispatcher.addMessageHandler(message, createAsyncHandler(results.push.bind(results), "B"));
-        dispatcher.addMessageHandler(message, createCallbackHandlerThatErrors(results.push.bind(results), "C (with error)"));
-        dispatcher.addMessageHandler(message, createAsyncHandler(results.push.bind(results), "D"));
+        dispatcher.addMessageHandler(
+            message,
+            createAsyncHandler(results.push.bind(results), "A")
+        );
+        dispatcher.addMessageHandler(
+            message,
+            createAsyncHandler(results.push.bind(results), "B")
+        );
+        dispatcher.addMessageHandler(
+            message,
+            createCallbackHandlerThatErrors(
+                results.push.bind(results),
+                "C (with error)"
+            )
+        );
+        dispatcher.addMessageHandler(
+            message,
+            createAsyncHandler(results.push.bind(results), "D")
+        );
         dispatcher.dispatchMessage(message);
         setTimeout(function(): void {
             assert.deepEqual(results, expected);
@@ -380,13 +492,30 @@ describe("MessageDispatcher", () => {
         }, 50);
     });
 
-    it("terminated_async_message_should_not_reach_further_handlers_when_reversed", (done: Function) => {
+    it("terminated_async_message_should_not_reach_further_handlers_when_reversed", (
+        done: Function
+    ) => {
         let expected: string[] = ["D", "C (with error)"];
         let results: string[] = [];
-        dispatcher.addMessageHandler(message, createAsyncHandler(results.push.bind(results), "A"));
-        dispatcher.addMessageHandler(message, createAsyncHandler(results.push.bind(results), "B"));
-        dispatcher.addMessageHandler(message, createCallbackHandlerThatErrors(results.push.bind(results), "C (with error)"));
-        dispatcher.addMessageHandler(message, createAsyncHandler(results.push.bind(results), "D"));
+        dispatcher.addMessageHandler(
+            message,
+            createAsyncHandler(results.push.bind(results), "A")
+        );
+        dispatcher.addMessageHandler(
+            message,
+            createAsyncHandler(results.push.bind(results), "B")
+        );
+        dispatcher.addMessageHandler(
+            message,
+            createCallbackHandlerThatErrors(
+                results.push.bind(results),
+                "C (with error)"
+            )
+        );
+        dispatcher.addMessageHandler(
+            message,
+            createAsyncHandler(results.push.bind(results), "D")
+        );
         dispatcher.dispatchMessage(message, null, true);
         setTimeout(function(): void {
             assert.deepEqual(results, expected);

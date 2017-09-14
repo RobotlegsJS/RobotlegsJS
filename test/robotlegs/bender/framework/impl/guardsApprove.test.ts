@@ -18,7 +18,6 @@ import { HappyGuard } from "./guardSupport/HappyGuard";
 import { JustTheMiddleManGuard } from "./guardSupport/JustTheMiddleManGuard";
 
 describe("guardsApprove", () => {
-
     function happyFunction(): boolean {
         return true;
     }

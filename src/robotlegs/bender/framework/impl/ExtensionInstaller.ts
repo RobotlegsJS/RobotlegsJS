@@ -14,7 +14,6 @@ import { ILogger } from "../api/ILogger";
  * @private
  */
 export class ExtensionInstaller {
-
     /*============================================================================*/
     /* Private Properties                                                         */
     /*============================================================================*/
@@ -46,7 +45,10 @@ export class ExtensionInstaller {
      * @param extension An object or class implementing IExtension
      */
     public install(extension: any): void {
-        if ((typeof (extension) === "function") && (extension.prototype.extend !== undefined)) {
+        if (
+            typeof extension === "function" &&
+            extension.prototype.extend !== undefined
+        ) {
             if (!this._classes.get(extension)) {
                 this.install(new extension());
             }

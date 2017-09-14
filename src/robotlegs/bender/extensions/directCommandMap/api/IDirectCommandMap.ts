@@ -12,7 +12,6 @@ import { IDirectCommandMapper } from "./IDirectCommandMapper";
  */
 export let IDirectCommandMap = Symbol("IDirectCommandMap");
 export interface IDirectCommandMap extends IDirectCommandMapper {
-
     /**
      * Pins a command in memory
      * @param command the command instance to pin

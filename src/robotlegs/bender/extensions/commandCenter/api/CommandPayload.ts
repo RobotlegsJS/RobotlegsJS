@@ -9,7 +9,6 @@
  * @private
  */
 export class CommandPayload {
-
     /*============================================================================*/
     /* Public Properties                                                          */
     /*============================================================================*/
@@ -66,7 +65,10 @@ export class CommandPayload {
      * @param payloadClass The class of the value
      * @return Self
      */
-    public addPayload(payloadValue: Object, payloadClass: Object): CommandPayload {
+    public addPayload(
+        payloadValue: Object,
+        payloadClass: Object
+    ): CommandPayload {
         if (this._values) {
             this._values.push(payloadValue);
         } else {
@@ -88,10 +90,12 @@ export class CommandPayload {
     public hasPayload(): boolean {
         // todo: the final clause will make this fail silently
         // todo: rethink
-        return this._values
-            && this._values.length > 0
-            && this._classes
-            && this._classes.length > 0
-            && this._classes.length === this._values.length;
+        return (
+            this._values &&
+            this._values.length > 0 &&
+            this._classes &&
+            this._classes.length > 0 &&
+            this._classes.length === this._values.length
+        );
     }
 }

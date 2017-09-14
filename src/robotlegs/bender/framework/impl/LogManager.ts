@@ -16,7 +16,6 @@ import { Logger } from "../impl/Logger";
  * @private
  */
 export class LogManager implements ILogTarget {
-
     /*============================================================================*/
     /* Public Properties                                                          */
     /*============================================================================*/
@@ -73,13 +72,15 @@ export class LogManager implements ILogTarget {
         level: number,
         timestamp: number,
         message: string,
-        params: any[] = null): void {
-
+        params: any[] = null
+    ): void {
         if (level > this._logLevel) {
             return;
         }
 
-        this._targets.forEach((target: ILogTarget) => { target.log(source, level, timestamp, message, params); });
+        this._targets.forEach((target: ILogTarget) => {
+            target.log(source, level, timestamp, message, params);
+        });
     }
 
     public removeAllTargets(): void {

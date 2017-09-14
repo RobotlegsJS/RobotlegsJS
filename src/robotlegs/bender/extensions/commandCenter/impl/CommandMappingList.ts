@@ -11,18 +11,23 @@ import { ICommandTrigger } from "../api/ICommandTrigger";
 
 import { ILogger } from "../../../framework/api/ILogger";
 
-export type CommandMappingCompareFunction = (a: ICommandMapping, b: ICommandMapping) => number;
+export type CommandMappingCompareFunction = (
+    a: ICommandMapping,
+    b: ICommandMapping
+) => number;
 
 /**
  * @private
  */
 export class CommandMappingList implements ICommandMappingList {
-
     /*============================================================================*/
     /* Private Properties                                                         */
     /*============================================================================*/
 
-    private _mappingsByCommand: Map<Object, ICommandMapping> = new Map<Object, ICommandMapping>();
+    private _mappingsByCommand: Map<Object, ICommandMapping> = new Map<
+        Object,
+        ICommandMapping
+    >();
 
     private _mappings: ICommandMapping[] = [];
 
@@ -46,7 +51,11 @@ export class CommandMappingList implements ICommandMappingList {
      * @param processors A reference to the mapping processors for this command map
      * @param logger Optional logger
      */
-    constructor(trigger: ICommandTrigger, processors: Function[], logger: ILogger = null) {
+    constructor(
+        trigger: ICommandTrigger,
+        processors: Function[],
+        logger: ILogger = null
+    ) {
         this._trigger = trigger;
         this._processors = processors;
         this._logger = logger;
@@ -69,7 +78,9 @@ export class CommandMappingList implements ICommandMappingList {
     /**
      * @inheritDoc
      */
-    public withSortFunction(sorter: CommandMappingCompareFunction): ICommandMappingList {
+    public withSortFunction(
+        sorter: CommandMappingCompareFunction
+    ): ICommandMappingList {
         this._sorted = false;
         this._compareFunction = sorter;
         return this;
@@ -81,7 +92,9 @@ export class CommandMappingList implements ICommandMappingList {
     public addMapping(mapping: ICommandMapping): void {
         this._sorted = false;
         this.applyProcessors(mapping);
-        let oldMapping: ICommandMapping = this._mappingsByCommand[<any>mapping.commandClass];
+        let oldMapping: ICommandMapping = this._mappingsByCommand[
+            <any>mapping.commandClass
+        ];
         if (oldMapping) {
             this.overwriteMapping(oldMapping, mapping);
         } else {
@@ -108,7 +121,9 @@ export class CommandMappingList implements ICommandMappingList {
      * @inheritDoc
      */
     public removeMappingFor(commandClass: Object): void {
-        let mapping: ICommandMapping = this._mappingsByCommand[<any>commandClass];
+        let mapping: ICommandMapping = this._mappingsByCommand[
+            <any>commandClass
+        ];
         if (mapping) {
             this.removeMapping(mapping);
         }
@@ -144,16 +159,22 @@ export class CommandMappingList implements ICommandMappingList {
         delete this._mappingsByCommand[<any>mapping.commandClass];
         this._mappings.splice(this._mappings.indexOf(mapping), 1);
         if (this._logger) {
-            this._logger.debug("{0} unmapped from {1}", [this._trigger, mapping]);
+            this._logger.debug("{0} unmapped from {1}", [
+                this._trigger,
+                mapping
+            ]);
         }
     }
 
-    private overwriteMapping(oldMapping: ICommandMapping, newMapping: ICommandMapping): void {
+    private overwriteMapping(
+        oldMapping: ICommandMapping,
+        newMapping: ICommandMapping
+    ): void {
         if (this._logger) {
             this._logger.warn(
                 "{0} already mapped to {1}\n" +
-                "If you have overridden this mapping intentionally you can use 'unmap()' " +
-                "prior to your replacement mapping in order to avoid seeing this message.\n",
+                    "If you have overridden this mapping intentionally you can use 'unmap()' " +
+                    "prior to your replacement mapping in order to avoid seeing this message.\n",
                 [this._trigger, oldMapping]
             );
         }

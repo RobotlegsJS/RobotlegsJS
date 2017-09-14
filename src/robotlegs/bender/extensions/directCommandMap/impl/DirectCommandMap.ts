@@ -27,7 +27,6 @@ import { DirectCommandMapper } from "./DirectCommandMapper";
  */
 @injectable()
 export class DirectCommandMap implements IDirectCommandMap {
-
     /*============================================================================*/
     /* Private Properties                                                         */
     /*============================================================================*/
@@ -48,16 +47,21 @@ export class DirectCommandMap implements IDirectCommandMap {
      * Creates a Direct Command Map
      * @param context The context that owns this map
      */
-    constructor( @inject(IContext) context: IContext) {
+    constructor(@inject(IContext) context: IContext) {
         this._context = context;
         // Create a child injector
         let sandboxedInjector: IInjector = context.injector.createChild();
         // allow access to this specific instance in the commands
         sandboxedInjector.bind(IDirectCommandMap).toConstantValue(this);
         this._mappings = new CommandMappingList(
-            new NullCommandTrigger(), this._mappingProcessors, context.getLogger(this)
+            new NullCommandTrigger(),
+            this._mappingProcessors,
+            context.getLogger(this)
         );
-        this._executor = new CommandExecutor(sandboxedInjector, this._mappings.removeMapping.bind(this._mappings));
+        this._executor = new CommandExecutor(
+            sandboxedInjector,
+            this._mappings.removeMapping.bind(this._mappings)
+        );
     }
 
     /*============================================================================*/
@@ -68,7 +72,11 @@ export class DirectCommandMap implements IDirectCommandMap {
      * @inheritDoc
      */
     public map(commandClass: Object): IDirectCommandConfigurator {
-        return new DirectCommandMapper(this._executor, this._mappings, commandClass);
+        return new DirectCommandMapper(
+            this._executor,
+            this._mappings,
+            commandClass
+        );
     }
 
     /**

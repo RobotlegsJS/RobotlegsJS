@@ -23,7 +23,6 @@ import { LocalEventMapExtension } from "../../extensions/localEventMap/LocalEven
  * in typical Robotlegs applications and modules.</p>
  */
 export class MVCSBundle implements IBundle {
-
     /*============================================================================*/
     /* Public Functions                                                           */
     /*============================================================================*/

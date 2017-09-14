@@ -6,9 +6,7 @@
 // ------------------------------------------------------------------------------
 
 export class TestObject {
-    constructor(
-        public name: string
-    ) {
+    constructor(public name: string) {
         this.name = name;
     }
 }

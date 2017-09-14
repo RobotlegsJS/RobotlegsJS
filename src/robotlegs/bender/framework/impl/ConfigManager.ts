@@ -26,7 +26,6 @@ import { instantiateUnmapped } from "./instantiateUnmapped";
  * @private
  */
 export class ConfigManager {
-
     /*============================================================================*/
     /* Private Properties                                                         */
     /*============================================================================*/
@@ -57,11 +56,20 @@ export class ConfigManager {
         this._injector = context.injector;
         this._logger = context.getLogger(this);
         this.addConfigHandler(new ClassMatcher(), this.handleClass.bind(this));
-        this.addConfigHandler(new ObjectMatcher(), this.handleObject.bind(this));
+        this.addConfigHandler(
+            new ObjectMatcher(),
+            this.handleObject.bind(this)
+        );
         // The ConfigManager should process the config queue
         // at the end of the INITIALIZE phase,
         // but *before* POST_INITIALIZE, so use low event priority
-        context.addEventListener(LifecycleEvent.INITIALIZE, this.initialize, this, false, -100);
+        context.addEventListener(
+            LifecycleEvent.INITIALIZE,
+            this.initialize,
+            this,
+            false,
+            -100
+        );
     }
 
     /*============================================================================*/
@@ -93,7 +101,10 @@ export class ConfigManager {
      * Destroy
      */
     public destroy(): void {
-        this._context.removeEventListener(LifecycleEvent.INITIALIZE, this.initialize);
+        this._context.removeEventListener(
+            LifecycleEvent.INITIALIZE,
+            this.initialize
+        );
         this._objectProcessor.removeAllHandlers();
         this._queue.length = 0;
         this._configs.clear();
@@ -112,20 +123,32 @@ export class ConfigManager {
 
     private handleClass(type: interfaces.Newable<IConfig>): void {
         if (this._initialized) {
-            this._logger.debug("Already initialized. Instantiating config class {0}", [type]);
+            this._logger.debug(
+                "Already initialized. Instantiating config class {0}",
+                [type]
+            );
             this.processClass(type);
         } else {
-            this._logger.debug("Not yet initialized. Queuing config class {0}", [type]);
+            this._logger.debug(
+                "Not yet initialized. Queuing config class {0}",
+                [type]
+            );
             this._queue.push(type);
         }
     }
 
     private handleObject(object: any): void {
         if (this._initialized) {
-            this._logger.debug("Already initialized. Injecting into config object {0}", [object]);
+            this._logger.debug(
+                "Already initialized. Injecting into config object {0}",
+                [object]
+            );
             this.processObject(object);
         } else {
-            this._logger.debug("Not yet initialized. Queuing config object {0}", [object]);
+            this._logger.debug(
+                "Not yet initialized. Queuing config object {0}",
+                [object]
+            );
             this._queue.push(object);
         }
     }
@@ -134,11 +157,18 @@ export class ConfigManager {
         for (let i in this._queue) {
             if (this._queue.hasOwnProperty(i)) {
                 let config: any = this._queue[i];
-                if (typeof (config) === "function") { // instanceof Class
-                    this._logger.debug("Now initializing. Instantiating config class {0}", [config]);
+                if (typeof config === "function") {
+                    // instanceof Class
+                    this._logger.debug(
+                        "Now initializing. Instantiating config class {0}",
+                        [config]
+                    );
                     this.processClass(config);
                 } else {
-                    this._logger.debug("Now initializing. Injecting into config object {0}", [config]);
+                    this._logger.debug(
+                        "Now initializing. Injecting into config object {0}",
+                        [config]
+                    );
                     this.processObject(config);
                 }
             }
@@ -147,7 +177,10 @@ export class ConfigManager {
     }
 
     private processClass(type: interfaces.Newable<IConfig>): void {
-        let config: IConfig = instantiateUnmapped<IConfig>(this._injector, type);
+        let config: IConfig = instantiateUnmapped<IConfig>(
+            this._injector,
+            type
+        );
         if (config) {
             config.configure();
         }
@@ -165,7 +198,6 @@ export class ConfigManager {
  * @private
  */
 class ClassMatcher implements IMatcher {
-
     /*============================================================================*/
     /* Public Functions                                                           */
     /*============================================================================*/
@@ -174,7 +206,7 @@ class ClassMatcher implements IMatcher {
      * @private
      */
     public matches(item: any): boolean {
-        return typeof (item) === "function";
+        return typeof item === "function";
     }
 }
 
@@ -182,7 +214,6 @@ class ClassMatcher implements IMatcher {
  * @private
  */
 class ObjectMatcher implements IMatcher {
-
     /*============================================================================*/
     /* Public Functions                                                           */
     /*============================================================================*/
@@ -191,6 +222,6 @@ class ObjectMatcher implements IMatcher {
      * @private
      */
     public matches(item: any): boolean {
-        return typeof (item) === "object";
+        return typeof item === "object";
     }
 }

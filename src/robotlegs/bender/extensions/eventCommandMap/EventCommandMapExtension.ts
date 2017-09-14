@@ -15,7 +15,6 @@ import { EventCommandMap } from "./impl/EventCommandMap";
  * The Event Command Map allows you to bind Events to Commands
  */
 export class EventCommandMapExtension implements IExtension {
-
     /*============================================================================*/
     /* Public Functions                                                           */
     /*============================================================================*/
@@ -25,6 +24,9 @@ export class EventCommandMapExtension implements IExtension {
      */
     public extend(context: IContext): void {
         // context.injector.map(IEventCommandMap).toSingleton(EventCommandMap);
-        context.injector.bind(IEventCommandMap).to(EventCommandMap).inSingletonScope();
+        context.injector
+            .bind(IEventCommandMap)
+            .to(EventCommandMap)
+            .inSingletonScope();
     }
 }

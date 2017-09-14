@@ -16,7 +16,6 @@ import { Logger } from "../../../../../src/robotlegs/bender/framework/impl/Logge
 import { InjectableLoggerExtension } from "../../../../../src/robotlegs/bender/extensions/enhancedLogging/InjectableLoggerExtension";
 
 describe("InjectableLoggerExtension", () => {
-
     let context: IContext;
 
     beforeEach(() => {

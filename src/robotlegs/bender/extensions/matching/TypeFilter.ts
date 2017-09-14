@@ -11,7 +11,6 @@ import { ITypeFilter } from "./ITypeFilter";
  * @private
  */
 export class TypeFilter implements ITypeFilter {
-
     /*============================================================================*/
     /* Public Properties                                                          */
     /*============================================================================*/
@@ -49,7 +48,7 @@ export class TypeFilter implements ITypeFilter {
      * @inheritDoc
      */
     public get descriptor(): string {
-        return this._descriptor = this._descriptor || this.createDescriptor();
+        return (this._descriptor = this._descriptor || this.createDescriptor());
     }
 
     /*============================================================================*/
@@ -59,7 +58,11 @@ export class TypeFilter implements ITypeFilter {
     /**
      * @private
      */
-    constructor(allOf: FunctionConstructor[], anyOf: FunctionConstructor[], noneOf: FunctionConstructor[]) {
+    constructor(
+        allOf: FunctionConstructor[],
+        anyOf: FunctionConstructor[],
+        noneOf: FunctionConstructor[]
+    ) {
         if (!allOf || !anyOf || !noneOf) {
             throw Error("TypeFilter parameters can not be null");
         }
@@ -90,7 +93,10 @@ export class TypeFilter implements ITypeFilter {
             }
         }
 
-        if (this._anyOfTypes.length === 0 && (this._allOfTypes.length > 0 || this._noneOfTypes.length > 0)) {
+        if (
+            this._anyOfTypes.length === 0 &&
+            (this._allOfTypes.length > 0 || this._noneOfTypes.length > 0)
+        ) {
             return true;
         }
 
@@ -108,14 +114,16 @@ export class TypeFilter implements ITypeFilter {
     /* Protected Functions                                                        */
     /*============================================================================*/
 
-    protected alphabetiseCaseInsensitiveFCQNs(classVector: FunctionConstructor[]): string[] {
+    protected alphabetiseCaseInsensitiveFCQNs(
+        classVector: FunctionConstructor[]
+    ): string[] {
         let fqcn: string;
         let allFCQNs: string[] = [];
 
         let iLength: number = classVector.length;
         for (let i: number = 0; i < iLength; i++) {
             // fqcn = getQualifiedClassName(classVector[i]);
-            fqcn = classVector[i].toString().match(/function\ ([^\(]+)/)[1]
+            fqcn = classVector[i].toString().match(/function\ ([^\(]+)/)[1];
             allFCQNs[allFCQNs.length] = fqcn;
         }
 
@@ -124,12 +132,23 @@ export class TypeFilter implements ITypeFilter {
     }
 
     protected createDescriptor(): string {
-        let allOf_FCQNs: string[] = this.alphabetiseCaseInsensitiveFCQNs(this.allOfTypes);
-        let anyOf_FCQNs: string[] = this.alphabetiseCaseInsensitiveFCQNs(this.anyOfTypes);
-        let noneOf_FQCNs: string[] = this.alphabetiseCaseInsensitiveFCQNs(this.noneOfTypes);
-        return "all of: " + allOf_FCQNs.toString()
-            + ", any of: " + anyOf_FCQNs.toString()
-            + ", none of: " + noneOf_FQCNs.toString();
+        let allOf_FCQNs: string[] = this.alphabetiseCaseInsensitiveFCQNs(
+            this.allOfTypes
+        );
+        let anyOf_FCQNs: string[] = this.alphabetiseCaseInsensitiveFCQNs(
+            this.anyOfTypes
+        );
+        let noneOf_FQCNs: string[] = this.alphabetiseCaseInsensitiveFCQNs(
+            this.noneOfTypes
+        );
+        return (
+            "all of: " +
+            allOf_FCQNs.toString() +
+            ", any of: " +
+            anyOf_FCQNs.toString() +
+            ", none of: " +
+            noneOf_FQCNs.toString()
+        );
     }
 
     protected stringSort(item1: string, item2: string): number {

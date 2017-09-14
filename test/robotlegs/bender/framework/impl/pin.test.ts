@@ -15,7 +15,6 @@ import { Pin } from "../../../../../src/robotlegs/bender/framework/impl/Pin";
 import { EventDispatcher } from "../../../../../src/robotlegs/bender/events/impl/EventDispatcher";
 
 describe("Pin", () => {
-
     let instance: Object;
     let dispatcher: EventDispatcher;
     let pin: Pin;
@@ -35,7 +34,7 @@ describe("Pin", () => {
     it("detain dispatches event", () => {
         let dispatcherSpy = sinon.spy(dispatcher, "dispatchEvent");
         pin.detain(instance);
-        let pinEvent: PinEvent = <PinEvent>(dispatcherSpy.firstCall.args[0]);
+        let pinEvent: PinEvent = <PinEvent>dispatcherSpy.firstCall.args[0];
         assert.isTrue(dispatcherSpy.calledOnce);
         assert.equal(pinEvent.type, PinEvent.DETAIN);
         assert.equal(pinEvent.instance, instance);
@@ -45,7 +44,7 @@ describe("Pin", () => {
         let dispatcherSpy = sinon.spy(dispatcher, "dispatchEvent");
         pin.detain(instance);
         pin.detain(instance);
-        let pinEvent: PinEvent = <PinEvent>(dispatcherSpy.firstCall.args[0]);
+        let pinEvent: PinEvent = <PinEvent>dispatcherSpy.firstCall.args[0];
         assert.isTrue(dispatcherSpy.calledOnce);
         assert.equal(pinEvent.type, PinEvent.DETAIN);
         assert.equal(pinEvent.instance, instance);
@@ -55,7 +54,7 @@ describe("Pin", () => {
         let dispatcherSpy = sinon.spy(dispatcher, "dispatchEvent");
         pin.detain(instance);
         pin.release(instance);
-        let pinEvent: PinEvent = <PinEvent>(dispatcherSpy.secondCall.args[0]);
+        let pinEvent: PinEvent = <PinEvent>dispatcherSpy.secondCall.args[0];
         assert.isTrue(dispatcherSpy.calledTwice);
         assert.equal(pinEvent.type, PinEvent.RELEASE);
         assert.equal(pinEvent.instance, instance);
@@ -66,7 +65,7 @@ describe("Pin", () => {
         pin.detain(instance);
         pin.release(instance);
         pin.release(instance);
-        let pinEvent: PinEvent = <PinEvent>(dispatcherSpy.secondCall.args[0]);
+        let pinEvent: PinEvent = <PinEvent>dispatcherSpy.secondCall.args[0];
         assert.isTrue(dispatcherSpy.calledTwice);
         assert.equal(pinEvent.type, PinEvent.RELEASE);
         assert.equal(pinEvent.instance, instance);
@@ -87,12 +86,12 @@ describe("Pin", () => {
         pin.detain(instanceB);
         pin.detain(instanceC);
         pin.releaseAll();
-        let pinDetainEventA: PinEvent = <PinEvent>(dispatcherSpy.args[0][0]);
-        let pinDetainEventB: PinEvent = <PinEvent>(dispatcherSpy.args[1][0]);
-        let pinDetainEventC: PinEvent = <PinEvent>(dispatcherSpy.args[2][0]);
-        let pinReleaseEventA: PinEvent = <PinEvent>(dispatcherSpy.args[3][0]);
-        let pinReleaseEventB: PinEvent = <PinEvent>(dispatcherSpy.args[4][0]);
-        let pinReleaseEventC: PinEvent = <PinEvent>(dispatcherSpy.args[5][0]);
+        let pinDetainEventA: PinEvent = <PinEvent>dispatcherSpy.args[0][0];
+        let pinDetainEventB: PinEvent = <PinEvent>dispatcherSpy.args[1][0];
+        let pinDetainEventC: PinEvent = <PinEvent>dispatcherSpy.args[2][0];
+        let pinReleaseEventA: PinEvent = <PinEvent>dispatcherSpy.args[3][0];
+        let pinReleaseEventB: PinEvent = <PinEvent>dispatcherSpy.args[4][0];
+        let pinReleaseEventC: PinEvent = <PinEvent>dispatcherSpy.args[5][0];
         assert.equal(dispatcherSpy.callCount, 6);
         assert.equal(pinDetainEventA.type, PinEvent.DETAIN);
         assert.equal(pinDetainEventA.instance, instanceA);

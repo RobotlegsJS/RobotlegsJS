@@ -7,7 +7,6 @@
 
 import { IMatcher } from "../../framework/api/IMatcher";
 
-
 /**
  * A Type Filter describes a Type Matcher
  */

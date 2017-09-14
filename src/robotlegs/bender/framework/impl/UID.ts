@@ -11,7 +11,6 @@ import { guid } from "inversify";
  * Utility for generating unique object IDs
  */
 export class UID {
-
     /**
      * Generates a UID for a given source object or class
      * @param source The source object or class

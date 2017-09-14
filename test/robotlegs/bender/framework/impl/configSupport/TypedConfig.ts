@@ -11,11 +11,12 @@ import { IConfig } from "../../../../../../src/robotlegs/bender/framework/api/IC
 
 @injectable()
 export class TypedConfig implements IConfig {
-
     protected _callback: Function;
 
     constructor(
-        @inject("Function") @named("callback") callback: Function
+        @inject("Function")
+        @named("callback")
+        callback: Function
     ) {
         this._callback = callback;
     }

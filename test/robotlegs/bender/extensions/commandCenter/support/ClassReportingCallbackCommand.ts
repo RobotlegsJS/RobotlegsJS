@@ -11,11 +11,12 @@ import { ICommand } from "../../../../../../src/robotlegs/bender/extensions/comm
 
 @injectable()
 export class ClassReportingCallbackCommand implements ICommand {
-
     protected _reportingFunction: Function;
 
     constructor(
-        @inject("Function") @named("reportingFunction") reportingFunction: Function
+        @inject("Function")
+        @named("reportingFunction")
+        reportingFunction: Function
     ) {
         this._reportingFunction = reportingFunction;
     }

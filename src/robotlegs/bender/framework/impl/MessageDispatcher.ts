@@ -11,7 +11,6 @@ import { safelyCallBack } from "./safelyCallBack";
  * Message Dispatcher implementation.
  */
 export class MessageDispatcher {
-
     /*============================================================================*/
     /* Private Properties                                                         */
     /*============================================================================*/
@@ -54,7 +53,9 @@ export class MessageDispatcher {
      */
     public removeMessageHandler(message: Object, handler: Function): void {
         let messageHandlers: any[] = this._handlers.get(message);
-        let index: number = messageHandlers ? messageHandlers.indexOf(handler) : -1;
+        let index: number = messageHandlers
+            ? messageHandlers.indexOf(handler)
+            : -1;
         if (index !== -1) {
             messageHandlers.splice(index, 1);
             if (messageHandlers.length === 0) {
@@ -69,7 +70,11 @@ export class MessageDispatcher {
      * @param callback The completion callback function
      * @param reverse Should handlers be called in reverse order
      */
-    public dispatchMessage(message: Object, callback: Function = null, reverse: boolean = false): void {
+    public dispatchMessage(
+        message: Object,
+        callback: Function = null,
+        reverse: boolean = false
+    ): void {
         let handlers: any[] = this._handlers.get(<any>message);
         if (handlers) {
             handlers = handlers.concat();
@@ -86,7 +91,6 @@ export class MessageDispatcher {
 }
 
 class MessageRunner {
-
     /*============================================================================*/
     /* Private Properties                                                         */
     /*============================================================================*/
@@ -130,32 +134,43 @@ class MessageRunner {
         // forcefully breaking out for async handlers and recursing.
         // We do this to avoid increasing the stack depth unnecessarily.
         let handler: Function;
-        while (handler = this._handlers.pop()) {
-            if (handler.length === 0) { // sync handler: ()
+        while ((handler = this._handlers.pop())) {
+            if (handler.length === 0) {
+                // sync handler: ()
                 handler();
-            } else if (handler.length === 1) { // sync handler: (message)
+            } else if (handler.length === 1) {
+                // sync handler: (message)
                 handler(this._message);
-            } else if (handler.length === 2) { // sync or async handler: (message, callback)
+            } else if (handler.length === 2) {
+                // sync or async handler: (message, callback)
                 let handled: boolean = false;
-                handler(this._message, function(error: Object = null, msg: Object = null): void {
-                    // handler must not invoke the callback more than once
-                    if (handled) {
-                        return;
-                    }
-
-                    handled = true;
-
-                    if (error || this._handlers.length === 0) {
-                        if (this._callback) {
-                            safelyCallBack(this._callback, error, this._message);
+                handler(
+                    this._message,
+                    function(error: Object = null, msg: Object = null): void {
+                        // handler must not invoke the callback more than once
+                        if (handled) {
+                            return;
                         }
-                    } else {
-                        this.next();
-                    }
-                }.bind(this));
+
+                        handled = true;
+
+                        if (error || this._handlers.length === 0) {
+                            if (this._callback) {
+                                safelyCallBack(
+                                    this._callback,
+                                    error,
+                                    this._message
+                                );
+                            }
+                        } else {
+                            this.next();
+                        }
+                    }.bind(this)
+                );
                 // IMPORTANT: MUST break this loop with a RETURN. See top.
                 return;
-            } else { // ERROR: this should NEVER happen
+            } else {
+                // ERROR: this should NEVER happen
                 throw new Error("Bad handler signature");
             }
         }

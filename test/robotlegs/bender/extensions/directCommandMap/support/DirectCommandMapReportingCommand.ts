@@ -13,13 +13,14 @@ import { IDirectCommandMap } from "../../../../../../src/robotlegs/bender/extens
 
 @injectable()
 export class DirectCommandMapReportingCommand implements ICommand {
-
     protected _directCommandMap: IDirectCommandMap;
     protected _reportingFunction: Function;
 
     constructor(
         @inject(IDirectCommandMap) directCommandMap: IDirectCommandMap,
-        @inject("Function") @named("reportingFunction") reportingFunction: Function
+        @inject("Function")
+        @named("reportingFunction")
+        reportingFunction: Function
     ) {
         this._directCommandMap = directCommandMap;
         this._reportingFunction = reportingFunction;

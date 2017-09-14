@@ -11,13 +11,15 @@ import { SelfReportingCallbackCommand } from "./SelfReportingCallbackCommand";
 
 @injectable()
 export class SelfReportingCallbackHook {
-
     protected _callback: Function;
     protected _command: SelfReportingCallbackCommand;
 
     constructor(
-        @inject("Function") @named("hookCallback") callback: Function,
-        @inject(SelfReportingCallbackCommand) command: SelfReportingCallbackCommand
+        @inject("Function")
+        @named("hookCallback")
+        callback: Function,
+        @inject(SelfReportingCallbackCommand)
+        command: SelfReportingCallbackCommand
     ) {
         this._callback = callback;
         this._command = command;

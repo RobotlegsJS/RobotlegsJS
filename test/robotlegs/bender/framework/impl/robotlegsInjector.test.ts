@@ -14,7 +14,6 @@ import { RobotlegsInjector } from "../../../../../src/robotlegs/bender/framework
 import { TestObject } from "./objectSupport/TestObject";
 
 describe("RobotlegsInjector", () => {
-
     let parentInjector: RobotlegsInjector;
     let childInjector: RobotlegsInjector;
 

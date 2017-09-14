@@ -14,7 +14,6 @@ import { ICommand } from "../../extensions/commandCenter/api/ICommand";
  * Any class with an execute method can be used.</p>
  */
 export abstract class Command implements ICommand {
-
     /*============================================================================*/
     /* Public Functions                                                           */
     /*============================================================================*/

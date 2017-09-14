@@ -11,7 +11,6 @@ import { CommandMapping } from "../../../../../../src/robotlegs/bender/extension
 
 @injectable()
 export class PriorityMapping extends CommandMapping {
-
     protected _priority: number;
 
     constructor(commandClass: Object, priority: number) {

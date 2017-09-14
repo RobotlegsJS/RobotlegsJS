@@ -37,19 +37,23 @@ import { SelfReportingCallbackCommand } from "../support/SelfReportingCallbackCo
 import { SelfReportingCallbackHook } from "../support/SelfReportingCallbackHook";
 
 describe("CommandExecutor", () => {
-
     let mappings: ICommandMapping[];
     let subject: CommandExecutor;
     let reported: any[];
     let injector: IInjector;
 
     function addMapping(commandClass: any = null): ICommandMapping {
-        let mapping: ICommandMapping = new CommandMapping(commandClass || ClassReportingCallbackCommand);
+        let mapping: ICommandMapping = new CommandMapping(
+            commandClass || ClassReportingCallbackCommand
+        );
         mappings.push(mapping);
         return mapping;
     }
 
-    function addMappings(totalEvents: number = 1, commandClass: any = null): void {
+    function addMappings(
+        totalEvents: number = 1,
+        commandClass: any = null
+    ): void {
         while (totalEvents--) {
             addMapping(commandClass);
         }
@@ -63,7 +67,11 @@ describe("CommandExecutor", () => {
         reported.push(item);
     }
 
-    function resultReporter(result: any, command: Object, mapping: ICommandMapping): void {
+    function resultReporter(
+        result: any,
+        command: Object,
+        mapping: ICommandMapping
+    ): void {
         reported.push(result);
         reported.push(mapping);
     }
@@ -71,7 +79,10 @@ describe("CommandExecutor", () => {
     beforeEach(() => {
         reported = [];
         injector = new RobotlegsInjector();
-        injector.bind("Function").toConstantValue(reportingFunction).whenTargetNamed("reportingFunction");
+        injector
+            .bind("Function")
+            .toConstantValue(reportingFunction)
+            .whenTargetNamed("reportingFunction");
         subject = new CommandExecutor(injector);
         mappings = [];
     });
@@ -84,17 +95,18 @@ describe("CommandExecutor", () => {
     });
 
     it("oneShotMapping is removed", () => {
-        let actualMapping: ICommandMapping = addMapping(ClassReportingCallbackCommand);
+        let actualMapping: ICommandMapping = addMapping(
+            ClassReportingCallbackCommand
+        );
         let expectedMapping: ICommandMapping = null;
         let callCount: number = 0;
         actualMapping.setFireOnce(true);
-        subject = new CommandExecutor(
-            injector,
-            function unmap(mapping: ICommandMapping): void {
-                expectedMapping = mapping;
-                callCount++;
-            }
-        );
+        subject = new CommandExecutor(injector, function unmap(
+            mapping: ICommandMapping
+        ): void {
+            expectedMapping = mapping;
+            callCount++;
+        });
         executeCommands();
         assert.equal(actualMapping, expectedMapping);
         assert.equal(callCount, 1);
@@ -120,7 +132,9 @@ describe("CommandExecutor", () => {
 
     it("hooks are called", () => {
         addMapping(NullCommand).addHooks(
-            ClassReportingCallbackHook, ClassReportingCallbackHook, ClassReportingCallbackHook
+            ClassReportingCallbackHook,
+            ClassReportingCallbackHook,
+            ClassReportingCallbackHook
         );
         executeCommands();
         assert.equal(reported.length, 3);
@@ -129,13 +143,23 @@ describe("CommandExecutor", () => {
     it("command is injected into hook", () => {
         let executedCommand: SelfReportingCallbackCommand = null;
         let injectedCommand: SelfReportingCallbackCommand = null;
-        injector.bind("Function").toConstantValue(function(command: SelfReportingCallbackCommand): void {
-            executedCommand = command;
-        }).whenTargetNamed("executeCallback");
-        injector.bind("Function").toConstantValue(function(hook: SelfReportingCallbackHook): void {
-            injectedCommand = hook.command;
-        }).whenTargetNamed("hookCallback");
-        addMapping(SelfReportingCallbackCommand).addHooks(SelfReportingCallbackHook);
+        injector
+            .bind("Function")
+            .toConstantValue(function(
+                command: SelfReportingCallbackCommand
+            ): void {
+                executedCommand = command;
+            })
+            .whenTargetNamed("executeCallback");
+        injector
+            .bind("Function")
+            .toConstantValue(function(hook: SelfReportingCallbackHook): void {
+                injectedCommand = hook.command;
+            })
+            .whenTargetNamed("hookCallback");
+        addMapping(SelfReportingCallbackCommand).addHooks(
+            SelfReportingCallbackHook
+        );
         executeCommands();
         assert.equal(injectedCommand, executedCommand);
     });
@@ -153,25 +177,31 @@ describe("CommandExecutor", () => {
     });
 
     it("execution sequence is guard command guard command with multiple mappings", () => {
-        addMapping(ClassReportingCallbackCommand).addGuards(ClassReportingCallbackGuard);
-        addMapping(ClassReportingCallbackCommand2).addGuards(ClassReportingCallbackGuard2);
-        executeCommands();
-        assert.deepEqual(
-            reported,
-            [
-                ClassReportingCallbackGuard, ClassReportingCallbackCommand,
-                ClassReportingCallbackGuard2, ClassReportingCallbackCommand2
-            ]
+        addMapping(ClassReportingCallbackCommand).addGuards(
+            ClassReportingCallbackGuard
         );
+        addMapping(ClassReportingCallbackCommand2).addGuards(
+            ClassReportingCallbackGuard2
+        );
+        executeCommands();
+        assert.deepEqual(reported, [
+            ClassReportingCallbackGuard,
+            ClassReportingCallbackCommand,
+            ClassReportingCallbackGuard2,
+            ClassReportingCallbackCommand2
+        ]);
     });
 
     it("execution sequence is guard hook command", () => {
-        addMapping().addGuards(ClassReportingCallbackGuard).addHooks(ClassReportingCallbackHook);
+        addMapping()
+            .addGuards(ClassReportingCallbackGuard)
+            .addHooks(ClassReportingCallbackHook);
         executeCommands();
-        assert.deepEqual(
-            reported,
-            [ClassReportingCallbackGuard, ClassReportingCallbackHook, ClassReportingCallbackCommand]
-        );
+        assert.deepEqual(reported, [
+            ClassReportingCallbackGuard,
+            ClassReportingCallbackHook,
+            ClassReportingCallbackCommand
+        ]);
     });
 
     it("allowed commands get executed after denied command", () => {
@@ -197,43 +227,66 @@ describe("CommandExecutor", () => {
 
     it("payload is injected into command", () => {
         addMapping(PayloadInjectionPointsCommand);
-        let payload: CommandPayload = new CommandPayload(["message", 1], [String, Number]);
+        let payload: CommandPayload = new CommandPayload(
+            ["message", 1],
+            [String, Number]
+        );
         executeCommands(payload);
         assert.deepEqual(reported, payload.values);
     });
 
     it("payload is injected into hook", () => {
         addMapping(NullCommand).addHooks(PayloadInjectionPointsHook);
-        let payload: CommandPayload = new CommandPayload(["message", 1], [String, Number]);
+        let payload: CommandPayload = new CommandPayload(
+            ["message", 1],
+            [String, Number]
+        );
         executeCommands(payload);
         assert.deepEqual(reported, payload.values);
     });
 
     it("payload is injected into guard", () => {
         addMapping(NullCommand).addGuards(PayloadInjectionPointsGuard);
-        let payload: CommandPayload = new CommandPayload(["message", 1], [String, Number]);
+        let payload: CommandPayload = new CommandPayload(
+            ["message", 1],
+            [String, Number]
+        );
         executeCommands(payload);
         assert.deepEqual(reported, payload.values);
     });
 
     it("payload is passed to execute method", () => {
         addMapping(MethodParametersCommand);
-        let payload: CommandPayload = new CommandPayload(["message", 1], [String, Number]);
+        let payload: CommandPayload = new CommandPayload(
+            ["message", 1],
+            [String, Number]
+        );
         executeCommands(payload);
         assert.deepEqual(reported, payload.values);
     });
 
     it("payloadInjection is disabled", () => {
         function payloadInjectionDisabledThrowsError(): void {
-            addMapping(PayloadInjectionPointsCommand).setPayloadInjectionEnabled(false);
-            let payload: CommandPayload = new CommandPayload(["message", 1], [String, Number]);
+            addMapping(
+                PayloadInjectionPointsCommand
+            ).setPayloadInjectionEnabled(false);
+            let payload: CommandPayload = new CommandPayload(
+                ["message", 1],
+                [String, Number]
+            );
             executeCommands(payload);
         }
-        assert.throws(payloadInjectionDisabledThrowsError, Error, "No matching bindings found for serviceIdentifier: String");
+        assert.throws(
+            payloadInjectionDisabledThrowsError,
+            Error,
+            "No matching bindings found for serviceIdentifier: String"
+        );
     });
 
     it("result is handled", () => {
-        let mapping: ICommandMapping = new CommandMapping(MessageReturningCommand);
+        let mapping: ICommandMapping = new CommandMapping(
+            MessageReturningCommand
+        );
         subject = new CommandExecutor(injector, null, resultReporter);
         injector.bind(String).toConstantValue("message");
         subject.executeCommand(mapping);
@@ -241,7 +294,10 @@ describe("CommandExecutor", () => {
     });
 
     it("uses injector mapped command instance", () => {
-        injector.bind("Function").toConstantValue(reportingFunction).whenTargetNamed("executeCallback");
+        injector
+            .bind("Function")
+            .toConstantValue(reportingFunction)
+            .whenTargetNamed("executeCallback");
         injector.bind(SelfReportingCallbackCommand).toSelf();
         let expected: Object = injector.get(SelfReportingCallbackCommand);
         let mapping: ICommandMapping = addMapping(SelfReportingCallbackCommand);

@@ -27,7 +27,6 @@ import { EventCommandTrigger } from "./EventCommandTrigger";
  */
 @injectable()
 export class EventCommandMap implements IEventCommandMap {
-
     /*============================================================================*/
     /* Private Properties                                                         */
     /*============================================================================*/
@@ -56,7 +55,10 @@ export class EventCommandMap implements IEventCommandMap {
         this._injector = context.injector;
         this._logger = context.getLogger(this);
         this._dispatcher = dispatcher;
-        this._triggerMap = new CommandTriggerMap(this.getKey, this.createTrigger.bind(this));
+        this._triggerMap = new CommandTriggerMap(
+            this.getKey,
+            this.createTrigger.bind(this)
+        );
     }
 
     /*============================================================================*/
@@ -96,10 +98,23 @@ export class EventCommandMap implements IEventCommandMap {
     }
 
     private getTrigger(type: string, eventClass: Object): EventCommandTrigger {
-        return <EventCommandTrigger>this._triggerMap.getTrigger(type, eventClass);
+        return <EventCommandTrigger>this._triggerMap.getTrigger(
+            type,
+            eventClass
+        );
     }
 
-    private createTrigger(type: string, eventClass: Object): EventCommandTrigger {
-        return new EventCommandTrigger(this._injector, this._dispatcher, type, eventClass, this._mappingProcessors, this._logger);
+    private createTrigger(
+        type: string,
+        eventClass: Object
+    ): EventCommandTrigger {
+        return new EventCommandTrigger(
+            this._injector,
+            this._dispatcher,
+            type,
+            eventClass,
+            this._mappingProcessors,
+            this._logger
+        );
     }
 }

@@ -23,7 +23,8 @@
 /**
  * The Robotlegs object lifecycle contract
  */
-export interface ILifecycle { // extends IEventDispatcher
+export interface ILifecycle {
+    // extends IEventDispatcher
     /**
      * The current lifecycle state of the target object
      */

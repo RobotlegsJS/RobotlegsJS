@@ -12,7 +12,9 @@ export class MethodParametersCommand {
     protected _reportingFunction: Function;
 
     constructor(
-        @inject("Function") @named("reportingFunction") reportingFunction: Function
+        @inject("Function")
+        @named("reportingFunction")
+        reportingFunction: Function
     ) {
         this._reportingFunction = reportingFunction;
     }

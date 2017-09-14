@@ -27,7 +27,6 @@ import { ILogger } from "../../framework/api/ILogger";
  * </code>
  */
 export class InjectableLoggerExtension implements IExtension {
-
     /*============================================================================*/
     /* Public Functions                                                           */
     /*============================================================================*/
@@ -37,19 +36,25 @@ export class InjectableLoggerExtension implements IExtension {
      */
     public extend(context: IContext): void {
         // Map the literal string "ILogger"
-        context.injector.bind<ILogger>("ILogger").toDynamicValue(() => {
-            return context.getLogger(null);
-        }).onActivation((ctx, logger) => {
-            logger.source = ctx.plan.rootRequest.serviceIdentifier;
-            return logger;
-        });
+        context.injector
+            .bind<ILogger>("ILogger")
+            .toDynamicValue(() => {
+                return context.getLogger(null);
+            })
+            .onActivation((ctx, logger) => {
+                logger.source = ctx.plan.rootRequest.serviceIdentifier;
+                return logger;
+            });
 
         // Map the Symbol ILogger
-        context.injector.bind<ILogger>(ILogger).toDynamicValue(() => {
-            return context.getLogger(null);
-        }).onActivation((ctx, logger) => {
-            logger.source = ctx.plan.rootRequest.serviceIdentifier;
-            return logger;
-        });
+        context.injector
+            .bind<ILogger>(ILogger)
+            .toDynamicValue(() => {
+                return context.getLogger(null);
+            })
+            .onActivation((ctx, logger) => {
+                logger.source = ctx.plan.rootRequest.serviceIdentifier;
+                return logger;
+            });
     }
 }
