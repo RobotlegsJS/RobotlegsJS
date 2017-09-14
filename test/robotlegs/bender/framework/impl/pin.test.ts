@@ -5,7 +5,7 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import "../../../../entry.ts";
+import "../../../../entry";
 
 import { assert } from "chai";
 import sinon = require("sinon");
