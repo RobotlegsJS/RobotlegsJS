@@ -14,7 +14,7 @@ before_install:
 before_script:
   - greenkeeper-lockfile-update
 script:
-  - node_modules/karma/bin/karma start karma.conf.js --single-run
+  - yarn run test
 after_script:
   - greenkeeper-lockfile-upload
 after_success:
