@@ -2,5 +2,4 @@
 --require source-map-support/register
 --full-trace
 --bail
-node_modules/reflect-metadata/Reflect.js
 test/**/*.test.ts
