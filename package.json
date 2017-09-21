@@ -10,7 +10,8 @@
     "autoformat": "prettier --config .prettierrc --write {src,test}/**/*.ts",
     "tslint-check": "tslint-config-prettier-check ./tslint.json",
     "clean-up": "rm -rf coverage && rm -rf lib",
-    "prepublish": "tsc -d && publish-please guard",
+    "prepare": "npm run clean-up && tsc -d",
+    "prepublishOnly": "publish-please guard",
     "publish-please": "npm run autoformat && npm run clean-up && publish-please"
   },
   "nyc": {
