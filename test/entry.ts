@@ -1,5 +1,6 @@
 /// <reference types="mocha" />
 
 import "bluebird/js/browser/bluebird";
-import "es6-symbol/implement";
-import "es6-map/implement";
+import "core-js/es7/reflect";
+import "core-js/es6/symbol";
+import "core-js/es6/map";
