@@ -9,9 +9,10 @@
     "karma": "karma start --single-run",
     "autoformat": "prettier --config .prettierrc --write {src,test}/**/*.ts",
     "tslint-check": "tslint-config-prettier-check ./tslint.json",
-    "clean-up": "rm -rf coverage && rm -rf lib",
-    "prepublish": "tsc -d && publish-please guard",
-    "publish-please": "npm run autoformat && npm run clean-up && publish-please"
+    "clean-up": "rm -rf .nyc_output && rm -rf coverage && rm -rf lib",
+    "prepare": "npm run clean-up && tsc -d",
+    "prepublishOnly": "publish-please guard",
+    "publish-please": "npm run autoformat && npm run clean-up && npm run test && publish-please"
   },
   "nyc": {
     "include": [
