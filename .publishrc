@@ -9,6 +9,6 @@
   },
   "confirm": true,
   "publishTag": "latest --access public",
-  "prePublishScript": "npm test",
+  "prePublishScript": false,
   "postPublishScript": false
 }
