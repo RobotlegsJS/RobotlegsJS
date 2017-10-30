@@ -2947,9 +2947,9 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
-just-extend@^1.1.22:
-  version "1.1.22"
-  resolved "https://registry.npmjs.org/just-extend/-/just-extend-1.1.22.tgz#3330af756cab6a542700c64b2e4e4aa062d52fff"
+just-extend@^1.1.26:
+  version "1.1.26"
+  resolved "https://registry.npmjs.org/just-extend/-/just-extend-1.1.26.tgz#dba4ad2786d319f1d10afab106e004b5a0851ac2"
 
 karma-chai-sinon@^0.1.5:
   version "0.1.5"
@@ -3555,20 +3555,16 @@ nan@^2.3.0:
   version "2.7.0"
   resolved "https://registry.npmjs.org/nan/-/nan-2.7.0.tgz#d95bf721ec877e08db276ed3fc6eb78f9083ad46"
 
-native-promise-only@^0.8.1:
-  version "0.8.1"
-  resolved "https://registry.npmjs.org/native-promise-only/-/native-promise-only-0.8.1.tgz#20a318c30cb45f71fe7adfbf7b21c99c1472ef11"
-
 negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.npmjs.org/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
 
-nise@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.npmjs.org/nise/-/nise-1.1.1.tgz#1faa07147f3bf2465d4dbedc0e4a84048f081041"
+nise@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.npmjs.org/nise/-/nise-1.2.0.tgz#079d6cadbbcb12ba30e38f1c999f36ad4d6baa53"
   dependencies:
     formatio "^1.2.0"
-    just-extend "^1.1.22"
+    just-extend "^1.1.26"
     lolex "^1.6.0"
     path-to-regexp "^1.7.0"
     text-encoding "^0.6.4"
@@ -4537,7 +4533,7 @@ safe-buffer@5.1.1, safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@^5.1.1, s
   version "5.1.1"
   resolved "https://registry.npmjs.org/safe-buffer/-/safe-buffer-5.1.1.tgz#893312af69b2123def71f57889001671eeb2c853"
 
-samsam@1.x, samsam@^1.1.3:
+samsam@1.x:
   version "1.3.0"
   resolved "https://registry.npmjs.org/samsam/-/samsam-1.3.0.tgz#8d1d9350e25622da30de3e44ba692b5221ab7c50"
 
@@ -4672,19 +4668,16 @@ sinon-chai@^2.14.0:
   version "2.14.0"
   resolved "https://registry.npmjs.org/sinon-chai/-/sinon-chai-2.14.0.tgz#da7dd4cc83cd6a260b67cca0f7a9fdae26a1205d"
 
-sinon@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.npmjs.org/sinon/-/sinon-4.0.1.tgz#e46146a8a8420f837bdba32e2965bd1fe43d5b05"
+sinon@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.npmjs.org/sinon/-/sinon-4.0.2.tgz#c81f62456d37986c84e9f522ddb9ce413bda49d2"
   dependencies:
     diff "^3.1.0"
     formatio "1.2.0"
     lodash.get "^4.4.2"
     lolex "^2.1.3"
-    native-promise-only "^0.8.1"
-    nise "^1.1.1"
-    path-to-regexp "^1.7.0"
-    samsam "^1.1.3"
-    text-encoding "0.6.4"
+    nise "^1.2.0"
+    supports-color "^4.4.0"
     type-detect "^4.0.0"
 
 slide@^1.1.5:
@@ -5008,6 +5001,12 @@ supports-color@^3.1.0, supports-color@^3.1.2:
   dependencies:
     has-flag "^1.0.0"
 
+supports-color@^4.4.0:
+  version "4.5.0"
+  resolved "https://registry.npmjs.org/supports-color/-/supports-color-4.5.0.tgz#be7a0de484dec5c5cddf8b3d59125044912f635b"
+  dependencies:
+    has-flag "^2.0.0"
+
 tapable@^0.2.7:
   version "0.2.8"
   resolved "https://registry.npmjs.org/tapable/-/tapable-0.2.8.tgz#99372a5c999bf2df160afc0d74bed4f47948cd22"
@@ -5061,7 +5060,7 @@ test-exclude@^4.1.1:
     read-pkg-up "^1.0.1"
     require-main-filename "^1.0.1"
 
-text-encoding@0.6.4, text-encoding@^0.6.4:
+text-encoding@^0.6.4:
   version "0.6.4"
   resolved "https://registry.npmjs.org/text-encoding/-/text-encoding-0.6.4.tgz#e399a982257a276dae428bb92845cb71bdc26d19"
 
