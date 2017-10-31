@@ -1672,11 +1672,11 @@ extglob@^0.3.1:
     is-extglob "^1.0.0"
 
 extract-zip@~1.6.5:
-  version "1.6.5"
-  resolved "https://registry.npmjs.org/extract-zip/-/extract-zip-1.6.5.tgz#99a06735b6ea20ea9b705d779acffcc87cff0440"
+  version "1.6.6"
+  resolved "https://registry.npmjs.org/extract-zip/-/extract-zip-1.6.6.tgz#1290ede8d20d0872b429fd3f351ca128ec5ef85c"
   dependencies:
     concat-stream "1.6.0"
-    debug "2.2.0"
+    debug "2.6.9"
     mkdirp "0.5.0"
     yauzl "2.4.1"
 
@@ -2908,8 +2908,8 @@ jsprim@^1.2.2:
     verror "1.10.0"
 
 just-extend@^1.1.26:
-  version "1.1.26"
-  resolved "https://registry.npmjs.org/just-extend/-/just-extend-1.1.26.tgz#dba4ad2786d319f1d10afab106e004b5a0851ac2"
+  version "1.1.27"
+  resolved "https://registry.npmjs.org/just-extend/-/just-extend-1.1.27.tgz#ec6e79410ff914e472652abfa0e603c03d60e905"
 
 karma-chai-sinon@^0.1.5:
   version "0.1.5"
