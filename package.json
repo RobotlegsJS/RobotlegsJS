@@ -57,10 +57,10 @@
   },
   "homepage": "https://github.com/RobotlegsJS/RobotlegsJS#readme",
   "dependencies": {
-    "inversify": "^4.3.0"
+    "inversify": "^4.4.0"
   },
   "devDependencies": {
-    "@types/bluebird": "^3.5.17",
+    "@types/bluebird": "^3.5.18",
     "@types/chai": "^4.0.4",
     "@types/mocha": "^2.2.44",
     "@types/sinon": "^2.3.7",
