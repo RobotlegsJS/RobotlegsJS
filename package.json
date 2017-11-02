@@ -57,7 +57,7 @@
   },
   "homepage": "https://github.com/RobotlegsJS/RobotlegsJS#readme",
   "dependencies": {
-    "inversify": "^4.4.0"
+    "inversify": "^4.5.0"
   },
   "devDependencies": {
     "@types/bluebird": "^3.5.18",
@@ -102,7 +102,7 @@
     "ts-node": "^3.3.0",
     "tslint": "^5.8.0",
     "tslint-config-prettier": "^1.6.0",
-    "typescript": "^2.5.3",
+    "typescript": "^2.6.1",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.3"
   },
