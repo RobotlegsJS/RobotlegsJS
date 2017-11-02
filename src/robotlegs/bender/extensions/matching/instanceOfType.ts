@@ -46,9 +46,26 @@ class InstanceOfMatcher implements IMatcher {
     /*============================================================================*/
 
     /**
-     * @inheritDoc
+     * Matches primitive types using constructor.
+     * Matches all other types using instanceof.
      */
     public matches(item: any): boolean {
-        return item instanceof this._type;
+        let match: boolean = false;
+
+        switch (typeof item) {
+            case "boolean":
+            case "function":
+            case "number":
+            case "string":
+            case "symbol":
+                match = item.constructor === this._type;
+                break;
+
+            default:
+                match = item instanceof this._type;
+                break;
+        }
+
+        return match;
     }
 }
