@@ -265,25 +265,9 @@ describe("instanceOfType", () => {
                 for (let j: number = 0; j < numItems; j++) {
                     // Verify if matcher should match with samples of this type
                     if (matchWith.indexOf(matchers[i]) >= 0) {
-                        if (!matcher.matches(items[j])) {
-                            console.log(
-                                `Matcher ${matcher} should match with ${items[
-                                    j
-                                ]}`
-                            );
-                        } else {
-                            assert.isTrue(matcher.matches(items[j]));
-                        }
+                        assert.isTrue(matcher.matches(items[j]));
                     } else {
-                        if (matcher.matches(items[j])) {
-                            console.log(
-                                `Matcher ${matcher} should not match with ${items[
-                                    j
-                                ]}`
-                            );
-                        } else {
-                            assert.isFalse(matcher.matches(items[j]));
-                        }
+                        assert.isFalse(matcher.matches(items[j]));
                     }
                 }
             }
