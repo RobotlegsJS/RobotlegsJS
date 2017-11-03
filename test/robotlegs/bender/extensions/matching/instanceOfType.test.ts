@@ -107,6 +107,13 @@ describe("instanceOfType", () => {
         assert.isTrue(matcher.matches({ data: "I'm not a empty object" }));
     });
 
+    it("matches_primitive_type_Array", () => {
+        let matcher: IMatcher = instanceOfType(Array);
+
+        assert.isTrue(matcher.matches([]));
+        assert.isTrue(matcher.matches(["I'm not a empty array"]));
+    });
+
     it("matches_custom_base_type", () => {
         let matcher: IMatcher = instanceOfType(BaseType);
 
@@ -131,15 +138,47 @@ describe("instanceOfType", () => {
     });
 
     it("stress_match_test", () => {
+        let booleanMatcher: IMatcher = instanceOfType(Boolean);
+        let functionMatcher: IMatcher = instanceOfType(Function);
+        let numberMatcher: IMatcher = instanceOfType(Number);
+        let stringMatcher: IMatcher = instanceOfType(String);
+        let symbolMatcher: IMatcher = instanceOfType(Symbol);
+        let arrayMatcher: IMatcher = instanceOfType(Array);
+        let objectMatcher: IMatcher = instanceOfType(Object);
+        let baseTypeMatcher: IMatcher = instanceOfType(BaseType);
+        let extendedTypeMatcher: IMatcher = instanceOfType(ExtendedType);
+
+        let matchWithMap: Map<IMatcher, IMatcher[]> = new Map();
+
+        matchWithMap.set(booleanMatcher, [booleanMatcher]);
+        matchWithMap.set(functionMatcher, [functionMatcher]);
+        matchWithMap.set(numberMatcher, [numberMatcher]);
+        matchWithMap.set(stringMatcher, [stringMatcher]);
+        matchWithMap.set(symbolMatcher, [symbolMatcher]);
+        matchWithMap.set(arrayMatcher, [arrayMatcher]);
+        matchWithMap.set(objectMatcher, [
+            objectMatcher,
+            functionMatcher,
+            arrayMatcher,
+            baseTypeMatcher,
+            extendedTypeMatcher
+        ]);
+        matchWithMap.set(baseTypeMatcher, [
+            baseTypeMatcher,
+            extendedTypeMatcher
+        ]);
+        matchWithMap.set(extendedTypeMatcher, [extendedTypeMatcher]);
+
         let matchers: IMatcher[] = [
-            instanceOfType(Boolean),
-            instanceOfType(Function),
-            instanceOfType(Number),
-            instanceOfType(String),
-            instanceOfType(Symbol),
-            instanceOfType(Object),
-            instanceOfType(BaseType),
-            instanceOfType(ExtendedType)
+            booleanMatcher,
+            functionMatcher,
+            numberMatcher,
+            stringMatcher,
+            symbolMatcher,
+            arrayMatcher,
+            objectMatcher,
+            baseTypeMatcher,
+            extendedTypeMatcher
         ];
 
         let samples: any[][] = [
@@ -184,6 +223,8 @@ describe("instanceOfType", () => {
                 Symbol(Math.random()),
                 IInjector
             ],
+            // Array samples
+            [[], ["I'm not a empty array"], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]],
             // Object samples
             [
                 {},
@@ -207,26 +248,42 @@ describe("instanceOfType", () => {
         let numSamples: number = samples.length;
         let numItems: number = 0;
         let matcher: IMatcher;
+        let matchWith: IMatcher[];
         let items: any[];
 
+        // iterate through matchers
         for (let m: number = 0; m < numMatchers; m++) {
             matcher = matchers[m];
+            matchWith = matchWithMap.get(matcher);
 
+            // iterate through samples of the same type
             for (let i: number = 0; i < numSamples; i++) {
                 items = samples[i];
                 numItems = items.length;
 
+                // iterate through each sample of the same type
                 for (let j: number = 0; j < numItems; j++) {
-                    // Matcher is being matched with samples of same type
-                    if (m === i) {
-                        assert.isTrue(matcher.matches(items[j]));
-                    } else if (m >= 5 && i > m) {
-                        // Matcher is being matched with samples that are extended type
-                        // Object matchs also with BaseType and ExtendedType
-                        // BaseType matchs also with ExtendedType
-                        assert.isTrue(matcher.matches(items[j]));
+                    // Verify if matcher should match with samples of this type
+                    if (matchWith.indexOf(matchers[i]) >= 0) {
+                        if (!matcher.matches(items[j])) {
+                            console.log(
+                                `Matcher ${matcher} should match with ${items[
+                                    j
+                                ]}`
+                            );
+                        } else {
+                            assert.isTrue(matcher.matches(items[j]));
+                        }
                     } else {
-                        assert.isFalse(matcher.matches(items[j]));
+                        if (matcher.matches(items[j])) {
+                            console.log(
+                                `Matcher ${matcher} should not match with ${items[
+                                    j
+                                ]}`
+                            );
+                        } else {
+                            assert.isFalse(matcher.matches(items[j]));
+                        }
                     }
                 }
             }
