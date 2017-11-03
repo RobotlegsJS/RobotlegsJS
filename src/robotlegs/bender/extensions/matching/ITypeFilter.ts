@@ -14,17 +14,17 @@ export interface ITypeFilter extends IMatcher {
     /**
      * All types that an item must extend or implement
      */
-    allOfTypes: FunctionConstructor[];
+    allOfTypes: Function[];
 
     /**
      * Any types that an item must extend or implement
      */
-    anyOfTypes: FunctionConstructor[];
+    anyOfTypes: Function[];
 
     /**
      * Types that an item must not extend or implement
      */
-    noneOfTypes: FunctionConstructor[];
+    noneOfTypes: Function[];
 
     /**
      * Unique description for this filter

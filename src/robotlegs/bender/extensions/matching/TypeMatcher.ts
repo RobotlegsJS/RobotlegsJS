@@ -19,11 +19,11 @@ export class TypeMatcher implements ITypeMatcher, ITypeMatcherFactory {
     /* Protected Properties                                                       */
     /*============================================================================*/
 
-    protected _allOfTypes: FunctionConstructor[] = [];
+    protected _allOfTypes: Function[] = [];
 
-    protected _anyOfTypes: FunctionConstructor[] = [];
+    protected _anyOfTypes: Function[] = [];
 
-    protected _noneOfTypes: FunctionConstructor[] = [];
+    protected _noneOfTypes: Function[] = [];
 
     protected _typeFilter: ITypeFilter;
 
@@ -101,10 +101,7 @@ export class TypeMatcher implements ITypeMatcher, ITypeMatcherFactory {
         );
     }
 
-    protected pushAddedTypesTo(
-        types: any[],
-        targetSet: FunctionConstructor[]
-    ): void {
+    protected pushAddedTypesTo(types: any[], targetSet: Function[]): void {
         if (this._typeFilter) {
             this.throwSealedMatcherError();
         }
@@ -116,13 +113,10 @@ export class TypeMatcher implements ITypeMatcher, ITypeMatcherFactory {
         throw new TypeMatcherError(TypeMatcherError.SEALED_MATCHER);
     }
 
-    protected pushValuesToClassVector(
-        values: any[],
-        vector: FunctionConstructor[]
-    ): void {
+    protected pushValuesToClassVector(values: any[], vector: Function[]): void {
         if (values.length === 1 && values[0] instanceof Array) {
             for (let i: number; i < values[0].length; i++) {
-                let type: FunctionConstructor = values[0][i];
+                let type: Function = values[0][i];
                 vector.push(type);
             }
         } else {

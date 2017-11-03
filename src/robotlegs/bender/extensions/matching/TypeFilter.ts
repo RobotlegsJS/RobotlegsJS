@@ -5,6 +5,9 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import { IMatcher } from "../../framework/api/IMatcher";
+
+import { instanceOfType } from "./instanceOfType";
 import { ITypeFilter } from "./ITypeFilter";
 
 /**
@@ -15,30 +18,30 @@ export class TypeFilter implements ITypeFilter {
     /* Public Properties                                                          */
     /*============================================================================*/
 
-    protected _allOfTypes: FunctionConstructor[];
+    protected _allOfTypes: Function[];
 
     /**
      * @inheritDoc
      */
-    public get allOfTypes(): FunctionConstructor[] {
+    public get allOfTypes(): Function[] {
         return this._allOfTypes;
     }
 
-    protected _anyOfTypes: FunctionConstructor[];
+    protected _anyOfTypes: Function[];
 
     /**
      * @inheritDoc
      */
-    public get anyOfTypes(): FunctionConstructor[] {
+    public get anyOfTypes(): Function[] {
         return this._anyOfTypes;
     }
 
-    protected _noneOfTypes: FunctionConstructor[];
+    protected _noneOfTypes: Function[];
 
     /**
      * @inheritDoc
      */
-    public get noneOfTypes(): FunctionConstructor[] {
+    public get noneOfTypes(): Function[] {
         return this._noneOfTypes;
     }
 
@@ -58,11 +61,7 @@ export class TypeFilter implements ITypeFilter {
     /**
      * @private
      */
-    constructor(
-        allOf: FunctionConstructor[],
-        anyOf: FunctionConstructor[],
-        noneOf: FunctionConstructor[]
-    ) {
+    constructor(allOf: Function[], anyOf: Function[], noneOf: Function[]) {
         if (!allOf || !anyOf || !noneOf) {
             throw Error("TypeFilter parameters can not be null");
         }
@@ -80,15 +79,19 @@ export class TypeFilter implements ITypeFilter {
      */
     public matches(item: any): boolean {
         let i: number = this._allOfTypes.length;
+        let matcher: IMatcher;
+
         while (i--) {
-            if (!(item instanceof this._allOfTypes[i])) {
+            matcher = instanceOfType(this._allOfTypes[i]);
+            if (!matcher.matches(matcher)) {
                 return false;
             }
         }
 
         i = this._noneOfTypes.length;
         while (i--) {
-            if (item instanceof this._noneOfTypes[i]) {
+            matcher = instanceOfType(this._noneOfTypes[i]);
+            if (matcher.matches(item)) {
                 return false;
             }
         }
@@ -102,7 +105,8 @@ export class TypeFilter implements ITypeFilter {
 
         i = this._anyOfTypes.length;
         while (i--) {
-            if (item instanceof this._anyOfTypes[i]) {
+            matcher = instanceOfType(this._anyOfTypes[i]);
+            if (matcher.matches(item)) {
                 return true;
             }
         }
@@ -114,16 +118,14 @@ export class TypeFilter implements ITypeFilter {
     /* Protected Functions                                                        */
     /*============================================================================*/
 
-    protected alphabetiseCaseInsensitiveFCQNs(
-        classVector: FunctionConstructor[]
-    ): string[] {
+    protected alphabetiseCaseInsensitiveFCQNs(classes: Function[]): string[] {
         let fqcn: string;
         let allFCQNs: string[] = [];
 
-        let iLength: number = classVector.length;
+        let iLength: number = classes.length;
         for (let i: number = 0; i < iLength; i++) {
             // fqcn = getQualifiedClassName(classVector[i]);
-            fqcn = classVector[i].toString().match(/function\ ([^\(]+)/)[1];
+            fqcn = classes[i].toString().match(/function\ ([^\(]+)/)[1];
             allFCQNs[allFCQNs.length] = fqcn;
         }
 
