@@ -61,21 +61,6 @@ class InstanceOfMatcher implements IMatcher {
      * @see {@link https://github.com/Microsoft/TypeScript/blob/v2.6.1/doc/spec.md#4.19.4}
      */
     public matches(item: any): boolean {
-        let match: boolean = false;
-
-        switch (typeof item) {
-            case "boolean":
-            case "number":
-            case "string":
-            case "symbol":
-                match = item.constructor === this._type;
-                break;
-
-            default:
-                match = item instanceof this._type;
-                break;
-        }
-
-        return match;
+        return item instanceof this._type || item.constructor === this._type;
     }
 }
