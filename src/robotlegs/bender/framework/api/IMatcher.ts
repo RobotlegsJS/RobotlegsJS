@@ -13,7 +13,7 @@ export interface IMatcher {
      * Does this object match the given criteria?
      *
      * @param item The object to test
-     * @return Boolean
+     * @return boolean
      */
     matches(item: any): boolean;
 }
