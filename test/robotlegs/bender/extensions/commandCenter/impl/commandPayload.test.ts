@@ -74,8 +74,8 @@ describe("CommandPayload", () => {
 
         subject.addPayload(value, Object);
 
-        let valueIndex: Number = subject.values.indexOf(value);
-        let classIndex: Number = subject.classes.indexOf(Object);
+        let valueIndex: number = subject.values.indexOf(value);
+        let classIndex: number = subject.classes.indexOf(Object);
 
         assert.equal(valueIndex, classIndex);
     });
