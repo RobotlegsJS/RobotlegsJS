@@ -210,4 +210,17 @@ describe("TypeFilter", () => {
         assert.isFalse(typeFilter.matches(new Error("Should never be called")));
         assert.isFalse(typeFilter.matches(console.log));
     });
+
+    it("class_not_matched_by_any", () => {
+        let typeFilter: TypeFilter = new TypeFilter([], [], []);
+
+        assert.isFalse(typeFilter.matches(5));
+        assert.isFalse(typeFilter.matches(true));
+        assert.isFalse(typeFilter.matches("I'm a string"));
+        assert.isFalse(typeFilter.matches(new ExtendedType("who am I?", 41)));
+        assert.isFalse(typeFilter.matches(new BaseType("who am I?")));
+        assert.isFalse(typeFilter.matches({ x: 0, y: 0 }));
+        assert.isFalse(typeFilter.matches(new Error("Should never be called")));
+        assert.isFalse(typeFilter.matches(console.log));
+    });
 });
