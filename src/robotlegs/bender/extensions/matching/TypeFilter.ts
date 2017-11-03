@@ -83,7 +83,8 @@ export class TypeFilter implements ITypeFilter {
 
         while (i--) {
             matcher = instanceOfType(this._allOfTypes[i]);
-            if (!matcher.matches(matcher)) {
+
+            if (!matcher.matches(item)) {
                 return false;
             }
         }
@@ -91,6 +92,7 @@ export class TypeFilter implements ITypeFilter {
         i = this._noneOfTypes.length;
         while (i--) {
             matcher = instanceOfType(this._noneOfTypes[i]);
+
             if (matcher.matches(item)) {
                 return false;
             }
@@ -106,6 +108,7 @@ export class TypeFilter implements ITypeFilter {
         i = this._anyOfTypes.length;
         while (i--) {
             matcher = instanceOfType(this._anyOfTypes[i]);
+
             if (matcher.matches(item)) {
                 return true;
             }
@@ -131,13 +134,10 @@ export class TypeFilter implements ITypeFilter {
             // es pattern
             let v3: RegExp = /function\ ([^\(]+)/;
             let v6: RegExp = /class\ ([^\ ]+)/;
-            let result = classDescriptor.match(v3) || classDescriptor.match(v6);
+            let result: RegExpMatchArray =
+                classDescriptor.match(v3) || classDescriptor.match(v6);
 
-            if (result) {
-                return result[1];
-            } else {
-                return "";
-            }
+            return result[1];
         };
 
         for (let i: number = 0; i < iLength; i++) {
@@ -159,14 +159,21 @@ export class TypeFilter implements ITypeFilter {
             this.noneOfTypes
         );
 
-        return (
-            "all of: " +
-            allOf_FCQNs.toString() +
-            ", any of: " +
-            anyOf_FCQNs.toString() +
-            ", none of: " +
-            noneOf_FQCNs.toString()
-        );
+        let description: string[] = [];
+
+        if (allOf_FCQNs.length) {
+            description.push("all of: " + allOf_FCQNs.toString());
+        }
+
+        if (anyOf_FCQNs.length) {
+            description.push("any of: " + anyOf_FCQNs.toString());
+        }
+
+        if (noneOf_FQCNs.length) {
+            description.push("none of: " + noneOf_FQCNs.toString());
+        }
+
+        return description.join("; ");
     }
 
     protected stringSort(item1: string, item2: string): number {
