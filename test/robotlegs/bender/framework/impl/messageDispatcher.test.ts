@@ -257,7 +257,7 @@ describe("MessageDispatcher", () => {
     });
 
     it("handler that calls back more than once is ignored", () => {
-        var callbackCount: number = 0;
+        let callbackCount: number = 0;
         dispatcher.addMessageHandler(message, function(
             msg: Object,
             callback: Function

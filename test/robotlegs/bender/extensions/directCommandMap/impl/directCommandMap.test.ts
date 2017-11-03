@@ -94,7 +94,7 @@ describe("DirectCommandMap", () => {
     });
 
     it("sandboxed directCommandMap instance does not leak into system", () => {
-        var actual: IDirectCommandMap = injector.get<IDirectCommandMap>(
+        let actual: IDirectCommandMap = injector.get<IDirectCommandMap>(
             IDirectCommandMap
         );
 
