@@ -65,7 +65,6 @@ class InstanceOfMatcher implements IMatcher {
 
         switch (typeof item) {
             case "boolean":
-            case "function":
             case "number":
             case "string":
             case "symbol":
