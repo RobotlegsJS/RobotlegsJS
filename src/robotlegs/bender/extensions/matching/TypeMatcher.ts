@@ -25,7 +25,7 @@ export class TypeMatcher implements ITypeMatcher, ITypeMatcherFactory {
 
     protected _noneOfTypes: Function[] = [];
 
-    protected _typeFilter: ITypeFilter;
+    protected _typeFilter: ITypeFilter = null;
 
     /*============================================================================*/
     /* Public Functions                                                           */
@@ -106,24 +106,24 @@ export class TypeMatcher implements ITypeMatcher, ITypeMatcherFactory {
             this.throwSealedMatcherError();
         }
 
-        this.pushValuesToClassVector(types, targetSet);
+        this.pushValuesToTargetSet(types, targetSet);
     }
 
     protected throwSealedMatcherError(): void {
         throw new TypeMatcherError(TypeMatcherError.SEALED_MATCHER);
     }
 
-    protected pushValuesToClassVector(values: any[], vector: Function[]): void {
-        if (values.length === 1 && values[0] instanceof Array) {
-            for (let i: number; i < values[0].length; i++) {
-                let type: Function = values[0][i];
-                vector.push(type);
-            }
-        } else {
-            for (let i: number = 0; i < values.length; i++) {
-                let type = values[i];
-                vector.push(type);
-            }
-        }
+    protected pushValuesToTargetSet(
+        values: any[],
+        targetSet: Function[]
+    ): void {
+        let types: Function[] =
+            values.length === 1 && values[0] instanceof Array
+                ? values[0]
+                : values;
+
+        types.forEach(type => {
+            targetSet.push(type);
+        });
     }
 }
