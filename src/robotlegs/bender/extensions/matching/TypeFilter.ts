@@ -121,15 +121,32 @@ export class TypeFilter implements ITypeFilter {
     protected alphabetiseCaseInsensitiveFCQNs(classes: Function[]): string[] {
         let fqcn: string;
         let allFCQNs: string[] = [];
-
         let iLength: number = classes.length;
+
+        /**
+         * get class name for ecmascript, support v3 upto v6
+         * @param {string} classDescriptor
+         */
+        let getQualifiedClassName = (classDescriptor: string) => {
+            // es pattern
+            let v3: RegExp = /function\ ([^\(]+)/;
+            let v6: RegExp = /class\ ([^\ ]+)/;
+            let result = classDescriptor.match(v3) || classDescriptor.match(v6);
+
+            if (result) {
+                return result[1];
+            } else {
+                return "";
+            }
+        };
+
         for (let i: number = 0; i < iLength; i++) {
-            // fqcn = getQualifiedClassName(classVector[i]);
-            fqcn = classes[i].toString().match(/function\ ([^\(]+)/)[1];
+            fqcn = getQualifiedClassName(classes[i].toString());
             allFCQNs[allFCQNs.length] = fqcn;
         }
 
         allFCQNs.sort(this.stringSort);
+
         return allFCQNs;
     }
 
