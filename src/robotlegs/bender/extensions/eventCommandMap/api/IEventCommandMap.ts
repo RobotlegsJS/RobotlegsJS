@@ -19,7 +19,7 @@ export interface IEventCommandMap {
      * @param eventClass The concrete Event class
      * @return Command Mapper
      */
-    map(type: String, eventClass?: Object): ICommandMapper;
+    map(type: string, eventClass?: Object): ICommandMapper;
 
     /**
      * Unmaps an Event based trigger from a Command
@@ -27,7 +27,7 @@ export interface IEventCommandMap {
      * @param eventClass The concrete Event class
      * @return Command Unmapper
      */
-    unmap(type: String, eventClass?: Object): ICommandUnmapper;
+    unmap(type: string, eventClass?: Object): ICommandUnmapper;
 
     /**
      * Adds a handler to process mappings

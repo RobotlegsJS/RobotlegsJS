@@ -17,7 +17,7 @@ export interface ICommandConfigurator {
      * @param name Method name
      * @return Self
      */
-    withExecuteMethod(name: String): ICommandConfigurator;
+    withExecuteMethod(name: string): ICommandConfigurator;
 
     /**
      * Guards to check before allowing a command to execute

@@ -148,7 +148,7 @@ describe("LifecycleTransition", () => {
         function beforeHandler(): void {
             transition
                 .addBeforeHandler(function(
-                    message: String,
+                    message: string,
                     callback: Function
                 ): void {
                     callback("some error message");
@@ -166,7 +166,7 @@ describe("LifecycleTransition", () => {
         ): void {});
         transition
             .addBeforeHandler(function(
-                message: String,
+                message: string,
                 callback: Function
             ): void {
                 callback(expected);
@@ -191,7 +191,7 @@ describe("LifecycleTransition", () => {
     });
 
     it("beforeHandlerError reverts state", () => {
-        let expected: String = lifecycle.state;
+        let expected: string = lifecycle.state;
         lifecycle.addEventListener(LifecycleEvent.ERROR, function(
             event: LifecycleEvent
         ): void {});
@@ -199,7 +199,7 @@ describe("LifecycleTransition", () => {
             .fromStates(LifecycleState.UNINITIALIZED)
             .toStates("startState", "endState")
             .addBeforeHandler(function(
-                message: String,
+                message: string,
                 callback: Function
             ): void {
                 callback("There was a problem");

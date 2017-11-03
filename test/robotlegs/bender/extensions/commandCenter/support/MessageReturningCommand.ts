@@ -9,13 +9,13 @@ import { injectable, inject, named } from "inversify";
 
 @injectable()
 export class MessageReturningCommand {
-    protected _message: String;
+    protected _message: string;
 
-    constructor(@inject(String) message: String) {
+    constructor(@inject(String) message: string) {
         this._message = message;
     }
 
-    public execute(): String {
+    public execute(): string {
         return this._message;
     }
 }

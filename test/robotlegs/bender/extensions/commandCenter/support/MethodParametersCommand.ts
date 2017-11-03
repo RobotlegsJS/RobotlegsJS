@@ -19,7 +19,7 @@ export class MethodParametersCommand {
         this._reportingFunction = reportingFunction;
     }
 
-    public execute(message: String, code: Number): void {
+    public execute(message: string, code: Number): void {
         if (this._reportingFunction) {
             this._reportingFunction(message);
             this._reportingFunction(code);

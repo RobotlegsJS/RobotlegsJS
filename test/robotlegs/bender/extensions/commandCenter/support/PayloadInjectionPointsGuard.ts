@@ -9,7 +9,7 @@ import { injectable, inject, named } from "inversify";
 
 @injectable()
 export class PayloadInjectionPointsGuard {
-    protected _message: String;
+    protected _message: string;
     protected _code: Number;
     protected _reportingFunction: Function;
 
@@ -17,7 +17,7 @@ export class PayloadInjectionPointsGuard {
         @inject("Function")
         @named("reportingFunction")
         reportingFunction: Function,
-        @inject(String) message: String,
+        @inject(String) message: string,
         @inject(Number) code: Number
     ) {
         this._reportingFunction = reportingFunction;
