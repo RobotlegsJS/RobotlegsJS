@@ -145,9 +145,7 @@ export class TypeFilter implements ITypeFilter {
             allFCQNs[allFCQNs.length] = fqcn;
         }
 
-        allFCQNs.sort(this.stringSort);
-
-        return allFCQNs;
+        return allFCQNs.sort(this.stringSort);
     }
 
     protected createDescriptor(): string {
@@ -160,6 +158,7 @@ export class TypeFilter implements ITypeFilter {
         let noneOf_FQCNs: string[] = this.alphabetiseCaseInsensitiveFCQNs(
             this.noneOfTypes
         );
+
         return (
             "all of: " +
             allOf_FCQNs.toString() +
@@ -171,9 +170,18 @@ export class TypeFilter implements ITypeFilter {
     }
 
     protected stringSort(item1: string, item2: string): number {
+        let result: number = 0;
+
+        // ignore upper and lowercase
+        item1 = item1.toUpperCase();
+        item2 = item2.toUpperCase();
+
         if (item1 < item2) {
-            return 1;
+            result = -1;
+        } else if (item1 > item2) {
+            result = 1;
         }
-        return -1;
+
+        return result;
     }
 }
