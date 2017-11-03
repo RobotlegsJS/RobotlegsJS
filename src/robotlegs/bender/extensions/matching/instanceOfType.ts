@@ -56,7 +56,7 @@ class InstanceOfMatcher implements IMatcher {
      * The instanceof operator requires the left operand to be of type Any,
      * an object type, or a type parameter type, and the right operand
      * to be of type Any or a subtype of the 'Function' interface type.
-     * The result is always of the Boolean primitive type.
+     * The result is always of the boolean primitive type.
      *
      * @see {@link https://github.com/Microsoft/TypeScript/blob/v2.6.1/doc/spec.md#4.19.4}
      */

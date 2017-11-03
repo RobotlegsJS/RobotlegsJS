@@ -16,10 +16,10 @@ import { instantiateUnmapped } from "./instantiateUnmapped";
 /**
  * <p>A guard can be a function, object or class.</p>
  *
- * <p>When a function is provided it is expected to return a Boolean when called.</p>
+ * <p>When a function is provided it is expected to return a boolean when called.</p>
  *
  * <p>When an object is provided it is expected to expose an "approve" method
- * that returns a Boolean.</p>
+ * that returns a boolean.</p>
  *
  * <p>When a class is provided, an instance of that class will be instantiated and tested.
  * If an injector is provided the instance will be created using that injector,
@@ -28,7 +28,7 @@ import { instantiateUnmapped } from "./instantiateUnmapped";
  * @param guards An array of guards
  * @param injector An optional Injector
  *
- * @return A Boolean value of false if any guard returns false
+ * @return A boolean value of false if any guard returns false
  */
 export function guardsApprove(guards: any[], injector?: IInjector): boolean {
     for (let i = 0; i < guards.length; i++) {

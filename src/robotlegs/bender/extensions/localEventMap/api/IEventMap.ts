@@ -32,9 +32,9 @@ export interface IEventMap {
         listener: Function,
         thisObject?: any,
         eventClass?: Object,
-        useCapture?: Boolean,
+        useCapture?: boolean,
         priority?: number,
-        useWeakReference?: Boolean
+        useWeakReference?: boolean
     ): void;
 
     /**
@@ -54,7 +54,7 @@ export interface IEventMap {
         listener: Function,
         thisObject?: any,
         eventClass?: Object,
-        useCapture?: Boolean
+        useCapture?: boolean
     ): void;
 
     /**

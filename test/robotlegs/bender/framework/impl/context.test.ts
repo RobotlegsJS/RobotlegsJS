@@ -225,7 +225,7 @@ describe("Context", () => {
     });
 
     it("lifecycleStateChangeEvent is propagated", () => {
-        let called: Boolean = false;
+        let called: boolean = false;
         context.addEventListener(LifecycleEvent.STATE_CHANGE, function(
             event: LifecycleEvent
         ): void {

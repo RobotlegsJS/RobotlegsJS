@@ -103,7 +103,7 @@ describe("DirectCommandMap", () => {
 
     it("detains command", () => {
         let command: Object = {};
-        let wasDetained: Boolean = false;
+        let wasDetained: boolean = false;
         let handler: Function = function(...params): void {
             wasDetained = true;
         };
@@ -117,7 +117,7 @@ describe("DirectCommandMap", () => {
 
     it("releases command", () => {
         let command: Object = {};
-        let wasReleased: Boolean = false;
+        let wasReleased: boolean = false;
         let handler: Function = function(...params): void {
             wasReleased = true;
         };

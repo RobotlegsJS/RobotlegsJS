@@ -37,5 +37,5 @@ export interface IDirectCommandConfigurator extends IDirectCommandMapper {
      * @param value Toggle
      * @return Self
      */
-    withPayloadInjection(value?: Boolean): IDirectCommandConfigurator;
+    withPayloadInjection(value?: boolean): IDirectCommandConfigurator;
 }

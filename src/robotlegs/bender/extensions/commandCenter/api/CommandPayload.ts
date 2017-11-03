@@ -85,7 +85,7 @@ export class CommandPayload {
 
     /**
      * Does this payload have any items?
-     * @return Boolean
+     * @return boolean
      */
     public hasPayload(): boolean {
         // todo: the final clause will make this fail silently
