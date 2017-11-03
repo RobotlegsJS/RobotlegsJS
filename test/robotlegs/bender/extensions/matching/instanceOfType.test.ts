@@ -23,6 +23,11 @@ describe("instanceOfType", () => {
         [],
         [true, false, Math.random() >= 0, Math.random() < 1]
     );
+    let dateCollection: TypeCollection = new TypeCollection(
+        Date,
+        [],
+        [new Date(), new Date(2017, 11, 3)]
+    );
     let functionCollection: TypeCollection = new TypeCollection(
         Function,
         [],
@@ -93,7 +98,7 @@ describe("instanceOfType", () => {
     );
     let objectCollection: TypeCollection = new TypeCollection(
         Object,
-        [Function, Array, BaseType, ExtendedType],
+        [Function, Array, Date, BaseType, ExtendedType],
         [{}, { data: "I'm not a empty object" }, new Object()]
     );
     let arrayCollection: TypeCollection = new TypeCollection(
@@ -123,6 +128,14 @@ describe("instanceOfType", () => {
         let matcher: IMatcher = booleanCollection.matcher;
 
         booleanCollection.items.forEach(item => {
+            assert.isTrue(matcher.matches(item));
+        });
+    });
+
+    it("matches_primitive_type_Date", () => {
+        let matcher: IMatcher = dateCollection.matcher;
+
+        dateCollection.items.forEach(item => {
             assert.isTrue(matcher.matches(item));
         });
     });
@@ -191,17 +204,18 @@ describe("instanceOfType", () => {
         });
     });
 
-    it("stress_match_test", () => {
+    it("stress_match_test", done => {
         let collections: TypeCollection[] = [
+            arrayCollection,
+            baseTypeCollection,
             booleanCollection,
+            dateCollection,
+            extendedTypeCollection,
             functionCollection,
             numberCollection,
-            stringCollection,
-            symbolCollection,
-            arrayCollection,
             objectCollection,
-            baseTypeCollection,
-            extendedTypeCollection
+            stringCollection,
+            symbolCollection
         ];
 
         let numCollections: number = collections.length;
@@ -211,15 +225,17 @@ describe("instanceOfType", () => {
             let typeCollection: TypeCollection = collections[c];
             let matcher: IMatcher = typeCollection.matcher;
             let matchWith: Function[] = typeCollection.matchWith;
-            let items: any[] = typeCollection.items;
-            let numItems: number = items.length;
 
             // iterate through samples of the same type
             for (let i: number = 0; i < numCollections; i++) {
+                let againstCollection: TypeCollection = collections[i];
+                let items: any[] = againstCollection.items;
+                let numItems: number = items.length;
+
                 // iterate through each sample of the same type
                 for (let j: number = 0; j < numItems; j++) {
                     // Verify if matcher should match with samples of this type
-                    if (matchWith.indexOf(typeCollection.type) >= 0) {
+                    if (matchWith.indexOf(againstCollection.type) >= 0) {
                         assert.isTrue(matcher.matches(items[j]));
                     } else {
                         assert.isFalse(matcher.matches(items[j]));
@@ -227,5 +243,7 @@ describe("instanceOfType", () => {
                 }
             }
         }
+
+        done();
     });
 });
