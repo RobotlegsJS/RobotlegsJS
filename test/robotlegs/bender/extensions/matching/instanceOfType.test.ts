@@ -13,258 +13,213 @@ import { IInjector } from "../../../../../src/robotlegs/bender/framework/api/IIn
 import { IMatcher } from "../../../../../src/robotlegs/bender/framework/api/IMatcher";
 import { instanceOfType } from "../../../../../src/robotlegs/bender/extensions/matching/instanceOfType";
 
+import { TypeCollection } from "./support/TypeCollection";
 import { BaseType } from "./support/BaseType";
 import { ExtendedType } from "./support/ExtendedType";
 
 describe("instanceOfType", () => {
-    it("matches_primitive_type_Boolean", () => {
-        let matcher: IMatcher = instanceOfType(Boolean);
+    let booleanCollection: TypeCollection = new TypeCollection(
+        Boolean,
+        [],
+        [true, false, Math.random() >= 0, Math.random() < 1]
+    );
+    let functionCollection: TypeCollection = new TypeCollection(
+        Function,
+        [],
+        [
+            function empty() {
+                console.log("do nothing!");
+            },
+            function args(arg: number) {
+                return arg;
+            },
+            x => {
+                console.log(`x = ${x}`);
+            },
+            console.log,
+            instanceOfType
+        ]
+    );
+    let numberCollection: TypeCollection = new TypeCollection(
+        Number,
+        [],
+        [
+            Number.NEGATIVE_INFINITY,
+            Number.MIN_SAFE_INTEGER,
+            Number.MIN_VALUE,
+            -1,
+            0,
+            1,
+            Number.EPSILON,
+            Number.MAX_VALUE,
+            Number.MAX_SAFE_INTEGER,
+            Number.POSITIVE_INFINITY,
+            Math.E,
+            Math.LN10,
+            Math.LN2,
+            Math.LOG2E,
+            Math.LOG10E,
+            Math.PI,
+            Math.SQRT1_2,
+            Math.SQRT2,
+            Math.random()
+        ]
+    );
+    let stringCollection: TypeCollection = new TypeCollection(
+        String,
+        [],
+        [
+            "",
+            "this is not a empty string",
+            Math.random() + " is a random value",
+            ``,
+            `this is also not a empty string`,
+            `${Math.random()} is another random value`
+        ]
+    );
+    let symbolCollection: TypeCollection = new TypeCollection(
+        Symbol,
+        [],
+        [
+            Symbol("I'm a string"),
+            Symbol("I'm also a string"),
+            Symbol(`I'm a string too`),
+            Symbol(-1),
+            Symbol(0),
+            Symbol(1),
+            Symbol(Math.random()),
+            IInjector
+        ]
+    );
+    let objectCollection: TypeCollection = new TypeCollection(
+        Object,
+        [Function, Array, BaseType, ExtendedType],
+        [{}, { data: "I'm not a empty object" }, new Object()]
+    );
+    let arrayCollection: TypeCollection = new TypeCollection(
+        Array,
+        [],
+        [[], ["I'm not a empty array"], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]]
+    );
+    let baseTypeCollection: TypeCollection = new TypeCollection(
+        BaseType,
+        [ExtendedType],
+        [
+            new BaseType(""),
+            new BaseType("who am I?"),
+            new BaseType("I'm a long long long long string")
+        ]
+    );
+    let extendedTypeCollection: TypeCollection = new TypeCollection(
+        ExtendedType,
+        [],
+        [
+            new ExtendedType("I'm not a empty object", 7),
+            new ExtendedType("who am I?", 41)
+        ]
+    );
 
-        assert.isTrue(matcher.matches(true));
-        assert.isTrue(matcher.matches(false));
-        assert.isTrue(matcher.matches(Math.random() >= 0));
-        assert.isTrue(matcher.matches(Math.random() <= 1));
+    it("matches_primitive_type_Boolean", () => {
+        let matcher: IMatcher = booleanCollection.matcher;
+
+        booleanCollection.items.forEach(item => {
+            assert.isTrue(matcher.matches(item));
+        });
     });
 
     it("matches_primitive_type_Function", () => {
-        let matcher: IMatcher = instanceOfType(Function);
+        let matcher: IMatcher = functionCollection.matcher;
 
-        assert.isTrue(
-            matcher.matches(function empty() {
-                console.log("do nothing!");
-            })
-        );
-        assert.isTrue(
-            matcher.matches(function args(arg: number) {
-                return arg;
-            })
-        );
-        assert.isTrue(matcher.matches(() => {}));
-        assert.isTrue(
-            matcher.matches((arg: number) => {
-                arg++;
-            })
-        );
-        assert.isTrue(matcher.matches(console.log));
-        assert.isTrue(matcher.matches(instanceOfType));
+        functionCollection.items.forEach(item => {
+            assert.isTrue(matcher.matches(item));
+        });
     });
 
     it("matches_primitive_type_Number", () => {
-        let matcher: IMatcher = instanceOfType(Number);
+        let matcher: IMatcher = numberCollection.matcher;
 
-        assert.isTrue(matcher.matches(Number.NEGATIVE_INFINITY));
-        assert.isTrue(matcher.matches(Number.MIN_SAFE_INTEGER));
-        assert.isTrue(matcher.matches(Number.MIN_VALUE));
-        assert.isTrue(matcher.matches(-1));
-        assert.isTrue(matcher.matches(0));
-        assert.isTrue(matcher.matches(1));
-        assert.isTrue(matcher.matches(Number.EPSILON));
-        assert.isTrue(matcher.matches(Number.MAX_VALUE));
-        assert.isTrue(matcher.matches(Number.MAX_SAFE_INTEGER));
-        assert.isTrue(matcher.matches(Number.POSITIVE_INFINITY));
-
-        assert.isTrue(matcher.matches(Math.E));
-        assert.isTrue(matcher.matches(Math.LN10));
-        assert.isTrue(matcher.matches(Math.LN2));
-        assert.isTrue(matcher.matches(Math.LOG2E));
-        assert.isTrue(matcher.matches(Math.LOG10E));
-        assert.isTrue(matcher.matches(Math.PI));
-        assert.isTrue(matcher.matches(Math.SQRT1_2));
-        assert.isTrue(matcher.matches(Math.SQRT2));
-        assert.isTrue(matcher.matches(Math.random()));
+        numberCollection.items.forEach(item => {
+            assert.isTrue(matcher.matches(item));
+        });
     });
 
     it("matches_primitive_type_String", () => {
-        let matcher: IMatcher = instanceOfType(String);
-        let randomNumber: number = Math.random();
+        let matcher: IMatcher = stringCollection.matcher;
 
-        assert.isTrue(matcher.matches(""));
-        assert.isTrue(matcher.matches("this is not a empty string"));
-        assert.isTrue(matcher.matches(randomNumber + " is a random value"));
-
-        assert.isTrue(matcher.matches(``));
-        assert.isTrue(matcher.matches(`this is not a empty string`));
-        assert.isTrue(matcher.matches(`${randomNumber} is a random value`));
+        stringCollection.items.forEach(item => {
+            assert.isTrue(matcher.matches(item));
+        });
     });
 
     it("matches_primitive_type_Symbol", () => {
-        let matcher: IMatcher = instanceOfType(Symbol);
+        let matcher: IMatcher = symbolCollection.matcher;
 
-        assert.isTrue(matcher.matches(Symbol("I'm a string")));
-        assert.isTrue(matcher.matches(Symbol("I'm also a string")));
-        assert.isTrue(matcher.matches(Symbol(`I'm a string too`)));
-        assert.isTrue(matcher.matches(Symbol(-1)));
-        assert.isTrue(matcher.matches(Symbol(0)));
-        assert.isTrue(matcher.matches(Symbol(1)));
-        assert.isTrue(matcher.matches(Symbol(Math.random())));
-        assert.isTrue(matcher.matches(IInjector));
+        symbolCollection.items.forEach(item => {
+            assert.isTrue(matcher.matches(item));
+        });
     });
 
     it("matches_primitive_type_Object", () => {
-        let matcher: IMatcher = instanceOfType(Object);
+        let matcher: IMatcher = objectCollection.matcher;
 
-        assert.isTrue(matcher.matches({}));
-        assert.isTrue(matcher.matches({ data: "I'm not a empty object" }));
+        objectCollection.items.forEach(item => {
+            assert.isTrue(matcher.matches(item));
+        });
     });
 
     it("matches_primitive_type_Array", () => {
-        let matcher: IMatcher = instanceOfType(Array);
+        let matcher: IMatcher = arrayCollection.matcher;
 
-        assert.isTrue(matcher.matches([]));
-        assert.isTrue(matcher.matches(["I'm not a empty array"]));
+        arrayCollection.items.forEach(item => {
+            assert.isTrue(matcher.matches(item));
+        });
     });
 
     it("matches_custom_base_type", () => {
-        let matcher: IMatcher = instanceOfType(BaseType);
+        let matcher: IMatcher = baseTypeCollection.matcher;
 
-        assert.isTrue(matcher.matches(new BaseType("")));
-        assert.isTrue(matcher.matches(new BaseType("who am I?")));
+        baseTypeCollection.items.forEach(item => {
+            assert.isTrue(matcher.matches(item));
+        });
     });
 
     it("matches_custom_extended_type", () => {
-        let matcher: IMatcher = instanceOfType(ExtendedType);
+        let matcher: IMatcher = extendedTypeCollection.matcher;
 
-        assert.isTrue(matcher.matches(new ExtendedType("", 0)));
-        assert.isTrue(matcher.matches(new ExtendedType("who am I?", 41)));
-    });
-
-    it("matches_custom_base_and_extended_type", () => {
-        let baseMatcher: IMatcher = instanceOfType(BaseType);
-        let extendedMatcher: IMatcher = instanceOfType(ExtendedType);
-        let extendedElement: ExtendedType = new ExtendedType("who am I?", 41);
-
-        assert.isTrue(baseMatcher.matches(extendedElement));
-        assert.isTrue(extendedMatcher.matches(extendedElement));
+        extendedTypeCollection.items.forEach(item => {
+            assert.isTrue(matcher.matches(item));
+        });
     });
 
     it("stress_match_test", () => {
-        let booleanMatcher: IMatcher = instanceOfType(Boolean);
-        let functionMatcher: IMatcher = instanceOfType(Function);
-        let numberMatcher: IMatcher = instanceOfType(Number);
-        let stringMatcher: IMatcher = instanceOfType(String);
-        let symbolMatcher: IMatcher = instanceOfType(Symbol);
-        let arrayMatcher: IMatcher = instanceOfType(Array);
-        let objectMatcher: IMatcher = instanceOfType(Object);
-        let baseTypeMatcher: IMatcher = instanceOfType(BaseType);
-        let extendedTypeMatcher: IMatcher = instanceOfType(ExtendedType);
-
-        let matchWithMap: Map<IMatcher, IMatcher[]> = new Map();
-
-        matchWithMap.set(booleanMatcher, [booleanMatcher]);
-        matchWithMap.set(functionMatcher, [functionMatcher]);
-        matchWithMap.set(numberMatcher, [numberMatcher]);
-        matchWithMap.set(stringMatcher, [stringMatcher]);
-        matchWithMap.set(symbolMatcher, [symbolMatcher]);
-        matchWithMap.set(arrayMatcher, [arrayMatcher]);
-        matchWithMap.set(objectMatcher, [
-            objectMatcher,
-            functionMatcher,
-            arrayMatcher,
-            baseTypeMatcher,
-            extendedTypeMatcher
-        ]);
-        matchWithMap.set(baseTypeMatcher, [
-            baseTypeMatcher,
-            extendedTypeMatcher
-        ]);
-        matchWithMap.set(extendedTypeMatcher, [extendedTypeMatcher]);
-
-        let matchers: IMatcher[] = [
-            booleanMatcher,
-            functionMatcher,
-            numberMatcher,
-            stringMatcher,
-            symbolMatcher,
-            arrayMatcher,
-            objectMatcher,
-            baseTypeMatcher,
-            extendedTypeMatcher
+        let collections: TypeCollection[] = [
+            booleanCollection,
+            functionCollection,
+            numberCollection,
+            stringCollection,
+            symbolCollection,
+            arrayCollection,
+            objectCollection,
+            baseTypeCollection,
+            extendedTypeCollection
         ];
 
-        let samples: any[][] = [
-            // Boolean samples
-            [true, false, Math.random() >= 0],
-            // Function samples
-            [
-                function empty() {
-                    console.log("do nothing!");
-                },
-                function args(arg: number) {
-                    return arg;
-                },
-                console.log
-            ],
-            // Number samples
-            [
-                Number.NEGATIVE_INFINITY,
-                Number.MIN_SAFE_INTEGER,
-                Number.MIN_VALUE,
-                -1,
-                0,
-                1,
-                Number.EPSILON,
-                Number.MAX_VALUE,
-                Number.MAX_SAFE_INTEGER,
-                Number.POSITIVE_INFINITY
-            ],
-            // String samples
-            [
-                "",
-                "this is not a empty string",
-                ``,
-                `this is not a empty string`
-            ],
-            // Symbol samples
-            [
-                Symbol("I'm a string"),
-                Symbol(-1),
-                Symbol(0),
-                Symbol(1),
-                Symbol(Math.random()),
-                IInjector
-            ],
-            // Array samples
-            [[], ["I'm not a empty array"], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]],
-            // Object samples
-            [
-                {},
-                { data: "I'm not a empty object" },
-                { data: "I'm a long long long long object" }
-            ],
-            // BaseType samples
-            [
-                new BaseType(""),
-                new BaseType("who am I?"),
-                new BaseType("I'm a long long long long string")
-            ],
-            // ExtendedType samples
-            [
-                new ExtendedType("I'm not a empty object", 7),
-                new ExtendedType("who am I?", 41)
-            ]
-        ];
-
-        let numMatchers: number = matchers.length;
-        let numSamples: number = samples.length;
-        let numItems: number = 0;
-        let matcher: IMatcher;
-        let matchWith: IMatcher[];
-        let items: any[];
+        let numCollections: number = collections.length;
 
         // iterate through matchers
-        for (let m: number = 0; m < numMatchers; m++) {
-            matcher = matchers[m];
-            matchWith = matchWithMap.get(matcher);
+        for (let c: number = 0; c < numCollections; c++) {
+            let typeCollection: TypeCollection = collections[c];
+            let matcher: IMatcher = typeCollection.matcher;
+            let matchWith: Function[] = typeCollection.matchWith;
+            let items: any[] = typeCollection.items;
+            let numItems: number = items.length;
 
             // iterate through samples of the same type
-            for (let i: number = 0; i < numSamples; i++) {
-                items = samples[i];
-                numItems = items.length;
-
+            for (let i: number = 0; i < numCollections; i++) {
                 // iterate through each sample of the same type
                 for (let j: number = 0; j < numItems; j++) {
                     // Verify if matcher should match with samples of this type
-                    if (matchWith.indexOf(matchers[i]) >= 0) {
+                    if (matchWith.indexOf(typeCollection.type) >= 0) {
                         assert.isTrue(matcher.matches(items[j]));
                     } else {
                         assert.isFalse(matcher.matches(items[j]));
