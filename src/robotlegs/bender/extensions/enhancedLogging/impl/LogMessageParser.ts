@@ -21,7 +21,7 @@ export class LogMessageParser {
      * @return The parsed message
      */
     public parseMessage(message: string, params: any[]): string {
-        if (params) {
+        if (params && params.length) {
             let numParams: number = params.length;
             for (let i: number = 0; i < numParams; ++i) {
                 message = message.split("{" + i + "}").join(params[i]);
