@@ -141,7 +141,7 @@ export class LifecycleTransition {
      * Attempts to enter the transition
      * @param callback Completion callback
      */
-    public enter(callback: Function = null): void {
+    public enter(callback?: Function): void {
         // immediately call back if we have already transitioned, and exit
         if (this._lifecycle.state === this._finalState) {
             if (callback) {
@@ -232,7 +232,7 @@ export class LifecycleTransition {
         }
     }
 
-    private reportError(message: any, callbacks: any[] = null): void {
+    private reportError(message: any, callbacks?: any[]): void {
         // turn message into Error
         let error: Error =
             message instanceof Error ? <Error>message : new Error(message);

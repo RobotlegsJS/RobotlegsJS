@@ -155,28 +155,28 @@ export class Context extends EventDispatcher implements IContext {
     /**
      * @inheritDoc
      */
-    public initialize(callback: Function = null): void {
+    public initialize(callback?: Function): void {
         this._lifecycle.initialize(callback);
     }
 
     /**
      * @inheritDoc
      */
-    public suspend(callback: Function = null): void {
+    public suspend(callback?: Function): void {
         this._lifecycle.suspend(callback);
     }
 
     /**
      * @inheritDoc
      */
-    public resume(callback: Function = null): void {
+    public resume(callback?: Function): void {
         this._lifecycle.resume(callback);
     }
 
     /**
      * @inheritDoc
      */
-    public destroy(callback: Function = null): void {
+    public destroy(callback?: Function): void {
         this._lifecycle.destroy(callback);
     }
 

@@ -72,7 +72,7 @@ export class LogManager implements ILogTarget {
         level: number,
         timestamp: number,
         message: string,
-        params: any[] = null
+        params?: any[]
     ): void {
         if (level > this._logLevel) {
             return;

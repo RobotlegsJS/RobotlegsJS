@@ -50,7 +50,7 @@ export class CommandPayload {
      * @param values Optional values
      * @param classes Optional classes
      */
-    constructor(values: any[] = null, classes: any[] = null) {
+    constructor(values?: any[], classes?: any[]) {
         this._values = values;
         this._classes = classes;
     }

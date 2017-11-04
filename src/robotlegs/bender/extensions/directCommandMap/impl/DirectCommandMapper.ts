@@ -88,7 +88,7 @@ export class DirectCommandMapper implements IDirectCommandConfigurator {
     /**
      * @inheritDoc
      */
-    public execute(payload: CommandPayload = null): void {
+    public execute(payload?: CommandPayload): void {
         this._executor.executeCommands(this._mappings.getList(), payload);
     }
 

@@ -54,7 +54,7 @@ export class CommandMappingList implements ICommandMappingList {
     constructor(
         trigger: ICommandTrigger,
         processors: Function[],
-        logger: ILogger = null
+        logger?: ILogger
     ) {
         this._trigger = trigger;
         this._processors = processors;
