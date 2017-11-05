@@ -23,7 +23,7 @@ export class CommandPayload {
     /**
      * Ordered list of value classes
      */
-    public get classes(): any[] {
+    public get classes(): Function[] {
         return this._classes;
     }
 
@@ -39,7 +39,7 @@ export class CommandPayload {
     /*============================================================================*/
 
     private _values: any[];
-    private _classes: any[];
+    private _classes: Function[];
 
     /*============================================================================*/
     /* Constructor                                                                */
@@ -50,7 +50,7 @@ export class CommandPayload {
      * @param values Optional values
      * @param classes Optional classes
      */
-    constructor(values?: any[], classes?: any[]) {
+    constructor(values?: any[], classes?: Function[]) {
         this._values = values;
         this._classes = classes;
     }
@@ -66,8 +66,8 @@ export class CommandPayload {
      * @return Self
      */
     public addPayload(
-        payloadValue: Object,
-        payloadClass: Object
+        payloadValue: any,
+        payloadClass: Function
     ): CommandPayload {
         if (this._values) {
             this._values.push(payloadValue);
