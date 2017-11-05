@@ -13,7 +13,7 @@ export interface ICommandUnmapper {
      * Unmaps a Command
      * @param commandClass Command to unmap
      */
-    fromCommand(commandClass: Object): void;
+    fromCommand(commandClass: Function): void;
 
     /**
      * Unmaps all commands from this trigger

@@ -46,7 +46,7 @@ export class CommandMapper
     /**
      * @inheritDoc
      */
-    public toCommand(commandClass: Object): ICommandConfigurator {
+    public toCommand(commandClass: Function): ICommandConfigurator {
         this._mapping = new CommandMapping(commandClass);
         this._mappings.addMapping(this._mapping);
         return this;
@@ -55,7 +55,7 @@ export class CommandMapper
     /**
      * @inheritDoc
      */
-    public fromCommand(commandClass: Object): void {
+    public fromCommand(commandClass: Function): void {
         this._mappings.removeMappingFor(commandClass);
     }
 

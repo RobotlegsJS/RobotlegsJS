@@ -71,7 +71,7 @@ export class DirectCommandMap implements IDirectCommandMap {
     /**
      * @inheritDoc
      */
-    public map(commandClass: Object): IDirectCommandConfigurator {
+    public map(commandClass: Function): IDirectCommandConfigurator {
         return new DirectCommandMapper(
             this._executor,
             this._mappings,
@@ -82,14 +82,14 @@ export class DirectCommandMap implements IDirectCommandMap {
     /**
      * @inheritDoc
      */
-    public detain(command: Object): void {
+    public detain(command: Function): void {
         this._context.detain(command);
     }
 
     /**
      * @inheritDoc
      */
-    public release(command: Object): void {
+    public release(command: Function): void {
         this._context.release(command);
     }
 

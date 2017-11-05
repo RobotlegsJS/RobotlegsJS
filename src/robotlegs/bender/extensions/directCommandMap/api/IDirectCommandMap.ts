@@ -16,13 +16,13 @@ export interface IDirectCommandMap extends IDirectCommandMapper {
      * Pins a command in memory
      * @param command the command instance to pin
      */
-    detain(command: Object): void;
+    detain(command: Function): void;
 
     /**
      * Unpins a command instance from memory
      * @param command the command instance to unpin
      */
-    release(command: Object): void;
+    release(command: Function): void;
 
     /**
      * Adds a handler to process mappings

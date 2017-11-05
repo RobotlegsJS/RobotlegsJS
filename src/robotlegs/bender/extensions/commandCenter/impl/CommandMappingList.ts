@@ -24,8 +24,8 @@ export class CommandMappingList implements ICommandMappingList {
     /* Private Properties                                                         */
     /*============================================================================*/
 
-    private _mappingsByCommand: Map<Object, ICommandMapping> = new Map<
-        Object,
+    private _mappingsByCommand: Map<Function, ICommandMapping> = new Map<
+        Function,
         ICommandMapping
     >();
 
@@ -120,7 +120,7 @@ export class CommandMappingList implements ICommandMappingList {
     /**
      * @inheritDoc
      */
-    public removeMappingFor(commandClass: Object): void {
+    public removeMappingFor(commandClass: Function): void {
         let mapping: ICommandMapping = this._mappingsByCommand.get(
             commandClass
         );

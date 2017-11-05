@@ -18,7 +18,7 @@ export class CommandMapping implements ICommandMapping {
     /**
      * @inheritDoc
      */
-    public get commandClass(): Object {
+    public get commandClass(): Function {
         return this._commandClass;
     }
 
@@ -61,7 +61,7 @@ export class CommandMapping implements ICommandMapping {
     /* Private Properties                                                         */
     /*============================================================================*/
 
-    private _commandClass: Object;
+    private _commandClass: Function;
     private _executeMethod: string = "execute";
     private _guards: any[] = [];
     private _hooks: any[] = [];
@@ -76,7 +76,7 @@ export class CommandMapping implements ICommandMapping {
      * Creates a Command Mapping
      * @param commandClass The concrete Command class
      */
-    constructor(commandClass: Object) {
+    constructor(commandClass: Function) {
         this._commandClass = commandClass;
     }
 

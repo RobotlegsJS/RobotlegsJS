@@ -16,5 +16,5 @@ export interface ICommandMapper {
      * @param commandClass The Command Class to map
      * @return Mapping configurator
      */
-    toCommand(commandClass: Object): ICommandConfigurator;
+    toCommand(commandClass: Function): ICommandConfigurator;
 }

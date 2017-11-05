@@ -40,7 +40,7 @@ export interface ICommandMappingList {
      * Removes a mapping from the mapping list using the Command class
      * @param commandClass The command class to remove the mapping for
      */
-    removeMappingFor(commandClass: Object): void;
+    removeMappingFor(commandClass: Function): void;
 
     /**
      * Removes all mappings for this command mapping list

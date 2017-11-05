@@ -17,7 +17,7 @@ export interface IDirectCommandMapper {
      * @param commandClass The concrete Command class
      * @return Mapping configurator
      */
-    map(commandClass: Object): IDirectCommandConfigurator;
+    map(commandClass: Function): IDirectCommandConfigurator;
 
     /**
      * Execute the configured command(s)

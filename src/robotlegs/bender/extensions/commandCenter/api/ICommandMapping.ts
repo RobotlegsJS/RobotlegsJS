@@ -12,7 +12,7 @@ export interface ICommandMapping {
     /**
      * The concrete Command Class for this mapping
      */
-    commandClass: Object;
+    commandClass: Function;
 
     /**
      * The "execute" method to invoke on the Command instance

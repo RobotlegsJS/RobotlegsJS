@@ -38,7 +38,7 @@ export class DirectCommandMapper implements IDirectCommandConfigurator {
     constructor(
         executor: ICommandExecutor,
         mappings: ICommandMappingList,
-        commandClass: Object
+        commandClass: Function
     ) {
         this._executor = executor;
         this._mappings = mappings;
@@ -95,7 +95,7 @@ export class DirectCommandMapper implements IDirectCommandConfigurator {
     /**
      * @inheritDoc
      */
-    public map(commandClass: Object): IDirectCommandConfigurator {
+    public map(commandClass: Function): IDirectCommandConfigurator {
         return new DirectCommandMapper(
             this._executor,
             this._mappings,
