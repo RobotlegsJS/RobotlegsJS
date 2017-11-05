@@ -21,8 +21,6 @@ describe("CommandPayload", () => {
         return (subject = new CommandPayload(values, classes));
     }
 
-    beforeEach(() => {});
-
     afterEach(() => {
         subject = null;
     });
@@ -95,7 +93,7 @@ describe("CommandPayload", () => {
         assert.isFalse(subject.hasPayload());
     });
 
-    it("hasPayload_works__when_values_and_classes_are_defined", () => {
+    it("hasPayload_works_when_values_and_classes_are_defined", () => {
         createConfig(["string", 0], [String, Number]);
         assert.isTrue(subject.hasPayload());
     });
