@@ -18,11 +18,14 @@ import { NullCommandTrigger } from "../../../../../../src/robotlegs/bender/exten
 describe("CommandTriggerMap", () => {
     let subject: CommandTriggerMap;
 
-    function getKey(type: string, eventClass: Object): string {
+    function getKey(type: string, eventClass: Function): string {
         return type + eventClass;
     }
 
-    function createTrigger(type: string, eventClass: Object): ICommandTrigger {
+    function createTrigger(
+        type: string,
+        eventClass: Function
+    ): ICommandTrigger {
         return new NullCommandTrigger();
     }
 
@@ -57,8 +60,8 @@ describe("CommandTriggerMap", () => {
     });
 
     it("trigger is cached by key", () => {
-        let mapper1: Object = subject.getTrigger("hi", 5);
-        let mapper2: Object = subject.getTrigger("hi", 5);
+        let mapper1: ICommandTrigger = subject.getTrigger("hi", 5);
+        let mapper2: ICommandTrigger = subject.getTrigger("hi", 5);
         assert.isNotNull(mapper1);
         assert.equal(mapper1, mapper2);
     });

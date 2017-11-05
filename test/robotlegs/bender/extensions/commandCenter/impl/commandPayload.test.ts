@@ -68,7 +68,7 @@ describe("CommandPayload", () => {
     it("test_adding_stores_in_lockstep", () => {
         createConfig(["string", 0], [String, Number]);
 
-        let value: Object = {};
+        let value: object = {};
 
         subject.addPayload(value, Object);
 

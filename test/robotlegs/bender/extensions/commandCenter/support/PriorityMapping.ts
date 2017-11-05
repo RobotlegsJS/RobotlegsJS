@@ -13,7 +13,7 @@ import { CommandMapping } from "../../../../../../src/robotlegs/bender/extension
 export class PriorityMapping extends CommandMapping {
     protected _priority: number;
 
-    constructor(commandClass: Object, priority: number) {
+    constructor(commandClass: Function, priority: number) {
         super(commandClass);
         this._priority = priority;
     }

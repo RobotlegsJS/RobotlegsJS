@@ -42,7 +42,7 @@ describe("CommandExecutor", () => {
     let reported: any[];
     let injector: IInjector;
 
-    function addMapping(commandClass: any = null): ICommandMapping {
+    function addMapping(commandClass: Function = null): ICommandMapping {
         let mapping: ICommandMapping = new CommandMapping(
             commandClass || ClassReportingCallbackCommand
         );
@@ -52,7 +52,7 @@ describe("CommandExecutor", () => {
 
     function addMappings(
         totalEvents: number = 1,
-        commandClass: any = null
+        commandClass: Function = null
     ): void {
         while (totalEvents--) {
             addMapping(commandClass);
@@ -63,13 +63,13 @@ describe("CommandExecutor", () => {
         subject.executeCommands(mappings, payload);
     }
 
-    function reportingFunction(item: Object): void {
+    function reportingFunction(item: any): void {
         reported.push(item);
     }
 
     function resultReporter(
         result: any,
-        command: Object,
+        command: Function,
         mapping: ICommandMapping
     ): void {
         reported.push(result);
@@ -299,7 +299,7 @@ describe("CommandExecutor", () => {
             .toConstantValue(reportingFunction)
             .whenTargetNamed("executeCallback");
         injector.bind(SelfReportingCallbackCommand).toSelf();
-        let expected: Object = injector.get(SelfReportingCallbackCommand);
+        let expected: any = injector.get(SelfReportingCallbackCommand);
         let mapping: ICommandMapping = addMapping(SelfReportingCallbackCommand);
         subject.executeCommand(mapping);
         assert.deepEqual(reported, [expected]);
