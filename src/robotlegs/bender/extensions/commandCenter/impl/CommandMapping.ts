@@ -5,6 +5,8 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import { getQualifiedClassName } from "../../../framework/impl/getQualifiedClassName";
+
 import { ICommandMapping } from "../api/ICommandMapping";
 
 /**
@@ -124,7 +126,10 @@ export class CommandMapping implements ICommandMapping {
         return this;
     }
 
+    /**
+     *
+     */
     public toString(): string {
-        return "Command " + this._commandClass;
+        return "Command " + getQualifiedClassName(this._commandClass);
     }
 }

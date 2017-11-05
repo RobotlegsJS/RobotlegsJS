@@ -62,6 +62,9 @@ export { UID } from "./robotlegs/bender/framework/impl/UID";
  * Framework Functions
  */
 export { applyHooks } from "./robotlegs/bender/framework/impl/applyHooks";
+export {
+    getQualifiedClassName
+} from "./robotlegs/bender/framework/impl/getQualifiedClassName";
 export { guardsApprove } from "./robotlegs/bender/framework/impl/guardsApprove";
 export {
     instantiateUnmapped

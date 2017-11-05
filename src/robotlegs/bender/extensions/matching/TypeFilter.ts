@@ -7,6 +7,8 @@
 
 import { IMatcher } from "../../framework/api/IMatcher";
 
+import { getQualifiedClassName } from "../../framework/impl/getQualifiedClassName";
+
 import { instanceOfType } from "./instanceOfType";
 import { ITypeFilter } from "./ITypeFilter";
 
@@ -126,22 +128,8 @@ export class TypeFilter implements ITypeFilter {
         let allFCQNs: string[] = [];
         let iLength: number = classes.length;
 
-        /**
-         * get class name for ecmascript, support v3 upto v6
-         * @param {string} classDescriptor
-         */
-        let getQualifiedClassName = (classDescriptor: string) => {
-            // es pattern
-            let v3: RegExp = /function\ ([^\(]+)/;
-            let v6: RegExp = /class\ ([^\ ]+)/;
-            let result: RegExpMatchArray =
-                classDescriptor.match(v3) || classDescriptor.match(v6);
-
-            return result[1];
-        };
-
         for (let i: number = 0; i < iLength; i++) {
-            fqcn = getQualifiedClassName(classes[i].toString());
+            fqcn = getQualifiedClassName(classes[i]);
             allFCQNs[allFCQNs.length] = fqcn;
         }
 
