@@ -7,4 +7,4 @@
 
 export type INewable<T> = new (...args: any[]) => T;
 export type ISymbol = (description?: string | number) => Symbol;
-export type IType<T> = INewable<T> | ISymbol;
+export type IClass<T> = INewable<T> | ISymbol;

@@ -7,7 +7,7 @@
 
 import { IMatcher } from "../../framework/api/IMatcher";
 
-import { IType } from "./IType";
+import { IClass } from "./IClass";
 
 /**
  * A Type Filter describes a Type Matcher
@@ -16,17 +16,17 @@ export interface ITypeFilter extends IMatcher {
     /**
      * All types that an item must extend or implement
      */
-    allOfTypes: Array<IType<any>>;
+    allOfTypes: Array<IClass<any>>;
 
     /**
      * Any types that an item must extend or implement
      */
-    anyOfTypes: Array<IType<any>>;
+    anyOfTypes: Array<IClass<any>>;
 
     /**
      * Types that an item must not extend or implement
      */
-    noneOfTypes: Array<IType<any>>;
+    noneOfTypes: Array<IClass<any>>;
 
     /**
      * Unique description for this filter
