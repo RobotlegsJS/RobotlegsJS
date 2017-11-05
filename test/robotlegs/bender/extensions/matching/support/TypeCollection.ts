@@ -11,10 +11,10 @@ import { instanceOfType } from "../../../../../../src/robotlegs/bender/extension
 
 export class TypeCollection<T> {
     private _type: IType<T>;
-    private _subTypeOf: Array<IType<any>>;
-    private _items: any[];
+    private _subTypeOf: Array<IType<T>>;
+    private _items: T[];
 
-    constructor(type: IType<T>, subTypeOf: Array<IType<any>>, items: any[]) {
+    constructor(type: IType<T>, subTypeOf: Array<IType<T>>, items: T[]) {
         this._type = type;
         this._subTypeOf = subTypeOf;
         this._items = items;
@@ -28,11 +28,11 @@ export class TypeCollection<T> {
         return this._type;
     }
 
-    public get matchWith(): Array<IType<any>> {
+    public get matchWith(): Array<IType<T>> {
         return this._subTypeOf.concat(this._type);
     }
 
-    public get items(): any[] {
+    public get items(): T[] {
         return this._items;
     }
 }
