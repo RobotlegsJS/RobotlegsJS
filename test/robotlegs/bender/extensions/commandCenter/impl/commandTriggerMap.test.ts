@@ -37,7 +37,7 @@ describe("CommandTriggerMap", () => {
         subject = null;
     });
 
-    it("keyFactory is called with params", () => {
+    it("keyFactory_is_called_with_params", () => {
         let subjectMock = sinon.mock(subject);
         subjectMock
             .expects("_keyFactory")
@@ -48,7 +48,7 @@ describe("CommandTriggerMap", () => {
         subjectMock.verify();
     });
 
-    it("triggerFactory is called with params", () => {
+    it("triggerFactory_is_called_with_params", () => {
         let subjectMock = sinon.mock(subject);
         subjectMock
             .expects("_triggerFactory")
@@ -59,17 +59,27 @@ describe("CommandTriggerMap", () => {
         subjectMock.verify();
     });
 
-    it("trigger is cached by key", () => {
+    it("trigger_is_cached_by_key", () => {
         let mapper1: ICommandTrigger = subject.getTrigger("hi", 5);
         let mapper2: ICommandTrigger = subject.getTrigger("hi", 5);
         assert.isNotNull(mapper1);
         assert.equal(mapper1, mapper2);
     });
 
-    it("removeTrigger deactivates trigger", () => {
+    it("removeTrigger_deactivates_trigger", () => {
         let trigger: ICommandTrigger = subject.getTrigger("hi", 5);
         let triggerMock = sinon.mock(trigger);
         triggerMock.expects("deactivate").once();
+        subject.removeTrigger("hi", 5);
+        triggerMock.restore();
+        triggerMock.verify();
+    });
+
+    it("removeTrigger_deactivates_trigger_once_when_called_twice", () => {
+        let trigger: ICommandTrigger = subject.getTrigger("hi", 5);
+        let triggerMock = sinon.mock(trigger);
+        triggerMock.expects("deactivate").once();
+        subject.removeTrigger("hi", 5);
         subject.removeTrigger("hi", 5);
         triggerMock.restore();
         triggerMock.verify();
