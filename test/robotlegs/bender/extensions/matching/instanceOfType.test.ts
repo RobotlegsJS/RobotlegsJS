@@ -12,23 +12,24 @@ import { assert } from "chai";
 import { IInjector } from "../../../../../src/robotlegs/bender/framework/api/IInjector";
 import { IMatcher } from "../../../../../src/robotlegs/bender/framework/api/IMatcher";
 import { instanceOfType } from "../../../../../src/robotlegs/bender/extensions/matching/instanceOfType";
+import { IType } from "../../../../../src/robotlegs/bender/extensions/matching/IType";
 
 import { TypeCollection } from "./support/TypeCollection";
 import { BaseType } from "./support/BaseType";
 import { ExtendedType } from "./support/ExtendedType";
 
 describe("instanceOfType", () => {
-    let booleanCollection: TypeCollection = new TypeCollection(
+    let booleanCollection: TypeCollection<Boolean> = new TypeCollection(
         Boolean,
         [],
         [true, false, Math.random() >= 0, Math.random() < 1]
     );
-    let dateCollection: TypeCollection = new TypeCollection(
+    let dateCollection: TypeCollection<Date> = new TypeCollection(
         Date,
         [],
         [new Date(), new Date(2017, 11, 3)]
     );
-    let functionCollection: TypeCollection = new TypeCollection(
+    let functionCollection: TypeCollection<Function> = new TypeCollection(
         Function,
         [],
         [
@@ -45,7 +46,7 @@ describe("instanceOfType", () => {
             instanceOfType
         ]
     );
-    let numberCollection: TypeCollection = new TypeCollection(
+    let numberCollection: TypeCollection<Number> = new TypeCollection(
         Number,
         [],
         [
@@ -70,7 +71,7 @@ describe("instanceOfType", () => {
             Math.random()
         ]
     );
-    let stringCollection: TypeCollection = new TypeCollection(
+    let stringCollection: TypeCollection<String> = new TypeCollection(
         String,
         [],
         [
@@ -82,7 +83,7 @@ describe("instanceOfType", () => {
             `${Math.random()} is another random value`
         ]
     );
-    let symbolCollection: TypeCollection = new TypeCollection(
+    let symbolCollection: TypeCollection<Symbol> = new TypeCollection<Symbol>(
         Symbol,
         [],
         [
@@ -96,17 +97,17 @@ describe("instanceOfType", () => {
             IInjector
         ]
     );
-    let objectCollection: TypeCollection = new TypeCollection(
+    let objectCollection: TypeCollection<Object> = new TypeCollection(
         Object,
         [Function, Array, Date, BaseType, ExtendedType],
         [{}, { data: "I'm not a empty object" }, new Object()]
     );
-    let arrayCollection: TypeCollection = new TypeCollection(
+    let arrayCollection: TypeCollection<any[]> = new TypeCollection(
         Array,
         [],
         [[], ["I'm not a empty array"], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]]
     );
-    let baseTypeCollection: TypeCollection = new TypeCollection(
+    let baseTypeCollection: TypeCollection<BaseType> = new TypeCollection(
         BaseType,
         [ExtendedType],
         [
@@ -115,7 +116,7 @@ describe("instanceOfType", () => {
             new BaseType("I'm a long long long long string")
         ]
     );
-    let extendedTypeCollection: TypeCollection = new TypeCollection(
+    let extendedTypeCollection: TypeCollection<BaseType> = new TypeCollection(
         ExtendedType,
         [],
         [
@@ -205,7 +206,7 @@ describe("instanceOfType", () => {
     });
 
     it("stress_match_test", done => {
-        let collections: TypeCollection[] = [
+        let collections: Array<TypeCollection<any>> = [
             arrayCollection,
             baseTypeCollection,
             booleanCollection,
@@ -222,13 +223,13 @@ describe("instanceOfType", () => {
 
         // iterate through matchers
         for (let c: number = 0; c < numCollections; c++) {
-            let typeCollection: TypeCollection = collections[c];
+            let typeCollection: TypeCollection<any> = collections[c];
             let matcher: IMatcher = typeCollection.matcher;
-            let matchWith: Function[] = typeCollection.matchWith;
+            let matchWith: Array<IType<any>> = typeCollection.matchWith;
 
-            // iterate through samples of the same type
+            // iterate through all collections
             for (let i: number = 0; i < numCollections; i++) {
-                let againstCollection: TypeCollection = collections[i];
+                let againstCollection: TypeCollection<any> = collections[i];
                 let items: any[] = againstCollection.items;
                 let numItems: number = items.length;
 

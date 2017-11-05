@@ -5,10 +5,11 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import { IType } from "./IType";
 import { ITypeFilter } from "./ITypeFilter";
-import { TypeFilter } from "./TypeFilter";
 import { ITypeMatcher } from "./ITypeMatcher";
 import { ITypeMatcherFactory } from "./ITypeMatcherFactory";
+import { TypeFilter } from "./TypeFilter";
 import { TypeMatcherError } from "./TypeMatcherError";
 
 /**
@@ -19,11 +20,11 @@ export class TypeMatcher implements ITypeMatcher, ITypeMatcherFactory {
     /* Protected Properties                                                       */
     /*============================================================================*/
 
-    protected _allOfTypes: Function[] = [];
+    protected _allOfTypes: Array<IType<any>> = [];
 
-    protected _anyOfTypes: Function[] = [];
+    protected _anyOfTypes: Array<IType<any>> = [];
 
-    protected _noneOfTypes: Function[] = [];
+    protected _noneOfTypes: Array<IType<any>> = [];
 
     protected _typeFilter: ITypeFilter = null;
 
@@ -101,7 +102,10 @@ export class TypeMatcher implements ITypeMatcher, ITypeMatcherFactory {
         );
     }
 
-    protected pushAddedTypesTo(types: any[], targetSet: Function[]): void {
+    protected pushAddedTypesTo(
+        types: any[],
+        targetSet: Array<IType<any>>
+    ): void {
         if (this._typeFilter) {
             this.throwSealedMatcherError();
         }
@@ -115,9 +119,9 @@ export class TypeMatcher implements ITypeMatcher, ITypeMatcherFactory {
 
     protected pushValuesToTargetSet(
         values: any[],
-        targetSet: Function[]
+        targetSet: Array<IType<any>>
     ): void {
-        let types: Function[] =
+        let types: Array<IType<any>> =
             values.length === 1 && values[0] instanceof Array
                 ? values[0]
                 : values;

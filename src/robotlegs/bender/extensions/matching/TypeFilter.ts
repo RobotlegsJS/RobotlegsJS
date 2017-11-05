@@ -10,6 +10,7 @@ import { IMatcher } from "../../framework/api/IMatcher";
 import { getQualifiedClassName } from "../../framework/impl/getQualifiedClassName";
 
 import { instanceOfType } from "./instanceOfType";
+import { IType } from "./IType";
 import { ITypeFilter } from "./ITypeFilter";
 
 /**
@@ -20,30 +21,30 @@ export class TypeFilter implements ITypeFilter {
     /* Public Properties                                                          */
     /*============================================================================*/
 
-    protected _allOfTypes: Function[];
+    protected _allOfTypes: Array<IType<any>>;
 
     /**
      * @inheritDoc
      */
-    public get allOfTypes(): Function[] {
+    public get allOfTypes(): Array<IType<any>> {
         return this._allOfTypes;
     }
 
-    protected _anyOfTypes: Function[];
+    protected _anyOfTypes: Array<IType<any>>;
 
     /**
      * @inheritDoc
      */
-    public get anyOfTypes(): Function[] {
+    public get anyOfTypes(): Array<IType<any>> {
         return this._anyOfTypes;
     }
 
-    protected _noneOfTypes: Function[];
+    protected _noneOfTypes: Array<IType<any>>;
 
     /**
      * @inheritDoc
      */
-    public get noneOfTypes(): Function[] {
+    public get noneOfTypes(): Array<IType<any>> {
         return this._noneOfTypes;
     }
 
@@ -63,7 +64,11 @@ export class TypeFilter implements ITypeFilter {
     /**
      * @private
      */
-    constructor(allOf: Function[], anyOf: Function[], noneOf: Function[]) {
+    constructor(
+        allOf: Array<IType<any>>,
+        anyOf: Array<IType<any>>,
+        noneOf: Array<IType<any>>
+    ) {
         if (!allOf || !anyOf || !noneOf) {
             throw Error("TypeFilter parameters can not be null");
         }

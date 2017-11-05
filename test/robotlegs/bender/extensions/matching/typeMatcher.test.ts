@@ -9,6 +9,7 @@ import "../../../../entry";
 
 import { assert } from "chai";
 
+import { IType } from "../../../../../src/robotlegs/bender/extensions/matching/IType";
 import { ITypeFilter } from "../../../../../src/robotlegs/bender/extensions/matching/ITypeFilter";
 import { TypeFilter } from "../../../../../src/robotlegs/bender/extensions/matching/TypeFilter";
 import { TypeMatcher } from "../../../../../src/robotlegs/bender/extensions/matching/TypeMatcher";
@@ -18,12 +19,12 @@ import { BaseType } from "./support/BaseType";
 import { ExtendedType } from "./support/ExtendedType";
 
 describe("TypeMatcher", () => {
-    const ALL_OF: Function[] = [BaseType, ExtendedType];
-    const ALL_OF_2: Function[] = [Object];
-    const ANY_OF: Function[] = [Boolean, Number];
-    const ANY_OF_2: Function[] = [Array, Date];
-    const NONE_OF: Function[] = [Error];
-    const NONE_OF_2: Function[] = [TypeMatcherError];
+    const ALL_OF: Array<IType<any>> = [BaseType, ExtendedType];
+    const ALL_OF_2: Array<IType<any>> = [Object];
+    const ANY_OF: Array<IType<any>> = [Boolean, Number];
+    const ANY_OF_2: Array<IType<any>> = [Array, Date];
+    const NONE_OF: Array<IType<any>> = [Error];
+    const NONE_OF_2: Array<IType<any>> = [TypeMatcherError];
 
     let matcher: TypeMatcher;
 

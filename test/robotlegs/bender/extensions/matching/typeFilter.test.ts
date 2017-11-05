@@ -9,14 +9,15 @@ import "../../../../entry";
 
 import { assert } from "chai";
 
+import { IType } from "../../../../../src/robotlegs/bender/extensions/matching/IType";
 import { TypeFilter } from "../../../../../src/robotlegs/bender/extensions/matching/TypeFilter";
 
 import { BaseType } from "./support/BaseType";
 import { ExtendedType } from "./support/ExtendedType";
 
 describe("TypeFilter", () => {
-    let allOf: Function[] = [ExtendedType, Object, BaseType];
-    let anyOf: Function[] = [
+    let allOf: Array<IType<any>> = [ExtendedType, Object, BaseType];
+    let anyOf: Array<IType<any>> = [
         Promise,
         String,
         TypeFilter,
@@ -24,7 +25,7 @@ describe("TypeFilter", () => {
         Number,
         Boolean
     ];
-    let noneOf: Function[] = [Error];
+    let noneOf: Array<IType<any>> = [Error];
     let filter: TypeFilter;
 
     beforeEach(() => {
