@@ -28,7 +28,7 @@ describe("InjectableLoggerExtension", () => {
     });
 
     it("logger_is_mapped_into_injector_through_ILogger_symbol", () => {
-        let actual: Object = null;
+        let actual: ILogger = null;
         context.whenInitializing(function(): void {
             actual = context.injector.get<ILogger>(ILogger);
         });
@@ -37,7 +37,7 @@ describe("InjectableLoggerExtension", () => {
     });
 
     it("logger_is_mapped_into_injector_through_ILogger_string", () => {
-        let actual: Object = null;
+        let actual: ILogger = null;
         context.whenInitializing(function(): void {
             actual = context.injector.get<ILogger>("ILogger");
         });
