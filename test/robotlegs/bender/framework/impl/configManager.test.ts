@@ -50,9 +50,9 @@ describe("ConfigManager", () => {
 
     it("handler is called", () => {
         let expected: TestObject = new TestObject("config");
-        let actual: Object = null;
+        let actual: TestObject = null;
         configManager.addConfigHandler(instanceOfType(TestObject), function(
-            config: Object
+            config: TestObject
         ): void {
             actual = config;
         });
@@ -111,7 +111,7 @@ describe("ConfigManager", () => {
 
     it("destroy", () => {
         configManager.addConfigHandler(instanceOfType(String), function(
-            config: Object
+            config: TestObject
         ): void {
             throw new Error("Handler should not fire after call to destroy");
         });
