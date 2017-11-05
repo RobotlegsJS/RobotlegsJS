@@ -28,9 +28,6 @@ export {
 } from "./robotlegs/bender/framework/api/LifecycleState";
 export { LogLevel } from "./robotlegs/bender/framework/api/LogLevel";
 export { PinEvent } from "./robotlegs/bender/framework/api/PinEvent";
-export {
-    instanceOfType
-} from "./robotlegs/bender/extensions/matching/instanceOfType";
 
 /**
  * Framework Implementation
@@ -174,6 +171,10 @@ export {
 } from "./robotlegs/bender/extensions/localEventMap/LocalEventMapExtension";
 
 // Matching
+export { IClass } from "./robotlegs/bender/extensions/matching/IClass";
+export {
+    instanceOfType
+} from "./robotlegs/bender/extensions/matching/instanceOfType";
 export {
     ITypeFilter
 } from "./robotlegs/bender/extensions/matching/ITypeFilter";
