@@ -88,14 +88,15 @@ export class CommandPayload {
      * @return boolean
      */
     public hasPayload(): boolean {
-        // todo: the final clause will make this fail silently
-        // todo: rethink
-        return (
-            this._values &&
-            this._values.length > 0 &&
-            this._classes &&
-            this._classes.length > 0 &&
-            this._classes.length === this._values.length
-        );
+        let payload: boolean = false;
+
+        if (this._values && this._classes) {
+            payload =
+                this._values.length > 0 &&
+                this._classes.length > 0 &&
+                this._values.length === this._classes.length;
+        }
+
+        return payload;
     }
 }
