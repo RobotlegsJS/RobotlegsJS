@@ -27,59 +27,63 @@ describe("CommandMapping", () => {
         commandClass = null;
     });
 
-    it("mapping stores Command", () => {
+    it("mapping_stores_Command", () => {
         assert.equal(mapping.commandClass, commandClass);
     });
 
-    it("default ExecuteMethod", () => {
+    it("default_ExecuteMethod", () => {
         assert.equal(mapping.executeMethod, "execute");
     });
 
-    it("mapping stores ExecuteMethod", () => {
+    it("mapping_stores_ExecuteMethod", () => {
         mapping.setExecuteMethod("run");
         assert.equal(mapping.executeMethod, "run");
     });
 
-    it("mapping stores Guards", () => {
+    it("mapping_stores_Guards", () => {
         mapping.addGuards(1, 2, 3);
         assert.deepEqual(mapping.guards, [1, 2, 3]);
     });
 
-    it("mapping stores GuardsArray", () => {
+    it("mapping_stores_GuardsArray", () => {
         mapping.addGuards([1, 2, 3]);
         assert.deepEqual(mapping.guards, [1, 2, 3]);
     });
 
-    it("mapping stores Hooks", () => {
+    it("mapping_stores_Hooks", () => {
         mapping.addHooks(1, 2, 3);
         assert.deepEqual(mapping.hooks, [1, 2, 3]);
     });
 
-    it("mapping stores HooksArray", () => {
+    it("mapping_stores_HooksArray", () => {
         mapping.addHooks([1, 2, 3]);
         assert.deepEqual(mapping.hooks, [1, 2, 3]);
     });
 
-    it("fireOnce defaults to False", () => {
+    it("fireOnce_defaults_to_False", () => {
         assert.isFalse(mapping.fireOnce);
     });
 
-    it("mapping stores FireOnce", () => {
+    it("mapping_stores_FireOnce", () => {
         mapping.setFireOnce(true);
         assert.isTrue(mapping.fireOnce);
     });
 
-    it("mapping stores FireOnce when false", () => {
+    it("mapping_stores_FireOnce_when_false", () => {
         mapping.setFireOnce(false);
         assert.isFalse(mapping.fireOnce);
     });
 
-    it("payloadInjectionEnabled defaults to True", () => {
+    it("payloadInjectionEnabled_defaults_to_True", () => {
         assert.isTrue(mapping.payloadInjectionEnabled);
     });
 
-    it("mapping stores PayloadInjectionEnabled", () => {
+    it("mapping_stores_PayloadInjectionEnabled", () => {
         mapping.setPayloadInjectionEnabled(false);
         assert.isFalse(mapping.payloadInjectionEnabled);
+    });
+
+    it("mapping_toString_describe_mapping", () => {
+        assert.equal(mapping.toString(), "Command NullCommand");
     });
 });
