@@ -9,6 +9,9 @@ import "../../../../../entry";
 
 import { assert } from "chai";
 
+import { IClass } from "../../../../../../src/robotlegs/bender/extensions/matching/IClass";
+
+import { ICommand } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/api/ICommand";
 import { ICommandMapping } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/api/ICommandMapping";
 import { CommandPayload } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/api/CommandPayload";
 import { CommandExecutor } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/impl/CommandExecutor";
@@ -24,15 +27,12 @@ import { ClassReportingCallbackCommand2 } from "../support/ClassReportingCallbac
 import { ClassReportingCallbackGuard } from "../support/ClassReportingCallbackGuard";
 import { ClassReportingCallbackGuard2 } from "../support/ClassReportingCallbackGuard2";
 import { ClassReportingCallbackHook } from "../support/ClassReportingCallbackHook";
-import { ExecutelessCommand } from "../support/ExecutelessCommand";
-import { IncorrectExecuteCommand } from "../support/IncorrectExecuteCommand";
 import { MessageReturningCommand } from "../support/MessageReturningCommand";
 import { MethodParametersCommand } from "../support/MethodParametersCommand";
 import { NullCommand } from "../support/NullCommand";
 import { PayloadInjectionPointsCommand } from "../support/PayloadInjectionPointsCommand";
 import { PayloadInjectionPointsGuard } from "../support/PayloadInjectionPointsGuard";
 import { PayloadInjectionPointsHook } from "../support/PayloadInjectionPointsHook";
-import { ReportMethodCommand } from "../support/ReportMethodCommand";
 import { SelfReportingCallbackCommand } from "../support/SelfReportingCallbackCommand";
 import { SelfReportingCallbackHook } from "../support/SelfReportingCallbackHook";
 
@@ -42,7 +42,9 @@ describe("CommandExecutor", () => {
     let reported: any[];
     let injector: IInjector;
 
-    function addMapping(commandClass: Function = null): ICommandMapping {
+    function addMapping(
+        commandClass: IClass<ICommand> = null
+    ): ICommandMapping {
         let mapping: ICommandMapping = new CommandMapping(
             commandClass || ClassReportingCallbackCommand
         );
@@ -52,7 +54,7 @@ describe("CommandExecutor", () => {
 
     function addMappings(
         totalEvents: number = 1,
-        commandClass: Function = null
+        commandClass: IClass<ICommand> = null
     ): void {
         while (totalEvents--) {
             addMapping(commandClass);
@@ -69,7 +71,7 @@ describe("CommandExecutor", () => {
 
     function resultReporter(
         result: any,
-        command: Function,
+        command: IClass<ICommand>,
         mapping: ICommandMapping
     ): void {
         reported.push(result);
@@ -110,12 +112,6 @@ describe("CommandExecutor", () => {
         executeCommands();
         assert.equal(actualMapping, expectedMapping);
         assert.equal(callCount, 1);
-    });
-
-    it("command without execute method is still constructed", () => {
-        addMapping(ExecutelessCommand).setExecuteMethod(null);
-        executeCommands();
-        assert.deepEqual(reported, [ExecutelessCommand]);
     });
 
     it("command is executed", () => {
@@ -209,20 +205,6 @@ describe("CommandExecutor", () => {
         addMapping(ClassReportingCallbackCommand2);
         executeCommands();
         assert.deepEqual(reported, [ClassReportingCallbackCommand2]);
-    });
-
-    it("command with different method than execute is called", () => {
-        addMapping(ReportMethodCommand).setExecuteMethod("report");
-        executeCommands();
-        assert.deepEqual(reported, [ReportMethodCommand]);
-    });
-
-    it("throws error when executeMethod is not a function", () => {
-        function invalidExecuteMethod(): void {
-            addMapping(IncorrectExecuteCommand);
-            executeCommands();
-        }
-        assert.throws(invalidExecuteMethod, TypeError);
     });
 
     it("payload is injected into command", () => {

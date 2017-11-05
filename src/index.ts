@@ -115,6 +115,9 @@ export {
     ICommandUnmapper
 } from "./robotlegs/bender/extensions/commandCenter/dsl/ICommandUnmapper";
 export {
+    Command
+} from "./robotlegs/bender/extensions/commandCenter/impl/Command";
+export {
     CommandExecutor
 } from "./robotlegs/bender/extensions/commandCenter/impl/CommandExecutor";
 export {
@@ -190,4 +193,3 @@ export {
  * Bundles
  */
 export { MVCSBundle } from "./robotlegs/bender/bundles/mvcs/MVCSBundle";
-export { Command } from "./robotlegs/bender/bundles/mvcs/Command";

@@ -13,13 +13,6 @@ import { IHook } from "../../../framework/api/IHook";
  */
 export interface ICommandConfigurator {
     /**
-     * The "execute" method to invoke on the Command instance
-     * @param name Method name
-     * @return Self
-     */
-    withExecuteMethod(name: string): ICommandConfigurator;
-
-    /**
      * Guards to check before allowing a command to execute
      * @param guards Guards
      * @return Self

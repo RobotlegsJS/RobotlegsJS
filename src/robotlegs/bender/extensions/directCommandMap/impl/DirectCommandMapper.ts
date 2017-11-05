@@ -5,10 +5,13 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import { IClass } from "../../matching/IClass";
+
+import { CommandPayload } from "../../commandCenter/api/CommandPayload";
+import { ICommand } from "../../commandCenter/api/ICommand";
 import { ICommandExecutor } from "../../commandCenter/api/ICommandExecutor";
 import { ICommandMapping } from "../../commandCenter/api/ICommandMapping";
 import { ICommandMappingList } from "../../commandCenter/api/ICommandMappingList";
-import { CommandPayload } from "../../commandCenter/api/CommandPayload";
 
 import { CommandMapping } from "../../commandCenter/impl/CommandMapping";
 
@@ -38,7 +41,7 @@ export class DirectCommandMapper implements IDirectCommandConfigurator {
     constructor(
         executor: ICommandExecutor,
         mappings: ICommandMappingList,
-        commandClass: Function
+        commandClass: IClass<ICommand>
     ) {
         this._executor = executor;
         this._mappings = mappings;
@@ -50,14 +53,6 @@ export class DirectCommandMapper implements IDirectCommandConfigurator {
     /*============================================================================*/
     /* Public Functions                                                           */
     /*============================================================================*/
-
-    /**
-     * @inheritDoc
-     */
-    public withExecuteMethod(name: string): IDirectCommandConfigurator {
-        this._mapping.setExecuteMethod(name);
-        return this;
-    }
 
     /**
      * @inheritDoc
@@ -95,7 +90,7 @@ export class DirectCommandMapper implements IDirectCommandConfigurator {
     /**
      * @inheritDoc
      */
-    public map(commandClass: Function): IDirectCommandConfigurator {
+    public map(commandClass: IClass<ICommand>): IDirectCommandConfigurator {
         return new DirectCommandMapper(
             this._executor,
             this._mappings,

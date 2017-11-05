@@ -14,6 +14,9 @@ import { IInjector } from "../../../../../../src/robotlegs/bender/framework/api/
 import { PinEvent } from "../../../../../../src/robotlegs/bender/framework/api/PinEvent";
 import { Context } from "../../../../../../src/robotlegs/bender/framework/impl/Context";
 
+import { IClass } from "../../../../../../src/robotlegs/bender/extensions/matching/IClass";
+
+import { ICommand } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/api/ICommand";
 import { ICommandMapping } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/api/ICommandMapping";
 import { CommandPayload } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/api/CommandPayload";
 
@@ -125,7 +128,7 @@ describe("DirectCommandMap", () => {
     });
 
     it("detains_command", () => {
-        let command: Function = NullCommand;
+        let command: IClass<ICommand> = NullCommand;
         let wasDetained: boolean = false;
         let handler: Function = function(...params): void {
             wasDetained = true;
@@ -139,7 +142,7 @@ describe("DirectCommandMap", () => {
     });
 
     it("releases_command", () => {
-        let command: Function = NullCommand;
+        let command: IClass<ICommand> = NullCommand;
         let wasReleased: boolean = false;
         let handler: Function = function(...params): void {
             wasReleased = true;

@@ -5,6 +5,9 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import { IClass } from "../../matching/IClass";
+
+import { ICommand } from "../api/ICommand";
 import { ICommandExecutor } from "../api/ICommandExecutor";
 import { ICommandMapping } from "../api/ICommandMapping";
 import { CommandPayload } from "../api/CommandPayload";
@@ -76,7 +79,7 @@ export class CommandExecutor implements ICommandExecutor {
         let hasPayload: boolean = payload && payload.hasPayload();
         let injectionEnabled: boolean =
             hasPayload && mapping.payloadInjectionEnabled;
-        let command: any = null;
+        let command: ICommand = null;
 
         if (injectionEnabled) {
             this.mapPayload(payload);
@@ -86,13 +89,16 @@ export class CommandExecutor implements ICommandExecutor {
             mapping.guards.length === 0 ||
             guardsApprove(mapping.guards, this._injector)
         ) {
-            let commandClass: any = mapping.commandClass;
+            let commandClass: IClass<ICommand> = mapping.commandClass;
 
             if (mapping.fireOnce && this._removeMapping) {
                 this._removeMapping(mapping);
             }
 
-            command = instantiateUnmapped(this._injector, commandClass);
+            command = instantiateUnmapped<ICommand>(
+                this._injector,
+                commandClass
+            );
 
             if (mapping.hooks.length > 0) {
                 this._injector.bind(commandClass).toConstantValue(command);
@@ -105,10 +111,8 @@ export class CommandExecutor implements ICommandExecutor {
             this.unmapPayload(payload);
         }
 
-        if (command && mapping.executeMethod) {
-            let executeMethod: Function = command[mapping.executeMethod].bind(
-                command
-            );
+        if (command) {
+            let executeMethod: Function = command.execute.bind(command);
             let result: any =
                 hasPayload && executeMethod.length > 0
                     ? executeMethod.apply(command, payload.values)

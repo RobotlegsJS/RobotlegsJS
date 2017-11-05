@@ -31,15 +31,6 @@ describe("CommandMapping", () => {
         assert.equal(mapping.commandClass, commandClass);
     });
 
-    it("default_ExecuteMethod", () => {
-        assert.equal(mapping.executeMethod, "execute");
-    });
-
-    it("mapping_stores_ExecuteMethod", () => {
-        mapping.setExecuteMethod("run");
-        assert.equal(mapping.executeMethod, "run");
-    });
-
     it("mapping_stores_Guards", () => {
         mapping.addGuards(1, 2, 3);
         assert.deepEqual(mapping.guards, [1, 2, 3]);

@@ -13,7 +13,10 @@ import { IContext } from "../../../../../../src/robotlegs/bender/framework/api/I
 import { IInjector } from "../../../../../../src/robotlegs/bender/framework/api/IInjector";
 import { Context } from "../../../../../../src/robotlegs/bender/framework/impl/Context";
 
+import { IClass } from "../../../../../../src/robotlegs/bender/extensions/matching/IClass";
+
 import { CommandPayload } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/api/CommandPayload";
+import { ICommand } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/api/ICommand";
 import { ICommandExecutor } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/api/ICommandExecutor";
 import { ICommandMapping } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/api/ICommandMapping";
 import { ICommandMappingList } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/api/ICommandMappingList";
@@ -27,7 +30,6 @@ import { DirectCommandMapper } from "../../../../../../src/robotlegs/bender/exte
 
 import { NullCommand } from "../../commandCenter/support/NullCommand";
 import { CallbackCommand } from "../../commandCenter/support/CallbackCommand";
-import { ReportMethodCommand } from "../../commandCenter/support/ReportMethodCommand";
 import { PayloadInjectionPointsCommand } from "../../commandCenter/support/PayloadInjectionPointsCommand";
 
 import { HappyGuard } from "../../../framework/impl/guardSupport/HappyGuard";
@@ -44,7 +46,7 @@ describe("DirectCommandMapper", () => {
     let mappingProcessors: any[];
     let subject: DirectCommandMapper;
 
-    function createMapper(commandClass: Function): DirectCommandMapper {
+    function createMapper(commandClass: IClass<ICommand>): DirectCommandMapper {
         context = new Context();
         context.initialize();
         injector = context.injector;
@@ -114,23 +116,6 @@ describe("DirectCommandMapper", () => {
         subject.execute(payload);
 
         assert.deepEqual(reported, expected);
-    });
-
-    it("withExecuteMethod_sets_executeMethod_of_mapping", () => {
-        subject = createMapper(ReportMethodCommand);
-
-        let executionCount: number = 0;
-
-        injector
-            .bind("Function")
-            .toFunction(() => {
-                executionCount++;
-            })
-            .whenTargetNamed("reportingFunction");
-
-        subject.withExecuteMethod("report").execute();
-
-        assert.equal(executionCount, 1);
     });
 
     it("withGuards_sets_happy_guard_and_execute_command", () => {
