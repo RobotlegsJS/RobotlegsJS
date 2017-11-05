@@ -5,11 +5,9 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { IMatcher } from "../../framework/api/IMatcher";
-
 import { getQualifiedClassName } from "../../framework/impl/getQualifiedClassName";
 
-import { instanceOfType } from "./instanceOfType";
+import { isInstanceOfType } from "./isInstanceOfType";
 import { IType } from "./IType";
 import { ITypeFilter } from "./ITypeFilter";
 
@@ -86,21 +84,16 @@ export class TypeFilter implements ITypeFilter {
      */
     public matches(item: any): boolean {
         let i: number = this._allOfTypes.length;
-        let matcher: IMatcher;
 
         while (i--) {
-            matcher = instanceOfType(this._allOfTypes[i]);
-
-            if (!matcher.matches(item)) {
+            if (!isInstanceOfType(item, this._allOfTypes[i])) {
                 return false;
             }
         }
 
         i = this._noneOfTypes.length;
         while (i--) {
-            matcher = instanceOfType(this._noneOfTypes[i]);
-
-            if (matcher.matches(item)) {
+            if (isInstanceOfType(item, this._noneOfTypes[i])) {
                 return false;
             }
         }
@@ -114,9 +107,7 @@ export class TypeFilter implements ITypeFilter {
 
         i = this._anyOfTypes.length;
         while (i--) {
-            matcher = instanceOfType(this._anyOfTypes[i]);
-
-            if (matcher.matches(item)) {
+            if (isInstanceOfType(item, this._anyOfTypes[i])) {
                 return true;
             }
         }

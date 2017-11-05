@@ -180,6 +180,9 @@ export {
     instanceOfType
 } from "./robotlegs/bender/extensions/matching/instanceOfType";
 export {
+    isInstanceOfType
+} from "./robotlegs/bender/extensions/matching/isInstanceOfType";
+export {
     ITypeFilter
 } from "./robotlegs/bender/extensions/matching/ITypeFilter";
 export {

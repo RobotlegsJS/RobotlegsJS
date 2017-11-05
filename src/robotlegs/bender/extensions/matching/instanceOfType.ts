@@ -7,6 +7,7 @@
 
 import { IMatcher } from "../../framework/api/IMatcher";
 
+import { isInstanceOfType } from "./isInstanceOfType";
 import { IType } from "./IType";
 
 /*============================================================================*/
@@ -63,6 +64,6 @@ class InstanceOfTypeMatcher<T> implements IMatcher {
      * @see {@link https://github.com/Microsoft/TypeScript/blob/v2.6.1/doc/spec.md#4.19.4}
      */
     public matches(item: any): boolean {
-        return item instanceof this._type || item.constructor === this._type;
+        return isInstanceOfType<T>(item, this._type);
     }
 }
