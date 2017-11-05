@@ -7,7 +7,7 @@
 
 import { IMatcher } from "../../framework/api/IMatcher";
 
-import { IClass } from "./IClass";
+import { IType } from "./IType";
 
 /*============================================================================*/
 /* Public Functions                                                           */
@@ -18,7 +18,7 @@ import { IClass } from "./IClass";
  * @param type The type to match
  * @return A matcher
  */
-export function instanceOfType<T>(type: IClass<T>): IMatcher {
+export function instanceOfType<T>(type: IType<T>): IMatcher {
     return new InstanceOfTypeMatcher<T>(type);
 }
 
@@ -30,7 +30,7 @@ class InstanceOfTypeMatcher<T> implements IMatcher {
     /* Private Properties                                                         */
     /*============================================================================*/
 
-    private _type: IClass<T>;
+    private _type: IType<T>;
 
     /*============================================================================*/
     /* Constructor                                                                */
@@ -39,7 +39,7 @@ class InstanceOfTypeMatcher<T> implements IMatcher {
     /**
      * @private
      */
-    constructor(type: IClass<T>) {
+    constructor(type: IType<T>) {
         this._type = type;
     }
 

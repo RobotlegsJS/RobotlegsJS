@@ -172,6 +172,7 @@ export {
 
 // Matching
 export { IClass } from "./robotlegs/bender/extensions/matching/IClass";
+export { IType } from "./robotlegs/bender/extensions/matching/IType";
 export {
     instanceOfType
 } from "./robotlegs/bender/extensions/matching/instanceOfType";

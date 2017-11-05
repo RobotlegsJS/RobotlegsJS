@@ -5,7 +5,7 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { IClass } from "./IClass";
+import { IType } from "./IType";
 import { ITypeFilter } from "./ITypeFilter";
 import { ITypeMatcher } from "./ITypeMatcher";
 import { ITypeMatcherFactory } from "./ITypeMatcherFactory";
@@ -20,11 +20,11 @@ export class TypeMatcher implements ITypeMatcher, ITypeMatcherFactory {
     /* Protected Properties                                                       */
     /*============================================================================*/
 
-    protected _allOfTypes: Array<IClass<any>> = [];
+    protected _allOfTypes: Array<IType<any>> = [];
 
-    protected _anyOfTypes: Array<IClass<any>> = [];
+    protected _anyOfTypes: Array<IType<any>> = [];
 
-    protected _noneOfTypes: Array<IClass<any>> = [];
+    protected _noneOfTypes: Array<IType<any>> = [];
 
     protected _typeFilter: ITypeFilter = null;
 
@@ -104,7 +104,7 @@ export class TypeMatcher implements ITypeMatcher, ITypeMatcherFactory {
 
     protected pushAddedTypesTo(
         types: any[],
-        targetSet: Array<IClass<any>>
+        targetSet: Array<IType<any>>
     ): void {
         if (this._typeFilter) {
             this.throwSealedMatcherError();
@@ -119,9 +119,9 @@ export class TypeMatcher implements ITypeMatcher, ITypeMatcherFactory {
 
     protected pushValuesToTargetSet(
         values: any[],
-        targetSet: Array<IClass<any>>
+        targetSet: Array<IType<any>>
     ): void {
-        let types: Array<IClass<any>> =
+        let types: Array<IType<any>> =
             values.length === 1 && values[0] instanceof Array
                 ? values[0]
                 : values;

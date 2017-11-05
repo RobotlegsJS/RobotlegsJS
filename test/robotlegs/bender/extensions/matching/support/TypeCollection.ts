@@ -6,15 +6,15 @@
 // ------------------------------------------------------------------------------
 
 import { IMatcher } from "../../../../../../src/robotlegs/bender/framework/api/IMatcher";
-import { IClass } from "../../../../../../src/robotlegs/bender/extensions/matching/IClass";
+import { IType } from "../../../../../../src/robotlegs/bender/extensions/matching/IType";
 import { instanceOfType } from "../../../../../../src/robotlegs/bender/extensions/matching/instanceOfType";
 
 export class TypeCollection<T> {
-    private _type: IClass<T>;
-    private _subTypeOf: Array<IClass<T>>;
+    private _type: IType<T>;
+    private _subTypeOf: Array<IType<T>>;
     private _items: T[];
 
-    constructor(type: IClass<T>, subTypeOf: Array<IClass<T>>, items: T[]) {
+    constructor(type: IType<T>, subTypeOf: Array<IType<T>>, items: T[]) {
         this._type = type;
         this._subTypeOf = subTypeOf;
         this._items = items;
@@ -24,11 +24,11 @@ export class TypeCollection<T> {
         return instanceOfType<T>(this._type);
     }
 
-    public get type(): IClass<T> {
+    public get type(): IType<T> {
         return this._type;
     }
 
-    public get matchWith(): Array<IClass<T>> {
+    public get matchWith(): Array<IType<T>> {
         return this._subTypeOf.concat(this._type);
     }
 

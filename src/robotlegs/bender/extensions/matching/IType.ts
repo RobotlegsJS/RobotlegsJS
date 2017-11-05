@@ -5,4 +5,7 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-export type IClass<T> = new (...args: any[]) => T;
+import { IClass } from "./IClass";
+
+export type ISymbol = (description?: string | number) => Symbol;
+export type IType<T> = IClass<T> | ISymbol;
