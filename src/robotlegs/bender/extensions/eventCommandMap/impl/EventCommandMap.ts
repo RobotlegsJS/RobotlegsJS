@@ -68,14 +68,14 @@ export class EventCommandMap implements IEventCommandMap {
     /**
      * @inheritDoc
      */
-    public map(type: string, eventClass?: Object): ICommandMapper {
+    public map(type: string, eventClass?: Function): ICommandMapper {
         return this.getTrigger(type, eventClass).createMapper();
     }
 
     /**
      * @inheritDoc
      */
-    public unmap(type: string, eventClass?: Object): ICommandUnmapper {
+    public unmap(type: string, eventClass?: Function): ICommandUnmapper {
         return this.getTrigger(type, eventClass).createMapper();
     }
 
@@ -93,11 +93,14 @@ export class EventCommandMap implements IEventCommandMap {
     /* Private Functions                                                          */
     /*============================================================================*/
 
-    private getKey(type: string, eventClass: Object): string {
+    private getKey(type: string, eventClass: Function): string {
         return type + eventClass;
     }
 
-    private getTrigger(type: string, eventClass: Object): EventCommandTrigger {
+    private getTrigger(
+        type: string,
+        eventClass: Function
+    ): EventCommandTrigger {
         return <EventCommandTrigger>this._triggerMap.getTrigger(
             type,
             eventClass
@@ -106,7 +109,7 @@ export class EventCommandMap implements IEventCommandMap {
 
     private createTrigger(
         type: string,
-        eventClass: Object
+        eventClass: Function
     ): EventCommandTrigger {
         return new EventCommandTrigger(
             this._injector,

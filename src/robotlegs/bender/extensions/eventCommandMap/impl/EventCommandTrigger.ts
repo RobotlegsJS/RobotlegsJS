@@ -30,7 +30,7 @@ export class EventCommandTrigger implements ICommandTrigger {
 
     private _type: string;
 
-    private _eventClass: Object;
+    private _eventClass: Function;
 
     private _mappings: ICommandMappingList;
 
@@ -47,7 +47,7 @@ export class EventCommandTrigger implements ICommandTrigger {
         injector: IInjector,
         dispatcher: IEventDispatcher,
         type: string,
-        eventClass?: Object,
+        eventClass?: Function,
         processors?: any[],
         logger?: ILogger
     ) {
@@ -99,8 +99,8 @@ export class EventCommandTrigger implements ICommandTrigger {
     /*============================================================================*/
 
     private eventHandler(event: Event): void {
-        let eventConstructor: Object = <Object>event["constructor"];
-        let payloadEventClass: Object;
+        let eventConstructor: Function = event.constructor;
+        let payloadEventClass: Function;
         // not pretty, but optimized to avoid duplicate checks and shortest paths
         if (eventConstructor === this._eventClass || !this._eventClass) {
             payloadEventClass = eventConstructor;
