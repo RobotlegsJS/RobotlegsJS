@@ -15,8 +15,8 @@ describe("CommandPayload", () => {
     let subject: CommandPayload;
 
     function createConfig(
-        values: any[] = null,
-        classes: any[] = null
+        values?: any[],
+        classes?: Function[]
     ): CommandPayload {
         return (subject = new CommandPayload(values, classes));
     }
@@ -27,29 +27,29 @@ describe("CommandPayload", () => {
         subject = null;
     });
 
-    it("test values by default null", () => {
+    it("test_values_by_default_undefined", () => {
         createConfig();
-        assert.isNull(subject.values);
+        assert.isUndefined(subject.values);
     });
 
-    it("test classes by default null", () => {
+    it("test_classes_by_default_undefined", () => {
         createConfig();
-        assert.isNull(subject.classes);
+        assert.isUndefined(subject.classes);
     });
 
-    it("test values are stored", () => {
+    it("test_values_are_stored", () => {
         let expected: any[] = ["string", 0];
         createConfig(expected);
         assert.deepEqual(subject.values, expected);
     });
 
-    it("test classes are stored", () => {
-        let expected: any[] = [String, Number];
+    it("test_classes_are_stored", () => {
+        let expected: Function[] = [String, Number];
         createConfig(null, expected);
         assert.deepEqual(subject.classes, expected);
     });
 
-    it("test adding stores values", () => {
+    it("test_adding_stores_values", () => {
         createConfig();
 
         subject.addPayload("string", String);
@@ -58,7 +58,7 @@ describe("CommandPayload", () => {
         assert.isTrue(hasValue);
     });
 
-    it("test adding stores classes", () => {
+    it("test_adding_stores_classes", () => {
         createConfig();
 
         subject.addPayload("string", String);
@@ -67,7 +67,7 @@ describe("CommandPayload", () => {
         assert.isTrue(hasClass);
     });
 
-    it("test adding stores in lockstep", () => {
+    it("test_adding_stores_in_lockstep", () => {
         createConfig(["string", 0], [String, Number]);
 
         let value: Object = {};
@@ -80,8 +80,23 @@ describe("CommandPayload", () => {
         assert.equal(valueIndex, classIndex);
     });
 
-    it("can ask for length without classes", () => {
+    it("can_ask_for_length_without_values_and_classes", () => {
         createConfig();
         assert.equal(subject.length, 0);
+    });
+
+    it("can_ask_for_length_when_values_and_classes_are_defined", () => {
+        createConfig(["string", 0], [String, Number]);
+        assert.equal(subject.length, 2);
+    });
+
+    it("hasPayload_works_without_values_and_classes", () => {
+        createConfig();
+        assert.isFalse(subject.hasPayload());
+    });
+
+    it("hasPayload_works__when_values_and_classes_are_defined", () => {
+        createConfig(["string", 0], [String, Number]);
+        assert.isTrue(subject.hasPayload());
     });
 });
