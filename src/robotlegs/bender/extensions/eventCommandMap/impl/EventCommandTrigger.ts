@@ -7,8 +7,14 @@
 
 import { IInjector } from "../../../framework/api/IInjector";
 import { ILogger } from "../../../framework/api/ILogger";
+import { getQualifiedClassName } from "../../../framework/impl/getQualifiedClassName";
 
+import { IEvent } from "../../../events/api/IEvent";
 import { IEventDispatcher } from "../../../events/api/IEventDispatcher";
+
+import { IClass } from "../../matching/IClass";
+import { isInstanceOfType } from "../../matching/isInstanceOfType";
+
 import { ICommandExecutor } from "../../commandCenter/api/ICommandExecutor";
 import { ICommandMappingList } from "../../commandCenter/api/ICommandMappingList";
 import { ICommandTrigger } from "../../commandCenter/api/ICommandTrigger";
@@ -30,7 +36,7 @@ export class EventCommandTrigger implements ICommandTrigger {
 
     private _type: string;
 
-    private _eventClass: Function;
+    private _eventClass: IClass<IEvent>;
 
     private _mappings: ICommandMappingList;
 
@@ -47,7 +53,7 @@ export class EventCommandTrigger implements ICommandTrigger {
         injector: IInjector,
         dispatcher: IEventDispatcher,
         type: string,
-        eventClass?: Function,
+        eventClass?: IClass<IEvent>,
         processors?: any[],
         logger?: ILogger
     ) {
@@ -95,7 +101,11 @@ export class EventCommandTrigger implements ICommandTrigger {
     }
 
     public toString(): string {
-        return this._eventClass + " with selector '" + this._type + "'";
+        let eventDescription: string = "";
+        eventDescription = !this._eventClass
+            ? "Event"
+            : getQualifiedClassName(this._eventClass);
+        return eventDescription + " with selector '" + this._type + "'";
     }
 
     /*============================================================================*/
@@ -105,10 +115,11 @@ export class EventCommandTrigger implements ICommandTrigger {
     private eventHandler(event: Event): void {
         let eventConstructor: Function = event.constructor;
         let payloadEventClass: Function;
+
         // not pretty, but optimized to avoid duplicate checks and shortest paths
-        if (eventConstructor === this._eventClass || !this._eventClass) {
+        if (!this._eventClass) {
             payloadEventClass = eventConstructor;
-        } else if (this._eventClass === Event) {
+        } else if (isInstanceOfType(event, this._eventClass)) {
             payloadEventClass = this._eventClass;
         } else {
             return;

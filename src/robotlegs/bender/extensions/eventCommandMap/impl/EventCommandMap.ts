@@ -11,7 +11,10 @@ import { IContext } from "../../../framework/api/IContext";
 import { IInjector } from "../../../framework/api/IInjector";
 import { ILogger } from "../../../framework/api/ILogger";
 
+import { IEvent } from "../../../events/api/IEvent";
 import { IEventDispatcher } from "../../../events/api/IEventDispatcher";
+
+import { IClass } from "../../matching/IClass";
 
 import { ICommandMapper } from "../../commandCenter/dsl/ICommandMapper";
 import { ICommandUnmapper } from "../../commandCenter/dsl/ICommandUnmapper";
@@ -68,14 +71,14 @@ export class EventCommandMap implements IEventCommandMap {
     /**
      * @inheritDoc
      */
-    public map(type: string, eventClass?: Function): ICommandMapper {
+    public map(type: string, eventClass?: IClass<IEvent>): ICommandMapper {
         return this.getTrigger(type, eventClass).createMapper();
     }
 
     /**
      * @inheritDoc
      */
-    public unmap(type: string, eventClass?: Function): ICommandUnmapper {
+    public unmap(type: string, eventClass?: IClass<IEvent>): ICommandUnmapper {
         return this.getTrigger(type, eventClass).createMapper();
     }
 
@@ -93,13 +96,13 @@ export class EventCommandMap implements IEventCommandMap {
     /* Private Functions                                                          */
     /*============================================================================*/
 
-    private getKey(type: string, eventClass: Function): string {
+    private getKey(type: string, eventClass: IClass<IEvent>): string {
         return type + eventClass;
     }
 
     private getTrigger(
         type: string,
-        eventClass: Function
+        eventClass: IClass<IEvent>
     ): EventCommandTrigger {
         return <EventCommandTrigger>this._triggerMap.getTrigger(
             type,
@@ -109,7 +112,7 @@ export class EventCommandMap implements IEventCommandMap {
 
     private createTrigger(
         type: string,
-        eventClass: Function
+        eventClass: IClass<IEvent>
     ): EventCommandTrigger {
         return new EventCommandTrigger(
             this._injector,
