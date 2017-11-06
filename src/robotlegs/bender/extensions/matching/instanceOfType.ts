@@ -49,19 +49,11 @@ class InstanceOfTypeMatcher<T> implements IMatcher {
     /*============================================================================*/
 
     /**
-     * Matches primitive types using constructor.
-     * Matches all other types using instanceof operator.
+     * Verify if the given item is a instance of this type.
      *
-     * According to TypeScript specification:
-     *
-     * 4.19.4 The instanceof operator
-     *
-     * The instanceof operator requires the left operand to be of type Any,
-     * an object type, or a type parameter type, and the right operand
-     * to be of type Any or a subtype of the 'Function' interface type.
-     * The result is always of the boolean primitive type.
-     *
-     * @see {@link https://github.com/Microsoft/TypeScript/blob/v2.6.1/doc/spec.md#4.19.4}
+     * @param { any } item The item to test
+     * @return { boolean } <code>true</code> if the item is a instance of the type,
+     * <code>false</code> otherwise.
      */
     public matches(item: any): boolean {
         return isInstanceOfType<T>(item, this._type);
