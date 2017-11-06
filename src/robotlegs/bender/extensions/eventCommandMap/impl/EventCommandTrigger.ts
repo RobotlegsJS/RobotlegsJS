@@ -54,7 +54,11 @@ export class EventCommandTrigger implements ICommandTrigger {
         this._dispatcher = dispatcher;
         this._type = type;
         this._eventClass = eventClass;
-        this._mappings = new CommandMappingList(this, processors, logger);
+        this._mappings = new CommandMappingList(
+            this,
+            processors ? processors : [],
+            logger
+        );
         this._executor = new CommandExecutor(
             injector,
             this._mappings.removeMapping.bind(this._mappings)
