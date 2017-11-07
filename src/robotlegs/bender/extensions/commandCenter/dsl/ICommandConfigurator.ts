@@ -31,12 +31,12 @@ export interface ICommandConfigurator {
      * @param value Toggle
      * @return Self
      */
-    once(value: boolean): ICommandConfigurator;
+    once(value?: boolean): ICommandConfigurator;
 
     /**
      * Should the payload values be injected into the command instance?
      * @param value Toggle
      * @return Self
      */
-    withPayloadInjection(value: boolean): ICommandConfigurator;
+    withPayloadInjection(value?: boolean): ICommandConfigurator;
 }
