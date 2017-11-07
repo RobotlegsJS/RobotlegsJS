@@ -5,9 +5,6 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { IGuard } from "../../../framework/api/IGuard";
-import { IHook } from "../../../framework/api/IHook";
-
 /**
  * @private
  */
@@ -17,14 +14,14 @@ export interface ICommandConfigurator {
      * @param guards Guards
      * @return Self
      */
-    withGuards(...guards: IGuard[]): ICommandConfigurator;
+    withGuards(...guards: any[]): ICommandConfigurator;
 
     /**
      * Hooks to run before command execution
      * @param hooks Hooks
      * @return Self
      */
-    withHooks(...hooks: IHook[]): ICommandConfigurator;
+    withHooks(...hooks: any[]): ICommandConfigurator;
 
     /**
      * Should this command only run once?
