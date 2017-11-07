@@ -23,7 +23,6 @@ export class LocalEventMapExtension implements IExtension {
      * @inheritDoc
      */
     public extend(context: IContext): void {
-        // context.injector.map(IEventMap).toType(EventMap);
         context.injector.bind(IEventMap).to(EventMap);
     }
 }
