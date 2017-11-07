@@ -11,6 +11,7 @@
  * <p>Note, you do not need to implement this interface,
  * any class with an execute method can be used.</p>
  */
+export let ICommand = Symbol("ICommand");
 export interface ICommand {
     /**
      * The execute method
