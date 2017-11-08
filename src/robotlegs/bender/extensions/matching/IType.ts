@@ -7,5 +7,5 @@
 
 import { IClass } from "./IClass";
 
-export type ISymbol = (description?: string | number) => Symbol;
-export type IType<T> = IClass<T> | ISymbol;
+export type ISymbol<T> = (description?: string | number) => T;
+export type IType<T> = IClass<T> | ISymbol<T>;
