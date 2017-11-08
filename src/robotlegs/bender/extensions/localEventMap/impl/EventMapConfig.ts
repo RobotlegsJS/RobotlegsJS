@@ -5,6 +5,9 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import { IClass } from "../../../extensions/matching/IClass";
+
+import { IEvent } from "../../../events/api/IEvent";
 import { IEventDispatcher } from "../../../events/api/IEventDispatcher";
 
 /**
@@ -50,12 +53,12 @@ export class EventMapConfig {
         return this._thisObject;
     }
 
-    private _eventClass: Object;
+    private _eventClass: IClass<IEvent>;
 
     /**
      * @private
      */
-    public get eventClass(): Object {
+    public get eventClass(): IClass<IEvent> {
         return this._eventClass;
     }
 
@@ -89,7 +92,7 @@ export class EventMapConfig {
         eventString: string,
         listener: Function,
         thisObject: any,
-        eventClass: Object,
+        eventClass: IClass<IEvent>,
         callback: Function,
         useCapture: boolean
     ) {
@@ -107,7 +110,7 @@ export class EventMapConfig {
         eventString: string,
         listener: Function,
         thisObject: any,
-        eventClass: Object,
+        eventClass: IClass<IEvent>,
         useCapture: boolean
     ): boolean {
         return (

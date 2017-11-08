@@ -5,6 +5,9 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import { IClass } from "../../../extensions/matching/IClass";
+
+import { IEvent } from "../../../events/api/IEvent";
 import { IEventDispatcher } from "../../../events/api/IEventDispatcher";
 
 /**
@@ -31,7 +34,7 @@ export interface IEventMap {
         type: string,
         listener: Function,
         thisObject?: any,
-        eventClass?: Object,
+        eventClass?: IClass<IEvent>,
         useCapture?: boolean,
         priority?: number,
         useWeakReference?: boolean
@@ -53,7 +56,7 @@ export interface IEventMap {
         type: string,
         listener: Function,
         thisObject?: any,
-        eventClass?: Object,
+        eventClass?: IClass<IEvent>,
         useCapture?: boolean
     ): void;
 

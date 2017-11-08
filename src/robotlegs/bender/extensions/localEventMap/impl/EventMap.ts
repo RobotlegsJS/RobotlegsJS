@@ -7,10 +7,15 @@
 
 import { injectable } from "inversify";
 
+import { IEvent } from "../../../events/api/IEvent";
 import { IEventDispatcher } from "../../../events/api/IEventDispatcher";
+import { Event } from "../../../events/impl/Event";
+
+import { IClass } from "../../../extensions/matching/IClass";
+import { isInstanceOfType } from "../../../extensions/matching/isInstanceOfType";
+
 import { IEventMap } from "../api/IEventMap";
 import { EventMapConfig } from "./EventMapConfig";
-import { Event } from "../../../events/impl/Event";
 
 /**
  * @private
@@ -39,12 +44,12 @@ export class EventMap implements IEventMap {
         eventString: string,
         listener: Function,
         thisObject?: any,
-        eventClass?: Object,
+        eventClass?: IClass<IEvent>,
         useCapture: boolean = false, // Not used in browser environment
         priority: number = 0, // Not used in browser environment
         useWeakReference: boolean = true // Not used in browser environment
     ): void {
-        eventClass = eventClass || Event;
+        eventClass = eventClass === undefined ? Event : eventClass;
 
         let currentListeners: EventMapConfig[] = this._suspended
             ? this._suspendedListeners
@@ -72,12 +77,8 @@ export class EventMap implements IEventMap {
         let callback: Function =
             eventClass === Event
                 ? listener
-                : function(event: Event): void {
-                      this.routeEventToListener(
-                          this.event,
-                          listener,
-                          eventClass
-                      );
+                : (event: Event) => {
+                      this.routeEventToListener(event, listener, eventClass);
                   };
 
         config = new EventMapConfig(
@@ -109,10 +110,10 @@ export class EventMap implements IEventMap {
         eventString: string,
         listener: Function,
         thisObject?: any,
-        eventClass?: Object,
+        eventClass?: IClass<IEvent>,
         useCapture: boolean = false
     ): void {
-        eventClass = eventClass || Event;
+        eventClass = eventClass !== undefined ? eventClass : Event;
 
         let currentListeners: EventMapConfig[] = this._suspended
             ? this._suspendedListeners
@@ -154,7 +155,10 @@ export class EventMap implements IEventMap {
 
         let eventConfig: EventMapConfig;
         let dispatcher: IEventDispatcher | EventTarget;
-        while ((eventConfig = currentListeners.pop())) {
+
+        while (currentListeners.length) {
+            eventConfig = currentListeners.pop();
+
             if (!this._suspended) {
                 dispatcher = eventConfig.dispatcher;
                 (<IEventDispatcher>dispatcher).removeEventListener(
@@ -178,7 +182,9 @@ export class EventMap implements IEventMap {
 
         let eventConfig: EventMapConfig;
         let dispatcher: IEventDispatcher | EventTarget;
-        while ((eventConfig = this._listeners.pop())) {
+
+        while (this._listeners.length) {
+            eventConfig = this._listeners.pop();
             dispatcher = eventConfig.dispatcher;
             (<IEventDispatcher>dispatcher).removeEventListener(
                 eventConfig.eventString,
@@ -201,7 +207,9 @@ export class EventMap implements IEventMap {
 
         let eventConfig: EventMapConfig;
         let dispatcher: IEventDispatcher | EventTarget;
-        while ((eventConfig = this._suspendedListeners.pop())) {
+
+        while (this._suspendedListeners.length) {
+            eventConfig = this._suspendedListeners.pop();
             dispatcher = eventConfig.dispatcher;
             (<IEventDispatcher>dispatcher).addEventListener(
                 eventConfig.eventString,
@@ -226,9 +234,9 @@ export class EventMap implements IEventMap {
     protected routeEventToListener(
         event: Event,
         listener: Function,
-        originalEventClass: Object
+        originalEventClass: IClass<IEvent>
     ): void {
-        if (event instanceof <any>originalEventClass) {
+        if (isInstanceOfType(event, originalEventClass)) {
             listener(event);
         }
     }
