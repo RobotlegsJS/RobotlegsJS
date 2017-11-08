@@ -9,6 +9,8 @@ import "../../../../../entry";
 
 import { assert } from "chai";
 
+import { IType } from "../../../../../../src/robotlegs/bender/extensions/matching/IType";
+
 import { CommandPayload } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/api/CommandPayload";
 
 describe("CommandPayload", () => {
@@ -16,7 +18,7 @@ describe("CommandPayload", () => {
 
     function createConfig(
         values?: any[],
-        classes?: Function[]
+        classes?: Array<IType<any>>
     ): CommandPayload {
         return (subject = new CommandPayload(values, classes));
     }
@@ -42,7 +44,7 @@ describe("CommandPayload", () => {
     });
 
     it("test_classes_are_stored", () => {
-        let expected: Function[] = [String, Number];
+        let expected: Array<IType<any>> = [String, Number];
         createConfig(null, expected);
         assert.deepEqual(subject.classes, expected);
     });
@@ -96,5 +98,25 @@ describe("CommandPayload", () => {
     it("hasPayload_works_when_values_and_classes_are_defined", () => {
         createConfig(["string", 0], [String, Number]);
         assert.isTrue(subject.hasPayload());
+    });
+
+    it("addPayload_accept_primitive_types", () => {
+        createConfig();
+
+        subject.addPayload(true, Boolean);
+        subject.addPayload(new Date(), Date);
+        subject.addPayload(() => {}, Function);
+        subject.addPayload(0, Number);
+        subject.addPayload(Symbol("symbol"), Symbol);
+        subject.addPayload({}, Object);
+        subject.addPayload([], Array);
+
+        assert.isTrue(subject.classes.indexOf(Boolean) === 0);
+        assert.isTrue(subject.classes.indexOf(Date) === 1);
+        assert.isTrue(subject.classes.indexOf(Function) === 2);
+        assert.isTrue(subject.classes.indexOf(Number) === 3);
+        assert.isTrue(subject.classes.indexOf(Symbol) === 4);
+        assert.isTrue(subject.classes.indexOf(Object) === 5);
+        assert.isTrue(subject.classes.indexOf(Array) === 6);
     });
 });
