@@ -9,10 +9,6 @@ import "../../../../../entry";
 
 import { assert } from "chai";
 
-import { IContext } from "../../../../../../src/robotlegs/bender/framework/api/IContext";
-import { LifecycleEvent } from "../../../../../../src/robotlegs/bender/framework/api/LifecycleEvent";
-import { Context } from "../../../../../../src/robotlegs/bender/framework/impl/Context";
-
 import { IEventDispatcher } from "../../../../../../src/robotlegs/bender/events/api/IEventDispatcher";
 import { Event } from "../../../../../../src/robotlegs/bender/events/impl/Event";
 import { EventDispatcher } from "../../../../../../src/robotlegs/bender/events/impl/EventDispatcher";
