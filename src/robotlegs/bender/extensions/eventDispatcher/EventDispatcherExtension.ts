@@ -48,7 +48,6 @@ export class EventDispatcherExtension implements IExtension {
      */
     public extend(context: IContext): void {
         this._context = context;
-        // this._context.injector.map(IEventDispatcher).toValue(this._eventDispatcher);
         this._context.injector
             .bind(IEventDispatcher)
             .toConstantValue(this._eventDispatcher);
