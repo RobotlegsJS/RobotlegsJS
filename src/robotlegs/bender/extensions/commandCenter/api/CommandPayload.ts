@@ -5,6 +5,8 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import { IType } from "../../matching/IType";
+
 /**
  * @private
  */
@@ -23,7 +25,7 @@ export class CommandPayload {
     /**
      * Ordered list of value classes
      */
-    public get classes(): Function[] {
+    public get classes(): Array<IType<any>> {
         return this._classes;
     }
 
@@ -39,7 +41,7 @@ export class CommandPayload {
     /*============================================================================*/
 
     private _values: any[];
-    private _classes: Function[];
+    private _classes: Array<IType<any>>;
 
     /*============================================================================*/
     /* Constructor                                                                */
@@ -50,7 +52,7 @@ export class CommandPayload {
      * @param values Optional values
      * @param classes Optional classes
      */
-    constructor(values?: any[], classes?: Function[]) {
+    constructor(values?: any[], classes?: Array<IType<any>>) {
         this._values = values;
         this._classes = classes;
     }
@@ -65,9 +67,9 @@ export class CommandPayload {
      * @param payloadClass The class of the value
      * @return Self
      */
-    public addPayload(
-        payloadValue: any,
-        payloadClass: Function
+    public addPayload<T>(
+        payloadValue: T,
+        payloadClass: IType<T>
     ): CommandPayload {
         if (this._values) {
             this._values.push(payloadValue);
