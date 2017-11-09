@@ -48,12 +48,12 @@ export class Lifecycle implements ILifecycle {
         return this._state;
     }
 
-    private _target: Object;
+    private _target: IEventDispatcher;
 
     /**
      * @inheritDoc
      */
-    public get target(): Object {
+    public get target(): IEventDispatcher {
         return this._target;
     }
 
