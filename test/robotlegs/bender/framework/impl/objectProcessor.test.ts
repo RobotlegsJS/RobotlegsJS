@@ -26,10 +26,10 @@ describe("ObjectProcessor", () => {
     });
 
     it("handler handles object", () => {
-        let expected: Object = new TestObject("TestObject");
-        let actual: Object = null;
+        let expected: TestObject = new TestObject("TestObject");
+        let actual: TestObject = null;
         objectProcessor.addObjectHandler(instanceOfType(TestObject), function(
-            object: Object
+            object: TestObject
         ): void {
             actual = object;
         });
@@ -38,9 +38,9 @@ describe("ObjectProcessor", () => {
     });
 
     it("handler does not handle wrong object", () => {
-        let actual: Object = null;
+        let actual: TestObject = null;
         objectProcessor.addObjectHandler(instanceOfType(TestObject), function(
-            object: Object
+            object: TestObject
         ): void {
             actual = object;
         });
@@ -52,17 +52,17 @@ describe("ObjectProcessor", () => {
         let expected: string[] = ["handler1", "handler2", "handler3"];
         let actual: string[] = [];
         objectProcessor.addObjectHandler(instanceOfType(TestObject), function(
-            object: Object
+            object: TestObject
         ): void {
             actual.push("handler1");
         });
         objectProcessor.addObjectHandler(instanceOfType(TestObject), function(
-            object: Object
+            object: TestObject
         ): void {
             actual.push("handler2");
         });
         objectProcessor.addObjectHandler(instanceOfType(TestObject), function(
-            object: Object
+            object: TestObject
         ): void {
             actual.push("handler3");
         });
@@ -74,21 +74,21 @@ describe("ObjectProcessor", () => {
         let expected: string[] = [];
         let actual: string[] = [];
         objectProcessor.addObjectHandler(instanceOfType(TestObject), function(
-            object: Object
+            object: TestObject
         ): void {
             actual.push(
                 "Handler should not fire after call to removeAllHandlers."
             );
         });
         objectProcessor.addObjectHandler(instanceOfType(TestObject), function(
-            object: Object
+            object: TestObject
         ): void {
             actual.push(
                 "Handler should not fire after call to removeAllHandlers."
             );
         });
         objectProcessor.addObjectHandler(instanceOfType(TestObject), function(
-            object: Object
+            object: TestObject
         ): void {
             actual.push(
                 "Handler should not fire after call to removeAllHandlers."
