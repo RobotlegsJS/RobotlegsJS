@@ -7,7 +7,7 @@
 
 export class LogParams {
     constructor(
-        public source: Object,
+        public source: any,
         public level: number,
         public timestamp: number,
         public message: string,
