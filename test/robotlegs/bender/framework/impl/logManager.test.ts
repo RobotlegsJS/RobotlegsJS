@@ -17,7 +17,7 @@ import { CallbackLogTarget } from "./loggingSupport/CallbackLogTarget";
 import { LogParams } from "./loggingSupport/LogParams";
 
 describe("LogManager", () => {
-    let source: Object;
+    let source: object;
     let logManager: LogManager;
 
     beforeEach(() => {
