@@ -193,9 +193,8 @@ export class CommandMappingList implements ICommandMappingList {
     }
 
     private applyProcessors(mapping: ICommandMapping): void {
-        for (let i: number = 0; i < this._processors.length; i++) {
-            let processor: Function = this._processors[i];
+        this._processors.forEach((processor: Function) => {
             processor(mapping);
-        }
+        });
     }
 }
