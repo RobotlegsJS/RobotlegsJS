@@ -16,7 +16,7 @@ import { CallbackLogTarget } from "./loggingSupport/CallbackLogTarget";
 import { LogParams } from "./loggingSupport/LogParams";
 
 describe("Logger", () => {
-    let source: Object;
+    let source: object;
 
     beforeEach(() => {
         source = {};
@@ -27,8 +27,8 @@ describe("Logger", () => {
     });
 
     it("source is passed", () => {
-        let expected: Object = source;
-        let actual: Object = null;
+        let expected: object = source;
+        let actual: object = null;
         let logger: Logger = new Logger(
             source,
             new CallbackLogTarget(function(result: LogParams): void {
