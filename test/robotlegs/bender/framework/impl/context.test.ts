@@ -42,7 +42,7 @@ describe("Context", () => {
     it("extensions are installed", () => {
         let actual: IContext = null;
         let extension: IExtension = new CallbackExtension(function(
-            err: Object,
+            err: any,
             ctx: IContext
         ): void {
             actual = ctx;
@@ -67,8 +67,8 @@ describe("Context", () => {
     });
 
     it("detain stores the instance", () => {
-        let expected: Object = {};
-        let actual: Object;
+        let expected: any = {};
+        let actual: any;
         let handler: Function = function(event: PinEvent): void {
             actual = event.instance;
         };
@@ -78,8 +78,8 @@ describe("Context", () => {
     });
 
     it("release frees up the instance", () => {
-        let expected: Object = {};
-        let actual: Object;
+        let expected: any = {};
+        let actual: any;
         let handler: Function = function(event: PinEvent): void {
             actual = event.instance;
         };
