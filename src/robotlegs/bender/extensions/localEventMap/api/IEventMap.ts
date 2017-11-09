@@ -27,7 +27,6 @@ export interface IEventMap {
      * @param eventClass Optional Event class for a stronger mapping. Defaults to <code>flash.events.Event</code>.
      * @param useCapture
      * @param priority
-     * @param useWeakReference
      */
     mapListener(
         dispatcher: IEventDispatcher | EventTarget,
@@ -36,8 +35,7 @@ export interface IEventMap {
         thisObject?: any,
         eventClass?: IClass<IEvent>,
         useCapture?: boolean,
-        priority?: number,
-        useWeakReference?: boolean
+        priority?: number
     ): void;
 
     /**

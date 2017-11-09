@@ -46,8 +46,7 @@ export class EventMap implements IEventMap {
         thisObject?: any,
         eventClass?: IClass<IEvent>,
         useCapture: boolean = false, // Not used in browser environment
-        priority: number = 0, // Not used in browser environment
-        useWeakReference: boolean = true // Not used in browser environment
+        priority: number = 0 // Not used in browser environment
     ): void {
         eventClass = eventClass === undefined ? Event : eventClass;
 
