@@ -46,7 +46,7 @@ export class EventMap implements IEventMap {
         thisObject?: any,
         eventClass?: IClass<IEvent>,
         useCapture: boolean = false, // Not used in browser environment
-        priority: number = 0 // Not used in browser environment
+        priority: number = 0
     ): void {
         eventClass = eventClass === undefined ? Event : eventClass;
 
@@ -184,11 +184,9 @@ export class EventMap implements IEventMap {
 
         this._suspended = true;
 
-        let eventConfig: EventMapConfig;
         let dispatcher: IEventDispatcher;
 
-        while (this._listeners.length) {
-            eventConfig = this._listeners.pop();
+        this._listeners.forEach((eventConfig: EventMapConfig) => {
             dispatcher = eventConfig.dispatcher;
             dispatcher.removeEventListener(
                 eventConfig.eventString,
@@ -197,7 +195,9 @@ export class EventMap implements IEventMap {
                 eventConfig.useCapture
             );
             this._suspendedListeners.push(eventConfig);
-        }
+        });
+
+        this._listeners = [];
     }
 
     /**
@@ -210,11 +210,9 @@ export class EventMap implements IEventMap {
 
         this._suspended = false;
 
-        let eventConfig: EventMapConfig;
         let dispatcher: IEventDispatcher;
 
-        while (this._suspendedListeners.length) {
-            eventConfig = this._suspendedListeners.pop();
+        this._suspendedListeners.forEach((eventConfig: EventMapConfig) => {
             dispatcher = eventConfig.dispatcher;
             dispatcher.addEventListener(
                 eventConfig.eventString,
@@ -224,7 +222,9 @@ export class EventMap implements IEventMap {
                 eventConfig.priority
             );
             this._listeners.push(eventConfig);
-        }
+        });
+
+        this._suspendedListeners = [];
     }
 
     /*============================================================================*/
