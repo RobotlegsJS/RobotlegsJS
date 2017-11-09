@@ -341,4 +341,181 @@ describe("EventMap", () => {
         eventDispatcher.dispatchEvent(new CustomEvent(CustomEvent2.CHANGE));
         assert.isFalse(listenerExecuted);
     });
+
+    it("listeners_are_executed_in_order_of_priority", () => {
+        const expectedOrder: number[] = [3, 2, 1, 0];
+        let thisObj: any = {};
+        let actualOrder: number[] = [];
+        eventMap.mapListener(
+            eventDispatcher,
+            CustomEvent.STARTED,
+            (e: Event) => {
+                actualOrder.push(0);
+            },
+            thisObj,
+            CustomEvent,
+            false
+        );
+        eventMap.mapListener(
+            eventDispatcher,
+            CustomEvent.STARTED,
+            (e: Event) => {
+                actualOrder.push(1);
+            },
+            thisObj,
+            CustomEvent,
+            false,
+            1
+        );
+        eventMap.mapListener(
+            eventDispatcher,
+            CustomEvent.STARTED,
+            (e: Event) => {
+                actualOrder.push(2);
+            },
+            thisObj,
+            CustomEvent,
+            false,
+            2
+        );
+        eventMap.mapListener(
+            eventDispatcher,
+            CustomEvent.STARTED,
+            (e: Event) => {
+                actualOrder.push(3);
+            },
+            thisObj,
+            CustomEvent,
+            false,
+            3
+        );
+        eventDispatcher.dispatchEvent(new CustomEvent(CustomEvent.STARTED));
+        assert.deepEqual(actualOrder, expectedOrder);
+    });
+
+    it("listeners_with_same_priority_are_executed_in_the_order_in_which_they_were_added", () => {
+        const expectedOrder: string[] = ["2", "1.a", "1.b", "1.c", "0"];
+        let thisObj: any = {};
+        let actualOrder: string[] = [];
+        eventMap.mapListener(
+            eventDispatcher,
+            CustomEvent.STARTED,
+            (e: Event) => {
+                actualOrder.push("0");
+            },
+            thisObj,
+            CustomEvent,
+            false
+        );
+        eventMap.mapListener(
+            eventDispatcher,
+            CustomEvent.STARTED,
+            (e: Event) => {
+                actualOrder.push("1.a");
+            },
+            thisObj,
+            CustomEvent,
+            false,
+            1
+        );
+        eventMap.mapListener(
+            eventDispatcher,
+            CustomEvent.STARTED,
+            (e: Event) => {
+                actualOrder.push("1.b");
+            },
+            thisObj,
+            CustomEvent,
+            false,
+            1
+        );
+        eventMap.mapListener(
+            eventDispatcher,
+            CustomEvent.STARTED,
+            (e: Event) => {
+                actualOrder.push("1.c");
+            },
+            thisObj,
+            CustomEvent,
+            false,
+            1
+        );
+        eventMap.mapListener(
+            eventDispatcher,
+            CustomEvent.STARTED,
+            (e: Event) => {
+                actualOrder.push("2");
+            },
+            thisObj,
+            CustomEvent,
+            false,
+            2
+        );
+        eventDispatcher.dispatchEvent(new CustomEvent(CustomEvent.STARTED));
+        assert.deepEqual(actualOrder, expectedOrder);
+    });
+
+    it("listeners_with_priority_do_not_loose_priority_when_event_map_is_suspended", () => {
+        const expectedOrder: string[] = ["2", "1.a", "1.b", "1.c", "0"];
+        let thisObj: any = {};
+        let actualOrder: string[] = [];
+        eventMap.suspend();
+        eventMap.mapListener(
+            eventDispatcher,
+            CustomEvent.STARTED,
+            (e: Event) => {
+                actualOrder.push("0");
+            },
+            thisObj,
+            CustomEvent,
+            false
+        );
+        eventMap.mapListener(
+            eventDispatcher,
+            CustomEvent.STARTED,
+            (e: Event) => {
+                actualOrder.push("1.a");
+            },
+            thisObj,
+            CustomEvent,
+            false,
+            1
+        );
+        eventMap.mapListener(
+            eventDispatcher,
+            CustomEvent.STARTED,
+            (e: Event) => {
+                actualOrder.push("1.b");
+            },
+            thisObj,
+            CustomEvent,
+            false,
+            1
+        );
+        eventMap.mapListener(
+            eventDispatcher,
+            CustomEvent.STARTED,
+            (e: Event) => {
+                actualOrder.push("1.c");
+            },
+            thisObj,
+            CustomEvent,
+            false,
+            1
+        );
+        eventMap.mapListener(
+            eventDispatcher,
+            CustomEvent.STARTED,
+            (e: Event) => {
+                actualOrder.push("2");
+            },
+            thisObj,
+            CustomEvent,
+            false,
+            2
+        );
+        eventMap.resume();
+        eventDispatcher.dispatchEvent(new CustomEvent(CustomEvent.STARTED));
+        assert.deepEqual(actualOrder, expectedOrder);
+    });
 });
