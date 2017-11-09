@@ -29,7 +29,7 @@ export interface IEventMap {
      * @param priority
      */
     mapListener(
-        dispatcher: IEventDispatcher | EventTarget,
+        dispatcher: IEventDispatcher,
         type: string,
         listener: Function,
         thisObject?: any,
@@ -50,7 +50,7 @@ export interface IEventMap {
      * @param useCapture
      */
     unmapListener(
-        dispatcher: IEventDispatcher | EventTarget,
+        dispatcher: IEventDispatcher,
         type: string,
         listener: Function,
         thisObject?: any,

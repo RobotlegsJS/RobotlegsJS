@@ -18,12 +18,12 @@ export class EventMapConfig {
     /* Public Properties                                                          */
     /*============================================================================*/
 
-    private _dispatcher: IEventDispatcher | EventTarget;
+    private _dispatcher: IEventDispatcher;
 
     /**
      * @private
      */
-    public get dispatcher(): IEventDispatcher | EventTarget {
+    public get dispatcher(): IEventDispatcher {
         return this._dispatcher;
     }
 
@@ -80,6 +80,15 @@ export class EventMapConfig {
         return this._useCapture;
     }
 
+    private _priority: number;
+
+    /**
+     * @private
+     */
+    public get priority(): number {
+        return this._priority;
+    }
+
     /*============================================================================*/
     /* Constructor                                                                */
     /*============================================================================*/
@@ -88,13 +97,14 @@ export class EventMapConfig {
      * @private
      */
     constructor(
-        dispatcher: IEventDispatcher | EventTarget,
+        dispatcher: IEventDispatcher,
         eventString: string,
         listener: Function,
         thisObject: any,
         eventClass: IClass<IEvent>,
         callback: Function,
-        useCapture: boolean
+        useCapture: boolean,
+        priority: number
     ) {
         this._dispatcher = dispatcher;
         this._eventString = eventString;
@@ -103,10 +113,11 @@ export class EventMapConfig {
         this._eventClass = eventClass;
         this._callback = callback;
         this._useCapture = useCapture;
+        this._priority = priority;
     }
 
     public equalTo(
-        dispatcher: IEventDispatcher | EventTarget,
+        dispatcher: IEventDispatcher,
         eventString: string,
         listener: Function,
         thisObject: any,

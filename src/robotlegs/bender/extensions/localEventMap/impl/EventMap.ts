@@ -40,7 +40,7 @@ export class EventMap implements IEventMap {
      * @inheritDoc
      */
     public mapListener(
-        dispatcher: IEventDispatcher | EventTarget,
+        dispatcher: IEventDispatcher,
         eventString: string,
         listener: Function,
         thisObject?: any,
@@ -87,16 +87,19 @@ export class EventMap implements IEventMap {
             thisObject,
             eventClass,
             callback,
-            useCapture
+            useCapture,
+            priority
         );
 
         currentListeners.push(config);
 
         if (!this._suspended) {
-            (<IEventDispatcher>dispatcher).addEventListener(
+            dispatcher.addEventListener(
                 eventString,
                 callback,
-                thisObject
+                thisObject,
+                useCapture,
+                priority
             );
         }
     }
@@ -105,7 +108,7 @@ export class EventMap implements IEventMap {
      * @inheritDoc
      */
     public unmapListener(
-        dispatcher: IEventDispatcher | EventTarget,
+        dispatcher: IEventDispatcher,
         eventString: string,
         listener: Function,
         thisObject?: any,
@@ -132,10 +135,11 @@ export class EventMap implements IEventMap {
                 )
             ) {
                 if (!this._suspended) {
-                    (<IEventDispatcher>dispatcher).removeEventListener(
+                    dispatcher.removeEventListener(
                         eventString,
                         config.callback,
-                        thisObject
+                        thisObject,
+                        useCapture
                     );
                 }
                 currentListeners.splice(i, 1);
@@ -153,17 +157,18 @@ export class EventMap implements IEventMap {
             : this._listeners;
 
         let eventConfig: EventMapConfig;
-        let dispatcher: IEventDispatcher | EventTarget;
+        let dispatcher: IEventDispatcher;
 
         while (currentListeners.length) {
             eventConfig = currentListeners.pop();
 
             if (!this._suspended) {
                 dispatcher = eventConfig.dispatcher;
-                (<IEventDispatcher>dispatcher).removeEventListener(
+                dispatcher.removeEventListener(
                     eventConfig.eventString,
                     eventConfig.callback,
-                    eventConfig.thisObject
+                    eventConfig.thisObject,
+                    eventConfig.useCapture
                 );
             }
         }
@@ -180,15 +185,16 @@ export class EventMap implements IEventMap {
         this._suspended = true;
 
         let eventConfig: EventMapConfig;
-        let dispatcher: IEventDispatcher | EventTarget;
+        let dispatcher: IEventDispatcher;
 
         while (this._listeners.length) {
             eventConfig = this._listeners.pop();
             dispatcher = eventConfig.dispatcher;
-            (<IEventDispatcher>dispatcher).removeEventListener(
+            dispatcher.removeEventListener(
                 eventConfig.eventString,
                 eventConfig.callback,
-                eventConfig.thisObject
+                eventConfig.thisObject,
+                eventConfig.useCapture
             );
             this._suspendedListeners.push(eventConfig);
         }
@@ -205,15 +211,17 @@ export class EventMap implements IEventMap {
         this._suspended = false;
 
         let eventConfig: EventMapConfig;
-        let dispatcher: IEventDispatcher | EventTarget;
+        let dispatcher: IEventDispatcher;
 
         while (this._suspendedListeners.length) {
             eventConfig = this._suspendedListeners.pop();
             dispatcher = eventConfig.dispatcher;
-            (<IEventDispatcher>dispatcher).addEventListener(
+            dispatcher.addEventListener(
                 eventConfig.eventString,
                 eventConfig.callback,
-                eventConfig.thisObject
+                eventConfig.thisObject,
+                eventConfig.useCapture,
+                eventConfig.priority
             );
             this._listeners.push(eventConfig);
         }
