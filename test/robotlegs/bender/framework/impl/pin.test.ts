@@ -15,7 +15,7 @@ import { Pin } from "../../../../../src/robotlegs/bender/framework/impl/Pin";
 import { EventDispatcher } from "../../../../../src/robotlegs/bender/events/impl/EventDispatcher";
 
 describe("Pin", () => {
-    let instance: Object;
+    let instance: object;
     let dispatcher: EventDispatcher;
     let pin: Pin;
 
@@ -79,9 +79,9 @@ describe("Pin", () => {
 
     it("releaseAll dispatches events for all instances", () => {
         let dispatcherSpy = sinon.spy(dispatcher, "dispatchEvent");
-        let instanceA: Object = {};
-        let instanceB: Object = {};
-        let instanceC: Object = {};
+        let instanceA: object = {};
+        let instanceB: object = {};
+        let instanceC: object = {};
         pin.detain(instanceA);
         pin.detain(instanceB);
         pin.detain(instanceC);
