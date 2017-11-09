@@ -37,7 +37,6 @@ export class EventMapConfig {
     }
 
     private _listener: Function;
-    private _thisObject: any;
 
     /**
      * @private
@@ -46,10 +45,12 @@ export class EventMapConfig {
         return this._listener;
     }
 
+    private _thisObject: any;
+
     /**
      * @private
      */
-    public get thisObject(): Function {
+    public get thisObject(): any {
         return this._thisObject;
     }
 
