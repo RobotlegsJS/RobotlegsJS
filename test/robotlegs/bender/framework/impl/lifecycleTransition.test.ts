@@ -58,10 +58,7 @@ describe("LifecycleTransition", () => {
     it("transitionState is set", () => {
         transition
             .toStates(LifecycleState.INITIALIZING, LifecycleState.ACTIVE)
-            .addBeforeHandler(function(
-                message: Object,
-                callback: Function
-            ): void {
+            .addBeforeHandler(function(message: any, callback: Function): void {
                 setTimeout(callback, 1);
             })
             .enter();
@@ -178,15 +175,13 @@ describe("LifecycleTransition", () => {
     });
 
     it("invalidTransition is passed to callback when errorListener is attached", () => {
-        let actual: Object = null;
+        let actual: any = null;
         lifecycle.addEventListener(LifecycleEvent.ERROR, function(
             event: LifecycleEvent
         ): void {});
-        transition
-            .fromStates("impossible")
-            .enter(function(error: Object): void {
-                actual = error;
-            });
+        transition.fromStates("impossible").enter(function(error: any): void {
+            actual = error;
+        });
         assert.instanceOf(actual, Error);
     });
 
@@ -225,10 +220,7 @@ describe("LifecycleTransition", () => {
         transition
             .fromStates(LifecycleState.UNINITIALIZED)
             .toStates("startState", "endState")
-            .addBeforeHandler(function(
-                message: Object,
-                callback: Function
-            ): void {
+            .addBeforeHandler(function(message: any, callback: Function): void {
                 setTimeout(callback, 1);
             });
         transition.enter();
