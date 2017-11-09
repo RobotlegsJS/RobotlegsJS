@@ -18,7 +18,7 @@ export function createCallbackHandlerThatErrors(
     closure: Function = null,
     ...params
 ): Function {
-    return function(message: Object, callback: Function): void {
+    return function(message: any, callback: Function): void {
         if (closure) {
             closure.apply(null, params);
         }
