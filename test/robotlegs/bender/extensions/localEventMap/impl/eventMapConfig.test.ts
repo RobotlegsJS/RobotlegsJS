@@ -32,6 +32,7 @@ describe("EventMapConfig", () => {
         console.log("do nothing");
     };
     const USE_CAPTURE: boolean = true;
+    const PRIORITY: number = 0;
 
     let instance: EventMapConfig;
 
@@ -43,7 +44,8 @@ describe("EventMapConfig", () => {
             THIS_OBJECT,
             EVENT_TYPE,
             CALLBACK,
-            USE_CAPTURE
+            USE_CAPTURE,
+            PRIORITY
         );
     });
 
@@ -81,6 +83,10 @@ describe("EventMapConfig", () => {
 
     it("get_useCapture", () => {
         assert.equal(instance.useCapture, USE_CAPTURE);
+    });
+
+    it("get_priority", () => {
+        assert.equal(instance.priority, PRIORITY);
     });
 
     it("equalTo_validate_same_instance", () => {
