@@ -66,6 +66,48 @@ export interface IEventMap {
     unmapListeners(): void;
 
     /**
+     * The same as calling <code>addEventListener</code> directly on the <code>EventTarget</code>,
+     * but keeps a list of listeners for easy (usually automatic) removal.
+     *
+     * @param dispatcher The <code>EventTarget</code> to listen to
+     * @param type The <code>Event</code> type to listen for
+     * @param listener The <code>Event</code> handler
+     * @param options An options object that specifies characteristics about the event listener
+     */
+    mapDomListener(
+        dispatcher: EventTarget,
+        type: string,
+        listener?: EventListenerOrEventListenerObject,
+        options?: boolean | AddEventListenerOptions
+    ): void;
+
+    /**
+     * The same as calling <code>removeEventListener</code> directly on the <code>EventTarget</code>,
+     * but updates our local list of listeners.
+     *
+     * @param dispatcher The <code>EventTarget</code>
+     * @param type The <code>Event</code> type
+     * @param listener The <code>Event</code> handler
+     * @param options An options object that specifies characteristics about the event listener
+     */
+    unmapDomListener(
+        dispatcher: EventTarget,
+        type: string,
+        listener?: EventListenerOrEventListenerObject,
+        options?: boolean | EventListenerOptions
+    ): void;
+
+    /**
+     * Removes all listeners registered through <code>mapDomListener</code>
+     */
+    unmapDomListeners(): void;
+
+    /**
+     * Removes all listeners registered through <code>mapListener</code> and <code>mapDomListener</code>
+     */
+    unmapAllListeners(): void;
+
+    /**
      * Suspends all listeners registered through <code>mapListener</code>
      */
     suspend(): void;

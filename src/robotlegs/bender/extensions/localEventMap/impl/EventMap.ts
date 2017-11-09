@@ -15,6 +15,7 @@ import { IClass } from "../../../extensions/matching/IClass";
 import { isInstanceOfType } from "../../../extensions/matching/isInstanceOfType";
 
 import { IEventMap } from "../api/IEventMap";
+import { DomEventMapConfig } from "./DomEventMapConfig";
 import { EventMapConfig } from "./EventMapConfig";
 
 /**
@@ -27,8 +28,10 @@ export class EventMap implements IEventMap {
     /*============================================================================*/
 
     private _listeners: EventMapConfig[] = [];
-
     private _suspendedListeners: EventMapConfig[] = [];
+
+    private _domListeners: DomEventMapConfig[] = [];
+    private _suspendedDomListeners: DomEventMapConfig[] = [];
 
     private _suspended: boolean = false;
 
@@ -177,6 +180,106 @@ export class EventMap implements IEventMap {
     /**
      * @inheritDoc
      */
+    public mapDomListener(
+        dispatcher: EventTarget,
+        eventString: string,
+        listener?: EventListenerOrEventListenerObject,
+        options?: boolean | AddEventListenerOptions
+    ): void {
+        let currentDomListeners: DomEventMapConfig[] = this._suspended
+            ? this._suspendedDomListeners
+            : this._domListeners;
+
+        let domConfig: DomEventMapConfig;
+
+        let i: number = currentDomListeners.length;
+        while (i--) {
+            domConfig = currentDomListeners[i];
+            if (domConfig.equalTo(dispatcher, eventString, listener, options)) {
+                return;
+            }
+        }
+
+        domConfig = new DomEventMapConfig(
+            dispatcher,
+            eventString,
+            listener,
+            options
+        );
+
+        currentDomListeners.push(domConfig);
+
+        if (!this._suspended) {
+            dispatcher.addEventListener(eventString, listener, options);
+        }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public unmapDomListener(
+        dispatcher: EventTarget,
+        eventString: string,
+        listener?: EventListenerOrEventListenerObject,
+        options?: boolean | EventListenerOptions
+    ): void {
+        let currentDomListeners: DomEventMapConfig[] = this._suspended
+            ? this._suspendedDomListeners
+            : this._domListeners;
+
+        let i: number = currentDomListeners.length;
+        while (i--) {
+            let config: DomEventMapConfig = currentDomListeners[i];
+            if (config.equalTo(dispatcher, eventString, listener, options)) {
+                if (!this._suspended) {
+                    dispatcher.removeEventListener(
+                        eventString,
+                        listener,
+                        options
+                    );
+                }
+                currentDomListeners.splice(i, 1);
+                return;
+            }
+        }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public unmapDomListeners(): void {
+        let currentDomListeners: DomEventMapConfig[] = this._suspended
+            ? this._suspendedDomListeners
+            : this._domListeners;
+
+        let domEventConfig: DomEventMapConfig;
+        let dispatcher: EventTarget;
+
+        while (currentDomListeners.length) {
+            domEventConfig = currentDomListeners.pop();
+
+            if (!this._suspended) {
+                dispatcher = domEventConfig.dispatcher;
+                dispatcher.removeEventListener(
+                    domEventConfig.eventString,
+                    domEventConfig.listener,
+                    domEventConfig.options
+                );
+            }
+        }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public unmapAllListeners(): void {
+        this.unmapListeners();
+        this.unmapDomListeners();
+    }
+
+    /**
+     * @inheritDoc
+     */
     public suspend(): void {
         if (this._suspended) {
             return;
@@ -184,6 +287,7 @@ export class EventMap implements IEventMap {
 
         this._suspended = true;
 
+        // Handle EventDispatcher's
         let dispatcher: IEventDispatcher;
 
         this._listeners.forEach((eventConfig: EventMapConfig) => {
@@ -198,6 +302,21 @@ export class EventMap implements IEventMap {
         });
 
         this._listeners = [];
+
+        // Handle EventTarget's (DOM)
+        let domDispatcher: EventTarget;
+
+        this._domListeners.forEach((domEventConfig: DomEventMapConfig) => {
+            domDispatcher = domEventConfig.dispatcher;
+            domDispatcher.removeEventListener(
+                domEventConfig.eventString,
+                domEventConfig.listener,
+                domEventConfig.options
+            );
+            this._suspendedDomListeners.push(domEventConfig);
+        });
+
+        this._domListeners = [];
     }
 
     /**
@@ -210,6 +329,7 @@ export class EventMap implements IEventMap {
 
         this._suspended = false;
 
+        // Handle EventDispatcher's
         let dispatcher: IEventDispatcher;
 
         this._suspendedListeners.forEach((eventConfig: EventMapConfig) => {
@@ -225,6 +345,23 @@ export class EventMap implements IEventMap {
         });
 
         this._suspendedListeners = [];
+
+        // Handle EventTarget's (DOM)
+        let domDispatcher: EventTarget;
+
+        this._suspendedDomListeners.forEach(
+            (domEventConfig: DomEventMapConfig) => {
+                domDispatcher = domEventConfig.dispatcher;
+                domDispatcher.addEventListener(
+                    domEventConfig.eventString,
+                    domEventConfig.listener,
+                    domEventConfig.options
+                );
+                this._domListeners.push(domEventConfig);
+            }
+        );
+
+        this._suspendedDomListeners = [];
     }
 
     /*============================================================================*/
