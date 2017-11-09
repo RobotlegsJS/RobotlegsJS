@@ -15,7 +15,7 @@ export class MessageDispatcher {
     /* Private Properties                                                         */
     /*============================================================================*/
 
-    private _handlers: Map<any, any> = new Map<any, any>();
+    private _handlers: Map<string, Function[]> = new Map();
 
     /*============================================================================*/
     /* Public Functions                                                           */
@@ -26,8 +26,8 @@ export class MessageDispatcher {
      * @param message The interesting message
      * @param handler The handler function
      */
-    public addMessageHandler(message: Object, handler: Function): void {
-        let messageHandlers: any[] = this._handlers.get(message);
+    public addMessageHandler(message: string, handler: Function): void {
+        let messageHandlers: Function[] = this._handlers.get(message);
         if (messageHandlers) {
             if (messageHandlers.indexOf(handler) === -1) {
                 messageHandlers.push(handler);
@@ -42,7 +42,7 @@ export class MessageDispatcher {
      * @param message The interesting message
      * @return A value of true if a handler of the specified message is registered; false otherwise.
      */
-    public hasMessageHandler(message: Object): boolean {
+    public hasMessageHandler(message: string): boolean {
         return this._handlers.has(message);
     }
 
@@ -51,8 +51,8 @@ export class MessageDispatcher {
      * @param message The interesting message
      * @param handler The handler function
      */
-    public removeMessageHandler(message: Object, handler: Function): void {
-        let messageHandlers: any[] = this._handlers.get(message);
+    public removeMessageHandler(message: string, handler: Function): void {
+        let messageHandlers: Function[] = this._handlers.get(message);
         let index: number = messageHandlers
             ? messageHandlers.indexOf(handler)
             : -1;
@@ -71,11 +71,11 @@ export class MessageDispatcher {
      * @param reverse Should handlers be called in reverse order
      */
     public dispatchMessage(
-        message: Object,
+        message: string,
         callback: Function = null,
         reverse: boolean = false
     ): void {
-        let handlers: any[] = this._handlers.get(<any>message);
+        let handlers: Function[] = this._handlers.get(<any>message);
         if (handlers) {
             handlers = handlers.concat();
             if (!reverse) {
@@ -95,9 +95,9 @@ class MessageRunner {
     /* Private Properties                                                         */
     /*============================================================================*/
 
-    private _message: Object;
+    private _message: string;
 
-    private _handlers: any[];
+    private _handlers: Function[];
 
     private _callback: Function;
 
@@ -108,7 +108,7 @@ class MessageRunner {
     /**
      * @private
      */
-    constructor(message: Object, handlers: any[], callback: Function) {
+    constructor(message: string, handlers: Function[], callback: Function) {
         this._message = message;
         this._handlers = handlers;
         this._callback = callback;
@@ -146,7 +146,7 @@ class MessageRunner {
                 let handled: boolean = false;
                 handler(
                     this._message,
-                    function(error: Object = null, msg: Object = null): void {
+                    function(error: Error = null, msg: string = null): void {
                         // handler must not invoke the callback more than once
                         if (handled) {
                             return;
