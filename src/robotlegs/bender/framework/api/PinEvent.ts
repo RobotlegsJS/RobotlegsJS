@@ -10,7 +10,6 @@ import { Event } from "../../events/impl/Event";
 /**
  * Detain/release pin Event
  */
-
 export class PinEvent extends Event {
     /*============================================================================*/
     /* Public Static Properties                                                   */
@@ -24,12 +23,12 @@ export class PinEvent extends Event {
     /* Public Properties                                                          */
     /*============================================================================*/
 
-    private _instance: Object;
+    private _instance: any;
 
     /**
      * The instance being detained or released
      */
-    public get instance(): Object {
+    public get instance(): any {
         return this._instance;
     }
 
@@ -42,7 +41,7 @@ export class PinEvent extends Event {
      * @param type The event type
      * @param instance The associated instance
      */
-    constructor(type: string, instance: Object) {
+    constructor(type: string, instance: any) {
         super(type);
         this._instance = instance;
     }
