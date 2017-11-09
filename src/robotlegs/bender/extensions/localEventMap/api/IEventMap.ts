@@ -26,7 +26,9 @@ export interface IEventMap {
      * @param thisObject the listener function's "this"
      * @param eventClass Optional Event class for a stronger mapping. Defaults to <code>flash.events.Event</code>.
      * @param useCapture
-     * @param priority
+     * @param priority The priority level of the event listener. Priorities are designated by a integer. The higher
+     * the number, the higher the priority. All listeners with priority n are processed before listeners of priority n-1.
+     * If two or more listeners share the same priority, they are processed in the order in which they were added.
      */
     mapListener(
         dispatcher: IEventDispatcher,
