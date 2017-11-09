@@ -17,11 +17,11 @@ import { createHandler } from "./safelyCallBackSupport/createHandler";
 
 describe("MessageDispatcher", () => {
     let dispatcher: MessageDispatcher;
-    let message: Object;
+    let message: string;
 
     beforeEach(() => {
         dispatcher = new MessageDispatcher();
-        message = {};
+        message = "message";
     });
 
     afterEach(() => {
