@@ -5,6 +5,9 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import { IClass } from "../../matching/IClass";
+
+import { ICommand } from "../api/ICommand";
 import { ICommandMapping } from "../api/ICommandMapping";
 import { ICommandMappingList } from "../api/ICommandMappingList";
 import { ICommandTrigger } from "../api/ICommandTrigger";
@@ -24,10 +27,10 @@ export class CommandMappingList implements ICommandMappingList {
     /* Private Properties                                                         */
     /*============================================================================*/
 
-    private _mappingsByCommand: Map<Function, ICommandMapping> = new Map<
-        Function,
+    private _mappingsByCommand: Map<
+        IClass<ICommand>,
         ICommandMapping
-    >();
+    > = new Map<IClass<ICommand>, ICommandMapping>();
 
     private _mappings: ICommandMapping[] = [];
 
@@ -120,7 +123,7 @@ export class CommandMappingList implements ICommandMappingList {
     /**
      * @inheritDoc
      */
-    public removeMappingFor(commandClass: Function): void {
+    public removeMappingFor(commandClass: IClass<ICommand>): void {
         let mapping: ICommandMapping = this._mappingsByCommand.get(
             commandClass
         );
