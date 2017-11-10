@@ -37,7 +37,7 @@ Major Breaking Changes:
 
 - **EventMap** handles DOM events properly (see #26).
 
-- **InjectorActivityLoggingExtension** extension removed (see $26).
+- **InjectorActivityLoggingExtension** extension removed (see #26).
 
 Features Or Improvements:
 ---
