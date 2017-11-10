@@ -22,7 +22,7 @@ Update dev dependencies to latest version.
 
 ## Robotlegs 0.0.1
 
-### v0.0.7
+### [v0.0.7](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/0.0.7) - 2017-10-31
 
 Fix issue related to bubling of events (see #20).
 
@@ -30,7 +30,7 @@ Solve compilers deprecation warning messages from mocha.
 
 Update dev dependencies to latest version.
 
-### v0.0.6
+### [v0.0.6](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/0.0.6) - 2017-09-26
 
 Add reference to [RobotlegsJS-Pixi-SignalMediator](https://github.com/RobotlegsJS/RobotlegsJS-Pixi-SignalMediator) extension.
 
@@ -40,7 +40,7 @@ Use Map instances properly (see #13).
 
 Update dev dependencies to latest version.
 
-### v0.0.5
+### [v0.0.5](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/0.0.5) - 2017-09-15
 
 Add reference to [RobotlegsJS-Pixi-Palidor](https://github.com/RobotlegsJS/RobotlegsJS-Pixi-Palidor) extension.
 
@@ -56,23 +56,23 @@ Update logo.
 
 Update dev dependencies to latest version.
 
-### v0.0.4
+### [v0.0.4](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/0.0.4) - 2017-08-30
 
 Enable GreenKeeper (see #5).
 
 Update dev dependencies to latest version.
 
-### v0.0.3
+### [v0.0.3](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/0.0.3) - 2017-08-11
 
 Update contributing guidelines.
 
-### v0.0.2
+### [v0.0.2](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/0.0.2) - 2017-08-11
 
 Update README.
 
 Update dev dependencies to latest version.
 
-### v0.0.1
+### [v0.0.1](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/0.0.1) - 2017-08-06
 
 Project moved to it's own organization and renamed to [**@robotlegsjs/core**](https://www.npmjs.com/package/@robotlegsjs/core).
 
