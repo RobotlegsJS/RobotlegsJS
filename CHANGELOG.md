@@ -52,7 +52,7 @@ Update dev dependencies to latest version.
 
 ### v0.0.4
 
-Enable GreenKeeper.
+Enable GreenKeeper (see #5).
 
 Update dev dependencies to latest version.
 
