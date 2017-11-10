@@ -24,9 +24,11 @@
 
 ### [v0.0.7](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/0.0.7) - 2017-10-31
 
-- Fix issue related to bubling of events (see #20).
+- **Event** class reads **bubbles** parameter passed through constructor (see #20)
 
 - Solve compilers deprecation warning messages from mocha.
+
+- Upgraded **Inversify** to version [4.4.0](https://github.com/inversify/InversifyJS/releases/tag/4.4.0)
 
 - Update dev dependencies to latest version.
 
