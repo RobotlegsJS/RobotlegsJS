@@ -10,7 +10,7 @@
 
 - [ ] Move helper methods to a specific folder.
 
-- [ ] Use Function Types for handler and callbacks instead of generic **Function** type.
+- [ ] Use [**Function Types**](https://www.typescriptlang.org/docs/handbook/functions.html) for handlers and callbacks instead of generic **Function** type.
 
 - [ ] Improve Code Coverage to reach 100%.
 
