@@ -14,9 +14,9 @@
 
 - [ ] Update **Prettier** rules:
 
--- [ ] **printWidth** should be around **140** characters per line.
+  - [ ] **printWidth** should be around **140** characters per line.
 
--- [ ] Find a way to keep a new line between **@inject** anotation and property declarations.
+  - [ ] Find a way to keep a new line between **@inject** anotation and property declarations.
 
 - [ ] Improve Code Coverage to reach 100%.
 
