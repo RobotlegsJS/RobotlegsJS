@@ -12,6 +12,12 @@ Migrate [original documentation](https://github.com/robotlegs/robotlegs-framewor
 
 ### v0.1.0
 
+Add Code of Conduct (see #27).
+
+Add Issue Template (see #28).
+
+Add Pull Request Template (see #29).
+
 Update dev dependencies to latest version.
 
 ## Robotlegs 0.0.1
