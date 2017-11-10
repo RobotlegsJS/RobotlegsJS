@@ -21,6 +21,7 @@
 ### v0.1.0
 
 Major Breaking Changes:
+---
 
 - Remove usage of types **Number**, **String**, **Boolean** and **Object** (see #26).
 
@@ -33,6 +34,7 @@ Major Breaking Changes:
 - **InjectorActivityLoggingExtension** extension removed (see $26).
 
 Features Or Improvements:
+---
 
 - Add helper method **getQualifiedClassName** (see #26).
 
