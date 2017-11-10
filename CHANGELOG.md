@@ -8,7 +8,7 @@
 
 - [ ] Organize **matching** extension, moving **Interfaces** to a **api** folder and **Implementations** to a **impl** folder.
 
-- [ ] Move helper classes to a specific folder.
+- [ ] Move helper methods to a specific folder.
 
 - [ ] Use Function Types for handler and callbacks instead of generic **Function** type.
 
