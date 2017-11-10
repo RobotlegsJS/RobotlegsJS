@@ -1,6 +1,4 @@
-# RobotlegsJS Changelog:
-
-## RobotlegsJS Core Framework
+# RobotlegsJS Core Changelog:
 
 ## Robotlegs 1.0.0
 
