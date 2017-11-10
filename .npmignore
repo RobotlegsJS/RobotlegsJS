@@ -9,6 +9,7 @@
 /test
 /transpiled-code
 /typings
+CHANGELOG.md
 CONTRIBUTING.md
 bower.json
 karma.conf.js
