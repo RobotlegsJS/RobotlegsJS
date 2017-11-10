@@ -56,7 +56,7 @@ Features Or Improvements:
 
 - Add Pull Request Template (see #29).
 
-- Upgraded **Inversify** to version [4.5.1](https://github.com/inversify/InversifyJS/releases/tag/4.5.1)
+- Upgraded **Inversify** to version [4.5.1](https://github.com/inversify/InversifyJS/releases/tag/4.5.1) (see #30)
 
 - Update dev dependencies to latest version.
 
