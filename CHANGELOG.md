@@ -68,8 +68,8 @@ Update dev dependencies to latest version.
 
 ### v0.0.1
 
-Project moved to it's own organization and renamed to **@robotlegsjs/core**.
+Project moved to it's own organization and renamed to [**@robotlegsjs/core**](https://www.npmjs.com/package/@robotlegsjs/core).
 
-The version **0.0.1** is compatible to version **1.0.1** of **robotlegsjs** package.
+The version **0.0.1** is compatible to version **1.0.1** of [**robotlegsjs**](https://www.npmjs.com/package/robotlegs) package.
 
 For the changelog of older versions, check the log of previous [releases](https://github.com/GoodgameStudios/RobotlegsJS/releases).
