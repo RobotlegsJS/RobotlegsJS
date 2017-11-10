@@ -6,7 +6,7 @@
 
 Improve Code Coverage to reach 100%.
 
-Migrate original documentation and adapt it to TypeScript.
+Migrate (original documentation)[https://github.com/robotlegs/robotlegs-framework/blob/master/src/readme.md] and adapt it to TypeScript.
 
 ### v0.1.0
 
