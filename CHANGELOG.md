@@ -4,6 +4,14 @@
 
 ### v1.0.0 - Planned stable version
 
+- [ ] Rethink **Events** package, in order to avoid confusion between **DOM** event system.
+
+- [ ] Organize **matching** extension, moving **Interfaces** to a **api** folder and **Implementations** to a **impl** folder.
+
+- [ ] Move helper classes to a specific folder.
+
+- [ ] Use Function Types for handler and callbacks instead of generic **Function** type.
+
 - [ ] Improve Code Coverage to reach 100%.
 
 - [ ] Migrate [original documentation](https://github.com/robotlegs/robotlegs-framework/blob/master/src/readme.md) and adapt it to TypeScript.
