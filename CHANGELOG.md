@@ -20,6 +20,28 @@
 
 ### v0.1.0
 
+Major Breaking Changes:
+
+- Remove usage of types **Number**, **String**, **Boolean** and **Object** (see #26).
+
+- Improve **matching** extension (see #26).
+
+- The usage of **ICommand** is mandatory (see #26).
+
+- **EventMap** handles DOM events properly (see #26).
+
+- **InjectorActivityLoggingExtension** extension removed (see $26).
+
+Features Or Improvements:
+
+- Add helper method **getQualifiedClassName** (see #26).
+
+- Add helper method **isInstanceOfType** (see #26)
+
+- Add Changelog (see #26).
+
+- Improve Code Coverage and Fix Bugs (see #26).
+
 - Add Code of Conduct (see #27).
 
 - Add Issue Template (see #28).
