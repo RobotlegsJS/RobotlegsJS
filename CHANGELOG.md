@@ -2,15 +2,21 @@
 
 ## RobotlegsJS Core Framework
 
-### Next: v1.0.0
+## Robotlegs 1.0.0
+
+### v1.0. - Planned stable version
 
 Improve Code Coverage to reach 100%.
 
 Migrate [original documentation](https://github.com/robotlegs/robotlegs-framework/blob/master/src/readme.md) and adapt it to TypeScript.
 
+## Robotlegs 0.1.0
+
 ### v0.1.0
 
 Update dev dependencies to latest version.
+
+## Robotlegs 0.0.1
 
 ### v0.0.7
 
