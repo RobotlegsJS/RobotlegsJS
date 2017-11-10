@@ -12,6 +12,12 @@
 
 - [ ] Use [**Function Types**](https://www.typescriptlang.org/docs/handbook/functions.html) for handlers and callbacks instead of generic **Function** type.
 
+- [ ] Update **Prettier** rules:
+
+-- [ ] **printWidth** should be around **140** characters per line.
+
+-- [ ] Find a way to keep a new line between **@inject** anotation and property declarations.
+
 - [ ] Improve Code Coverage to reach 100%.
 
 - [ ] Migrate [original documentation](https://github.com/robotlegs/robotlegs-framework/blob/master/src/readme.md) and adapt it to TypeScript.
