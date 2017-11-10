@@ -7,6 +7,9 @@
 
 import { IMatcher } from "../../framework/api/IMatcher";
 
+import { isInstanceOfType } from "./isInstanceOfType";
+import { IType } from "./IType";
+
 /*============================================================================*/
 /* Public Functions                                                           */
 /*============================================================================*/
@@ -16,19 +19,19 @@ import { IMatcher } from "../../framework/api/IMatcher";
  * @param type The type to match
  * @return A matcher
  */
-export function instanceOfType(type: any): IMatcher {
-    return new InstanceOfMatcher(type);
+export function instanceOfType<T>(type: IType<T>): IMatcher {
+    return new InstanceOfTypeMatcher<T>(type);
 }
 
 /**
  * @private
  */
-class InstanceOfMatcher implements IMatcher {
+class InstanceOfTypeMatcher<T> implements IMatcher {
     /*============================================================================*/
     /* Private Properties                                                         */
     /*============================================================================*/
 
-    private _type: any;
+    private _type: IType<T>;
 
     /*============================================================================*/
     /* Constructor                                                                */
@@ -37,7 +40,7 @@ class InstanceOfMatcher implements IMatcher {
     /**
      * @private
      */
-    constructor(type: any) {
+    constructor(type: IType<T>) {
         this._type = type;
     }
 
@@ -46,9 +49,13 @@ class InstanceOfMatcher implements IMatcher {
     /*============================================================================*/
 
     /**
-     * @inheritDoc
+     * Verify if the given item is a instance of this type.
+     *
+     * @param { any } item The item to test
+     * @return { boolean } <code>true</code> if the item is a instance of the type,
+     * <code>false</code> otherwise.
      */
     public matches(item: any): boolean {
-        return item instanceof this._type;
+        return isInstanceOfType<T>(item, this._type);
     }
 }

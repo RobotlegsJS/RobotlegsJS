@@ -21,11 +21,10 @@ export class LogMessageParser {
      * @return The parsed message
      */
     public parseMessage(message: string, params: any[]): string {
-        if (params) {
-            let numParams: number = params.length;
-            for (let i: number = 0; i < numParams; ++i) {
-                message = message.split("{" + i + "}").join(params[i]);
-            }
+        if (params && params.length) {
+            params.forEach((value: any, index: number) => {
+                message = message.replace(`{${index}}`, value);
+            });
         }
         return message;
     }

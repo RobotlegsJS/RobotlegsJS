@@ -5,6 +5,12 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import { getQualifiedClassName } from "../../../framework/impl/getQualifiedClassName";
+
+import { IClass } from "../../matching/IClass";
+
+import { ICommand } from "../api/ICommand";
+
 import { ICommandMapping } from "../api/ICommandMapping";
 
 /**
@@ -18,15 +24,8 @@ export class CommandMapping implements ICommandMapping {
     /**
      * @inheritDoc
      */
-    public get commandClass(): Object {
+    public get commandClass(): IClass<ICommand> {
         return this._commandClass;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public get executeMethod(): string {
-        return this._executeMethod;
     }
 
     /**
@@ -61,8 +60,7 @@ export class CommandMapping implements ICommandMapping {
     /* Private Properties                                                         */
     /*============================================================================*/
 
-    private _commandClass: Object;
-    private _executeMethod: string = "execute";
+    private _commandClass: IClass<ICommand>;
     private _guards: any[] = [];
     private _hooks: any[] = [];
     private _fireOnce: boolean = false;
@@ -76,21 +74,13 @@ export class CommandMapping implements ICommandMapping {
      * Creates a Command Mapping
      * @param commandClass The concrete Command class
      */
-    constructor(commandClass: Object) {
+    constructor(commandClass: IClass<ICommand>) {
         this._commandClass = commandClass;
     }
 
     /*============================================================================*/
     /* Public Functions                                                           */
     /*============================================================================*/
-
-    /**
-     * @inheritDoc
-     */
-    public setExecuteMethod(name: string): ICommandMapping {
-        this._executeMethod = name;
-        return this;
-    }
 
     /**
      * @inheritDoc
@@ -124,7 +114,10 @@ export class CommandMapping implements ICommandMapping {
         return this;
     }
 
+    /**
+     *
+     */
     public toString(): string {
-        return "Command " + this._commandClass;
+        return "Command " + getQualifiedClassName(this._commandClass);
     }
 }

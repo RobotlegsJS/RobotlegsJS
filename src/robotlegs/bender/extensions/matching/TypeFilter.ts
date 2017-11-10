@@ -5,6 +5,10 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import { getQualifiedClassName } from "../../framework/impl/getQualifiedClassName";
+
+import { isInstanceOfType } from "./isInstanceOfType";
+import { IType } from "./IType";
 import { ITypeFilter } from "./ITypeFilter";
 
 /**
@@ -15,30 +19,30 @@ export class TypeFilter implements ITypeFilter {
     /* Public Properties                                                          */
     /*============================================================================*/
 
-    protected _allOfTypes: FunctionConstructor[];
+    protected _allOfTypes: Array<IType<any>>;
 
     /**
      * @inheritDoc
      */
-    public get allOfTypes(): FunctionConstructor[] {
+    public get allOfTypes(): Array<IType<any>> {
         return this._allOfTypes;
     }
 
-    protected _anyOfTypes: FunctionConstructor[];
+    protected _anyOfTypes: Array<IType<any>>;
 
     /**
      * @inheritDoc
      */
-    public get anyOfTypes(): FunctionConstructor[] {
+    public get anyOfTypes(): Array<IType<any>> {
         return this._anyOfTypes;
     }
 
-    protected _noneOfTypes: FunctionConstructor[];
+    protected _noneOfTypes: Array<IType<any>>;
 
     /**
      * @inheritDoc
      */
-    public get noneOfTypes(): FunctionConstructor[] {
+    public get noneOfTypes(): Array<IType<any>> {
         return this._noneOfTypes;
     }
 
@@ -59,9 +63,9 @@ export class TypeFilter implements ITypeFilter {
      * @private
      */
     constructor(
-        allOf: FunctionConstructor[],
-        anyOf: FunctionConstructor[],
-        noneOf: FunctionConstructor[]
+        allOf: Array<IType<any>>,
+        anyOf: Array<IType<any>>,
+        noneOf: Array<IType<any>>
     ) {
         if (!allOf || !anyOf || !noneOf) {
             throw Error("TypeFilter parameters can not be null");
@@ -80,15 +84,16 @@ export class TypeFilter implements ITypeFilter {
      */
     public matches(item: any): boolean {
         let i: number = this._allOfTypes.length;
+
         while (i--) {
-            if (!(item instanceof this._allOfTypes[i])) {
+            if (!isInstanceOfType(item, this._allOfTypes[i])) {
                 return false;
             }
         }
 
         i = this._noneOfTypes.length;
         while (i--) {
-            if (item instanceof this._noneOfTypes[i]) {
+            if (isInstanceOfType(item, this._noneOfTypes[i])) {
                 return false;
             }
         }
@@ -102,7 +107,7 @@ export class TypeFilter implements ITypeFilter {
 
         i = this._anyOfTypes.length;
         while (i--) {
-            if (item instanceof this._anyOfTypes[i]) {
+            if (isInstanceOfType(item, this._anyOfTypes[i])) {
                 return true;
             }
         }
@@ -114,21 +119,17 @@ export class TypeFilter implements ITypeFilter {
     /* Protected Functions                                                        */
     /*============================================================================*/
 
-    protected alphabetiseCaseInsensitiveFCQNs(
-        classVector: FunctionConstructor[]
-    ): string[] {
+    protected alphabetiseCaseInsensitiveFCQNs(classes: Function[]): string[] {
         let fqcn: string;
         let allFCQNs: string[] = [];
+        let iLength: number = classes.length;
 
-        let iLength: number = classVector.length;
         for (let i: number = 0; i < iLength; i++) {
-            // fqcn = getQualifiedClassName(classVector[i]);
-            fqcn = classVector[i].toString().match(/function\ ([^\(]+)/)[1];
+            fqcn = getQualifiedClassName(classes[i]);
             allFCQNs[allFCQNs.length] = fqcn;
         }
 
-        allFCQNs.sort(this.stringSort);
-        return allFCQNs;
+        return allFCQNs.sort(this.stringSort);
     }
 
     protected createDescriptor(): string {
@@ -141,20 +142,37 @@ export class TypeFilter implements ITypeFilter {
         let noneOf_FQCNs: string[] = this.alphabetiseCaseInsensitiveFCQNs(
             this.noneOfTypes
         );
-        return (
-            "all of: " +
-            allOf_FCQNs.toString() +
-            ", any of: " +
-            anyOf_FCQNs.toString() +
-            ", none of: " +
-            noneOf_FQCNs.toString()
-        );
+
+        let description: string[] = [];
+
+        if (allOf_FCQNs.length) {
+            description.push("all of: " + allOf_FCQNs.toString());
+        }
+
+        if (anyOf_FCQNs.length) {
+            description.push("any of: " + anyOf_FCQNs.toString());
+        }
+
+        if (noneOf_FQCNs.length) {
+            description.push("none of: " + noneOf_FQCNs.toString());
+        }
+
+        return description.join("; ");
     }
 
     protected stringSort(item1: string, item2: string): number {
+        let result: number = 0;
+
+        // ignore upper and lowercase
+        item1 = item1.toUpperCase();
+        item2 = item2.toUpperCase();
+
         if (item1 < item2) {
-            return 1;
+            result = -1;
+        } else if (item1 > item2) {
+            result = 1;
         }
-        return -1;
+
+        return result;
     }
 }

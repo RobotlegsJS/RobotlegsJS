@@ -5,6 +5,8 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import { IType } from "../../matching/IType";
+
 /**
  * @private
  */
@@ -23,7 +25,7 @@ export class CommandPayload {
     /**
      * Ordered list of value classes
      */
-    public get classes(): any[] {
+    public get classes(): Array<IType<any>> {
         return this._classes;
     }
 
@@ -39,7 +41,7 @@ export class CommandPayload {
     /*============================================================================*/
 
     private _values: any[];
-    private _classes: any[];
+    private _classes: Array<IType<any>>;
 
     /*============================================================================*/
     /* Constructor                                                                */
@@ -50,7 +52,7 @@ export class CommandPayload {
      * @param values Optional values
      * @param classes Optional classes
      */
-    constructor(values: any[] = null, classes: any[] = null) {
+    constructor(values?: any[], classes?: Array<IType<any>>) {
         this._values = values;
         this._classes = classes;
     }
@@ -65,9 +67,9 @@ export class CommandPayload {
      * @param payloadClass The class of the value
      * @return Self
      */
-    public addPayload(
-        payloadValue: Object,
-        payloadClass: Object
+    public addPayload<T>(
+        payloadValue: T,
+        payloadClass: IType<T>
     ): CommandPayload {
         if (this._values) {
             this._values.push(payloadValue);
@@ -85,17 +87,18 @@ export class CommandPayload {
 
     /**
      * Does this payload have any items?
-     * @return Boolean
+     * @return boolean
      */
     public hasPayload(): boolean {
-        // todo: the final clause will make this fail silently
-        // todo: rethink
-        return (
-            this._values &&
-            this._values.length > 0 &&
-            this._classes &&
-            this._classes.length > 0 &&
-            this._classes.length === this._values.length
-        );
+        let payload: boolean = false;
+
+        if (this._values && this._classes) {
+            payload =
+                this._values.length > 0 &&
+                this._classes.length > 0 &&
+                this._values.length === this._classes.length;
+        }
+
+        return payload;
     }
 }

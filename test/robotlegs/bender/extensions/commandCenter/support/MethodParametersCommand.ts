@@ -7,8 +7,10 @@
 
 import { injectable, inject, named } from "inversify";
 
+import { ICommand } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/api/ICommand";
+
 @injectable()
-export class MethodParametersCommand {
+export class MethodParametersCommand implements ICommand {
     protected _reportingFunction: Function;
 
     constructor(
@@ -19,7 +21,7 @@ export class MethodParametersCommand {
         this._reportingFunction = reportingFunction;
     }
 
-    public execute(message: String, code: Number): void {
+    public execute(message: string, code: number): void {
         if (this._reportingFunction) {
             this._reportingFunction(message);
             this._reportingFunction(code);

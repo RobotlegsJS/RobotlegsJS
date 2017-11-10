@@ -5,9 +5,14 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { injectable } from "inversify";
+export class BaseType {
+    private _content: string;
 
-@injectable()
-export class IncorrectExecuteCommand {
-    public execute: string = "execute";
+    constructor(content: string) {
+        this._content = content;
+    }
+
+    public get content(): string {
+        return this._content;
+    }
 }

@@ -14,7 +14,11 @@ import { IInjector } from "../../../../../../src/robotlegs/bender/framework/api/
 import { PinEvent } from "../../../../../../src/robotlegs/bender/framework/api/PinEvent";
 import { Context } from "../../../../../../src/robotlegs/bender/framework/impl/Context";
 
+import { IClass } from "../../../../../../src/robotlegs/bender/extensions/matching/IClass";
+
+import { ICommand } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/api/ICommand";
 import { ICommandMapping } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/api/ICommandMapping";
+import { CommandPayload } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/api/CommandPayload";
 
 import { IDirectCommandMap } from "../../../../../../src/robotlegs/bender/extensions/directCommandMap/api/IDirectCommandMap";
 import { DirectCommandMap } from "../../../../../../src/robotlegs/bender/extensions/directCommandMap/impl/DirectCommandMap";
@@ -23,6 +27,7 @@ import { DirectCommandMapper } from "../../../../../../src/robotlegs/bender/exte
 import { NullCommand } from "../../commandCenter/support/NullCommand";
 import { CallbackCommand } from "../../commandCenter/support/CallbackCommand";
 import { CallbackCommand2 } from "../../commandCenter/support/CallbackCommand2";
+import { PayloadInjectionPointsCommand } from "../../commandCenter/support/PayloadInjectionPointsCommand";
 
 import { DirectCommandMapReportingCommand } from "../support/DirectCommandMapReportingCommand";
 
@@ -40,11 +45,11 @@ describe("DirectCommandMap", () => {
 
     afterEach(() => {});
 
-    it("map creates IDirectCommandConfigurator", () => {
+    it("map_creates_IDirectCommandConfigurator", () => {
         assert.instanceOf(subject.map(NullCommand), DirectCommandMapper);
     });
 
-    it("successfully executes command classes", () => {
+    it("successfully_executes_command_classes", () => {
         let executionCount: number = 0;
 
         injector
@@ -62,7 +67,28 @@ describe("DirectCommandMap", () => {
         assert.equal(executionCount, 2);
     });
 
-    it("commands get injected with DirectCommandMap instance", () => {
+    it("successfully_executes_command_class_passing_payload", () => {
+        const expected: any[] = ["message", 1];
+        let reported: any[] = [];
+
+        let payload: CommandPayload = new CommandPayload(expected, [
+            String,
+            Number
+        ]);
+
+        injector
+            .bind("Function")
+            .toFunction((item: any) => {
+                reported.push(item);
+            })
+            .whenTargetNamed("reportingFunction");
+
+        subject.map(PayloadInjectionPointsCommand).execute(payload);
+
+        assert.deepEqual(reported, expected);
+    });
+
+    it("commands_get_injected_with_DirectCommandMap_instance", () => {
         let actual: IDirectCommandMap = null;
 
         injector
@@ -77,7 +103,7 @@ describe("DirectCommandMap", () => {
         assert.equal(actual, subject);
     });
 
-    it("commands are disposed after execution", () => {
+    it("commands_are_disposed_after_execution", () => {
         let executionCount: number = 0;
 
         injector
@@ -93,17 +119,17 @@ describe("DirectCommandMap", () => {
         assert.equal(executionCount, 2);
     });
 
-    it("sandboxed directCommandMap instance does not leak into system", () => {
-        var actual: IDirectCommandMap = injector.get<IDirectCommandMap>(
+    it("sandboxed_directCommandMap_instance_does_not_leak_into_system", () => {
+        let actual: IDirectCommandMap = injector.get<IDirectCommandMap>(
             IDirectCommandMap
         );
 
         assert.notEqual(actual, subject);
     });
 
-    it("detains command", () => {
-        let command: Object = {};
-        let wasDetained: Boolean = false;
+    it("detains_command", () => {
+        let command: IClass<ICommand> = NullCommand;
+        let wasDetained: boolean = false;
         let handler: Function = function(...params): void {
             wasDetained = true;
         };
@@ -115,9 +141,9 @@ describe("DirectCommandMap", () => {
         assert.isTrue(wasDetained);
     });
 
-    it("releases command", () => {
-        let command: Object = {};
-        let wasReleased: Boolean = false;
+    it("releases_command", () => {
+        let command: IClass<ICommand> = NullCommand;
+        let wasReleased: boolean = false;
         let handler: Function = function(...params): void {
             wasReleased = true;
         };
@@ -130,7 +156,7 @@ describe("DirectCommandMap", () => {
         assert.isTrue(wasReleased);
     });
 
-    it("executes command", () => {
+    it("executes_command", () => {
         let executionCount: number = 0;
 
         injector
@@ -146,11 +172,34 @@ describe("DirectCommandMap", () => {
         assert.equal(executionCount, 1);
     });
 
-    it("mapping processor is called", () => {
+    it("mapping_processor_is_called", () => {
         let callCount: number = 0;
         subject.addMappingProcessor(function(mapping: ICommandMapping): void {
             callCount++;
         });
+        subject.map(NullCommand);
+        assert.equal(callCount, 1);
+    });
+
+    it("mapping_processors_are_called", () => {
+        let callCount: number = 0;
+        subject.addMappingProcessor(function(mapping: ICommandMapping): void {
+            callCount++;
+        });
+        subject.addMappingProcessor(function(mapping: ICommandMapping): void {
+            callCount++;
+        });
+        subject.map(NullCommand);
+        assert.equal(callCount, 2);
+    });
+
+    it("adding_mapping_processor_twice_is_called_once", () => {
+        let callCount: number = 0;
+        let mappingProcessor: Function = (mapping: ICommandMapping) => {
+            callCount++;
+        };
+        subject.addMappingProcessor(mappingProcessor);
+        subject.addMappingProcessor(mappingProcessor);
         subject.map(NullCommand);
         assert.equal(callCount, 1);
     });

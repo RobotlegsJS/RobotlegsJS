@@ -7,21 +7,24 @@
 
 import { injectable, inject, named } from "inversify";
 
+import { Event } from "../../../../../../src/robotlegs/bender/events/impl/Event";
+import { ICommand } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/api/ICommand";
+
+import { SupportEvent } from "./SupportEvent";
+
 @injectable()
-export class ReportMethodCommand {
-    protected _reportingFunction: Function;
+export class EventParametersCommand implements ICommand {
+    protected _callback: Function;
 
     constructor(
         @inject("Function")
-        @named("reportingFunction")
-        reportingFunction: Function
+        @named("executeCallback")
+        callback: Function
     ) {
-        this._reportingFunction = reportingFunction;
+        this._callback = callback;
     }
 
-    public report(): void {
-        if (this._reportingFunction) {
-            this._reportingFunction(ReportMethodCommand);
-        }
+    public execute(event: SupportEvent): void {
+        this._callback(event);
     }
 }

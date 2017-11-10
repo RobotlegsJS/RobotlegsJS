@@ -17,11 +17,11 @@ import { createHandler } from "./safelyCallBackSupport/createHandler";
 
 describe("MessageDispatcher", () => {
     let dispatcher: MessageDispatcher;
-    let message: Object;
+    let message: string;
 
     beforeEach(() => {
         dispatcher = new MessageDispatcher();
-        message = {};
+        message = "message";
     });
 
     afterEach(() => {
@@ -102,8 +102,8 @@ describe("MessageDispatcher", () => {
     });
 
     it("handler handles message", () => {
-        let actualMessage: Object = null;
-        dispatcher.addMessageHandler(message, function(msg: Object): void {
+        let actualMessage: any = null;
+        dispatcher.addMessageHandler(message, function(msg: any): void {
             actualMessage = msg;
         });
         dispatcher.dispatchMessage(message);
@@ -146,9 +146,9 @@ describe("MessageDispatcher", () => {
     });
 
     it("handler with callback handles message", () => {
-        let actualMessage: Object = null;
+        let actualMessage: any = null;
         dispatcher.addMessageHandler(message, function(
-            msg: Object,
+            msg: any,
             callback: Function
         ): void {
             actualMessage = msg;
@@ -159,9 +159,9 @@ describe("MessageDispatcher", () => {
     });
 
     it("async handler handles message", (done: Function) => {
-        let actualMessage: Object;
+        let actualMessage: any;
         dispatcher.addMessageHandler(message, function(
-            msg: Object,
+            msg: any,
             callback: Function
         ): void {
             actualMessage = msg;
@@ -224,30 +224,30 @@ describe("MessageDispatcher", () => {
     });
 
     it("handler passes error to callback", () => {
-        let expectedError: Object = "Error";
-        let actualError: Object = null;
+        let expectedError: any = "Error";
+        let actualError: any = null;
         dispatcher.addMessageHandler(message, function(
-            msg: Object,
+            msg: any,
             callback: Function
         ): void {
             callback(expectedError);
         });
-        dispatcher.dispatchMessage(message, function(error: Object): void {
+        dispatcher.dispatchMessage(message, function(error: any): void {
             actualError = error;
         });
         assert.equal(actualError, expectedError);
     });
 
     it("async_handler_passes_error_to_callback", (done: Function) => {
-        let expectedError: Object = "Error";
-        let actualError: Object = null;
+        let expectedError: any = "Error";
+        let actualError: any = null;
         dispatcher.addMessageHandler(message, function(
-            msg: Object,
+            msg: any,
             callback: Function
         ): void {
             setTimeout(callback, 5, expectedError);
         });
-        dispatcher.dispatchMessage(message, function(error: Object): void {
+        dispatcher.dispatchMessage(message, function(error: any): void {
             actualError = error;
         });
         setTimeout(function(): void {
@@ -257,15 +257,15 @@ describe("MessageDispatcher", () => {
     });
 
     it("handler that calls back more than once is ignored", () => {
-        var callbackCount: number = 0;
+        let callbackCount: number = 0;
         dispatcher.addMessageHandler(message, function(
-            msg: Object,
+            msg: any,
             callback: Function
         ): void {
             callback();
             callback();
         });
-        dispatcher.dispatchMessage(message, function(error: Object): void {
+        dispatcher.dispatchMessage(message, function(error: any): void {
             callbackCount++;
         });
         assert.equal(callbackCount, 1);
@@ -276,13 +276,13 @@ describe("MessageDispatcher", () => {
     ) => {
         let callbackCount: number = 0;
         dispatcher.addMessageHandler(message, function(
-            msg: Object,
+            msg: any,
             callback: Function
         ): void {
             callback();
             callback();
         });
-        dispatcher.dispatchMessage(message, function(error: Object): void {
+        dispatcher.dispatchMessage(message, function(error: any): void {
             callbackCount++;
         });
         setTimeout(function(): void {

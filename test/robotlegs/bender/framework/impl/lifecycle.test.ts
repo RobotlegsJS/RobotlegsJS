@@ -269,7 +269,7 @@ describe("Lifecycle", () => {
     it("async before handlers are executed", (done: Function) => {
         let callCount: number = 0;
         let handler: Function = function(
-            message: Object,
+            message: any,
             callback: Function
         ): void {
             callCount++;
@@ -430,7 +430,7 @@ describe("Lifecycle", () => {
     ) => {
         let callCount: number = 0;
         lifecycle.beforeInitializing(function(
-            message: Object,
+            message: any,
             callback: Function
         ): void {
             setTimeout(callback, 50);
@@ -483,14 +483,14 @@ describe("Lifecycle", () => {
         return errorCount;
     }
 
-    function createValuePusher(array: Object[], value: Object): Function {
+    function createValuePusher(array: any[], value: any): Function {
         return function(): void {
             array.push(value);
         };
     }
 
-    function createMessagePusher(array: Object[]): Function {
-        return function(message: Object): void {
+    function createMessagePusher(array: any[]): Function {
+        return function(message: any): void {
             array.push(message);
         };
     }

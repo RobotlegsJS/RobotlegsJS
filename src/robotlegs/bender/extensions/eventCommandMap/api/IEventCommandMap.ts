@@ -5,6 +5,9 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import { IClass } from "../../matching/IClass";
+import { IEvent } from "../../../events/api/IEvent";
+
 import { ICommandMapper } from "../../commandCenter/dsl/ICommandMapper";
 import { ICommandUnmapper } from "../../commandCenter/dsl/ICommandUnmapper";
 
@@ -19,7 +22,7 @@ export interface IEventCommandMap {
      * @param eventClass The concrete Event class
      * @return Command Mapper
      */
-    map(type: String, eventClass?: Object): ICommandMapper;
+    map(type: string, eventClass?: IClass<IEvent>): ICommandMapper;
 
     /**
      * Unmaps an Event based trigger from a Command
@@ -27,7 +30,7 @@ export interface IEventCommandMap {
      * @param eventClass The concrete Event class
      * @return Command Unmapper
      */
-    unmap(type: String, eventClass?: Object): ICommandUnmapper;
+    unmap(type: string, eventClass?: IClass<IEvent>): ICommandUnmapper;
 
     /**
      * Adds a handler to process mappings

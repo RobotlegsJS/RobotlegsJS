@@ -6,14 +6,15 @@
 // ------------------------------------------------------------------------------
 
 /**
- * Optional Command interface.
+ * Mandatory Command interface.
  *
  * <p>Note, you do not need to implement this interface,
  * any class with an execute method can be used.</p>
  */
+export let ICommand = Symbol("ICommand");
 export interface ICommand {
     /**
      * The execute method
      */
-    execute(): void;
+    execute(...args: any[]): void;
 }

@@ -5,6 +5,9 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import { IClass } from "../../matching/IClass";
+
+import { ICommand } from "../api/ICommand";
 import { ICommandMapping } from "../api/ICommandMapping";
 import { ICommandMappingList } from "../api/ICommandMappingList";
 
@@ -46,7 +49,7 @@ export class CommandMapper
     /**
      * @inheritDoc
      */
-    public toCommand(commandClass: Object): ICommandConfigurator {
+    public toCommand(commandClass: IClass<ICommand>): ICommandConfigurator {
         this._mapping = new CommandMapping(commandClass);
         this._mappings.addMapping(this._mapping);
         return this;
@@ -55,7 +58,7 @@ export class CommandMapper
     /**
      * @inheritDoc
      */
-    public fromCommand(commandClass: Object): void {
+    public fromCommand(commandClass: IClass<ICommand>): void {
         this._mappings.removeMappingFor(commandClass);
     }
 
@@ -87,14 +90,6 @@ export class CommandMapper
      */
     public withHooks(...hooks: any[]): ICommandConfigurator {
         this._mapping.addHooks(...hooks);
-        return this;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public withExecuteMethod(name: string): ICommandConfigurator {
-        this._mapping.setExecuteMethod(name);
         return this;
     }
 

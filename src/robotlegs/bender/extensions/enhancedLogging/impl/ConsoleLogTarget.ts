@@ -47,7 +47,7 @@ export class ConsoleLogTarget implements ILogTarget {
         level: number,
         timestamp: number,
         message: string,
-        params: any[] = null
+        params?: any[]
     ): void {
         if (this._context.logLevel < level) {
             return;

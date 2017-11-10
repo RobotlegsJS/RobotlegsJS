@@ -31,8 +31,8 @@
  */
 export function safelyCallBack(
     callback: Function,
-    error?: Object,
-    message?: Object
+    error?: any,
+    message?: any
 ): void {
     if (callback.length === 0) {
         callback();

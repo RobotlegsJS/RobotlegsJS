@@ -5,6 +5,10 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import { IClass } from "../../matching/IClass";
+
+import { ICommand } from "./ICommand";
+
 /**
  * @private
  */
@@ -12,12 +16,7 @@ export interface ICommandMapping {
     /**
      * The concrete Command Class for this mapping
      */
-    commandClass: Object;
-
-    /**
-     * The "execute" method to invoke on the Command instance
-     */
-    executeMethod: string;
+    commandClass: IClass<ICommand>;
 
     /**
      * A list of Guards to query before execution
@@ -38,11 +37,6 @@ export interface ICommandMapping {
      * Supply the payload values via instance injection
      */
     payloadInjectionEnabled: boolean;
-
-    /**
-     * The "execute" method to invoke on the Command instance
-     */
-    setExecuteMethod(name: string): ICommandMapping;
 
     /**
      * A list of Guards to query before execution

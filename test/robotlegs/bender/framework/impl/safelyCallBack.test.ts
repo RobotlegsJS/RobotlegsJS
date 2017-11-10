@@ -23,7 +23,7 @@ describe("safelyCallBack", () => {
 
     it("callback with one param is called", () => {
         let callCount: number = 0;
-        let callback: Function = function(param: Object): void {
+        let callback: Function = function(param: any): void {
             callCount++;
         };
         safelyCallBack(callback, {}, {});
@@ -32,10 +32,7 @@ describe("safelyCallBack", () => {
 
     it("callback with two params is called", () => {
         let callCount: number = 0;
-        let callback: Function = function(
-            param1: Object,
-            param2: Object
-        ): void {
+        let callback: Function = function(param1: any, param2: any): void {
             callCount++;
         };
         safelyCallBack(callback, {}, {});
@@ -43,9 +40,9 @@ describe("safelyCallBack", () => {
     });
 
     it("callback receives error", () => {
-        let expected: Object = new Error("Something went hideously wrong.");
-        let actual: Object = null;
-        let callback: Function = function(error: Object): void {
+        let expected: any = new Error("Something went hideously wrong.");
+        let actual: any = null;
+        let callback: Function = function(error: any): void {
             actual = error;
         };
         safelyCallBack(callback, expected, {});
@@ -53,12 +50,9 @@ describe("safelyCallBack", () => {
     });
 
     it("callback receives message", () => {
-        let expected: Object = "message";
-        let actual: Object = null;
-        let callback: Function = function(
-            error: Object,
-            message: Object
-        ): void {
+        let expected: any = "message";
+        let actual: any = null;
+        let callback: Function = function(error: any, message: any): void {
             actual = message;
         };
         safelyCallBack(callback, {}, expected);
@@ -66,16 +60,11 @@ describe("safelyCallBack", () => {
     });
 
     it("callback receives error and message", () => {
-        let expectedError: Object = new Error(
-            "Something went hideously wrong."
-        );
-        let actualError: Object = null;
-        let expectedMessage: Object = "message";
-        let actualMessage: Object = null;
-        let callback: Function = function(
-            error: Object,
-            message: Object
-        ): void {
+        let expectedError: any = new Error("Something went hideously wrong.");
+        let actualError: any = null;
+        let expectedMessage: any = "message";
+        let actualMessage: any = null;
+        let callback: Function = function(error: any, message: any): void {
             actualError = error;
             actualMessage = message;
         };
@@ -87,9 +76,9 @@ describe("safelyCallBack", () => {
     it("invalid callback probably explodes", () => {
         function hookInstanceWithoutHook(): void {
             let callback: Function = function(
-                error: Object,
-                message: Object,
-                invalidParameter: Object
+                error: any,
+                message: any,
+                invalidParameter: any
             ): void {};
             safelyCallBack(callback, {}, {});
         }

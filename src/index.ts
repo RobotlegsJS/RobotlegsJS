@@ -28,9 +28,6 @@ export {
 } from "./robotlegs/bender/framework/api/LifecycleState";
 export { LogLevel } from "./robotlegs/bender/framework/api/LogLevel";
 export { PinEvent } from "./robotlegs/bender/framework/api/PinEvent";
-export {
-    instanceOfType
-} from "./robotlegs/bender/extensions/matching/instanceOfType";
 
 /**
  * Framework Implementation
@@ -62,6 +59,9 @@ export { UID } from "./robotlegs/bender/framework/impl/UID";
  * Framework Functions
  */
 export { applyHooks } from "./robotlegs/bender/framework/impl/applyHooks";
+export {
+    getQualifiedClassName
+} from "./robotlegs/bender/framework/impl/getQualifiedClassName";
 export { guardsApprove } from "./robotlegs/bender/framework/impl/guardsApprove";
 export {
     instantiateUnmapped
@@ -114,6 +114,9 @@ export {
 export {
     ICommandUnmapper
 } from "./robotlegs/bender/extensions/commandCenter/dsl/ICommandUnmapper";
+export {
+    Command
+} from "./robotlegs/bender/extensions/commandCenter/impl/Command";
 export {
     CommandExecutor
 } from "./robotlegs/bender/extensions/commandCenter/impl/CommandExecutor";
@@ -171,6 +174,14 @@ export {
 } from "./robotlegs/bender/extensions/localEventMap/LocalEventMapExtension";
 
 // Matching
+export { IClass } from "./robotlegs/bender/extensions/matching/IClass";
+export { IType } from "./robotlegs/bender/extensions/matching/IType";
+export {
+    instanceOfType
+} from "./robotlegs/bender/extensions/matching/instanceOfType";
+export {
+    isInstanceOfType
+} from "./robotlegs/bender/extensions/matching/isInstanceOfType";
 export {
     ITypeFilter
 } from "./robotlegs/bender/extensions/matching/ITypeFilter";
@@ -185,4 +196,3 @@ export {
  * Bundles
  */
 export { MVCSBundle } from "./robotlegs/bender/bundles/mvcs/MVCSBundle";
-export { Command } from "./robotlegs/bender/bundles/mvcs/Command";

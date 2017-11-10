@@ -5,6 +5,9 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import { IClass } from "../../../extensions/matching/IClass";
+
+import { IEvent } from "../../../events/api/IEvent";
 import { IEventDispatcher } from "../../../events/api/IEventDispatcher";
 
 /**
@@ -15,12 +18,12 @@ export class EventMapConfig {
     /* Public Properties                                                          */
     /*============================================================================*/
 
-    private _dispatcher: IEventDispatcher | EventTarget;
+    private _dispatcher: IEventDispatcher;
 
     /**
      * @private
      */
-    public get dispatcher(): IEventDispatcher | EventTarget {
+    public get dispatcher(): IEventDispatcher {
         return this._dispatcher;
     }
 
@@ -34,7 +37,6 @@ export class EventMapConfig {
     }
 
     private _listener: Function;
-    private _thisObject: any;
 
     /**
      * @private
@@ -43,19 +45,21 @@ export class EventMapConfig {
         return this._listener;
     }
 
+    private _thisObject: any;
+
     /**
      * @private
      */
-    public get thisObject(): Function {
+    public get thisObject(): any {
         return this._thisObject;
     }
 
-    private _eventClass: Object;
+    private _eventClass: IClass<IEvent>;
 
     /**
      * @private
      */
-    public get eventClass(): Object {
+    public get eventClass(): IClass<IEvent> {
         return this._eventClass;
     }
 
@@ -77,6 +81,15 @@ export class EventMapConfig {
         return this._useCapture;
     }
 
+    private _priority: number;
+
+    /**
+     * @private
+     */
+    public get priority(): number {
+        return this._priority;
+    }
+
     /*============================================================================*/
     /* Constructor                                                                */
     /*============================================================================*/
@@ -85,13 +98,14 @@ export class EventMapConfig {
      * @private
      */
     constructor(
-        dispatcher: IEventDispatcher | EventTarget,
+        dispatcher: IEventDispatcher,
         eventString: string,
         listener: Function,
         thisObject: any,
-        eventClass: Object,
+        eventClass: IClass<IEvent>,
         callback: Function,
-        useCapture: boolean
+        useCapture: boolean,
+        priority: number
     ) {
         this._dispatcher = dispatcher;
         this._eventString = eventString;
@@ -100,14 +114,15 @@ export class EventMapConfig {
         this._eventClass = eventClass;
         this._callback = callback;
         this._useCapture = useCapture;
+        this._priority = priority;
     }
 
     public equalTo(
-        dispatcher: IEventDispatcher | EventTarget,
+        dispatcher: IEventDispatcher,
         eventString: string,
         listener: Function,
         thisObject: any,
-        eventClass: Object,
+        eventClass: IClass<IEvent>,
         useCapture: boolean
     ): boolean {
         return (

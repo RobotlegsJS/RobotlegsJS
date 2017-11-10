@@ -7,10 +7,16 @@
 
 import { injectable } from "inversify";
 
+import { IEvent } from "../../../events/api/IEvent";
 import { IEventDispatcher } from "../../../events/api/IEventDispatcher";
-import { IEventMap } from "../api/IEventMap";
-import { EventMapConfig } from "./EventMapConfig";
 import { Event } from "../../../events/impl/Event";
+
+import { IClass } from "../../../extensions/matching/IClass";
+import { isInstanceOfType } from "../../../extensions/matching/isInstanceOfType";
+
+import { IEventMap } from "../api/IEventMap";
+import { DomEventMapConfig } from "./DomEventMapConfig";
+import { EventMapConfig } from "./EventMapConfig";
 
 /**
  * @private
@@ -22,8 +28,10 @@ export class EventMap implements IEventMap {
     /*============================================================================*/
 
     private _listeners: EventMapConfig[] = [];
-
     private _suspendedListeners: EventMapConfig[] = [];
+
+    private _domListeners: DomEventMapConfig[] = [];
+    private _suspendedDomListeners: DomEventMapConfig[] = [];
 
     private _suspended: boolean = false;
 
@@ -35,16 +43,15 @@ export class EventMap implements IEventMap {
      * @inheritDoc
      */
     public mapListener(
-        dispatcher: IEventDispatcher | EventTarget,
+        dispatcher: IEventDispatcher,
         eventString: string,
         listener: Function,
         thisObject?: any,
-        eventClass?: Object,
+        eventClass?: IClass<IEvent>,
         useCapture: boolean = false, // Not used in browser environment
-        priority: number = 0, // Not used in browser environment
-        useWeakReference: boolean = true // Not used in browser environment
+        priority: number = 0
     ): void {
-        eventClass = eventClass || Event;
+        eventClass = eventClass === undefined ? Event : eventClass;
 
         let currentListeners: EventMapConfig[] = this._suspended
             ? this._suspendedListeners
@@ -72,12 +79,8 @@ export class EventMap implements IEventMap {
         let callback: Function =
             eventClass === Event
                 ? listener
-                : function(event: Event): void {
-                      this.routeEventToListener(
-                          this.event,
-                          listener,
-                          eventClass
-                      );
+                : (event: Event) => {
+                      this.routeEventToListener(event, listener, eventClass);
                   };
 
         config = new EventMapConfig(
@@ -87,16 +90,19 @@ export class EventMap implements IEventMap {
             thisObject,
             eventClass,
             callback,
-            useCapture
+            useCapture,
+            priority
         );
 
         currentListeners.push(config);
 
         if (!this._suspended) {
-            (<IEventDispatcher>dispatcher).addEventListener(
+            dispatcher.addEventListener(
                 eventString,
                 callback,
-                thisObject
+                thisObject,
+                useCapture,
+                priority
             );
         }
     }
@@ -105,14 +111,14 @@ export class EventMap implements IEventMap {
      * @inheritDoc
      */
     public unmapListener(
-        dispatcher: IEventDispatcher | EventTarget,
+        dispatcher: IEventDispatcher,
         eventString: string,
         listener: Function,
         thisObject?: any,
-        eventClass?: Object,
+        eventClass?: IClass<IEvent>,
         useCapture: boolean = false
     ): void {
-        eventClass = eventClass || Event;
+        eventClass = eventClass !== undefined ? eventClass : Event;
 
         let currentListeners: EventMapConfig[] = this._suspended
             ? this._suspendedListeners
@@ -132,10 +138,11 @@ export class EventMap implements IEventMap {
                 )
             ) {
                 if (!this._suspended) {
-                    (<IEventDispatcher>dispatcher).removeEventListener(
+                    dispatcher.removeEventListener(
                         eventString,
                         config.callback,
-                        thisObject
+                        thisObject,
+                        useCapture
                     );
                 }
                 currentListeners.splice(i, 1);
@@ -153,17 +160,121 @@ export class EventMap implements IEventMap {
             : this._listeners;
 
         let eventConfig: EventMapConfig;
-        let dispatcher: IEventDispatcher | EventTarget;
-        while ((eventConfig = currentListeners.pop())) {
+        let dispatcher: IEventDispatcher;
+
+        while (currentListeners.length) {
+            eventConfig = currentListeners.pop();
+
             if (!this._suspended) {
                 dispatcher = eventConfig.dispatcher;
-                (<IEventDispatcher>dispatcher).removeEventListener(
+                dispatcher.removeEventListener(
                     eventConfig.eventString,
                     eventConfig.callback,
-                    eventConfig.thisObject
+                    eventConfig.thisObject,
+                    eventConfig.useCapture
                 );
             }
         }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public mapDomListener(
+        dispatcher: EventTarget,
+        eventString: string,
+        listener?: EventListenerOrEventListenerObject,
+        options?: boolean | AddEventListenerOptions
+    ): void {
+        let currentDomListeners: DomEventMapConfig[] = this._suspended
+            ? this._suspendedDomListeners
+            : this._domListeners;
+
+        let domConfig: DomEventMapConfig;
+
+        let i: number = currentDomListeners.length;
+        while (i--) {
+            domConfig = currentDomListeners[i];
+            if (domConfig.equalTo(dispatcher, eventString, listener, options)) {
+                return;
+            }
+        }
+
+        domConfig = new DomEventMapConfig(
+            dispatcher,
+            eventString,
+            listener,
+            options
+        );
+
+        currentDomListeners.push(domConfig);
+
+        if (!this._suspended) {
+            dispatcher.addEventListener(eventString, listener, options);
+        }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public unmapDomListener(
+        dispatcher: EventTarget,
+        eventString: string,
+        listener?: EventListenerOrEventListenerObject,
+        options?: boolean | EventListenerOptions
+    ): void {
+        let currentDomListeners: DomEventMapConfig[] = this._suspended
+            ? this._suspendedDomListeners
+            : this._domListeners;
+
+        let i: number = currentDomListeners.length;
+        while (i--) {
+            let config: DomEventMapConfig = currentDomListeners[i];
+            if (config.equalTo(dispatcher, eventString, listener, options)) {
+                if (!this._suspended) {
+                    dispatcher.removeEventListener(
+                        eventString,
+                        listener,
+                        options
+                    );
+                }
+                currentDomListeners.splice(i, 1);
+                return;
+            }
+        }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public unmapDomListeners(): void {
+        let currentDomListeners: DomEventMapConfig[] = this._suspended
+            ? this._suspendedDomListeners
+            : this._domListeners;
+
+        let domEventConfig: DomEventMapConfig;
+        let dispatcher: EventTarget;
+
+        while (currentDomListeners.length) {
+            domEventConfig = currentDomListeners.pop();
+
+            if (!this._suspended) {
+                dispatcher = domEventConfig.dispatcher;
+                dispatcher.removeEventListener(
+                    domEventConfig.eventString,
+                    domEventConfig.listener,
+                    domEventConfig.options
+                );
+            }
+        }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public unmapAllListeners(): void {
+        this.unmapListeners();
+        this.unmapDomListeners();
     }
 
     /**
@@ -176,17 +287,36 @@ export class EventMap implements IEventMap {
 
         this._suspended = true;
 
-        let eventConfig: EventMapConfig;
-        let dispatcher: IEventDispatcher | EventTarget;
-        while ((eventConfig = this._listeners.pop())) {
+        // Handle EventDispatcher's
+        let dispatcher: IEventDispatcher;
+
+        this._listeners.forEach((eventConfig: EventMapConfig) => {
             dispatcher = eventConfig.dispatcher;
-            (<IEventDispatcher>dispatcher).removeEventListener(
+            dispatcher.removeEventListener(
                 eventConfig.eventString,
                 eventConfig.callback,
-                eventConfig.thisObject
+                eventConfig.thisObject,
+                eventConfig.useCapture
             );
             this._suspendedListeners.push(eventConfig);
-        }
+        });
+
+        this._listeners = [];
+
+        // Handle EventTarget's (DOM)
+        let domDispatcher: EventTarget;
+
+        this._domListeners.forEach((domEventConfig: DomEventMapConfig) => {
+            domDispatcher = domEventConfig.dispatcher;
+            domDispatcher.removeEventListener(
+                domEventConfig.eventString,
+                domEventConfig.listener,
+                domEventConfig.options
+            );
+            this._suspendedDomListeners.push(domEventConfig);
+        });
+
+        this._domListeners = [];
     }
 
     /**
@@ -199,17 +329,39 @@ export class EventMap implements IEventMap {
 
         this._suspended = false;
 
-        let eventConfig: EventMapConfig;
-        let dispatcher: IEventDispatcher | EventTarget;
-        while ((eventConfig = this._suspendedListeners.pop())) {
+        // Handle EventDispatcher's
+        let dispatcher: IEventDispatcher;
+
+        this._suspendedListeners.forEach((eventConfig: EventMapConfig) => {
             dispatcher = eventConfig.dispatcher;
-            (<IEventDispatcher>dispatcher).addEventListener(
+            dispatcher.addEventListener(
                 eventConfig.eventString,
                 eventConfig.callback,
-                eventConfig.thisObject
+                eventConfig.thisObject,
+                eventConfig.useCapture,
+                eventConfig.priority
             );
             this._listeners.push(eventConfig);
-        }
+        });
+
+        this._suspendedListeners = [];
+
+        // Handle EventTarget's (DOM)
+        let domDispatcher: EventTarget;
+
+        this._suspendedDomListeners.forEach(
+            (domEventConfig: DomEventMapConfig) => {
+                domDispatcher = domEventConfig.dispatcher;
+                domDispatcher.addEventListener(
+                    domEventConfig.eventString,
+                    domEventConfig.listener,
+                    domEventConfig.options
+                );
+                this._domListeners.push(domEventConfig);
+            }
+        );
+
+        this._suspendedDomListeners = [];
     }
 
     /*============================================================================*/
@@ -226,9 +378,9 @@ export class EventMap implements IEventMap {
     protected routeEventToListener(
         event: Event,
         listener: Function,
-        originalEventClass: Object
+        originalEventClass: IClass<IEvent>
     ): void {
-        if (event instanceof <any>originalEventClass) {
+        if (isInstanceOfType(event, originalEventClass)) {
             listener(event);
         }
     }

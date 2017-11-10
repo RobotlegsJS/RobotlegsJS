@@ -5,10 +5,11 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import { IType } from "./IType";
 import { ITypeFilter } from "./ITypeFilter";
-import { TypeFilter } from "./TypeFilter";
 import { ITypeMatcher } from "./ITypeMatcher";
 import { ITypeMatcherFactory } from "./ITypeMatcherFactory";
+import { TypeFilter } from "./TypeFilter";
 import { TypeMatcherError } from "./TypeMatcherError";
 
 /**
@@ -19,13 +20,13 @@ export class TypeMatcher implements ITypeMatcher, ITypeMatcherFactory {
     /* Protected Properties                                                       */
     /*============================================================================*/
 
-    protected _allOfTypes: FunctionConstructor[] = [];
+    protected _allOfTypes: Array<IType<any>> = [];
 
-    protected _anyOfTypes: FunctionConstructor[] = [];
+    protected _anyOfTypes: Array<IType<any>> = [];
 
-    protected _noneOfTypes: FunctionConstructor[] = [];
+    protected _noneOfTypes: Array<IType<any>> = [];
 
-    protected _typeFilter: ITypeFilter;
+    protected _typeFilter: ITypeFilter = null;
 
     /*============================================================================*/
     /* Public Functions                                                           */
@@ -103,33 +104,30 @@ export class TypeMatcher implements ITypeMatcher, ITypeMatcherFactory {
 
     protected pushAddedTypesTo(
         types: any[],
-        targetSet: FunctionConstructor[]
+        targetSet: Array<IType<any>>
     ): void {
         if (this._typeFilter) {
             this.throwSealedMatcherError();
         }
 
-        this.pushValuesToClassVector(types, targetSet);
+        this.pushValuesToTargetSet(types, targetSet);
     }
 
     protected throwSealedMatcherError(): void {
         throw new TypeMatcherError(TypeMatcherError.SEALED_MATCHER);
     }
 
-    protected pushValuesToClassVector(
+    protected pushValuesToTargetSet(
         values: any[],
-        vector: FunctionConstructor[]
+        targetSet: Array<IType<any>>
     ): void {
-        if (values.length === 1 && values[0] instanceof Array) {
-            for (let i: number; i < values[0].length; i++) {
-                let type: FunctionConstructor = values[0][i];
-                vector.push(type);
-            }
-        } else {
-            for (let i: number = 0; i < values.length; i++) {
-                let type = values[i];
-                vector.push(type);
-            }
-        }
+        let types: Array<IType<any>> =
+            values.length === 1 && values[0] instanceof Array
+                ? values[0]
+                : values;
+
+        types.forEach(type => {
+            targetSet.push(type);
+        });
     }
 }

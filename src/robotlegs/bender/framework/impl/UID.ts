@@ -16,7 +16,7 @@ export class UID {
      * @param source The source object or class
      * @return Generated UID
      */
-    public static create(source: any = null): string {
+    public static create(source?: any): string {
         return guid();
     }
 }

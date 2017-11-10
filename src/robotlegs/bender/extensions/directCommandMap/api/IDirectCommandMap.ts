@@ -5,6 +5,10 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import { IClass } from "../../matching/IClass";
+
+import { ICommand } from "../../commandCenter/api/ICommand";
+
 import { IDirectCommandMapper } from "./IDirectCommandMapper";
 
 /**
@@ -16,13 +20,13 @@ export interface IDirectCommandMap extends IDirectCommandMapper {
      * Pins a command in memory
      * @param command the command instance to pin
      */
-    detain(command: Object): void;
+    detain(command: IClass<ICommand>): void;
 
     /**
      * Unpins a command instance from memory
      * @param command the command instance to unpin
      */
-    release(command: Object): void;
+    release(command: IClass<ICommand>): void;
 
     /**
      * Adds a handler to process mappings

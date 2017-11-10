@@ -19,7 +19,7 @@ export class EventRelay {
 
     private _destination: IEventDispatcher;
 
-    private _types: any[];
+    private _types: string[];
 
     private _active: boolean;
 
@@ -36,7 +36,7 @@ export class EventRelay {
     constructor(
         source: IEventDispatcher,
         destination: IEventDispatcher,
-        types: any[] = null
+        types?: string[]
     ) {
         this._source = source;
         this._destination = destination;
@@ -115,16 +115,14 @@ export class EventRelay {
     }
 
     private addListeners(): void {
-        for (let i: number = 0; i < this._types.length; i++) {
-            let type = this._types[i];
+        this._types.forEach((type: string) => {
             this.addListener(type);
-        }
+        });
     }
 
     private removeListeners(): void {
-        for (let i: number = 0; i < this._types.length; i++) {
-            let type = this._types[i];
+        this._types.forEach((type: string) => {
             this.removeListener(type);
-        }
+        });
     }
 }

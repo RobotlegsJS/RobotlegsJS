@@ -51,7 +51,7 @@ export class LogManager implements ILogTarget {
      * @param source Logging source
      * @return Logger
      */
-    public getLogger(source: Object): ILogger {
+    public getLogger(source: any): ILogger {
         return new Logger(source, this);
     }
 
@@ -68,11 +68,11 @@ export class LogManager implements ILogTarget {
      * @inheritDoc
      */
     public log(
-        source: Object,
+        source: any,
         level: number,
         timestamp: number,
         message: string,
-        params: any[] = null
+        params?: any[]
     ): void {
         if (level > this._logLevel) {
             return;

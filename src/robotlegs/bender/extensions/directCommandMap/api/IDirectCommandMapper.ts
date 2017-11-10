@@ -5,7 +5,11 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import { IClass } from "../../matching/IClass";
+
 import { CommandPayload } from "../../commandCenter/api/CommandPayload";
+import { ICommand } from "../../commandCenter/api/ICommand";
+
 import { IDirectCommandConfigurator } from "../dsl/IDirectCommandConfigurator";
 
 /**
@@ -17,7 +21,7 @@ export interface IDirectCommandMapper {
      * @param commandClass The concrete Command class
      * @return Mapping configurator
      */
-    map(commandClass: Object): IDirectCommandConfigurator;
+    map(commandClass: IClass<ICommand>): IDirectCommandConfigurator;
 
     /**
      * Execute the configured command(s)

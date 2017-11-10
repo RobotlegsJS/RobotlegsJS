@@ -5,6 +5,9 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import { IClass } from "../../matching/IClass";
+
+import { ICommand } from "./ICommand";
 import { ICommandMapping } from "./ICommandMapping";
 
 /**
@@ -40,7 +43,7 @@ export interface ICommandMappingList {
      * Removes a mapping from the mapping list using the Command class
      * @param commandClass The command class to remove the mapping for
      */
-    removeMappingFor(commandClass: Object): void;
+    removeMappingFor(commandClass: IClass<ICommand>): void;
 
     /**
      * Removes all mappings for this command mapping list

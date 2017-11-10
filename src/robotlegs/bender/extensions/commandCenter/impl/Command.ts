@@ -5,7 +5,7 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { ICommand } from "../../extensions/commandCenter/api/ICommand";
+import { ICommand } from "../api/ICommand";
 
 /**
  * Abstract command implementation
@@ -21,5 +21,5 @@ export abstract class Command implements ICommand {
     /**
      * @inheritDoc
      */
-    public abstract execute(): void;
+    public abstract execute(...args: any[]): void;
 }

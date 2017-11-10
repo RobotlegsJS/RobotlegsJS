@@ -5,18 +5,17 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { injectable, inject, named } from "inversify";
+import { BaseType } from "./BaseType";
 
-@injectable()
-export class ExecutelessCommand {
-    protected _reportingFunction: Function;
+export class ExtendedType extends BaseType {
+    private _data: number;
 
-    constructor(
-        @inject("Function")
-        @named("reportingFunction")
-        reportingFunction: Function
-    ) {
-        this._reportingFunction = reportingFunction;
-        this._reportingFunction(ExecutelessCommand);
+    constructor(content: string, data: number) {
+        super(content);
+        this._data = data;
+    }
+
+    public get data(): number {
+        return this._data;
     }
 }

@@ -7,8 +7,14 @@
 
 import { IInjector } from "../../../framework/api/IInjector";
 import { ILogger } from "../../../framework/api/ILogger";
+import { getQualifiedClassName } from "../../../framework/impl/getQualifiedClassName";
 
+import { IEvent } from "../../../events/api/IEvent";
 import { IEventDispatcher } from "../../../events/api/IEventDispatcher";
+
+import { IClass } from "../../matching/IClass";
+import { isInstanceOfType } from "../../matching/isInstanceOfType";
+
 import { ICommandExecutor } from "../../commandCenter/api/ICommandExecutor";
 import { ICommandMappingList } from "../../commandCenter/api/ICommandMappingList";
 import { ICommandTrigger } from "../../commandCenter/api/ICommandTrigger";
@@ -30,7 +36,7 @@ export class EventCommandTrigger implements ICommandTrigger {
 
     private _type: string;
 
-    private _eventClass: Object;
+    private _eventClass: IClass<IEvent>;
 
     private _mappings: ICommandMappingList;
 
@@ -47,14 +53,18 @@ export class EventCommandTrigger implements ICommandTrigger {
         injector: IInjector,
         dispatcher: IEventDispatcher,
         type: string,
-        eventClass?: Object,
+        eventClass?: IClass<IEvent>,
         processors?: any[],
         logger?: ILogger
     ) {
         this._dispatcher = dispatcher;
         this._type = type;
         this._eventClass = eventClass;
-        this._mappings = new CommandMappingList(this, processors, logger);
+        this._mappings = new CommandMappingList(
+            this,
+            processors ? processors : [],
+            logger
+        );
         this._executor = new CommandExecutor(
             injector,
             this._mappings.removeMapping.bind(this._mappings)
@@ -91,7 +101,11 @@ export class EventCommandTrigger implements ICommandTrigger {
     }
 
     public toString(): string {
-        return this._eventClass + " with selector '" + this._type + "'";
+        let eventDescription: string = "";
+        eventDescription = !this._eventClass
+            ? "Event"
+            : getQualifiedClassName(this._eventClass);
+        return eventDescription + " with selector '" + this._type + "'";
     }
 
     /*============================================================================*/
@@ -99,12 +113,15 @@ export class EventCommandTrigger implements ICommandTrigger {
     /*============================================================================*/
 
     private eventHandler(event: Event): void {
-        let eventConstructor: Object = <Object>event["constructor"];
-        let payloadEventClass: Object;
+        let eventConstructor: IClass<IEvent> = <IClass<
+            IEvent
+        >>event.constructor;
+        let payloadEventClass: IClass<IEvent>;
+
         // not pretty, but optimized to avoid duplicate checks and shortest paths
-        if (eventConstructor === this._eventClass || !this._eventClass) {
+        if (!this._eventClass) {
             payloadEventClass = eventConstructor;
-        } else if (this._eventClass === Event) {
+        } else if (isInstanceOfType(event, this._eventClass)) {
             payloadEventClass = this._eventClass;
         } else {
             return;

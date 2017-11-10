@@ -5,6 +5,10 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import { IClass } from "../../matching/IClass";
+
+import { ICommand } from "../api/ICommand";
+
 import { ICommandConfigurator } from "./ICommandConfigurator";
 
 /**
@@ -16,5 +20,5 @@ export interface ICommandMapper {
      * @param commandClass The Command Class to map
      * @return Mapping configurator
      */
-    toCommand(commandClass: Object): ICommandConfigurator;
+    toCommand(commandClass: IClass<ICommand>): ICommandConfigurator;
 }

@@ -10,7 +10,10 @@ import { injectable, inject } from "inversify";
 import { IContext } from "../../../framework/api/IContext";
 import { IInjector } from "../../../framework/api/IInjector";
 
+import { IClass } from "../../matching/IClass";
+
 import { CommandPayload } from "../../commandCenter/api/CommandPayload";
+import { ICommand } from "../../commandCenter/api/ICommand";
 import { ICommandExecutor } from "../../commandCenter/api/ICommandExecutor";
 
 import { CommandExecutor } from "../../commandCenter/impl/CommandExecutor";
@@ -71,7 +74,7 @@ export class DirectCommandMap implements IDirectCommandMap {
     /**
      * @inheritDoc
      */
-    public map(commandClass: Object): IDirectCommandConfigurator {
+    public map(commandClass: IClass<ICommand>): IDirectCommandConfigurator {
         return new DirectCommandMapper(
             this._executor,
             this._mappings,
@@ -82,21 +85,21 @@ export class DirectCommandMap implements IDirectCommandMap {
     /**
      * @inheritDoc
      */
-    public detain(command: Object): void {
+    public detain(command: IClass<ICommand>): void {
         this._context.detain(command);
     }
 
     /**
      * @inheritDoc
      */
-    public release(command: Object): void {
+    public release(command: IClass<ICommand>): void {
         this._context.release(command);
     }
 
     /**
      * @inheritDoc
      */
-    public execute(payload: CommandPayload = null): void {
+    public execute(payload?: CommandPayload): void {
         this._executor.executeCommands(this._mappings.getList(), payload);
     }
 

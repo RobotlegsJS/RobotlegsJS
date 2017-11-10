@@ -20,6 +20,8 @@ import { HappyGuard } from "../../../framework/impl/guardSupport/HappyGuard";
 import { GrumpyGuard } from "../../../framework/impl/guardSupport/GrumpyGuard";
 import { CallbackHook } from "../../../framework/impl/hookSupport/CallbackHook";
 
+import { NullCommand } from "../support/NullCommand";
+
 describe("CommandMapper", () => {
     let mappings: CommandMappingList;
     let subject: CommandMapper;
@@ -34,30 +36,30 @@ describe("CommandMapper", () => {
         subject = null;
     });
 
-    it("toCommand creates CommandConfigurator", () => {
-        assert.instanceOf(subject.toCommand(String), CommandMapper);
+    it("toCommand_creates_CommandConfigurator", () => {
+        assert.instanceOf(subject.toCommand(NullCommand), CommandMapper);
     });
 
-    it("toCommand passes CommandMapping to MappingList", () => {
+    it("toCommand_passes_CommandMapping_to_MappingList", () => {
         let mappingsMock = sinon.mock(mappings);
         mappingsMock.expects("addMapping").once();
-        subject.toCommand(String);
+        subject.toCommand(NullCommand);
         mappingsMock.restore();
         mappingsMock.verify();
     });
 
-    it("fromCommand delegates to MappingList", () => {
+    it("fromCommand_delegates_to_MappingList", () => {
         let mappingsMock = sinon.mock(mappings);
         mappingsMock
             .expects("removeMappingFor")
             .once()
-            .withArgs(String);
-        subject.fromCommand(String);
+            .withArgs(NullCommand);
+        subject.fromCommand(NullCommand);
         mappingsMock.restore();
         mappingsMock.verify();
     });
 
-    it("fromAll delegates to MappingList", () => {
+    it("fromAll_delegates_to_MappingList", () => {
         let mappingsMock = sinon.mock(mappings);
         mappingsMock.expects("removeAllMappings").once();
         subject.fromAll();
@@ -65,8 +67,21 @@ describe("CommandMapper", () => {
         mappingsMock.verify();
     });
 
-    it("once delegates to Mapping", () => {
-        subject.toCommand(String);
+    it("once_delegates_to_Mapping", () => {
+        subject.toCommand(NullCommand);
+        let list: ICommandMapping[] = mappings.getList();
+        let mappingMock = sinon.mock(list[0]);
+        mappingMock
+            .expects("setFireOnce")
+            .once()
+            .withArgs(true);
+        subject.once();
+        mappingMock.restore();
+        mappingMock.verify();
+    });
+
+    it("once_when_true_delegates_to_Mapping", () => {
+        subject.toCommand(NullCommand);
         let list: ICommandMapping[] = mappings.getList();
         let mappingMock = sinon.mock(list[0]);
         mappingMock
@@ -78,8 +93,21 @@ describe("CommandMapper", () => {
         mappingMock.verify();
     });
 
-    it("withGuards delegates to Mapping", () => {
-        subject.toCommand(String);
+    it("once_when_false_delegates_to_Mapping", () => {
+        subject.toCommand(NullCommand);
+        let list: ICommandMapping[] = mappings.getList();
+        let mappingMock = sinon.mock(list[0]);
+        mappingMock
+            .expects("setFireOnce")
+            .once()
+            .withArgs(false);
+        subject.once(false);
+        mappingMock.restore();
+        mappingMock.verify();
+    });
+
+    it("withGuards_delegates_to_Mapping", () => {
+        subject.toCommand(NullCommand);
         let list: ICommandMapping[] = mappings.getList();
         let mappingMock = sinon.mock(list[0]);
         mappingMock
@@ -91,8 +119,8 @@ describe("CommandMapper", () => {
         mappingMock.verify();
     });
 
-    it("withHooks delegates to Mapping", () => {
-        subject.toCommand(String);
+    it("withHooks_delegates_to_Mapping", () => {
+        subject.toCommand(NullCommand);
         let list: ICommandMapping[] = mappings.getList();
         let mappingMock = sinon.mock(list[0]);
         mappingMock
@@ -104,21 +132,21 @@ describe("CommandMapper", () => {
         mappingMock.verify();
     });
 
-    it("withExecuteMethod delegates to Mapping", () => {
-        subject.toCommand(String);
+    it("withPayloadInjection_delegates_to_Mapping", () => {
+        subject.toCommand(NullCommand);
         let list: ICommandMapping[] = mappings.getList();
         let mappingMock = sinon.mock(list[0]);
         mappingMock
-            .expects("setExecuteMethod")
+            .expects("setPayloadInjectionEnabled")
             .once()
-            .withArgs("execute");
-        subject.withExecuteMethod("execute");
+            .withArgs(true);
+        subject.withPayloadInjection();
         mappingMock.restore();
         mappingMock.verify();
     });
 
-    it("withPayloadInjection delegates to Mapping", () => {
-        subject.toCommand(String);
+    it("withPayloadInjection_when_true_delegates_to_Mapping", () => {
+        subject.toCommand(NullCommand);
         let list: ICommandMapping[] = mappings.getList();
         let mappingMock = sinon.mock(list[0]);
         mappingMock
@@ -126,6 +154,19 @@ describe("CommandMapper", () => {
             .once()
             .withArgs(true);
         subject.withPayloadInjection(true);
+        mappingMock.restore();
+        mappingMock.verify();
+    });
+
+    it("withPayloadInjection_when_false_delegates_to_Mapping", () => {
+        subject.toCommand(NullCommand);
+        let list: ICommandMapping[] = mappings.getList();
+        let mappingMock = sinon.mock(list[0]);
+        mappingMock
+            .expects("setPayloadInjectionEnabled")
+            .once()
+            .withArgs(false);
+        subject.withPayloadInjection(false);
         mappingMock.restore();
         mappingMock.verify();
     });

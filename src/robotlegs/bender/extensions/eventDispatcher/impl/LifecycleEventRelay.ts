@@ -18,7 +18,7 @@ export class LifecycleEventRelay {
     /* Private Static Properties                                                  */
     /*============================================================================*/
 
-    private static TYPES: any[] = [
+    private static TYPES: string[] = [
         LifecycleEvent.STATE_CHANGE,
         LifecycleEvent.PRE_INITIALIZE,
         LifecycleEvent.INITIALIZE,
