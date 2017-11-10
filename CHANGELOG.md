@@ -68,4 +68,4 @@ Project moved to it's own organization and renamed to **@robotlegsjs/core**.
 
 The version **0.0.1** is compatible to version **1.0.1** of **robotlegsjs** package.
 
-For the changelog of older versions, check the [releases](https://github.com/GoodgameStudios/RobotlegsJS/releases).
+For the changelog of older versions, check the log of previous [releases](https://github.com/GoodgameStudios/RobotlegsJS/releases).
