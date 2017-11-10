@@ -6,7 +6,7 @@
 
 Improve Code Coverage to reach 100%.
 
-Migrate (original documentation)[https://github.com/robotlegs/robotlegs-framework/blob/master/src/readme.md] and adapt it to TypeScript.
+Migrate [original documentation](https://github.com/robotlegs/robotlegs-framework/blob/master/src/readme.md) and adapt it to TypeScript.
 
 ### v0.1.0
 
@@ -22,9 +22,9 @@ Update dev dependencies to latest version.
 
 ### v0.0.6
 
-Add reference to (RobotlegsJS-Pixi-SignalMediator)[https://github.com/RobotlegsJS/RobotlegsJS-Pixi-SignalMediator] extension.
+Add reference to [RobotlegsJS-Pixi-SignalMediator](https://github.com/RobotlegsJS/RobotlegsJS-Pixi-SignalMediator) extension.
 
-Adapt to NPM (v5.0.0)[http://blog.npmjs.org/post/161081169345/v500] (see #12).
+Adapt to NPM [v5.0.0](http://blog.npmjs.org/post/161081169345/v500) (see #12).
 
 Use Map instances properly (see #13).
 
@@ -32,13 +32,13 @@ Update dev dependencies to latest version.
 
 ### v0.0.5
 
-Add reference to (RobotlegsJS-Pixi-Palidor)[https://github.com/RobotlegsJS/RobotlegsJS-Pixi-Palidor] extension.
+Add reference to [RobotlegsJS-Pixi-Palidor](https://github.com/RobotlegsJS/RobotlegsJS-Pixi-Palidor) extension.
 
-Add support to (Prettier)[https://prettier.io/] code formatter (see #8).
+Add support to [Prettier](https://prettier.io) code formatter (see #8).
 
-Add support to (Istanbul)[https://istanbul.js.org/] test coverage tool (see #10).
+Add support to [Istanbul](https://istanbul.js.org) test coverage tool (see #10).
 
-Add integration with (CodeBeat)[https://codebeat.co] (see #9).
+Add integration with [CodeBeat](https://codebeat.co) (see #9).
 
 Update TSLint rules (see #7).
 
