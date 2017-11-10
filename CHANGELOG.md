@@ -2,7 +2,7 @@
 
 ## Robotlegs 1.0.0
 
-### v1.0. - Planned stable version
+### v1.0.0 - Planned stable version
 
 Improve Code Coverage to reach 100%.
 
