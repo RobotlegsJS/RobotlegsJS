@@ -1,6 +1,6 @@
 # RobotlegsJS Core Changelog:
 
-## Robotlegs 1.0.0
+## Robotlegs-Core 1.0.0
 
 ### v1.0.0 - Planned stable version
 
@@ -22,7 +22,7 @@
 
 - [ ] Migrate [original documentation](https://github.com/robotlegs/robotlegs-framework/blob/master/src/readme.md) and adapt it to TypeScript.
 
-## Robotlegs 0.1.0
+## Robotlegs-Core 0.1.0
 
 ### v0.1.1
 
@@ -64,7 +64,7 @@ Features Or Improvements:
 
 - Update dev dependencies to latest version.
 
-## Robotlegs 0.0.1
+## Robotlegs-Core 0.0.1
 
 ### [v0.0.7](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/0.0.7) - 2017-10-31
 
