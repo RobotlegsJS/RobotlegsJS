@@ -89,7 +89,7 @@
     "karma-sinon": "^1.0.5",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-sourcemap-writer": "^0.1.2",
-    "karma-webpack": "^2.0.5",
+    "karma-webpack": "^2.0.6",
     "mocha": "^4.0.1",
     "nyc": "^11.3.0",
     "prettier": "^1.8.2",
