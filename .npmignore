@@ -3,6 +3,7 @@
 /.vscode
 /coverage
 /docs
+/media
 /lib/test
 /not-ported-extensions
 /src
