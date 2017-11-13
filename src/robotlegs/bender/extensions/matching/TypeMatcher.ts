@@ -35,24 +35,45 @@ export class TypeMatcher implements ITypeMatcher, ITypeMatcherFactory {
     /**
      * All types that an item must extend or implement
      */
-    public allOf(...types: any[]): TypeMatcher {
-        this.pushAddedTypesTo(types, this._allOfTypes);
+    public allOf(
+        type: IType<any> | Array<IType<any>>,
+        ...types: Array<IType<any>>
+    ): TypeMatcher {
+        if (type instanceof Array) {
+            this.pushAddedTypesTo(type.concat(types), this._allOfTypes);
+        } else {
+            this.pushAddedTypesTo([type].concat(types), this._allOfTypes);
+        }
         return this;
     }
 
     /**
      * Any types that an item must extend or implement
      */
-    public anyOf(...types: any[]): TypeMatcher {
-        this.pushAddedTypesTo(types, this._anyOfTypes);
+    public anyOf(
+        type: IType<any> | Array<IType<any>>,
+        ...types: Array<IType<any>>
+    ): TypeMatcher {
+        if (type instanceof Array) {
+            this.pushAddedTypesTo(type.concat(types), this._anyOfTypes);
+        } else {
+            this.pushAddedTypesTo([type].concat(types), this._anyOfTypes);
+        }
         return this;
     }
 
     /**
      * Types that an item must not extend or implement
      */
-    public noneOf(...types: any[]): TypeMatcher {
-        this.pushAddedTypesTo(types, this._noneOfTypes);
+    public noneOf(
+        type: IType<any> | Array<IType<any>>,
+        ...types: Array<IType<any>>
+    ): TypeMatcher {
+        if (type instanceof Array) {
+            this.pushAddedTypesTo(type.concat(types), this._noneOfTypes);
+        } else {
+            this.pushAddedTypesTo([type].concat(types), this._noneOfTypes);
+        }
         return this;
     }
 
@@ -103,7 +124,7 @@ export class TypeMatcher implements ITypeMatcher, ITypeMatcherFactory {
     }
 
     protected pushAddedTypesTo(
-        types: any[],
+        types: Array<IType<any>>,
         targetSet: Array<IType<any>>
     ): void {
         if (this._typeFilter) {
@@ -118,15 +139,10 @@ export class TypeMatcher implements ITypeMatcher, ITypeMatcherFactory {
     }
 
     protected pushValuesToTargetSet(
-        values: any[],
+        values: Array<IType<any>>,
         targetSet: Array<IType<any>>
     ): void {
-        let types: Array<IType<any>> =
-            values.length === 1 && values[0] instanceof Array
-                ? values[0]
-                : values;
-
-        types.forEach(type => {
+        values.forEach((type: IType<any>) => {
             targetSet.push(type);
         });
     }

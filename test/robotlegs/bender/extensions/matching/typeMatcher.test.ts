@@ -23,7 +23,7 @@ describe("TypeMatcher", () => {
     const ALL_OF_2: Array<IType<any>> = [Object];
     const ANY_OF: Array<IType<any>> = [Boolean, Number];
     const ANY_OF_2: Array<IType<any>> = [Array, Date];
-    const NONE_OF: Array<IType<any>> = [Error];
+    const NONE_OF: Array<IType<any>> = [Error, TypeError];
     const NONE_OF_2: Array<IType<any>> = [TypeMatcherError];
 
     let matcher: TypeMatcher;
@@ -238,7 +238,21 @@ describe("TypeMatcher", () => {
         matcher
             .allOf(BaseType, ExtendedType)
             .anyOf(Boolean, Number)
-            .noneOf(Error);
+            .noneOf(Error, TypeError);
+        assertMatchesTypeFilter(matcher.createTypeFilter(), expectedFilter);
+    });
+
+    it("mixing_all_any_and_none_arguments_also_works", () => {
+        const expectedFilter: TypeFilter = new TypeFilter(
+            ALL_OF,
+            ANY_OF,
+            NONE_OF
+        );
+        matcher = new TypeMatcher();
+        matcher
+            .allOf([BaseType], ExtendedType)
+            .anyOf([Boolean], Number)
+            .noneOf([Error], TypeError);
         assertMatchesTypeFilter(matcher.createTypeFilter(), expectedFilter);
     });
 
