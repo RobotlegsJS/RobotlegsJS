@@ -24,7 +24,9 @@
 
 ## Robotlegs-Core 0.1.0
 
-### v0.1.1
+### [v0.1.1](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/0.1.1) - 2017-11-13
+
+- Strict Type Checking for TypeMatcher class (see #32).
 
 - Update .npmignore (see #31).
 
