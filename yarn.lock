@@ -18,9 +18,9 @@
   version "8.0.51"
   resolved "https://registry.npmjs.org/@types/node/-/node-8.0.51.tgz#b31d716fb8d58eeb95c068a039b9b6292817d5fb"
 
-"@types/sinon@^2.3.7":
-  version "2.3.7"
-  resolved "https://registry.npmjs.org/@types/sinon/-/sinon-2.3.7.tgz#e92c2fed3297eae078d78d1da032b26788b4af86"
+"@types/sinon@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.npmjs.org/@types/sinon/-/sinon-4.0.0.tgz#9a93ffa4ee1329e85166278a5ed99f81dc4c8362"
 
 abab@^1.0.3:
   version "1.0.4"
@@ -3398,8 +3398,8 @@ log4js@^0.6.31:
     semver "~4.3.3"
 
 loglevel@^1.4.1:
-  version "1.5.1"
-  resolved "https://registry.npmjs.org/loglevel/-/loglevel-1.5.1.tgz#189078c94ab9053ee215a0acdbf24244ea0f6502"
+  version "1.6.0"
+  resolved "https://registry.npmjs.org/loglevel/-/loglevel-1.6.0.tgz#ae0caa561111498c5ba13723d6fb631d24003934"
 
 lolex@^1.6.0:
   version "1.6.0"
