@@ -75,7 +75,7 @@
     "istanbul-instrumenter-loader": "^3.0.0",
     "jsdom": "^11.3.0",
     "jsdom-global": "^3.0.2",
-    "karma": "^1.7.1",
+    "karma": "^2.0.0",
     "karma-chai": "^0.1.0",
     "karma-chai-sinon": "^0.1.5",
     "karma-chrome-launcher": "^2.2.0",
