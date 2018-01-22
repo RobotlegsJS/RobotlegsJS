@@ -3478,10 +3478,6 @@ karma-es6-shim@^1.0.0:
     es5-shim "~4.5.8"
     es6-shim "~0.35.0"
 
-karma-jasmine@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.npmjs.org/karma-jasmine/-/karma-jasmine-1.1.0.tgz#22e4c06bf9a182e5294d1f705e3733811b810acf"
-
 karma-mocha-reporter@^2.2.5:
   version "2.2.5"
   resolved "https://registry.npmjs.org/karma-mocha-reporter/-/karma-mocha-reporter-2.2.5.tgz#15120095e8ed819186e47a0b012f3cd741895560"
