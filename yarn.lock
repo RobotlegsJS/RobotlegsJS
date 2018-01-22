@@ -10,9 +10,9 @@
   version "4.1.1"
   resolved "https://registry.npmjs.org/@types/chai/-/chai-4.1.1.tgz#15f1257fab17b7acb9c413f9f88d3d87f834d11e"
 
-"@types/mocha@^2.2.44":
-  version "2.2.44"
-  resolved "https://registry.npmjs.org/@types/mocha/-/mocha-2.2.44.tgz#1d4a798e53f35212fd5ad4d04050620171cd5b5e"
+"@types/mocha@^2.2.46":
+  version "2.2.46"
+  resolved "https://registry.npmjs.org/@types/mocha/-/mocha-2.2.46.tgz#b04713f7759d1cf752effdaae7b3969e285ebc16"
 
 "@types/node@*":
   version "8.0.51"

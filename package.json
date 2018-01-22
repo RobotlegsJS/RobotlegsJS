@@ -62,7 +62,7 @@
   "devDependencies": {
     "@types/bluebird": "^3.5.19",
     "@types/chai": "^4.1.1",
-    "@types/mocha": "^2.2.44",
+    "@types/mocha": "^2.2.46",
     "@types/sinon": "^4.0.0",
     "bluebird": "^3.5.1",
     "browserify-versionify": "^1.0.6",
