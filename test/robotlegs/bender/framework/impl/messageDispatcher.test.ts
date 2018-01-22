@@ -206,9 +206,7 @@ describe("MessageDispatcher", () => {
         }, 50);
     });
 
-    it("callback is called once after sync and async handlers", (
-        done: Function
-    ) => {
+    it("callback is called once after sync and async handlers", (done: Function) => {
         let callbackCount: number = 0;
         dispatcher.addMessageHandler(message, createAsyncHandler());
         dispatcher.addMessageHandler(message, createHandler());
@@ -271,9 +269,7 @@ describe("MessageDispatcher", () => {
         assert.equal(callbackCount, 1);
     });
 
-    it("async handler that calls back more than once is ignored", (
-        done: Function
-    ) => {
+    it("async handler that calls back more than once is ignored", (done: Function) => {
         let callbackCount: number = 0;
         dispatcher.addMessageHandler(message, function(
             msg: any,
@@ -336,9 +332,7 @@ describe("MessageDispatcher", () => {
         }, 50);
     });
 
-    it("async handlers should run in reverse order when reversed", (
-        done: Function
-    ) => {
+    it("async handlers should run in reverse order when reversed", (done: Function) => {
         let expected: string[] = ["A", "B", "C", "D"];
         let results: string[] = [];
         for (let i: number = 0; i < expected.length; i++) {
@@ -381,9 +375,7 @@ describe("MessageDispatcher", () => {
         }, 50);
     });
 
-    it("async and sync handlers should run in order when reversed", (
-        done: Function
-    ) => {
+    it("async and sync handlers should run in order when reversed", (done: Function) => {
         let expected: string[] = ["A", "B", "C", "D"];
         let results: string[] = [];
         dispatcher.addMessageHandler(
@@ -461,9 +453,7 @@ describe("MessageDispatcher", () => {
         assert.deepEqual(results, expected);
     });
 
-    it("terminated async message should not reach further handlers", (
-        done: Function
-    ) => {
+    it("terminated async message should not reach further handlers", (done: Function) => {
         let expected: string[] = ["A", "B", "C (with error)"];
         let results: string[] = [];
         dispatcher.addMessageHandler(
@@ -492,9 +482,7 @@ describe("MessageDispatcher", () => {
         }, 50);
     });
 
-    it("terminated_async_message_should_not_reach_further_handlers_when_reversed", (
-        done: Function
-    ) => {
+    it("terminated_async_message_should_not_reach_further_handlers_when_reversed", (done: Function) => {
         let expected: string[] = ["D", "C (with error)"];
         let results: string[] = [];
         dispatcher.addMessageHandler(
