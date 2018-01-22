@@ -425,9 +425,7 @@ describe("Lifecycle", () => {
         );
     });
 
-    it("adding whenInitializing handler during initialization does NOT throw error", (
-        done: Function
-    ) => {
+    it("adding whenInitializing handler during initialization does NOT throw error", (done: Function) => {
         let callCount: number = 0;
         lifecycle.beforeInitializing(function(
             message: any,
