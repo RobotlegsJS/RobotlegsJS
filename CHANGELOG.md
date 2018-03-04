@@ -24,7 +24,7 @@
 
 ## Robotlegs-Core 0.1.0
 
-### v0.1.3
+### [v0.1.3](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/0.1.3) - 2018-03-04
 
 - Update Inversify to version 4.11.1 (see #47).
 
