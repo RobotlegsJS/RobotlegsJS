@@ -35,30 +35,32 @@ describe("LogMessageParser", () => {
 
     it("parseMessage_parse_message_without_parameters", () => {
         const expected: string = "Please do not change me!";
-        let actual: string = logMessageParser.parseMessage(
-            "Please do not change me!",
-            null
-        );
+        let actual: string = logMessageParser.parseMessage("Please do not change me!", null);
 
         assert.equal(actual, expected);
     });
 
     it("parseMessage_parse_message_with_one_parameter", () => {
         const expected: string = "=> Hello World! <=";
-        let actual: string = logMessageParser.parseMessage("=> {0} <=", [
-            "Hello World!"
-        ]);
+        let actual: string = logMessageParser.parseMessage("=> {0} <=", ["Hello World!"]);
 
         assert.equal(actual, expected);
     });
 
     it("parseMessage_parse_message_with_parameters", () => {
-        const expected: string =
-            "Lets count to ten: 1, 2, 3, 4, 5, 6, 7, 8, 9 and 10!!!";
-        let actual: string = logMessageParser.parseMessage(
-            "Lets count to ten: {0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8} and {9}!!!",
-            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-        );
+        const expected: string = "Lets count to ten: 1, 2, 3, 4, 5, 6, 7, 8, 9 and 10!!!";
+        let actual: string = logMessageParser.parseMessage("Lets count to ten: {0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8} and {9}!!!", [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+        ]);
 
         assert.equal(actual, expected);
     });

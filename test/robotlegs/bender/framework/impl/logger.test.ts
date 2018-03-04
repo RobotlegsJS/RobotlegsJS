@@ -40,13 +40,7 @@ describe("Logger", () => {
     });
 
     it("level is passed", () => {
-        let expected: number[] = [
-            LogLevel.FATAL,
-            LogLevel.ERROR,
-            LogLevel.WARN,
-            LogLevel.INFO,
-            LogLevel.DEBUG
-        ];
+        let expected: number[] = [LogLevel.FATAL, LogLevel.ERROR, LogLevel.WARN, LogLevel.INFO, LogLevel.DEBUG];
         let actual: number[] = [];
         let logger: Logger = new Logger(
             source,

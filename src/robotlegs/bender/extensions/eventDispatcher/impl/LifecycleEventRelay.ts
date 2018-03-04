@@ -48,11 +48,7 @@ export class LifecycleEventRelay {
      * @private
      */
     constructor(source: IEventDispatcher, destination: IEventDispatcher) {
-        this._relay = new EventRelay(
-            source,
-            destination,
-            LifecycleEventRelay.TYPES
-        ).start();
+        this._relay = new EventRelay(source, destination, LifecycleEventRelay.TYPES).start();
     }
 
     /*============================================================================*/

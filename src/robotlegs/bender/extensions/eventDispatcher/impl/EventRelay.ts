@@ -33,11 +33,7 @@ export class EventRelay {
      * @param destination Event Dispatcher
      * @param types The list of event types to relay
      */
-    constructor(
-        source: IEventDispatcher,
-        destination: IEventDispatcher,
-        types?: string[]
-    ) {
+    constructor(source: IEventDispatcher, destination: IEventDispatcher, types?: string[]) {
         this._source = source;
         this._destination = destination;
         this._types = types || [];
@@ -99,19 +95,11 @@ export class EventRelay {
     /*============================================================================*/
 
     private addListener(type: string): void {
-        this._source.addEventListener(
-            type,
-            this._destination.dispatchEvent,
-            this._destination
-        );
+        this._source.addEventListener(type, this._destination.dispatchEvent, this._destination);
     }
 
     private removeListener(type: string): void {
-        this._source.removeEventListener(
-            type,
-            this._destination.dispatchEvent,
-            this._destination
-        );
+        this._source.removeEventListener(type, this._destination.dispatchEvent, this._destination);
     }
 
     private addListeners(): void {

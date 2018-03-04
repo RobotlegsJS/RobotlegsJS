@@ -20,8 +20,7 @@ export function getQualifiedClassName(value: any): string {
     let v3: RegExp = /function\ ([^\(]+)/;
     let v6: RegExp = /class\ ([^\ ]+)/;
     let classDescriptor: string = value.toString();
-    let result: RegExpMatchArray =
-        classDescriptor.match(v3) || classDescriptor.match(v6);
+    let result: RegExpMatchArray = classDescriptor.match(v3) || classDescriptor.match(v6);
 
     return result[1];
 }

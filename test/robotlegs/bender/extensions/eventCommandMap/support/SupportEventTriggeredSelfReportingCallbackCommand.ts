@@ -13,8 +13,7 @@ import { ICommand } from "../../../../../../src/robotlegs/bender/extensions/comm
 import { SupportEvent } from "./SupportEvent";
 
 @injectable()
-export class SupportEventTriggeredSelfReportingCallbackCommand
-    implements ICommand {
+export class SupportEventTriggeredSelfReportingCallbackCommand implements ICommand {
     @inject(Event)
     @optional()
     public untypedEvent: Event;

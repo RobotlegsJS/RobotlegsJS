@@ -34,18 +34,8 @@ describe("EventCommandTrigger", () => {
     let eventDispatcher: EventDispatcher;
     let eventCommandTrigger: EventCommandTrigger;
 
-    function createTrigger(
-        eventType: string,
-        eventClass?: IClass<IEvent>,
-        processors?: any[]
-    ): void {
-        eventCommandTrigger = new EventCommandTrigger(
-            context.injector,
-            eventDispatcher,
-            eventType,
-            eventClass,
-            processors
-        );
+    function createTrigger(eventType: string, eventClass?: IClass<IEvent>, processors?: any[]): void {
+        eventCommandTrigger = new EventCommandTrigger(context.injector, eventDispatcher, eventType, eventClass, processors);
         context.initialize();
     }
 
@@ -168,9 +158,7 @@ describe("EventCommandTrigger", () => {
                 actual = event;
             })
             .whenTargetNamed("reportEvent");
-        eventCommandTrigger
-            .createMapper()
-            .toCommand(CustomEvent1CallbackCommand);
+        eventCommandTrigger.createMapper().toCommand(CustomEvent1CallbackCommand);
         eventCommandTrigger.activate();
         eventDispatcher.dispatchEvent(new CustomEvent1(CustomEvent1.ADDED));
         assert.instanceOf(actual, CustomEvent1);
@@ -186,9 +174,7 @@ describe("EventCommandTrigger", () => {
                 count++;
             })
             .whenTargetNamed("reportEvent");
-        eventCommandTrigger
-            .createMapper()
-            .toCommand(CustomEvent1CallbackCommand);
+        eventCommandTrigger.createMapper().toCommand(CustomEvent1CallbackCommand);
         eventCommandTrigger.activate();
         eventDispatcher.dispatchEvent(new CustomEvent1(CustomEvent1.ADDED));
         eventDispatcher.dispatchEvent(new CustomEvent2(CustomEvent2.ADDED));
@@ -205,9 +191,7 @@ describe("EventCommandTrigger", () => {
                 actual = event;
             })
             .whenTargetNamed("reportEvent");
-        eventCommandTrigger
-            .createMapper()
-            .toCommand(CustomEvent1CallbackCommand);
+        eventCommandTrigger.createMapper().toCommand(CustomEvent1CallbackCommand);
         eventCommandTrigger.activate();
         eventDispatcher.dispatchEvent(new CustomEvent2(CustomEvent2.ADDED));
         assert.isUndefined(actual);
@@ -233,9 +217,7 @@ describe("EventCommandTrigger", () => {
                 actual = event;
             })
             .whenTargetNamed("reportEvent");
-        eventCommandTrigger
-            .createMapper()
-            .toCommand(CustomEvent1CallbackCommand);
+        eventCommandTrigger.createMapper().toCommand(CustomEvent1CallbackCommand);
         eventCommandTrigger.activate();
         eventDispatcher.dispatchEvent(new CustomEvent1(CustomEvent1.ADDED));
         assert.instanceOf(actual, CustomEvent1);

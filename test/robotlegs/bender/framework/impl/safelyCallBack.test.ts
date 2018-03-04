@@ -75,17 +75,9 @@ describe("safelyCallBack", () => {
 
     it("invalid callback probably explodes", () => {
         function hookInstanceWithoutHook(): void {
-            let callback: Function = function(
-                error: any,
-                message: any,
-                invalidParameter: any
-            ): void {};
+            let callback: Function = function(error: any, message: any, invalidParameter: any): void {};
             safelyCallBack(callback, {}, {});
         }
-        assert.throws(
-            hookInstanceWithoutHook,
-            TypeError,
-            "Callback function accepts more than two parameters."
-        );
+        assert.throws(hookInstanceWithoutHook, TypeError, "Callback function accepts more than two parameters.");
     });
 });

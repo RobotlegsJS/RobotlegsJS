@@ -86,13 +86,7 @@ export interface IEventDispatcher {
      * @version Egret 2.4
      * @platform Web,Native
      */
-    addEventListener(
-        type: string,
-        listener: Function,
-        thisObject?: any,
-        useCapture?: boolean,
-        priority?: number
-    ): void;
+    addEventListener(type: string, listener: Function, thisObject?: any, useCapture?: boolean, priority?: number): void;
 
     /**
      * @language en_US
@@ -117,13 +111,7 @@ export interface IEventDispatcher {
      * @version Egret 2.4
      * @platform Web,Native
      */
-    once(
-        type: string,
-        listener: Function,
-        thisObject?: any,
-        useCapture?: boolean,
-        priority?: number
-    ): void;
+    once(type: string, listener: Function, thisObject?: any, useCapture?: boolean, priority?: number): void;
 
     /**
      * @language en_US
@@ -138,12 +126,7 @@ export interface IEventDispatcher {
      * @version Egret 2.4
      * @platform Web,Native
      */
-    removeEventListener(
-        type: string,
-        listener: Function,
-        thisObject?: any,
-        useCapture?: boolean
-    ): void;
+    removeEventListener(type: string, listener: Function, thisObject?: any, useCapture?: boolean): void;
 
     /**
      * @language en_US

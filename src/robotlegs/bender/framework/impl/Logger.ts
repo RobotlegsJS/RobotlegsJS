@@ -56,65 +56,35 @@ export class Logger implements ILogger {
      * @inheritDoc
      */
     public debug(message: any, params?: any[]): void {
-        this._target.log(
-            this._source,
-            LogLevel.DEBUG,
-            this.getTimer(),
-            message,
-            params
-        );
+        this._target.log(this._source, LogLevel.DEBUG, this.getTimer(), message, params);
     }
 
     /**
      * @inheritDoc
      */
     public info(message: any, params?: any[]): void {
-        this._target.log(
-            this._source,
-            LogLevel.INFO,
-            this.getTimer(),
-            message,
-            params
-        );
+        this._target.log(this._source, LogLevel.INFO, this.getTimer(), message, params);
     }
 
     /**
      * @inheritDoc
      */
     public warn(message: any, params?: any[]): void {
-        this._target.log(
-            this._source,
-            LogLevel.WARN,
-            this.getTimer(),
-            message,
-            params
-        );
+        this._target.log(this._source, LogLevel.WARN, this.getTimer(), message, params);
     }
 
     /**
      * @inheritDoc
      */
     public error(message: any, params?: any[]): void {
-        this._target.log(
-            this._source,
-            LogLevel.ERROR,
-            this.getTimer(),
-            message,
-            params
-        );
+        this._target.log(this._source, LogLevel.ERROR, this.getTimer(), message, params);
     }
 
     /**
      * @inheritDoc
      */
     public fatal(message: any, params?: any[]): void {
-        this._target.log(
-            this._source,
-            LogLevel.FATAL,
-            this.getTimer(),
-            message,
-            params
-        );
+        this._target.log(this._source, LogLevel.FATAL, this.getTimer(), message, params);
     }
 
     /*============================================================================*/

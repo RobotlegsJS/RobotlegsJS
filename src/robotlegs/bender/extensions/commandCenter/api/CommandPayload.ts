@@ -67,10 +67,7 @@ export class CommandPayload {
      * @param payloadClass The class of the value
      * @return Self
      */
-    public addPayload<T>(
-        payloadValue: T,
-        payloadClass: IType<T>
-    ): CommandPayload {
+    public addPayload<T>(payloadValue: T, payloadClass: IType<T>): CommandPayload {
         if (this._values) {
             this._values.push(payloadValue);
         } else {
@@ -93,10 +90,7 @@ export class CommandPayload {
         let payload: boolean = false;
 
         if (this._values && this._classes) {
-            payload =
-                this._values.length > 0 &&
-                this._classes.length > 0 &&
-                this._values.length === this._classes.length;
+            payload = this._values.length > 0 && this._classes.length > 0 && this._values.length === this._classes.length;
         }
 
         return payload;

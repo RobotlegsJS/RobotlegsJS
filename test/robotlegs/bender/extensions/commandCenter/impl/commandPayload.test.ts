@@ -16,10 +16,7 @@ import { CommandPayload } from "../../../../../../src/robotlegs/bender/extension
 describe("CommandPayload", () => {
     let subject: CommandPayload;
 
-    function createConfig(
-        values?: any[],
-        classes?: Array<IType<any>>
-    ): CommandPayload {
+    function createConfig(values?: any[], classes?: Array<IType<any>>): CommandPayload {
         return (subject = new CommandPayload(values, classes));
     }
 

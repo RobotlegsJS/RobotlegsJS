@@ -29,11 +29,7 @@
  * @param error An optional error
  * @param message An optional message
  */
-export function safelyCallBack(
-    callback: Function,
-    error?: any,
-    message?: any
-): void {
+export function safelyCallBack(callback: Function, error?: any, message?: any): void {
     if (callback.length === 0) {
         callback();
     } else if (callback.length === 1) {
@@ -41,8 +37,6 @@ export function safelyCallBack(
     } else if (callback.length === 2) {
         callback(error, message);
     } else {
-        throw new TypeError(
-            "Callback function accepts more than two parameters."
-        );
+        throw new TypeError("Callback function accepts more than two parameters.");
     }
 }

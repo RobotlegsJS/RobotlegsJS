@@ -26,12 +26,7 @@ describe("DomEventMapConfig", () => {
     let instance: DomEventMapConfig;
 
     beforeEach(() => {
-        instance = new DomEventMapConfig(
-            DISPATCHER,
-            EVENT_STRING,
-            LISTENER,
-            OPTIONS
-        );
+        instance = new DomEventMapConfig(DISPATCHER, EVENT_STRING, LISTENER, OPTIONS);
     });
 
     afterEach(() => {
@@ -55,15 +50,11 @@ describe("DomEventMapConfig", () => {
     });
 
     it("equalTo_validate_same_instance", () => {
-        assert.isTrue(
-            instance.equalTo(DISPATCHER, EVENT_STRING, LISTENER, OPTIONS)
-        );
+        assert.isTrue(instance.equalTo(DISPATCHER, EVENT_STRING, LISTENER, OPTIONS));
     });
 
     it("equalTo_do_not_accept_different_event_string", () => {
-        assert.isFalse(
-            instance.equalTo(DISPATCHER, "anotherEvent", LISTENER, OPTIONS)
-        );
+        assert.isFalse(instance.equalTo(DISPATCHER, "anotherEvent", LISTENER, OPTIONS));
     });
 
     it("equalTo_do_not_accept_different_listener", () => {
@@ -80,9 +71,7 @@ describe("DomEventMapConfig", () => {
     });
 
     it("equalTo_do_not_accept_different_options", () => {
-        assert.isFalse(
-            instance.equalTo(DISPATCHER, EVENT_STRING, LISTENER, true)
-        );
+        assert.isFalse(instance.equalTo(DISPATCHER, EVENT_STRING, LISTENER, true));
     });
 
     it("equalTo_do_not_accept_different_instance", () => {

@@ -60,15 +60,8 @@ export class EventCommandTrigger implements ICommandTrigger {
         this._dispatcher = dispatcher;
         this._type = type;
         this._eventClass = eventClass;
-        this._mappings = new CommandMappingList(
-            this,
-            processors ? processors : [],
-            logger
-        );
-        this._executor = new CommandExecutor(
-            injector,
-            this._mappings.removeMapping.bind(this._mappings)
-        );
+        this._mappings = new CommandMappingList(this, processors ? processors : [], logger);
+        this._executor = new CommandExecutor(injector, this._mappings.removeMapping.bind(this._mappings));
     }
 
     /*============================================================================*/
@@ -93,18 +86,12 @@ export class EventCommandTrigger implements ICommandTrigger {
      * @inheritDoc
      */
     public deactivate(): void {
-        this._dispatcher.removeEventListener(
-            this._type,
-            this.eventHandler,
-            this
-        );
+        this._dispatcher.removeEventListener(this._type, this.eventHandler, this);
     }
 
     public toString(): string {
         let eventDescription: string = "";
-        eventDescription = !this._eventClass
-            ? "Event"
-            : getQualifiedClassName(this._eventClass);
+        eventDescription = !this._eventClass ? "Event" : getQualifiedClassName(this._eventClass);
         return eventDescription + " with selector '" + this._type + "'";
     }
 
@@ -113,9 +100,7 @@ export class EventCommandTrigger implements ICommandTrigger {
     /*============================================================================*/
 
     private eventHandler(event: Event): void {
-        let eventConstructor: IClass<IEvent> = <IClass<
-            IEvent
-        >>event.constructor;
+        let eventConstructor: IClass<IEvent> = <IClass<IEvent>>event.constructor;
         let payloadEventClass: IClass<IEvent>;
 
         // not pretty, but optimized to avoid duplicate checks and shortest paths
@@ -126,9 +111,6 @@ export class EventCommandTrigger implements ICommandTrigger {
         } else {
             return;
         }
-        this._executor.executeCommands(
-            this._mappings.getList(),
-            new CommandPayload([event], [payloadEventClass])
-        );
+        this._executor.executeCommands(this._mappings.getList(), new CommandPayload([event], [payloadEventClass]));
     }
 }

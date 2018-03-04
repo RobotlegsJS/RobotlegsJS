@@ -29,9 +29,7 @@ describe("TypeMatcherError", () => {
     });
 
     it("sealed_matcher_message_is_recovered", () => {
-        typeMatcherError = new TypeMatcherError(
-            TypeMatcherError.SEALED_MATCHER
-        );
+        typeMatcherError = new TypeMatcherError(TypeMatcherError.SEALED_MATCHER);
         assert.equal(typeMatcherError.message, TypeMatcherError.SEALED_MATCHER);
     });
 });

@@ -59,11 +59,7 @@ describe("TypeMatcher", () => {
     });
 
     it("supplying_all_any_and_none_in_different_order_populates_them_in_typeFilter", () => {
-        const expectedFilter: TypeFilter = new TypeFilter(
-            ALL_OF,
-            ANY_OF,
-            NONE_OF
-        );
+        const expectedFilter: TypeFilter = new TypeFilter(ALL_OF, ANY_OF, NONE_OF);
         matcher = new TypeMatcher();
         matcher
             .noneOf(NONE_OF)
@@ -73,11 +69,7 @@ describe("TypeMatcher", () => {
     });
 
     it("supplying_all_any_and_none_populates_them_in_typeFilter", () => {
-        const expectedFilter: TypeFilter = new TypeFilter(
-            ALL_OF,
-            ANY_OF,
-            NONE_OF
-        );
+        const expectedFilter: TypeFilter = new TypeFilter(ALL_OF, ANY_OF, NONE_OF);
         matcher = new TypeMatcher();
         matcher
             .allOf(ALL_OF)
@@ -87,11 +79,7 @@ describe("TypeMatcher", () => {
     });
 
     it("supplying_multiple_all_values_includes_all_given_in_typeFilter", () => {
-        const expectedFilter: TypeFilter = new TypeFilter(
-            ALL_OF.concat(ALL_OF_2),
-            ANY_OF,
-            NONE_OF
-        );
+        const expectedFilter: TypeFilter = new TypeFilter(ALL_OF.concat(ALL_OF_2), ANY_OF, NONE_OF);
         matcher = new TypeMatcher();
         matcher
             .allOf(ALL_OF)
@@ -102,11 +90,7 @@ describe("TypeMatcher", () => {
     });
 
     it("supplying_multiple_any_values_includes_all_given_in_typeFilter", () => {
-        const expectedFilter: TypeFilter = new TypeFilter(
-            ALL_OF,
-            ANY_OF.concat(ANY_OF_2),
-            NONE_OF
-        );
+        const expectedFilter: TypeFilter = new TypeFilter(ALL_OF, ANY_OF.concat(ANY_OF_2), NONE_OF);
         matcher = new TypeMatcher();
         matcher
             .allOf(ALL_OF)
@@ -117,11 +101,7 @@ describe("TypeMatcher", () => {
     });
 
     it("supplying_multiple_none_values_includes_all_given_in_typeFilter", () => {
-        const expectedFilter: TypeFilter = new TypeFilter(
-            ALL_OF,
-            ANY_OF,
-            NONE_OF.concat(NONE_OF_2)
-        );
+        const expectedFilter: TypeFilter = new TypeFilter(ALL_OF, ANY_OF, NONE_OF.concat(NONE_OF_2));
         matcher = new TypeMatcher();
         matcher
             .allOf(ALL_OF)
@@ -219,21 +199,13 @@ describe("TypeMatcher", () => {
         const clone: TypeMatcher = matcher.clone();
         clone.noneOf(NONE_OF);
 
-        const expectedFilter: TypeFilter = new TypeFilter(
-            ALL_OF,
-            ANY_OF,
-            NONE_OF
-        );
+        const expectedFilter: TypeFilter = new TypeFilter(ALL_OF, ANY_OF, NONE_OF);
 
         assertMatchesTypeFilter(expectedFilter, clone.createTypeFilter());
     });
 
     it("supplying_all_any_and_none_as_normal_arguments_also_works", () => {
-        const expectedFilter: TypeFilter = new TypeFilter(
-            ALL_OF,
-            ANY_OF,
-            NONE_OF
-        );
+        const expectedFilter: TypeFilter = new TypeFilter(ALL_OF, ANY_OF, NONE_OF);
         matcher = new TypeMatcher();
         matcher
             .allOf(BaseType, ExtendedType)
@@ -243,11 +215,7 @@ describe("TypeMatcher", () => {
     });
 
     it("mixing_all_any_and_none_arguments_also_works", () => {
-        const expectedFilter: TypeFilter = new TypeFilter(
-            ALL_OF,
-            ANY_OF,
-            NONE_OF
-        );
+        const expectedFilter: TypeFilter = new TypeFilter(ALL_OF, ANY_OF, NONE_OF);
         matcher = new TypeMatcher();
         matcher
             .allOf([BaseType], ExtendedType)
@@ -256,10 +224,7 @@ describe("TypeMatcher", () => {
         assertMatchesTypeFilter(matcher.createTypeFilter(), expectedFilter);
     });
 
-    function assertMatchesTypeFilter(
-        expected: ITypeFilter,
-        actual: ITypeFilter
-    ): void {
+    function assertMatchesTypeFilter(expected: ITypeFilter, actual: ITypeFilter): void {
         assert.deepEqual(expected.allOfTypes, actual.allOfTypes);
         assert.deepEqual(expected.anyOfTypes, actual.anyOfTypes);
         assert.deepEqual(expected.noneOfTypes, actual.noneOfTypes);

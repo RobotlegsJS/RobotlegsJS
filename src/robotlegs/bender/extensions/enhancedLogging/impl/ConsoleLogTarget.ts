@@ -42,61 +42,30 @@ export class ConsoleLogTarget implements ILogTarget {
     /**
      * @inheritDoc
      */
-    public log(
-        source: any,
-        level: number,
-        timestamp: number,
-        message: string,
-        params?: any[]
-    ): void {
+    public log(source: any, level: number, timestamp: number, message: string, params?: any[]): void {
         if (this._context.logLevel < level) {
             return;
         }
 
         switch (level) {
             case LogLevel.DEBUG:
-                console.log(
-                    timestamp,
-                    this._context,
-                    source,
-                    this._messageParser.parseMessage(message, params)
-                );
+                console.log(timestamp, this._context, source, this._messageParser.parseMessage(message, params));
                 break;
 
             case LogLevel.INFO:
-                console.info(
-                    timestamp,
-                    this._context,
-                    source,
-                    this._messageParser.parseMessage(message, params)
-                );
+                console.info(timestamp, this._context, source, this._messageParser.parseMessage(message, params));
                 break;
 
             case LogLevel.WARN:
-                console.warn(
-                    timestamp,
-                    this._context,
-                    source,
-                    this._messageParser.parseMessage(message, params)
-                );
+                console.warn(timestamp, this._context, source, this._messageParser.parseMessage(message, params));
                 break;
 
             case LogLevel.ERROR:
-                console.error(
-                    timestamp,
-                    this._context,
-                    source,
-                    this._messageParser.parseMessage(message, params)
-                );
+                console.error(timestamp, this._context, source, this._messageParser.parseMessage(message, params));
                 break;
 
             case LogLevel.FATAL:
-                console.error(
-                    timestamp,
-                    this._context,
-                    source,
-                    this._messageParser.parseMessage(message, params)
-                );
+                console.error(timestamp, this._context, source, this._messageParser.parseMessage(message, params));
                 break;
         }
     }

@@ -72,70 +72,28 @@ describe("EventMap", () => {
     });
 
     it("listener_mapped_with_type_is_triggered_by_correct_typed_event", () => {
-        eventMap.mapListener(
-            eventDispatcher,
-            CustomEvent.STARTED,
-            listener,
-            this,
-            CustomEvent
-        );
+        eventMap.mapListener(eventDispatcher, CustomEvent.STARTED, listener, this, CustomEvent);
         eventDispatcher.dispatchEvent(new CustomEvent(CustomEvent.STARTED));
         assert.isTrue(listenerExecuted);
     });
 
     it("listener_mapped_with_type_is_NOT_triggered_by_plain_event", () => {
-        eventMap.mapListener(
-            eventDispatcher,
-            CustomEvent.STARTED,
-            listener,
-            this,
-            CustomEvent
-        );
+        eventMap.mapListener(eventDispatcher, CustomEvent.STARTED, listener, this, CustomEvent);
         eventDispatcher.dispatchEvent(new Event(CustomEvent.STARTED));
         assert.isFalse(listenerExecuted);
     });
 
     it("listener_mapped_twice_only_fires_once", () => {
-        eventMap.mapListener(
-            eventDispatcher,
-            CustomEvent.STARTED,
-            listenerWithCounter,
-            this,
-            CustomEvent
-        );
-        eventMap.mapListener(
-            eventDispatcher,
-            CustomEvent.STARTED,
-            listenerWithCounter,
-            this,
-            CustomEvent
-        );
+        eventMap.mapListener(eventDispatcher, CustomEvent.STARTED, listenerWithCounter, this, CustomEvent);
+        eventMap.mapListener(eventDispatcher, CustomEvent.STARTED, listenerWithCounter, this, CustomEvent);
         eventDispatcher.dispatchEvent(new CustomEvent(CustomEvent.STARTED));
         assert.equal(listenerExecutedCount, 1);
     });
 
     it("listener_mapped_twice_and_removed_once_doesnt_fire", () => {
-        eventMap.mapListener(
-            eventDispatcher,
-            CustomEvent.STARTED,
-            listenerWithCounter,
-            this,
-            CustomEvent
-        );
-        eventMap.mapListener(
-            eventDispatcher,
-            CustomEvent.STARTED,
-            listenerWithCounter,
-            this,
-            CustomEvent
-        );
-        eventMap.unmapListener(
-            eventDispatcher,
-            CustomEvent.STARTED,
-            listenerWithCounter,
-            this,
-            CustomEvent
-        );
+        eventMap.mapListener(eventDispatcher, CustomEvent.STARTED, listenerWithCounter, this, CustomEvent);
+        eventMap.mapListener(eventDispatcher, CustomEvent.STARTED, listenerWithCounter, this, CustomEvent);
+        eventMap.unmapListener(eventDispatcher, CustomEvent.STARTED, listenerWithCounter, this, CustomEvent);
         eventDispatcher.dispatchEvent(new CustomEvent(CustomEvent.STARTED));
         assert.equal(listenerExecutedCount, 0);
     });
@@ -149,33 +107,15 @@ describe("EventMap", () => {
     });
 
     it("listener_mapped_and_unmapped_with_type_doesnt_fire_in_response_to_typed_or_plain_event", () => {
-        eventMap.mapListener(
-            eventDispatcher,
-            CustomEvent.STARTED,
-            listener,
-            this,
-            CustomEvent
-        );
-        eventMap.unmapListener(
-            eventDispatcher,
-            CustomEvent.STARTED,
-            listener,
-            this,
-            CustomEvent
-        );
+        eventMap.mapListener(eventDispatcher, CustomEvent.STARTED, listener, this, CustomEvent);
+        eventMap.unmapListener(eventDispatcher, CustomEvent.STARTED, listener, this, CustomEvent);
         eventDispatcher.dispatchEvent(new Event(CustomEvent.STARTED));
         eventDispatcher.dispatchEvent(new CustomEvent(CustomEvent.STARTED));
         assert.isFalse(listenerExecuted);
     });
 
     it("listener_mapped_with_type_and_unmapped_without_type_fires_in_response_to_typed_event", () => {
-        eventMap.mapListener(
-            eventDispatcher,
-            CustomEvent.STARTED,
-            listener,
-            this,
-            CustomEvent
-        );
+        eventMap.mapListener(eventDispatcher, CustomEvent.STARTED, listener, this, CustomEvent);
         eventMap.unmapListener(eventDispatcher, CustomEvent.STARTED, listener);
         eventDispatcher.dispatchEvent(new CustomEvent(CustomEvent.STARTED));
         assert.isTrue(listenerExecuted);
@@ -183,13 +123,7 @@ describe("EventMap", () => {
 
     it("listener_mapped_without_type_and_unmapped_with_type_fires_in_response_to_plain_event", () => {
         eventMap.mapListener(eventDispatcher, CustomEvent.STARTED, listener);
-        eventMap.unmapListener(
-            eventDispatcher,
-            CustomEvent.STARTED,
-            listener,
-            this,
-            CustomEvent
-        );
+        eventMap.unmapListener(eventDispatcher, CustomEvent.STARTED, listener, this, CustomEvent);
         eventDispatcher.dispatchEvent(new Event(CustomEvent.STARTED));
         assert.isTrue(listenerExecuted);
     });
@@ -229,21 +163,9 @@ describe("EventMap", () => {
     });
 
     it("suspend_then_resume_restores_handlers_to_fire", () => {
-        eventMap.mapListener(
-            eventDispatcher,
-            CustomEvent.STARTED,
-            listenerWithCounter
-        );
-        eventMap.mapListener(
-            eventDispatcher,
-            CustomEvent2.COMPLETE,
-            listenerWithCounter
-        );
-        eventMap.mapListener(
-            eventDispatcher,
-            CustomEvent2.CHANGE,
-            listenerWithCounter
-        );
+        eventMap.mapListener(eventDispatcher, CustomEvent.STARTED, listenerWithCounter);
+        eventMap.mapListener(eventDispatcher, CustomEvent2.COMPLETE, listenerWithCounter);
+        eventMap.mapListener(eventDispatcher, CustomEvent2.CHANGE, listenerWithCounter);
         eventMap.suspend();
         eventMap.resume();
         eventDispatcher.dispatchEvent(new CustomEvent(CustomEvent.STARTED));
@@ -253,13 +175,7 @@ describe("EventMap", () => {
     });
 
     it("call_resume_when_mapper_is_not_suspended_have_no_effet", () => {
-        eventMap.mapListener(
-            eventDispatcher,
-            CustomEvent.STARTED,
-            listener,
-            this,
-            CustomEvent
-        );
+        eventMap.mapListener(eventDispatcher, CustomEvent.STARTED, listener, this, CustomEvent);
         eventMap.resume();
         eventDispatcher.dispatchEvent(new CustomEvent(CustomEvent.STARTED));
         assert.isTrue(listenerExecuted);
@@ -278,21 +194,9 @@ describe("EventMap", () => {
 
     it("listeners_added_while_suspended_fire_after_resume", () => {
         eventMap.suspend();
-        eventMap.mapListener(
-            eventDispatcher,
-            CustomEvent.STARTED,
-            listenerWithCounter
-        );
-        eventMap.mapListener(
-            eventDispatcher,
-            CustomEvent2.COMPLETE,
-            listenerWithCounter
-        );
-        eventMap.mapListener(
-            eventDispatcher,
-            CustomEvent2.CHANGE,
-            listenerWithCounter
-        );
+        eventMap.mapListener(eventDispatcher, CustomEvent.STARTED, listenerWithCounter);
+        eventMap.mapListener(eventDispatcher, CustomEvent2.COMPLETE, listenerWithCounter);
+        eventMap.mapListener(eventDispatcher, CustomEvent2.CHANGE, listenerWithCounter);
         eventDispatcher.dispatchEvent(new CustomEvent(CustomEvent.STARTED));
         eventMap.resume();
         eventDispatcher.dispatchEvent(new CustomEvent(CustomEvent2.COMPLETE));
@@ -301,27 +205,11 @@ describe("EventMap", () => {
     });
 
     it("listeners_can_be_unmapped_while_suspended", () => {
-        eventMap.mapListener(
-            eventDispatcher,
-            CustomEvent.STARTED,
-            listenerWithCounter
-        );
-        eventMap.mapListener(
-            eventDispatcher,
-            CustomEvent2.COMPLETE,
-            listenerWithCounter
-        );
-        eventMap.mapListener(
-            eventDispatcher,
-            CustomEvent2.CHANGE,
-            listenerWithCounter
-        );
+        eventMap.mapListener(eventDispatcher, CustomEvent.STARTED, listenerWithCounter);
+        eventMap.mapListener(eventDispatcher, CustomEvent2.COMPLETE, listenerWithCounter);
+        eventMap.mapListener(eventDispatcher, CustomEvent2.CHANGE, listenerWithCounter);
         eventMap.suspend();
-        eventMap.unmapListener(
-            eventDispatcher,
-            CustomEvent2.CHANGE,
-            listenerWithCounter
-        );
+        eventMap.unmapListener(eventDispatcher, CustomEvent2.CHANGE, listenerWithCounter);
         eventMap.resume();
         eventDispatcher.dispatchEvent(new CustomEvent(CustomEvent.STARTED));
         eventDispatcher.dispatchEvent(new CustomEvent(CustomEvent2.COMPLETE));
