@@ -3,7 +3,7 @@ RobotlegsJS <img src="media/robotlegs.png?raw=true" width="30" height="30" />
 
 [![Gitter chat](https://badges.gitter.im/RobotlegsJS/RobotlegsJS.svg)](https://gitter.im/RobotlegsJS/RobotlegsJS)
 [![Build Status](https://secure.travis-ci.org/RobotlegsJS/RobotlegsJS.svg?branch=master)](https://travis-ci.org/RobotlegsJS/RobotlegsJS)
-[![codebeat badge](https://codebeat.co/badges/0ff1cff6-731c-4ce5-9fce-afa420670701)](https://codebeat.co/projects/github-com-robotlegsjs-robotlegsjs-master)
+[![codebeat badge](https://codebeat.co/badges/71e222e9-851f-456d-85da-191686af0be5)](https://codebeat.co/projects/github-com-robotlegsjs-robotlegsjs-master)
 [![Maintainability](https://api.codeclimate.com/v1/badges/6a6bb3d51f955aef1cd7/maintainability)](https://codeclimate.com/github/RobotlegsJS/RobotlegsJS/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/6a6bb3d51f955aef1cd7/test_coverage)](https://codeclimate.com/github/RobotlegsJS/RobotlegsJS/test_coverage)
 [![npm version](https://badge.fury.io/js/%40robotlegsjs%2Fcore.svg)](https://badge.fury.io/js/%40robotlegsjs%2Fcore)
