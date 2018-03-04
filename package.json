@@ -10,7 +10,10 @@
     "autoformat": "prettier --config .prettierrc --write {src,test}/**/*.ts",
     "tslint-check": "tslint-config-prettier-check ./tslint.json",
     "clean-up": "rm -rf .nyc_output && rm -rf coverage && rm -rf lib",
-    "prepare": "npm run clean-up && tsc -d",
+    "compile": "tsc -d",
+    "dev": "webpack",
+    "build": "webpack --env.production",
+    "prepare": "npm run clean-up && npm run compile",
     "prepublishOnly": "publish-please guard",
     "publish-please": "npm run autoformat && npm run clean-up && npm run test && publish-please"
   },
@@ -104,7 +107,9 @@
     "tslint": "^5.9.1",
     "tslint-config-prettier": "^1.9.0",
     "typescript": "^2.7.2",
+    "uglifyjs-webpack-plugin": "^1.2.2",
     "webpack": "^4.1.0",
+    "webpack-cli": "^2.0.10",
     "webpack-dev-server": "^3.1.0"
   },
   "peerDependencies": {}
