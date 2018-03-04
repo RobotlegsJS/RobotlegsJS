@@ -24,7 +24,7 @@
 
 ## Robotlegs-Core 0.1.0
 
-### v0.1.2
+### [v0.1.2](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/0.1.2) - 2018-03-04
 
 - Use `rimraf` instead of `rm -rf`.
 
