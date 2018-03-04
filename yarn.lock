@@ -4204,7 +4204,7 @@ invariant@^2.2.2:
   dependencies:
     loose-envify "^1.0.0"
 
-inversify@^4.5.1:
+inversify@^4.11.1:
   version "4.11.1"
   resolved "https://registry.npmjs.org/inversify/-/inversify-4.11.1.tgz#9a10635d1fd347da11da96475b3608babd5945a6"
 
