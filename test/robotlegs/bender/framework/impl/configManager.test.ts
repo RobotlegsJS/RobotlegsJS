@@ -42,18 +42,13 @@ describe("ConfigManager", () => {
     });
 
     it("addHandler works", () => {
-        configManager.addConfigHandler(
-            instanceOfType(TestObject),
-            new Function()
-        );
+        configManager.addConfigHandler(instanceOfType(TestObject), new Function());
     });
 
     it("handler is called", () => {
         let expected: TestObject = new TestObject("config");
         let actual: TestObject = null;
-        configManager.addConfigHandler(instanceOfType(TestObject), function(
-            config: TestObject
-        ): void {
+        configManager.addConfigHandler(instanceOfType(TestObject), function(config: TestObject): void {
             actual = config;
         });
         configManager.addConfig(expected);
@@ -68,10 +63,7 @@ describe("ConfigManager", () => {
                 actual = config;
             })
             .whenTargetNamed("callback");
-        let expected: TypedConfig = instantiateUnmapped<TypedConfig>(
-            injector,
-            TypedConfig
-        );
+        let expected: TypedConfig = instantiateUnmapped<TypedConfig>(injector, TypedConfig);
         configManager.addConfig(expected);
         context.initialize();
         assert.equal(actual, expected);
@@ -110,9 +102,7 @@ describe("ConfigManager", () => {
     });
 
     it("destroy", () => {
-        configManager.addConfigHandler(instanceOfType(String), function(
-            config: TestObject
-        ): void {
+        configManager.addConfigHandler(instanceOfType(String), function(config: TestObject): void {
             throw new Error("Handler should not fire after call to destroy");
         });
         configManager.destroy();

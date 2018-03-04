@@ -17,14 +17,7 @@ import { ExtendedType } from "./support/ExtendedType";
 
 describe("TypeFilter", () => {
     let allOf: Array<IType<any>> = [ExtendedType, Object, BaseType];
-    let anyOf: Array<IType<any>> = [
-        Promise,
-        String,
-        TypeFilter,
-        Function,
-        Number,
-        Boolean
-    ];
+    let anyOf: Array<IType<any>> = [Promise, String, TypeFilter, Function, Number, Boolean];
     let noneOf: Array<IType<any>> = [Error];
     let filter: TypeFilter;
 
@@ -60,46 +53,29 @@ describe("TypeFilter", () => {
     });
 
     it("get_descriptor_returns_allOff", () => {
-        let typeFilter: TypeFilter = new TypeFilter(
-            [ExtendedType, Object, BaseType],
-            [],
-            []
-        );
+        let typeFilter: TypeFilter = new TypeFilter([ExtendedType, Object, BaseType], [], []);
         const expected: string = "all of: BaseType,ExtendedType,Object";
         let actual: string = typeFilter.descriptor;
         assert.equal(actual, expected);
     });
 
     it("get_descriptor_returns_anyOff", () => {
-        let typeFilter: TypeFilter = new TypeFilter(
-            [],
-            [Number, Array, String, Error],
-            []
-        );
+        let typeFilter: TypeFilter = new TypeFilter([], [Number, Array, String, Error], []);
         const expected: string = "any of: Array,Error,Number,String";
         let actual: string = typeFilter.descriptor;
         assert.equal(actual, expected);
     });
 
     it("get_descriptor_returns_noneOff", () => {
-        let typeFilter: TypeFilter = new TypeFilter(
-            [],
-            [],
-            [BaseType, ExtendedType, Object]
-        );
+        let typeFilter: TypeFilter = new TypeFilter([], [], [BaseType, ExtendedType, Object]);
         const expected: string = "none of: BaseType,ExtendedType,Object";
         let actual: string = typeFilter.descriptor;
         assert.equal(actual, expected);
     });
 
     it("get_descriptor_returns_with_duplicated_elements", () => {
-        let typeFilter: TypeFilter = new TypeFilter(
-            [BaseType, BaseType],
-            [BaseType, BaseType],
-            [BaseType, BaseType]
-        );
-        const expected: string =
-            "all of: BaseType,BaseType; any of: BaseType,BaseType; none of: BaseType,BaseType";
+        let typeFilter: TypeFilter = new TypeFilter([BaseType, BaseType], [BaseType, BaseType], [BaseType, BaseType]);
+        const expected: string = "all of: BaseType,BaseType; any of: BaseType,BaseType; none of: BaseType,BaseType";
         let actual: string = typeFilter.descriptor;
         assert.equal(actual, expected);
     });
@@ -126,33 +102,21 @@ describe("TypeFilter", () => {
     });
 
     it("matches_allOff", () => {
-        let typeFilter: TypeFilter = new TypeFilter(
-            [ExtendedType, BaseType, Object],
-            [],
-            []
-        );
+        let typeFilter: TypeFilter = new TypeFilter([ExtendedType, BaseType, Object], [], []);
         assert.isTrue(typeFilter.matches(new ExtendedType("who am I?", 41)));
         assert.isFalse(typeFilter.matches(new BaseType("who am I?")));
         assert.isFalse(typeFilter.matches({ x: 0, y: 0 }));
     });
 
     it("matches_allOff_anyOf", () => {
-        let typeFilter: TypeFilter = new TypeFilter(
-            [ExtendedType, BaseType],
-            [Object],
-            []
-        );
+        let typeFilter: TypeFilter = new TypeFilter([ExtendedType, BaseType], [Object], []);
         assert.isTrue(typeFilter.matches(new ExtendedType("who am I?", 41)));
         assert.isFalse(typeFilter.matches(new BaseType("who am I?")));
         assert.isFalse(typeFilter.matches({ x: 0, y: 0 }));
     });
 
     it("matches_allOff_noneOf", () => {
-        let typeFilter: TypeFilter = new TypeFilter(
-            [ExtendedType, BaseType, Object],
-            [],
-            [Error]
-        );
+        let typeFilter: TypeFilter = new TypeFilter([ExtendedType, BaseType, Object], [], [Error]);
         assert.isTrue(typeFilter.matches(new ExtendedType("who am I?", 41)));
         assert.isFalse(typeFilter.matches(new BaseType("who am I?")));
         assert.isFalse(typeFilter.matches({ x: 0, y: 0 }));
@@ -160,11 +124,7 @@ describe("TypeFilter", () => {
     });
 
     it("matches_allOff_anyOff_noneOf", () => {
-        let typeFilter: TypeFilter = new TypeFilter(
-            [ExtendedType, BaseType],
-            [Object],
-            [Error]
-        );
+        let typeFilter: TypeFilter = new TypeFilter([ExtendedType, BaseType], [Object], [Error]);
         assert.isTrue(typeFilter.matches(new ExtendedType("who am I?", 41)));
         assert.isFalse(typeFilter.matches(new BaseType("who am I?")));
         assert.isFalse(typeFilter.matches({ x: 0, y: 0 }));
@@ -172,11 +132,7 @@ describe("TypeFilter", () => {
     });
 
     it("matches_anyOff", () => {
-        let typeFilter: TypeFilter = new TypeFilter(
-            [],
-            [String, Function, Number, Boolean],
-            []
-        );
+        let typeFilter: TypeFilter = new TypeFilter([], [String, Function, Number, Boolean], []);
 
         assert.isTrue(typeFilter.matches(5));
         assert.isTrue(typeFilter.matches(true));
@@ -186,11 +142,7 @@ describe("TypeFilter", () => {
     });
 
     it("matches_anyOff_noneOff", () => {
-        let typeFilter: TypeFilter = new TypeFilter(
-            [],
-            [String, Function, Number, Boolean],
-            [Error, Function]
-        );
+        let typeFilter: TypeFilter = new TypeFilter([], [String, Function, Number, Boolean], [Error, Function]);
 
         assert.isTrue(typeFilter.matches(5));
         assert.isTrue(typeFilter.matches(true));

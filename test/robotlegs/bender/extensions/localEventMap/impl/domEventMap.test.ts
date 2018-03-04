@@ -88,22 +88,14 @@ describe("DomEventMap", () => {
     it("listener_mapped_twice_and_removed_once_doesnt_fire", () => {
         eventMap.mapDomListener(eventDispatcher, STARTED, listenerWithCounter);
         eventMap.mapDomListener(eventDispatcher, STARTED, listenerWithCounter);
-        eventMap.unmapDomListener(
-            eventDispatcher,
-            STARTED,
-            listenerWithCounter
-        );
+        eventMap.unmapDomListener(eventDispatcher, STARTED, listenerWithCounter);
         eventDispatcher.dispatchEvent(createDomEvemt("Event", STARTED));
         assert.equal(listenerExecutedCount, 0);
     });
 
     it("listener_mapped_and_unmapped_doesnt_fire", () => {
         eventMap.mapDomListener(eventDispatcher, STARTED, listenerWithCounter);
-        eventMap.unmapDomListener(
-            eventDispatcher,
-            STARTED,
-            listenerWithCounter
-        );
+        eventMap.unmapDomListener(eventDispatcher, STARTED, listenerWithCounter);
         eventDispatcher.dispatchEvent(createDomEvemt("Event", STARTED));
         assert.equal(listenerExecutedCount, 0);
     });

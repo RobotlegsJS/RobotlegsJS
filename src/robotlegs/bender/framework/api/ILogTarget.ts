@@ -18,11 +18,5 @@ export interface ILogTarget {
      * @param message The log message
      * @param params Message parameters
      */
-    log(
-        source: any,
-        level: number,
-        timestamp: number,
-        message: string,
-        params: any[]
-    ): void;
+    log(source: any, level: number, timestamp: number, message: string, params: any[]): void;
 }

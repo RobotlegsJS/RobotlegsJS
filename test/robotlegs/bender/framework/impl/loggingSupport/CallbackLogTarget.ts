@@ -16,17 +16,9 @@ export class CallbackLogTarget implements ILogTarget {
         this._callback = callback;
     }
 
-    public log(
-        source: any,
-        level: number,
-        timestamp: number,
-        message: string,
-        params: any[]
-    ): void {
+    public log(source: any, level: number, timestamp: number, message: string, params: any[]): void {
         if (this._callback) {
-            this._callback(
-                new LogParams(source, level, timestamp, message, params)
-            );
+            this._callback(new LogParams(source, level, timestamp, message, params));
         }
     }
 }

@@ -22,10 +22,7 @@ describe("CommandTriggerMap", () => {
         return type + eventClass;
     }
 
-    function createTrigger(
-        type: string,
-        eventClass: Function
-    ): ICommandTrigger {
+    function createTrigger(type: string, eventClass: Function): ICommandTrigger {
         return new NullCommandTrigger();
     }
 

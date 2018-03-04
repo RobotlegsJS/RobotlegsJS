@@ -19,10 +19,7 @@ import { interfaces } from "inversify";
  * @param injector An injector
  * @param type A object that must be instantiated
  */
-export function instantiateUnmapped<T>(
-    injector: interfaces.Container,
-    type: interfaces.Newable<T>
-): T {
+export function instantiateUnmapped<T>(injector: interfaces.Container, type: interfaces.Newable<T>): T {
     injector.bind(type).to(type);
     let instance: T = injector.get<T>(type);
     injector.unbind(type);

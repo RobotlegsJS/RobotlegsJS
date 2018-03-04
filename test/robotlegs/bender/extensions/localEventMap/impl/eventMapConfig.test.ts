@@ -37,16 +37,7 @@ describe("EventMapConfig", () => {
     let instance: EventMapConfig;
 
     beforeEach(() => {
-        instance = new EventMapConfig(
-            DISPATCHER,
-            EVENT_STRING,
-            LISTENER,
-            THIS_OBJECT,
-            EVENT_TYPE,
-            CALLBACK,
-            USE_CAPTURE,
-            PRIORITY
-        );
+        instance = new EventMapConfig(DISPATCHER, EVENT_STRING, LISTENER, THIS_OBJECT, EVENT_TYPE, CALLBACK, USE_CAPTURE, PRIORITY);
     });
 
     afterEach(() => {
@@ -90,42 +81,15 @@ describe("EventMapConfig", () => {
     });
 
     it("equalTo_validate_same_instance", () => {
-        assert.isTrue(
-            instance.equalTo(
-                DISPATCHER,
-                EVENT_STRING,
-                LISTENER,
-                THIS_OBJECT,
-                EVENT_TYPE,
-                USE_CAPTURE
-            )
-        );
+        assert.isTrue(instance.equalTo(DISPATCHER, EVENT_STRING, LISTENER, THIS_OBJECT, EVENT_TYPE, USE_CAPTURE));
     });
 
     it("equalTo_do_not_accept_different_dispatcher", () => {
-        assert.isFalse(
-            instance.equalTo(
-                new EventDispatcher(),
-                EVENT_STRING,
-                LISTENER,
-                THIS_OBJECT,
-                EVENT_TYPE,
-                USE_CAPTURE
-            )
-        );
+        assert.isFalse(instance.equalTo(new EventDispatcher(), EVENT_STRING, LISTENER, THIS_OBJECT, EVENT_TYPE, USE_CAPTURE));
     });
 
     it("equalTo_do_not_accept_different_event_string", () => {
-        assert.isFalse(
-            instance.equalTo(
-                DISPATCHER,
-                "anotherEvent",
-                LISTENER,
-                THIS_OBJECT,
-                EVENT_TYPE,
-                USE_CAPTURE
-            )
-        );
+        assert.isFalse(instance.equalTo(DISPATCHER, "anotherEvent", LISTENER, THIS_OBJECT, EVENT_TYPE, USE_CAPTURE));
     });
 
     it("equalTo_do_not_accept_different_listener", () => {
@@ -144,42 +108,15 @@ describe("EventMapConfig", () => {
     });
 
     it("equalTo_do_not_accept_different_this_object", () => {
-        assert.isFalse(
-            instance.equalTo(
-                DISPATCHER,
-                EVENT_STRING,
-                LISTENER,
-                {},
-                EVENT_TYPE,
-                USE_CAPTURE
-            )
-        );
+        assert.isFalse(instance.equalTo(DISPATCHER, EVENT_STRING, LISTENER, {}, EVENT_TYPE, USE_CAPTURE));
     });
 
     it("equalTo_do_not_accept_different_event_type", () => {
-        assert.isFalse(
-            instance.equalTo(
-                DISPATCHER,
-                EVENT_STRING,
-                LISTENER,
-                THIS_OBJECT,
-                CustomEvent,
-                USE_CAPTURE
-            )
-        );
+        assert.isFalse(instance.equalTo(DISPATCHER, EVENT_STRING, LISTENER, THIS_OBJECT, CustomEvent, USE_CAPTURE));
     });
 
     it("equalTo_do_not_accept_different_use_Capture", () => {
-        assert.isFalse(
-            instance.equalTo(
-                DISPATCHER,
-                EVENT_STRING,
-                LISTENER,
-                THIS_OBJECT,
-                EVENT_TYPE,
-                false
-            )
-        );
+        assert.isFalse(instance.equalTo(DISPATCHER, EVENT_STRING, LISTENER, THIS_OBJECT, EVENT_TYPE, false));
     });
 
     it("equalTo_do_not_accept_different_instance", () => {

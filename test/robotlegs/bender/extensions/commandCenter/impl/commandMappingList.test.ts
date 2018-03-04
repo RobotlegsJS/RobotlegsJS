@@ -179,10 +179,7 @@ describe("CommandMappingList", () => {
     it("warning_logged_when_mapping_overwritten", () => {
         subject.addMapping(new CommandMapping(NullCommand));
         subject.addMapping(new CommandMapping(NullCommand));
-        assert.equal(
-            warnLogParams.message.indexOf("{0} already mapped to {1}"),
-            0
-        );
+        assert.equal(warnLogParams.message.indexOf("{0} already mapped to {1}"), 0);
     });
 
     it("warning_ignored_when_logger_is_not_provided", () => {
@@ -236,43 +233,24 @@ describe("CommandMappingList", () => {
     });
 
     it("sortFunction_is_used", () => {
-        subject.withSortFunction(function(
-            a: PriorityMapping,
-            b: PriorityMapping
-        ): number {
+        subject.withSortFunction(function(a: PriorityMapping, b: PriorityMapping): number {
             if (a.priority === b.priority) {
                 return 0;
             }
             return a.priority > b.priority ? 1 : -1;
         });
-        let priorityMapping1: PriorityMapping = new PriorityMapping(
-            NullCommand,
-            1
-        );
-        let priorityMapping2: PriorityMapping = new PriorityMapping(
-            NullCommand2,
-            2
-        );
-        let priorityMapping3: PriorityMapping = new PriorityMapping(
-            NullCommand3,
-            3
-        );
+        let priorityMapping1: PriorityMapping = new PriorityMapping(NullCommand, 1);
+        let priorityMapping2: PriorityMapping = new PriorityMapping(NullCommand2, 2);
+        let priorityMapping3: PriorityMapping = new PriorityMapping(NullCommand3, 3);
         subject.addMapping(priorityMapping3);
         subject.addMapping(priorityMapping1);
         subject.addMapping(priorityMapping2);
-        assert.deepEqual(subject.getList(), [
-            priorityMapping1,
-            priorityMapping2,
-            priorityMapping3
-        ]);
+        assert.deepEqual(subject.getList(), [priorityMapping1, priorityMapping2, priorityMapping3]);
     });
 
     it("sortFunction_is_called_after_mappings_are_added", () => {
         let called: boolean = false;
-        subject.withSortFunction(function(
-            a: PriorityMapping,
-            b: PriorityMapping
-        ): number {
+        subject.withSortFunction(function(a: PriorityMapping, b: PriorityMapping): number {
             called = true;
             return 0;
         });
@@ -283,10 +261,7 @@ describe("CommandMappingList", () => {
 
     it("sortFunction_is_only_called_once_after_mappings_are_added", () => {
         let called: boolean = false;
-        subject.withSortFunction(function(
-            a: PriorityMapping,
-            b: PriorityMapping
-        ): number {
+        subject.withSortFunction(function(a: PriorityMapping, b: PriorityMapping): number {
             called = true;
             return 0;
         });
@@ -299,10 +274,7 @@ describe("CommandMappingList", () => {
 
     it("sortFunction_is_not_called_after_a_mapping_is_removed", () => {
         let called: boolean = false;
-        subject.withSortFunction(function(
-            a: PriorityMapping,
-            b: PriorityMapping
-        ): number {
+        subject.withSortFunction(function(a: PriorityMapping, b: PriorityMapping): number {
             called = true;
             return 0;
         });

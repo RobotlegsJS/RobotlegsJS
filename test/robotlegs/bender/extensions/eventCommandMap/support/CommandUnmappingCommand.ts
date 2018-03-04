@@ -28,8 +28,6 @@ export class CommandUnmappingCommand implements ICommand {
     @inject(IEventCommandMap) public eventCommandMap: IEventCommandMap;
 
     public execute(): void {
-        this.eventCommandMap
-            .unmap(this.event.type, Event)
-            .fromCommand(this.command);
+        this.eventCommandMap.unmap(this.event.type, Event).fromCommand(this.command);
     }
 }

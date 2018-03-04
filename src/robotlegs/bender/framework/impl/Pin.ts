@@ -44,9 +44,7 @@ export class Pin {
     public detain(instance: any): void {
         if (!this._instances.get(instance)) {
             this._instances.set(instance, true);
-            this._dispatcher.dispatchEvent(
-                new PinEvent(PinEvent.DETAIN, instance)
-            );
+            this._dispatcher.dispatchEvent(new PinEvent(PinEvent.DETAIN, instance));
         }
     }
 
@@ -57,9 +55,7 @@ export class Pin {
     public release(instance: any): void {
         if (this._instances.get(instance)) {
             this._instances.delete(instance);
-            this._dispatcher.dispatchEvent(
-                new PinEvent(PinEvent.RELEASE, instance)
-            );
+            this._dispatcher.dispatchEvent(new PinEvent(PinEvent.RELEASE, instance));
         }
     }
 
@@ -67,8 +63,6 @@ export class Pin {
      * Removes all pins
      */
     public releaseAll(): void {
-        this._instances.forEach((value: boolean, key: any) =>
-            this.release(key)
-        );
+        this._instances.forEach((value: boolean, key: any) => this.release(key));
     }
 }

@@ -26,9 +26,7 @@ describe("EventCommandMapExtension", () => {
     beforeEach(() => {
         eventDispatcher = new EventDispatcher();
         context = new Context();
-        context.injector
-            .bind(IEventDispatcher)
-            .toConstantValue(new EventDispatcher());
+        context.injector.bind(IEventDispatcher).toConstantValue(new EventDispatcher());
     });
 
     afterEach(() => {

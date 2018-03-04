@@ -53,9 +53,7 @@ export class MessageDispatcher {
      */
     public removeMessageHandler(message: string, handler: Function): void {
         let messageHandlers: Function[] = this._handlers.get(message);
-        let index: number = messageHandlers
-            ? messageHandlers.indexOf(handler)
-            : -1;
+        let index: number = messageHandlers ? messageHandlers.indexOf(handler) : -1;
         if (index !== -1) {
             messageHandlers.splice(index, 1);
             if (messageHandlers.length === 0) {
@@ -70,11 +68,7 @@ export class MessageDispatcher {
      * @param callback The completion callback function
      * @param reverse Should handlers be called in reverse order
      */
-    public dispatchMessage(
-        message: string,
-        callback: Function = null,
-        reverse: boolean = false
-    ): void {
+    public dispatchMessage(message: string, callback: Function = null, reverse: boolean = false): void {
         let handlers: Function[] = this._handlers.get(<any>message);
         if (handlers) {
             handlers = handlers.concat();
@@ -156,11 +150,7 @@ class MessageRunner {
 
                         if (error || this._handlers.length === 0) {
                             if (this._callback) {
-                                safelyCallBack(
-                                    this._callback,
-                                    error,
-                                    this._message
-                                );
+                                safelyCallBack(this._callback, error, this._message);
                             }
                         } else {
                             this.next();

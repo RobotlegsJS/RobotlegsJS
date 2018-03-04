@@ -18,8 +18,7 @@ export class SelfReportingCallbackHook {
         @inject("Function")
         @named("hookCallback")
         callback: Function,
-        @inject(SelfReportingCallbackCommand)
-        command: SelfReportingCallbackCommand
+        @inject(SelfReportingCallbackCommand) command: SelfReportingCallbackCommand
     ) {
         this._callback = callback;
         this._command = command;

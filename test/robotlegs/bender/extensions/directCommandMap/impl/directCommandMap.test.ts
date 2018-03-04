@@ -71,10 +71,7 @@ describe("DirectCommandMap", () => {
         const expected: any[] = ["message", 1];
         let reported: any[] = [];
 
-        let payload: CommandPayload = new CommandPayload(expected, [
-            String,
-            Number
-        ]);
+        let payload: CommandPayload = new CommandPayload(expected, [String, Number]);
 
         injector
             .bind("Function")
@@ -120,9 +117,7 @@ describe("DirectCommandMap", () => {
     });
 
     it("sandboxed_directCommandMap_instance_does_not_leak_into_system", () => {
-        let actual: IDirectCommandMap = injector.get<IDirectCommandMap>(
-            IDirectCommandMap
-        );
+        let actual: IDirectCommandMap = injector.get<IDirectCommandMap>(IDirectCommandMap);
 
         assert.notEqual(actual, subject);
     });

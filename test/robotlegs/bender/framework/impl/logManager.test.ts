@@ -59,13 +59,7 @@ describe("LogManager", () => {
 
     it("DEBUG log level logs only debug messages", () => {
         logManager.logLevel = LogLevel.DEBUG;
-        let expected: number[] = [
-            LogLevel.FATAL,
-            LogLevel.ERROR,
-            LogLevel.WARN,
-            LogLevel.INFO,
-            LogLevel.DEBUG
-        ];
+        let expected: number[] = [LogLevel.FATAL, LogLevel.ERROR, LogLevel.WARN, LogLevel.INFO, LogLevel.DEBUG];
         let actual: number[] = [];
         logManager.addLogTarget(
             new CallbackLogTarget(function(result: LogParams): void {
@@ -83,12 +77,7 @@ describe("LogManager", () => {
 
     it("INFO log level logs only info messages", () => {
         logManager.logLevel = LogLevel.INFO;
-        let expected: number[] = [
-            LogLevel.FATAL,
-            LogLevel.ERROR,
-            LogLevel.WARN,
-            LogLevel.INFO
-        ];
+        let expected: number[] = [LogLevel.FATAL, LogLevel.ERROR, LogLevel.WARN, LogLevel.INFO];
         let actual: number[] = [];
         logManager.addLogTarget(
             new CallbackLogTarget(function(result: LogParams): void {
@@ -106,11 +95,7 @@ describe("LogManager", () => {
 
     it("WARN log level logs only warn messages", () => {
         logManager.logLevel = LogLevel.WARN;
-        let expected: number[] = [
-            LogLevel.FATAL,
-            LogLevel.ERROR,
-            LogLevel.WARN
-        ];
+        let expected: number[] = [LogLevel.FATAL, LogLevel.ERROR, LogLevel.WARN];
         let actual: number[] = [];
         logManager.addLogTarget(
             new CallbackLogTarget(function(result: LogParams): void {

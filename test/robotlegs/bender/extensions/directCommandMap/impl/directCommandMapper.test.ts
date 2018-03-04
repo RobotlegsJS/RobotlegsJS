@@ -52,15 +52,8 @@ describe("DirectCommandMapper", () => {
         injector = context.injector;
         let sandboxedInjector: IInjector = context.injector.createChild();
         mappingProcessors = [];
-        mappings = new CommandMappingList(
-            new NullCommandTrigger(),
-            mappingProcessors,
-            context.getLogger(this)
-        );
-        executor = new CommandExecutor(
-            sandboxedInjector,
-            mappings.removeMapping.bind(mappings)
-        );
+        mappings = new CommandMappingList(new NullCommandTrigger(), mappingProcessors, context.getLogger(this));
+        executor = new CommandExecutor(sandboxedInjector, mappings.removeMapping.bind(mappings));
         return new DirectCommandMapper(executor, mappings, commandClass);
     }
 
@@ -101,10 +94,7 @@ describe("DirectCommandMapper", () => {
         const expected: any[] = ["message", 1];
         let reported: any[] = [];
 
-        let payload: CommandPayload = new CommandPayload(expected, [
-            String,
-            Number
-        ]);
+        let payload: CommandPayload = new CommandPayload(expected, [String, Number]);
 
         injector
             .bind("Function")
@@ -184,10 +174,7 @@ describe("DirectCommandMapper", () => {
         const expected: any[] = ["message", 1];
         let reported: any[] = [];
 
-        let payload: CommandPayload = new CommandPayload(expected, [
-            String,
-            Number
-        ]);
+        let payload: CommandPayload = new CommandPayload(expected, [String, Number]);
 
         injector
             .bind("Function")
@@ -208,10 +195,7 @@ describe("DirectCommandMapper", () => {
             const expected: any[] = ["message", 1];
             let reported: any[] = [];
 
-            let payload: CommandPayload = new CommandPayload(expected, [
-                String,
-                Number
-            ]);
+            let payload: CommandPayload = new CommandPayload(expected, [String, Number]);
 
             injector
                 .bind("Function")
@@ -229,9 +213,7 @@ describe("DirectCommandMapper", () => {
     it("map_creates_new_mapper_instance", () => {
         subject = createMapper(NullCommand);
 
-        let newMapper: IDirectCommandConfigurator = subject.map(
-            CallbackCommand
-        );
+        let newMapper: IDirectCommandConfigurator = subject.map(CallbackCommand);
 
         assert.instanceOf(newMapper, DirectCommandMapper);
         assert.notEqual(newMapper, subject);

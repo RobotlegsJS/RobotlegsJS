@@ -24,8 +24,5 @@ export interface ICommandExecutor {
      * @param mappings The Command Mappings
      * @param payload The Command Payload
      */
-    executeCommands(
-        mappings: ICommandMapping[],
-        payload?: CommandPayload
-    ): void;
+    executeCommands(mappings: ICommandMapping[], payload?: CommandPayload): void;
 }

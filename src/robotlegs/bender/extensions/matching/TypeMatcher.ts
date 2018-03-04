@@ -35,10 +35,7 @@ export class TypeMatcher implements ITypeMatcher, ITypeMatcherFactory {
     /**
      * All types that an item must extend or implement
      */
-    public allOf(
-        type: IType<any> | Array<IType<any>>,
-        ...types: Array<IType<any>>
-    ): TypeMatcher {
+    public allOf(type: IType<any> | Array<IType<any>>, ...types: Array<IType<any>>): TypeMatcher {
         if (type instanceof Array) {
             this.pushAddedTypesTo(type.concat(types), this._allOfTypes);
         } else {
@@ -50,10 +47,7 @@ export class TypeMatcher implements ITypeMatcher, ITypeMatcherFactory {
     /**
      * Any types that an item must extend or implement
      */
-    public anyOf(
-        type: IType<any> | Array<IType<any>>,
-        ...types: Array<IType<any>>
-    ): TypeMatcher {
+    public anyOf(type: IType<any> | Array<IType<any>>, ...types: Array<IType<any>>): TypeMatcher {
         if (type instanceof Array) {
             this.pushAddedTypesTo(type.concat(types), this._anyOfTypes);
         } else {
@@ -65,10 +59,7 @@ export class TypeMatcher implements ITypeMatcher, ITypeMatcherFactory {
     /**
      * Types that an item must not extend or implement
      */
-    public noneOf(
-        type: IType<any> | Array<IType<any>>,
-        ...types: Array<IType<any>>
-    ): TypeMatcher {
+    public noneOf(type: IType<any> | Array<IType<any>>, ...types: Array<IType<any>>): TypeMatcher {
         if (type instanceof Array) {
             this.pushAddedTypesTo(type.concat(types), this._noneOfTypes);
         } else {
@@ -109,24 +100,13 @@ export class TypeMatcher implements ITypeMatcher, ITypeMatcherFactory {
     /*============================================================================*/
 
     protected buildTypeFilter(): ITypeFilter {
-        if (
-            this._allOfTypes.length === 0 &&
-            this._anyOfTypes.length === 0 &&
-            this._noneOfTypes.length === 0
-        ) {
+        if (this._allOfTypes.length === 0 && this._anyOfTypes.length === 0 && this._noneOfTypes.length === 0) {
             throw new TypeMatcherError(TypeMatcherError.EMPTY_MATCHER);
         }
-        return new TypeFilter(
-            this._allOfTypes,
-            this._anyOfTypes,
-            this._noneOfTypes
-        );
+        return new TypeFilter(this._allOfTypes, this._anyOfTypes, this._noneOfTypes);
     }
 
-    protected pushAddedTypesTo(
-        types: Array<IType<any>>,
-        targetSet: Array<IType<any>>
-    ): void {
+    protected pushAddedTypesTo(types: Array<IType<any>>, targetSet: Array<IType<any>>): void {
         if (this._typeFilter) {
             this.throwSealedMatcherError();
         }
@@ -138,10 +118,7 @@ export class TypeMatcher implements ITypeMatcher, ITypeMatcherFactory {
         throw new TypeMatcherError(TypeMatcherError.SEALED_MATCHER);
     }
 
-    protected pushValuesToTargetSet(
-        values: Array<IType<any>>,
-        targetSet: Array<IType<any>>
-    ): void {
+    protected pushValuesToTargetSet(values: Array<IType<any>>, targetSet: Array<IType<any>>): void {
         values.forEach((type: IType<any>) => {
             targetSet.push(type);
         });

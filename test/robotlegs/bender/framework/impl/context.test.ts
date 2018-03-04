@@ -41,10 +41,7 @@ describe("Context", () => {
 
     it("extensions are installed", () => {
         let actual: IContext = null;
-        let extension: IExtension = new CallbackExtension(function(
-            err: any,
-            ctx: IContext
-        ): void {
+        let extension: IExtension = new CallbackExtension(function(err: any, ctx: IContext): void {
             actual = ctx;
         });
         context.install(extension);
@@ -107,10 +104,7 @@ describe("Context", () => {
         let child: Context = new Context();
         child.initialize();
         context.addChild(child);
-        assert.equal(
-            warning.message,
-            "Child context {0} must be uninitialized"
-        );
+        assert.equal(warning.message, "Child context {0} must be uninitialized");
         assert.deepEqual(warning.params, [child]);
     });
 
@@ -126,10 +120,7 @@ describe("Context", () => {
         let child: Context = new Context();
         child.injector.parent = new RobotlegsInjector();
         context.addChild(child);
-        assert.equal(
-            warning.message,
-            "Child context {0} must not have a parent Injector"
-        );
+        assert.equal(warning.message, "Child context {0} must not have a parent Injector");
         assert.deepEqual(warning.params, [child]);
     });
 
@@ -144,10 +135,7 @@ describe("Context", () => {
         );
         let child: Context = new Context();
         context.removeChild(child);
-        assert.equal(
-            warning.message,
-            "Child context {0} must be a child of {1}"
-        );
+        assert.equal(warning.message, "Child context {0} must be a child of {1}");
         assert.deepEqual(warning.params, [child, context]);
     });
 
@@ -226,9 +214,7 @@ describe("Context", () => {
 
     it("lifecycleStateChangeEvent is propagated", () => {
         let called: boolean = false;
-        context.addEventListener(LifecycleEvent.STATE_CHANGE, function(
-            event: LifecycleEvent
-        ): void {
+        context.addEventListener(LifecycleEvent.STATE_CHANGE, function(event: LifecycleEvent): void {
             called = true;
         });
         context.initialize();

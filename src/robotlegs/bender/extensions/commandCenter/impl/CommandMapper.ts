@@ -20,8 +20,7 @@ import { CommandMapping } from "./CommandMapping";
 /**
  * @private
  */
-export class CommandMapper
-    implements ICommandMapper, ICommandUnmapper, ICommandConfigurator {
+export class CommandMapper implements ICommandMapper, ICommandUnmapper, ICommandConfigurator {
     /*============================================================================*/
     /* Private Properties                                                         */
     /*============================================================================*/

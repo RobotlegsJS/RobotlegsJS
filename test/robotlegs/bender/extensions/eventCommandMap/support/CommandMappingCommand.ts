@@ -28,8 +28,6 @@ export class CommandMappingCommand implements ICommand {
     @inject(IEventCommandMap) public eventCommandMap: IEventCommandMap;
 
     public execute(): void {
-        this.eventCommandMap
-            .map(this.event.type, Event)
-            .toCommand(this.command);
+        this.eventCommandMap.map(this.event.type, Event).toCommand(this.command);
     }
 }

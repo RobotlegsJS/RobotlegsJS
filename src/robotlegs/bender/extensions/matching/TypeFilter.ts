@@ -62,11 +62,7 @@ export class TypeFilter implements ITypeFilter {
     /**
      * @private
      */
-    constructor(
-        allOf: Array<IType<any>>,
-        anyOf: Array<IType<any>>,
-        noneOf: Array<IType<any>>
-    ) {
+    constructor(allOf: Array<IType<any>>, anyOf: Array<IType<any>>, noneOf: Array<IType<any>>) {
         if (!allOf || !anyOf || !noneOf) {
             throw Error("TypeFilter parameters can not be null");
         }
@@ -98,10 +94,7 @@ export class TypeFilter implements ITypeFilter {
             }
         }
 
-        if (
-            this._anyOfTypes.length === 0 &&
-            (this._allOfTypes.length > 0 || this._noneOfTypes.length > 0)
-        ) {
+        if (this._anyOfTypes.length === 0 && (this._allOfTypes.length > 0 || this._noneOfTypes.length > 0)) {
             return true;
         }
 
@@ -133,15 +126,9 @@ export class TypeFilter implements ITypeFilter {
     }
 
     protected createDescriptor(): string {
-        let allOf_FCQNs: string[] = this.alphabetiseCaseInsensitiveFCQNs(
-            this.allOfTypes
-        );
-        let anyOf_FCQNs: string[] = this.alphabetiseCaseInsensitiveFCQNs(
-            this.anyOfTypes
-        );
-        let noneOf_FQCNs: string[] = this.alphabetiseCaseInsensitiveFCQNs(
-            this.noneOfTypes
-        );
+        let allOf_FCQNs: string[] = this.alphabetiseCaseInsensitiveFCQNs(this.allOfTypes);
+        let anyOf_FCQNs: string[] = this.alphabetiseCaseInsensitiveFCQNs(this.anyOfTypes);
+        let noneOf_FQCNs: string[] = this.alphabetiseCaseInsensitiveFCQNs(this.noneOfTypes);
 
         let description: string[] = [];
 

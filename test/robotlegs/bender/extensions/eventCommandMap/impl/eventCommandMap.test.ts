@@ -65,10 +65,7 @@ describe("EventCommandMap", () => {
         reportedExecutions.push(item);
     }
 
-    function commandExecutionCount(
-        totalEvents: number = 1,
-        oneshot: boolean = false
-    ): number {
+    function commandExecutionCount(totalEvents: number = 1, oneshot: boolean = false): number {
         let executeCount: number = 0;
 
         injector
@@ -152,49 +149,29 @@ describe("EventCommandMap", () => {
     });
 
     it("map_creates_mapper", () => {
-        assert.instanceOf(
-            subject.map(SupportEvent.TYPE1, SupportEvent),
-            CommandMapper
-        );
+        assert.instanceOf(subject.map(SupportEvent.TYPE1, SupportEvent), CommandMapper);
     });
 
     it("map_to_identical_Type_but_different_Event_returns_different_mapper", () => {
-        let mapper1: ICommandMapper = subject.map(
-            SupportEvent.TYPE1,
-            SupportEvent
-        );
+        let mapper1: ICommandMapper = subject.map(SupportEvent.TYPE1, SupportEvent);
         let mapper2: ICommandMapper = subject.map(SupportEvent.TYPE1, Event);
         assert.notEqual(mapper1, mapper2);
     });
 
     it("map_to_different_Type_but_identical_Event_returns_different_mapper", () => {
-        let mapper1: ICommandMapper = subject.map(
-            SupportEvent.TYPE1,
-            SupportEvent
-        );
-        let mapper2: ICommandMapper = subject.map(
-            SupportEvent.TYPE2,
-            SupportEvent
-        );
+        let mapper1: ICommandMapper = subject.map(SupportEvent.TYPE1, SupportEvent);
+        let mapper2: ICommandMapper = subject.map(SupportEvent.TYPE2, SupportEvent);
         assert.notEqual(mapper1, mapper2);
     });
 
     it("unmap_returns_mapper", () => {
-        let mapper: ICommandMapper = subject.map(
-            SupportEvent.TYPE1,
-            SupportEvent
-        );
-        assert.instanceOf(
-            subject.unmap(SupportEvent.TYPE1, SupportEvent),
-            CommandMapper
-        );
+        let mapper: ICommandMapper = subject.map(SupportEvent.TYPE1, SupportEvent);
+        assert.instanceOf(subject.unmap(SupportEvent.TYPE1, SupportEvent), CommandMapper);
     });
 
     it("robust_to_unmapping_non_existent_mappings", () => {
         // note: no assertion, just testing for the lack of an NPE
-        subject
-            .unmap(SupportEvent.TYPE1, SupportEvent)
-            .fromCommand(NullCommand);
+        subject.unmap(SupportEvent.TYPE1, SupportEvent).fromCommand(NullCommand);
     });
 
     it("command_executes_successfully", () => {
@@ -210,9 +187,7 @@ describe("EventCommandMap", () => {
     });
 
     it("event_is_injected_into_command", () => {
-        const expectedEvent: SupportEvent = new SupportEvent(
-            SupportEvent.TYPE1
-        );
+        const expectedEvent: SupportEvent = new SupportEvent(SupportEvent.TYPE1);
         let injectedEvent: Event = null;
 
         injector
@@ -222,9 +197,7 @@ describe("EventCommandMap", () => {
             })
             .whenTargetNamed("executeCallback");
 
-        subject
-            .map(SupportEvent.TYPE1, Event)
-            .toCommand(EventInjectedCallbackCommand);
+        subject.map(SupportEvent.TYPE1, Event).toCommand(EventInjectedCallbackCommand);
 
         dispatcher.dispatchEvent(expectedEvent);
 
@@ -232,9 +205,7 @@ describe("EventCommandMap", () => {
     });
 
     it("event_is_passed_to_execute_method", () => {
-        const expectedEvent: SupportEvent = new SupportEvent(
-            SupportEvent.TYPE1
-        );
+        const expectedEvent: SupportEvent = new SupportEvent(SupportEvent.TYPE1);
         let actualEvent: SupportEvent = null;
 
         injector
@@ -244,9 +215,7 @@ describe("EventCommandMap", () => {
             })
             .whenTargetNamed("executeCallback");
 
-        subject
-            .map(SupportEvent.TYPE1, SupportEvent)
-            .toCommand(EventParametersCommand);
+        subject.map(SupportEvent.TYPE1, SupportEvent).toCommand(EventParametersCommand);
 
         dispatcher.dispatchEvent(expectedEvent);
 
@@ -254,27 +223,19 @@ describe("EventCommandMap", () => {
     });
 
     it("concretely_specified_typed_event_is_injected_into_command_as_typed_event", () => {
-        const expectedEvent: SupportEvent = new SupportEvent(
-            SupportEvent.TYPE1
-        );
+        const expectedEvent: SupportEvent = new SupportEvent(SupportEvent.TYPE1);
         let untypedEvent: Event;
         let typedEvent: SupportEvent;
 
         injector
             .bind("Function")
-            .toFunction(
-                (
-                    command: SupportEventTriggeredSelfReportingCallbackCommand
-                ) => {
-                    untypedEvent = command.untypedEvent;
-                    typedEvent = command.typedEvent;
-                }
-            )
+            .toFunction((command: SupportEventTriggeredSelfReportingCallbackCommand) => {
+                untypedEvent = command.untypedEvent;
+                typedEvent = command.typedEvent;
+            })
             .whenTargetNamed("executeCallback");
 
-        subject
-            .map(SupportEvent.TYPE1, SupportEvent)
-            .toCommand(SupportEventTriggeredSelfReportingCallbackCommand);
+        subject.map(SupportEvent.TYPE1, SupportEvent).toCommand(SupportEventTriggeredSelfReportingCallbackCommand);
 
         dispatcher.dispatchEvent(expectedEvent);
 
@@ -283,27 +244,19 @@ describe("EventCommandMap", () => {
     });
 
     it("abstractly_specified_typed_event_is_injected_into_command_as_untyped_event", () => {
-        const expectedEvent: SupportEvent = new SupportEvent(
-            SupportEvent.TYPE1
-        );
+        const expectedEvent: SupportEvent = new SupportEvent(SupportEvent.TYPE1);
         let untypedEvent: Event;
         let typedEvent: SupportEvent;
 
         injector
             .bind("Function")
-            .toFunction(
-                (
-                    command: SupportEventTriggeredSelfReportingCallbackCommand
-                ) => {
-                    untypedEvent = command.untypedEvent;
-                    typedEvent = command.typedEvent;
-                }
-            )
+            .toFunction((command: SupportEventTriggeredSelfReportingCallbackCommand) => {
+                untypedEvent = command.untypedEvent;
+                typedEvent = command.typedEvent;
+            })
             .whenTargetNamed("executeCallback");
 
-        subject
-            .map(SupportEvent.TYPE1, Event)
-            .toCommand(SupportEventTriggeredSelfReportingCallbackCommand);
+        subject.map(SupportEvent.TYPE1, Event).toCommand(SupportEventTriggeredSelfReportingCallbackCommand);
 
         dispatcher.dispatchEvent(expectedEvent);
 
@@ -312,27 +265,19 @@ describe("EventCommandMap", () => {
     });
 
     it("unspecified_typed_event_is_injected_into_command_as_typed_event", () => {
-        const expectedEvent: SupportEvent = new SupportEvent(
-            SupportEvent.TYPE1
-        );
+        const expectedEvent: SupportEvent = new SupportEvent(SupportEvent.TYPE1);
         let untypedEvent: Event;
         let typedEvent: SupportEvent;
 
         injector
             .bind("Function")
-            .toFunction(
-                (
-                    command: SupportEventTriggeredSelfReportingCallbackCommand
-                ) => {
-                    untypedEvent = command.untypedEvent;
-                    typedEvent = command.typedEvent;
-                }
-            )
+            .toFunction((command: SupportEventTriggeredSelfReportingCallbackCommand) => {
+                untypedEvent = command.untypedEvent;
+                typedEvent = command.typedEvent;
+            })
             .whenTargetNamed("executeCallback");
 
-        subject
-            .map(SupportEvent.TYPE1)
-            .toCommand(SupportEventTriggeredSelfReportingCallbackCommand);
+        subject.map(SupportEvent.TYPE1).toCommand(SupportEventTriggeredSelfReportingCallbackCommand);
 
         dispatcher.dispatchEvent(expectedEvent);
 
@@ -348,19 +293,13 @@ describe("EventCommandMap", () => {
 
         injector
             .bind("Function")
-            .toFunction(
-                (
-                    command: SupportEventTriggeredSelfReportingCallbackCommand
-                ) => {
-                    untypedEvent = command.untypedEvent;
-                    typedEvent = command.typedEvent;
-                }
-            )
+            .toFunction((command: SupportEventTriggeredSelfReportingCallbackCommand) => {
+                untypedEvent = command.untypedEvent;
+                typedEvent = command.typedEvent;
+            })
             .whenTargetNamed("executeCallback");
 
-        subject
-            .map(eventType)
-            .toCommand(SupportEventTriggeredSelfReportingCallbackCommand);
+        subject.map(eventType).toCommand(SupportEventTriggeredSelfReportingCallbackCommand);
 
         dispatcher.dispatchEvent(expectedEvent);
 
@@ -376,19 +315,13 @@ describe("EventCommandMap", () => {
 
         injector
             .bind("Function")
-            .toFunction(
-                (
-                    command: SupportEventTriggeredSelfReportingCallbackCommand
-                ) => {
-                    untypedEvent = command.untypedEvent;
-                    typedEvent = command.typedEvent;
-                }
-            )
+            .toFunction((command: SupportEventTriggeredSelfReportingCallbackCommand) => {
+                untypedEvent = command.untypedEvent;
+                typedEvent = command.typedEvent;
+            })
             .whenTargetNamed("executeCallback");
 
-        subject
-            .map(eventType, Event)
-            .toCommand(SupportEventTriggeredSelfReportingCallbackCommand);
+        subject.map(eventType, Event).toCommand(SupportEventTriggeredSelfReportingCallbackCommand);
 
         dispatcher.dispatchEvent(expectedEvent);
 
@@ -422,9 +355,7 @@ describe("EventCommandMap", () => {
             })
             .whenTargetNamed("executeCallback");
 
-        subject
-            .map(SupportEvent.TYPE1, SupportEvent)
-            .toCommand(CallbackCommand);
+        subject.map(SupportEvent.TYPE1, SupportEvent).toCommand(CallbackCommand);
         dispatcher.dispatchEvent(new Event(SupportEvent.TYPE1));
 
         assert.equal(executeCount, 0);
@@ -440,12 +371,8 @@ describe("EventCommandMap", () => {
             })
             .whenTargetNamed("executeCallback");
 
-        subject
-            .map(SupportEvent.TYPE1, SupportEvent)
-            .toCommand(CallbackCommand);
-        subject
-            .unmap(SupportEvent.TYPE1, SupportEvent)
-            .fromCommand(CallbackCommand);
+        subject.map(SupportEvent.TYPE1, SupportEvent).toCommand(CallbackCommand);
+        subject.unmap(SupportEvent.TYPE1, SupportEvent).fromCommand(CallbackCommand);
         dispatcher.dispatchEvent(new SupportEvent(SupportEvent.TYPE1));
 
         assert.equal(executeCount, 0);
@@ -516,27 +443,14 @@ describe("EventCommandMap", () => {
     });
 
     it("commands_are_executed_in_order", () => {
-        subject
-            .map(SupportEvent.TYPE1)
-            .toCommand(ClassReportingCallbackCommand);
-        subject
-            .map(SupportEvent.TYPE1)
-            .toCommand(ClassReportingCallbackCommand2);
+        subject.map(SupportEvent.TYPE1).toCommand(ClassReportingCallbackCommand);
+        subject.map(SupportEvent.TYPE1).toCommand(ClassReportingCallbackCommand2);
         dispatcher.dispatchEvent(new SupportEvent(SupportEvent.TYPE1));
-        assert.deepEqual(reportedExecutions, [
-            ClassReportingCallbackCommand,
-            ClassReportingCallbackCommand2
-        ]);
+        assert.deepEqual(reportedExecutions, [ClassReportingCallbackCommand, ClassReportingCallbackCommand2]);
     });
 
     it("hooks_are_called", () => {
-        assert.equal(
-            hookCallCount(
-                ClassReportingCallbackHook,
-                ClassReportingCallbackHook
-            ),
-            2
-        );
+        assert.equal(hookCallCount(ClassReportingCallbackHook, ClassReportingCallbackHook), 2);
     });
 
     it("command_executes_when_the_guard_allows", () => {
@@ -544,10 +458,7 @@ describe("EventCommandMap", () => {
     });
 
     it("command_executes_when_all_guards_allow", () => {
-        assert.equal(
-            commandExecutionCountWithGuards(HappyGuard, HappyGuard),
-            1
-        );
+        assert.equal(commandExecutionCountWithGuards(HappyGuard, HappyGuard), 1);
     });
 
     it("command_does_not_execute_when_the_guard_denies", () => {
@@ -555,17 +466,11 @@ describe("EventCommandMap", () => {
     });
 
     it("command_does_not_execute_when_any_guards_denies", () => {
-        assert.equal(
-            commandExecutionCountWithGuards(HappyGuard, GrumpyGuard),
-            0
-        );
+        assert.equal(commandExecutionCountWithGuards(HappyGuard, GrumpyGuard), 0);
     });
 
     it("command_does_not_execute_when_all_guards_deny", () => {
-        assert.equal(
-            commandExecutionCountWithGuards(GrumpyGuard, GrumpyGuard),
-            0
-        );
+        assert.equal(commandExecutionCountWithGuards(GrumpyGuard, GrumpyGuard), 0);
     });
 
     it("event_is_injected_into_guard", () => {

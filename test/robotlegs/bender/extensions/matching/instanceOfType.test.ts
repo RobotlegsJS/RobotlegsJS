@@ -19,16 +19,8 @@ import { BaseType } from "./support/BaseType";
 import { ExtendedType } from "./support/ExtendedType";
 
 describe("instanceOfType", () => {
-    let booleanCollection: TypeCollection<Boolean> = new TypeCollection(
-        Boolean,
-        [],
-        [true, false, Math.random() >= 0, Math.random() < 1]
-    );
-    let dateCollection: TypeCollection<Date> = new TypeCollection(
-        Date,
-        [],
-        [new Date(), new Date(2017, 11, 3)]
-    );
+    let booleanCollection: TypeCollection<Boolean> = new TypeCollection(Boolean, [], [true, false, Math.random() >= 0, Math.random() < 1]);
+    let dateCollection: TypeCollection<Date> = new TypeCollection(Date, [], [new Date(), new Date(2017, 11, 3)]);
     let functionCollection: TypeCollection<Function> = new TypeCollection(
         Function,
         [],
@@ -110,19 +102,12 @@ describe("instanceOfType", () => {
     let baseTypeCollection: TypeCollection<BaseType> = new TypeCollection(
         BaseType,
         [ExtendedType],
-        [
-            new BaseType(""),
-            new BaseType("who am I?"),
-            new BaseType("I'm a long long long long string")
-        ]
+        [new BaseType(""), new BaseType("who am I?"), new BaseType("I'm a long long long long string")]
     );
     let extendedTypeCollection: TypeCollection<BaseType> = new TypeCollection(
         ExtendedType,
         [],
-        [
-            new ExtendedType("I'm not a empty object", 7),
-            new ExtendedType("who am I?", 41)
-        ]
+        [new ExtendedType("I'm not a empty object", 7), new ExtendedType("who am I?", 41)]
     );
 
     it("matches_primitive_type_Boolean", () => {
