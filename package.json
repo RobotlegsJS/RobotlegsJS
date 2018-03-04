@@ -9,7 +9,7 @@
     "karma": "karma start --single-run",
     "autoformat": "prettier --config .prettierrc --write {src,test}/**/*.ts",
     "tslint-check": "tslint-config-prettier-check ./tslint.json",
-    "clean-up": "rm -rf .nyc_output && rm -rf coverage && rm -rf lib",
+    "clean-up": "rimraf .nyc_output && rimraf coverage && rimraf lib",
     "compile": "tsc -d",
     "dev": "webpack",
     "build": "webpack --env.production",
