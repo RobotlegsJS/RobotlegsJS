@@ -26,6 +26,8 @@
 
 ### v0.1.2
 
+- Update codeclimate settings (see #43).
+
 - Update dev dependencies to latest version.
 
 ### [v0.1.1](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/0.1.1) - 2017-11-13
