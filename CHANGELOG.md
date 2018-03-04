@@ -26,7 +26,7 @@
 
 ### v0.1.2
 
-- Use `rimraf` instead of `rm -rf` (see #47).
+- Use `rimraf` instead of `rm -rf`.
 
 - Update Prettier rules (see #46).
 
