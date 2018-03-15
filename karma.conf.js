@@ -3,35 +3,20 @@ process.env.NODE_ENV = 'test';
 
 const webpack = require("webpack");
 const path = require("path");
-const webpackConfig = require('./webpack.config.js')({ isTest: true });
+const webpackConfig = require('./webpack.config.js')({ production: false, karma: true });
 
 delete webpackConfig.entry;
-
-let frameworks = [
-  "mocha",
-  "chai",
-  "sinon",
-  "es6-shim"
-];
-
-let plugins = [
-  "karma-webpack",
-  "karma-sourcemap-writer",
-  "karma-sourcemap-loader",
-  "karma-mocha-reporter",
-  "karma-mocha",
-  "karma-chai",
-  "karma-sinon",
-  "karma-es6-shim",
-  "karma-remap-istanbul",
-  "karma-coverage-istanbul-reporter"
-];
 
 module.exports = function(config) {
 
   var configuration = {
     basePath: "",
-    frameworks: frameworks,
+    frameworks: [
+      "mocha",
+      "chai",
+      "sinon",
+      "es6-shim"
+    ],
     files: [
       { pattern: "node_modules/reflect-metadata/Reflect.js", include: true },
       { pattern: "node_modules/bluebird/js/browser/bluebird.js", include: true },
@@ -46,7 +31,18 @@ module.exports = function(config) {
     webpackMiddleware: {
       noInfo: true
     },
-    plugins: plugins,
+    plugins: [
+      "karma-webpack",
+      "karma-sourcemap-writer",
+      "karma-sourcemap-loader",
+      "karma-mocha-reporter",
+      "karma-mocha",
+      "karma-chai",
+      "karma-sinon",
+      "karma-es6-shim",
+      "karma-remap-istanbul",
+      "karma-coverage-istanbul-reporter"
+    ],
     reporters: (
       config.singleRun ?
         ["dots", "mocha", "coverage-istanbul"] :
