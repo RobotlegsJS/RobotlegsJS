@@ -1,6 +1,7 @@
 .idea
 .nyc_output
 build
+dev
 lib
 node_modules
 typings
