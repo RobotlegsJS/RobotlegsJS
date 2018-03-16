@@ -6981,9 +6981,9 @@ regjsparser@^0.1.4:
   dependencies:
     jsesc "~0.5.0"
 
-remap-istanbul@^0.10.1:
-  version "0.10.1"
-  resolved "https://registry.npmjs.org/remap-istanbul/-/remap-istanbul-0.10.1.tgz#3aa58dd5021d499f336d3ba5bf3bbb91c1b88e37"
+remap-istanbul@^0.11.0:
+  version "0.11.0"
+  resolved "https://registry.npmjs.org/remap-istanbul/-/remap-istanbul-0.11.0.tgz#201f55ffaedfb2fddb693b05ea2f7382b23b877a"
   dependencies:
     amdefine "^1.0.0"
     istanbul "0.4.5"
