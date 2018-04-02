@@ -99,7 +99,7 @@
     "reflect-metadata": "^0.1.12",
     "remap-istanbul": "^0.11.0",
     "rimraf": "^2.6.2",
-    "sinon": "^4.4.6",
+    "sinon": "^5.0.0",
     "sinon-chai": "^3.0.0",
     "source-map-support": "^0.5.4",
     "ts-loader": "^4.0.1",
