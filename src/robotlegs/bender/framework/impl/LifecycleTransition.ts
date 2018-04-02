@@ -66,10 +66,9 @@ export class LifecycleTransition {
      * @return Self
      */
     public fromStates(...states: any[]): LifecycleTransition {
-        for (let i: number = 0; i < states.length; i++) {
-            let state = states[i];
+        states.forEach((state: any) => {
             this._fromStates.push(state);
-        }
+        });
         return this;
     }
 
@@ -182,10 +181,9 @@ export class LifecycleTransition {
                 // process callback queue (dup and trash for safety)
                 let callbacks: any[] = this._callbacks.concat();
                 this._callbacks.length = 0;
-                for (let i: number = 0; i < callbacks.length; i++) {
-                    let callbackChild = callbacks[i];
+                callbacks.forEach((callbackChild: any) => {
                     safelyCallBack(callbackChild, null, this._name);
-                }
+                });
 
                 // dispatch post transition event
                 this.dispatch(this._postTransitionEvent);
@@ -224,12 +222,11 @@ export class LifecycleTransition {
             this._lifecycle.dispatchEvent(event);
             // process callback queue
             if (callbacks) {
-                for (let i: number = 0; i < callbacks.length; i++) {
-                    let callback = callbacks[i];
+                callbacks.forEach((callback: any) => {
                     if (callback) {
                         safelyCallBack(callback, error, this._name);
                     }
-                }
+                });
                 callbacks.length = 0;
             }
         } else {
