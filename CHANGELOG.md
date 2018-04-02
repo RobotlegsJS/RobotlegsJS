@@ -26,6 +26,20 @@
 
 ### v0.2.0
 
+Major Breaking Changes:
+---
+
+- **IEvent** interface changed to remove usage of **IEventInit** interface (see #57).
+
+- Constructor of **Event** class changed to remove usage of **IEventInit** interface
+
+    ```typescript
+    constructor(type: string, bubbles?: boolean, cancelable?: boolean, data?: any)
+    ```
+
+Features Or Improvements:
+---
+
 - Enforce TSLint rules (see #57).
 
 - Update TypeScript Compiler Options (see #56).
