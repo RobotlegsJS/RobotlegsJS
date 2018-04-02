@@ -19,7 +19,7 @@ export class ObjectProcessor {
     /* Private Properties                                                         */
     /*============================================================================*/
 
-    private _handlers: any[] = [];
+    private _handlers: ObjectHandler[] = [];
 
     /*============================================================================*/
     /* Public Functions                                                           */
@@ -39,16 +39,15 @@ export class ObjectProcessor {
      * @param object The object instance to process.
      */
     public processObject(object: any): void {
-        for (let i: number = 0; i < this._handlers.length; i++) {
-            let handler: ObjectHandler = this._handlers[i];
+        this._handlers.forEach((handler: ObjectHandler) => {
             handler.handle(object);
-        }
+        });
     }
 
     /**
      * Removes all handlers
      */
     public removeAllHandlers(): void {
-        this._handlers.length = 0;
+        this._handlers = [];
     }
 }
