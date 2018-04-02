@@ -9,7 +9,7 @@ module.exports = (env => {
   let mode = env.production ? "production" : "development";
   let tsconfig = !env.karma ? "tsconfig.json" : "tsconfig.test.json";
   let output = env.production ? "dist" : "dev";
-  let filename = env.production ? "signals.min.js" : "signals.js";
+  let filename = env.production ? "robotlegs.min.js" : "robotlegs.js";
 
   return {
     mode: mode,
@@ -22,7 +22,7 @@ module.exports = (env => {
       filename: filename,
 
       libraryTarget: "var",
-      library: "SignalsJS"
+      library: "RobotlegsJS"
     },
 
     devtool: env.production ? undefined : "inline-source-map",
