@@ -14,6 +14,8 @@ import { ILogger } from "../api/ILogger";
 import { IMatcher } from "../api/IMatcher";
 import { LifecycleEvent } from "../api/LifecycleEvent";
 
+import { ClassMatcher } from "./ClassMatcher";
+import { ObjectMatcher } from "./ObjectMatcher";
 import { ObjectProcessor } from "./ObjectProcessor";
 import { instantiateUnmapped } from "./instantiateUnmapped";
 
@@ -158,37 +160,5 @@ export class ConfigManager {
         if (config && config.configure) {
             config.configure();
         }
-    }
-}
-
-/**
- * @private
- */
-class ClassMatcher implements IMatcher {
-    /*============================================================================*/
-    /* Public Functions                                                           */
-    /*============================================================================*/
-
-    /**
-     * @private
-     */
-    public matches(item: any): boolean {
-        return typeof item === "function";
-    }
-}
-
-/**
- * @private
- */
-class ObjectMatcher implements IMatcher {
-    /*============================================================================*/
-    /* Public Functions                                                           */
-    /*============================================================================*/
-
-    /**
-     * @private
-     */
-    public matches(item: any): boolean {
-        return typeof item === "object";
     }
 }
