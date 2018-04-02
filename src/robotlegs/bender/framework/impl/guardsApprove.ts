@@ -31,9 +31,7 @@ import { instantiateUnmapped } from "./instantiateUnmapped";
  * @return A boolean value of false if any guard returns false
  */
 export function guardsApprove(guards: any[], injector?: IInjector): boolean {
-    for (let i = 0; i < guards.length; i++) {
-        let guard: any = guards[i];
-
+    for (let guard of guards) {
         if (typeof guard === "function" && guard.prototype.approve === undefined) {
             if ((<Function>guard)()) {
                 continue;
