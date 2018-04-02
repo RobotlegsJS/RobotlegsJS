@@ -7,7 +7,6 @@
 
 import { injectable, inject, named } from "inversify";
 
-import { Event } from "../../../../../../src/robotlegs/bender/events/impl/Event";
 import { ICommand } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/api/ICommand";
 
 import { SupportEvent } from "./SupportEvent";

@@ -83,6 +83,7 @@ describe("TypeFilter", () => {
     it("initialising_with_allOf_null_throws_error", () => {
         function createTypeFilter(): void {
             let type: TypeFilter = new TypeFilter(null, anyOf, noneOf);
+            type = null;
         }
         assert.throws(createTypeFilter, Error);
     });
@@ -90,6 +91,7 @@ describe("TypeFilter", () => {
     it("initialising_with_anyOf_null_throws_error", () => {
         function createTypeFilter(): void {
             let type: TypeFilter = new TypeFilter(allOf, null, noneOf);
+            type = null;
         }
         assert.throws(createTypeFilter, Error);
     });
@@ -97,6 +99,7 @@ describe("TypeFilter", () => {
     it("initialising_with_noneOf_null_throws_error", () => {
         function createTypeFilter(): void {
             let type: TypeFilter = new TypeFilter(allOf, anyOf, null);
+            type = null;
         }
         assert.throws(createTypeFilter, Error);
     });

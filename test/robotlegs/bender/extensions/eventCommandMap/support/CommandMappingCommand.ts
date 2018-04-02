@@ -7,13 +7,11 @@
 
 import { injectable, inject, named } from "inversify";
 
-import { IEventDispatcher } from "../../../../../../src/robotlegs/bender/events/api/IEventDispatcher";
 import { Event } from "../../../../../../src/robotlegs/bender/events/impl/Event";
 import { ICommand } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/api/ICommand";
 import { Command } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/impl/Command";
 import { IEventCommandMap } from "../../../../../../src/robotlegs/bender/extensions/eventCommandMap/api/IEventCommandMap";
 import { IClass } from "../../../../../../src/robotlegs/bender/extensions/matching/IClass";
-import { NullCommand } from "../../commandCenter/support/NullCommand";
 
 @injectable()
 export class CommandMappingCommand implements ICommand {

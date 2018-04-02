@@ -201,8 +201,7 @@ describe("Context", () => {
         function handler(event: LifecycleEvent): void {
             actual.push(event.type);
         }
-        for (let i: number = 0; i < expected.length; i++) {
-            let type: string = expected[i];
+        for (const type of expected) {
             context.addEventListener(type, handler);
         }
         context.initialize();

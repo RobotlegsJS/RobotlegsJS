@@ -15,11 +15,7 @@ export class CallbackExtension implements IExtension {
     private _callback: Function;
 
     constructor(callback?: Function) {
-        if (!callback) {
-            this._callback = CallbackExtension.staticCallback;
-        } else {
-            this._callback = callback;
-        }
+        this._callback = callback ? callback : CallbackExtension.staticCallback;
     }
 
     public extend(context: IContext): void {

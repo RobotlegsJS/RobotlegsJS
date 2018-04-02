@@ -9,11 +9,7 @@ import "../../../../../entry";
 
 import { assert } from "chai";
 
-import { IClass } from "../../../../../../src/robotlegs/bender/extensions/matching/IClass";
-
 import { DomEventMapConfig } from "../../../../../../src/robotlegs/bender/extensions/localEventMap/impl/DomEventMapConfig";
-
-import { CustomEvent } from "../support/CustomEvent";
 
 describe("DomEventMapConfig", () => {
     const DISPATCHER: EventTarget = window;

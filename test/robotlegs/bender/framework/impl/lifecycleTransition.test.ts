@@ -65,8 +65,7 @@ describe("LifecycleTransition", () => {
         let actual: string[] = [];
         let expected: string[] = [LifecycleEvent.PRE_INITIALIZE, LifecycleEvent.INITIALIZE, LifecycleEvent.POST_INITIALIZE];
         transition.withEvents(expected[0], expected[1], expected[2]);
-        for (let i: number = 0; i < expected.length; i++) {
-            let type: string = expected[i];
+        for (const type of expected) {
             lifecycle.addEventListener(type, function(event: Event): void {
                 actual.push(event.type);
             });

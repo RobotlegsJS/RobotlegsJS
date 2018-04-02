@@ -150,8 +150,7 @@ describe("Lifecycle", () => {
             actual.push(event.type);
         };
 
-        for (let i: number = 0; i < expected.length; i++) {
-            let type: string = expected[i];
+        for (const type of expected) {
             lifecycle.addEventListener(type, listener);
         }
 
@@ -411,8 +410,7 @@ describe("Lifecycle", () => {
     function methodErrorCount(methods: Function[]): number {
         let errorCount: number = 0;
 
-        for (let i: number = 0; i < methods.length; i++) {
-            let method: Function = methods[i];
+        for (const method of methods) {
             try {
                 method();
             } catch (error) {

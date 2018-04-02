@@ -7,30 +7,23 @@
 
 import "../../../../../entry";
 
-import sinon = require("sinon");
-
 import { assert } from "chai";
 
 import { IContext } from "../../../../../../src/robotlegs/bender/framework/api/IContext";
 import { IInjector } from "../../../../../../src/robotlegs/bender/framework/api/IInjector";
 import { Context } from "../../../../../../src/robotlegs/bender/framework/impl/Context";
 
-import { IEvent } from "../../../../../../src/robotlegs/bender/events/api/IEvent";
 import { IEventDispatcher } from "../../../../../../src/robotlegs/bender/events/api/IEventDispatcher";
 import { Event } from "../../../../../../src/robotlegs/bender/events/impl/Event";
 import { EventDispatcher } from "../../../../../../src/robotlegs/bender/events/impl/EventDispatcher";
-
-import { IClass } from "../../../../../../src/robotlegs/bender/extensions/matching/IClass";
 
 import { ICommand } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/api/ICommand";
 import { ICommandMapping } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/api/ICommandMapping";
 import { ICommandMapper } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/dsl/ICommandMapper";
 import { CommandMapper } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/impl/CommandMapper";
-import { CommandMapping } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/impl/CommandMapping";
 
 import { IEventCommandMap } from "../../../../../../src/robotlegs/bender/extensions/eventCommandMap/api/IEventCommandMap";
 import { EventCommandMap } from "../../../../../../src/robotlegs/bender/extensions/eventCommandMap/impl/EventCommandMap";
-import { EventCommandTrigger } from "../../../../../../src/robotlegs/bender/extensions/eventCommandMap/impl/EventCommandTrigger";
 
 import { HappyGuard } from "../../../framework/impl/guardSupport/HappyGuard";
 import { GrumpyGuard } from "../../../framework/impl/guardSupport/GrumpyGuard";
@@ -165,7 +158,7 @@ describe("EventCommandMap", () => {
     });
 
     it("unmap_returns_mapper", () => {
-        let mapper: ICommandMapper = subject.map(SupportEvent.TYPE1, SupportEvent);
+        subject.map(SupportEvent.TYPE1, SupportEvent);
         assert.instanceOf(subject.unmap(SupportEvent.TYPE1, SupportEvent), CommandMapper);
     });
 
