@@ -5,12 +5,17 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import { IBundle } from "./IBundle";
+import { IConfig } from "./IConfig";
+import { IExtension } from "./IExtension";
 import { IInjector } from "./IInjector";
 import { ILogger } from "./ILogger";
 import { ILogTarget } from "./ILogTarget";
 import { IMatcher } from "./IMatcher";
 
 import { IEventDispatcher } from "../../events/api/IEventDispatcher";
+
+import { IClass } from "../../extensions/matching/IClass";
 
 /*[Event(name="destroy", type="robotlegs.bender.framework.api.LifecycleEvent")]*/
 /*[Event(name="detain", type="robotlegs.bender.framework.api.PinEvent")]*/
@@ -78,14 +83,14 @@ export interface IContext extends IEventDispatcher {
      * @param extensions Objects or classes implementing IExtension or IBundle
      * @return this
      */
-    install(...extensions: any[]): IContext;
+    install(...extensions: Array<IBundle | IClass<IBundle> | IExtension | IClass<IExtension>>): IContext;
 
     /**
      * Configures the context with custom configurations
      * @param configs Configuration objects or classes of any type
      * @return this
      */
-    configure(...configs: any[]): IContext;
+    configure(...configs: Array<IConfig | IClass<IConfig>>): IContext;
 
     /**
      * Adds an uninitialized context as a child
