@@ -1,13 +1,14 @@
 export interface IEvent {
     type: string;
-    defaultPrevented?: boolean;
     bubbles?: boolean;
-    target?: any;
+    cancelable?: boolean;
+    isDefaultPrevented?: boolean;
+    isPropagationStopped?: boolean;
+    isPropagationImmediateStopped?: boolean;
     currentTarget?: any;
-    detail?: any;
-}
-
-export interface IEventInit {
-    bubbles?: boolean;
-    detail?: any;
+    target?: any;
+    data?: any;
+    preventDefault(): void;
+    stopPropagation(): void;
+    stopImmediatePropagation(): void;
 }

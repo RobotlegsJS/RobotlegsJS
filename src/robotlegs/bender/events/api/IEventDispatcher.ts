@@ -32,7 +32,6 @@ import { IEvent } from "./IEvent";
 export let IEventDispatcher = Symbol("IEventDispatcher");
 
 /**
- * @language en_US
  * The IEventDispatcher interface defines methods for adding or removing event listeners, checks whether specific types
  * of event listeners are registered, and dispatches events. Event targets are an important part of the Egret event model.
  * The event target serves as the focal point for how events flow through the display list hierarchy. When an event
@@ -48,10 +47,10 @@ export let IEventDispatcher = Symbol("IEventDispatcher");
  * @version Egret 2.4
  * @platform Web,Native
  * @includeExample egret/events/IEventDispatcher.ts
+ * @language en_US
  */
 export interface IEventDispatcher {
     /**
-     * @language en_US
      * Registers an event listener object with an EventDispatcher object so that the listener receives notification of an
      * event. You can register event listeners on all nodes in the display list for a specific type of event, phase,
      * and priority.After you successfully register an event listener, you cannot change its priority through additional
@@ -85,11 +84,11 @@ export interface IEventDispatcher {
      * @see #removeEventListener()
      * @version Egret 2.4
      * @platform Web,Native
+     * @language en_US
      */
     addEventListener(type: string, listener: Function, thisObject?: any, useCapture?: boolean, priority?: number): void;
 
     /**
-     * @language en_US
      * Registers an event listener object with an EventDispatcher object so that the listener receives notification of an
      * event. Different from the on() method,the listener receives notification only once,and then it will be removed
      * automatically.
@@ -110,11 +109,11 @@ export interface IEventDispatcher {
      * @see #removeEventListener()
      * @version Egret 2.4
      * @platform Web,Native
+     * @language en_US
      */
     once(type: string, listener: Function, thisObject?: any, useCapture?: boolean, priority?: number): void;
 
     /**
-     * @language en_US
      * Removes a listener from the EventDispatcher object. If there is no matching listener registered with the
      * EventDispatcher object, a call to this method has no effect.
      * @param type The type of event.
@@ -125,11 +124,11 @@ export interface IEventDispatcher {
      * are required to remove both: one call with useCapture set to true, and another call with useCapture set to false.
      * @version Egret 2.4
      * @platform Web,Native
+     * @language en_US
      */
     removeEventListener(type: string, listener: Function, thisObject?: any, useCapture?: boolean): void;
 
     /**
-     * @language en_US
      * Checks whether the EventDispatcher object has any listeners registered for a specific type of event. This allows
      * you to determine where an EventDispatcher object has altered handling of an event type in the event flow hierarchy.
      * To determine whether a specific event type will actually trigger an event listener, use IEventDispatcher.willTrigger().
@@ -140,21 +139,21 @@ export interface IEventDispatcher {
      * @see #willTrigger()
      * @version Egret 2.4
      * @platform Web,Native
+     * @language en_US
      */
     hasEventListener(type: string): boolean;
 
     /**
-     * @language en_US
      * Dispatches an event into the event flow. The event target is the EventDispatcher object upon which dispatchEvent() is called.
      * @param event The event object dispatched into the event flow.
      * @returns A value of true unless preventDefault() is called on the event, in which case it returns false.
      * @version Egret 2.4
      * @platform Web,Native
+     * @language en_US
      */
     dispatchEvent(event: IEvent): boolean;
 
     /**
-     * @language en_US
      * Checks whether an event listener is registered with this EventDispatcher object or any of its ancestors for the
      * specified event type. This method returns true if an event listener is triggered during any phase of the event
      * flow when an event of the specified type is dispatched to this EventDispatcher object or any of its descendants.
@@ -163,6 +162,7 @@ export interface IEventDispatcher {
      * @see #hasEventListener()
      * @version Egret 2.4
      * @platform Web,Native
+     * @language en_US
      */
     willTrigger(type: string): boolean;
 }
