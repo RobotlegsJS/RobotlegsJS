@@ -32,7 +32,6 @@
     "no-console": [
       true,
       "debug",
-      "info",
       "time",
       "timeEnd",
       "trace"
@@ -41,6 +40,7 @@
     "no-debugger": true,
     "no-duplicate-variable": true,
     "no-empty": false,
+    "no-empty-interface": false,
     "no-eval": true,
     "no-inferrable-types": false,
     "no-shadowed-variable": true,
@@ -51,7 +51,7 @@
     "no-unused-variable": true,
     "no-use-before-declare": true,
     "no-var-keyword": true,
-    "object-literal-sort-keys": true,
+    "object-literal-sort-keys": false,
     "ordered-imports": false,
     "only-arrow-functions": [ false ],
     "prefer-const": false,
