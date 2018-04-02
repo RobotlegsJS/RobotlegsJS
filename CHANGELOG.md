@@ -31,7 +31,7 @@ Major Breaking Changes:
 
 - **IEvent** interface changed to remove usage of **IEventInit** interface (see #57).
 
-    -- Interface **IEvent** was:
+    - Interface **IEvent** was:
     ```typescript
     export interface IEvent {
         type: string;
@@ -43,7 +43,7 @@ Major Breaking Changes:
     }
     ```
 
-    -- Interface **IEvent** is now:
+    - Interface **IEvent** is now:
     ```typescript
     export interface IEvent {
         type: string;
@@ -63,7 +63,7 @@ Major Breaking Changes:
 
 - Constructor of **Event** class changed to remove usage of **IEventInit** interface (see #57).
 
-    -- Constructor of **Event** class was:
+    - Constructor of **Event** class was:
     ```typescript
     export class Event implements IEvent {
         constructor(type: string, eventInit: IEventInit = { bubbles: false }) {
@@ -75,7 +75,7 @@ Major Breaking Changes:
     }
     ```
 
-    -- Constructor of **Event** is now:
+    - Constructor of **Event** is now:
     ```typescript
     export class Event implements IEvent {
         constructor(type: string, bubbles?: boolean, cancelable?: boolean, data?: any) {
