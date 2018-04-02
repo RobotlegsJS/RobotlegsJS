@@ -15,15 +15,6 @@ import { IType } from "./IType";
 /*============================================================================*/
 
 /**
- * Creates a matcher that matches objects of the given type
- * @param type The type to match
- * @return A matcher
- */
-export function instanceOfType<T>(type: IType<T>): IMatcher {
-    return new InstanceOfTypeMatcher<T>(type);
-}
-
-/**
  * @private
  */
 class InstanceOfTypeMatcher<T> implements IMatcher {
@@ -58,4 +49,13 @@ class InstanceOfTypeMatcher<T> implements IMatcher {
     public matches(item: any): boolean {
         return isInstanceOfType<T>(item, this._type);
     }
+}
+
+/**
+ * Creates a matcher that matches objects of the given type
+ * @param type The type to match
+ * @return A matcher
+ */
+export function instanceOfType<T>(type: IType<T>): IMatcher {
+    return new InstanceOfTypeMatcher<T>(type);
 }
