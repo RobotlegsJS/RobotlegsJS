@@ -5,24 +5,16 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { IMatcher } from "../../framework/api/IMatcher";
+import { IMatcher } from "../api/IMatcher";
 
-import { isInstanceOfType } from "./isInstanceOfType";
-import { IType } from "./IType";
-
-/*============================================================================*/
-/* Public Functions                                                           */
-/*============================================================================*/
-
-/**
- * @private
- */
-class InstanceOfTypeMatcher<T> implements IMatcher {
+export class ObjectHandler {
     /*============================================================================*/
     /* Private Properties                                                         */
     /*============================================================================*/
 
-    private _type: IType<T>;
+    private _matcher: IMatcher;
+
+    private _handler: Function;
 
     /*============================================================================*/
     /* Constructor                                                                */
@@ -31,8 +23,9 @@ class InstanceOfTypeMatcher<T> implements IMatcher {
     /**
      * @private
      */
-    constructor(type: IType<T>) {
-        this._type = type;
+    constructor(matcher: IMatcher, handler: Function) {
+        this._matcher = matcher;
+        this._handler = handler;
     }
 
     /*============================================================================*/
@@ -40,22 +33,11 @@ class InstanceOfTypeMatcher<T> implements IMatcher {
     /*============================================================================*/
 
     /**
-     * Verify if the given item is a instance of this type.
-     *
-     * @param { any } item The item to test
-     * @return { boolean } <code>true</code> if the item is a instance of the type,
-     * <code>false</code> otherwise.
+     * @private
      */
-    public matches(item: any): boolean {
-        return isInstanceOfType<T>(item, this._type);
+    public handle(object: any): void {
+        if (this._matcher.matches(object)) {
+            this._handler(object);
+        }
     }
-}
-
-/**
- * Creates a matcher that matches objects of the given type
- * @param type The type to match
- * @return A matcher
- */
-export function instanceOfType<T>(type: IType<T>): IMatcher {
-    return new InstanceOfTypeMatcher<T>(type);
 }

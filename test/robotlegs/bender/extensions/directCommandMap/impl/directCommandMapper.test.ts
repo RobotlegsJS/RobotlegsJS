@@ -18,7 +18,6 @@ import { IClass } from "../../../../../../src/robotlegs/bender/extensions/matchi
 import { CommandPayload } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/api/CommandPayload";
 import { ICommand } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/api/ICommand";
 import { ICommandExecutor } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/api/ICommandExecutor";
-import { ICommandMapping } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/api/ICommandMapping";
 import { ICommandMappingList } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/api/ICommandMappingList";
 
 import { CommandExecutor } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/impl/CommandExecutor";
@@ -35,8 +34,6 @@ import { PayloadInjectionPointsCommand } from "../../commandCenter/support/Paylo
 import { HappyGuard } from "../../../framework/impl/guardSupport/HappyGuard";
 import { GrumpyGuard } from "../../../framework/impl/guardSupport/GrumpyGuard";
 import { CallbackHook } from "../../../framework/impl/hookSupport/CallbackHook";
-
-import { DirectCommandMapReportingCommand } from "../support/DirectCommandMapReportingCommand";
 
 describe("DirectCommandMapper", () => {
     let context: IContext;

@@ -9,14 +9,8 @@ import "../../../../../entry";
 
 import { assert } from "chai";
 
-import { IContext } from "../../../../../../src/robotlegs/bender/framework/api/IContext";
-import { Context } from "../../../../../../src/robotlegs/bender/framework/impl/Context";
-
 import { IEventMap } from "../../../../../../src/robotlegs/bender/extensions/localEventMap/api/IEventMap";
 import { EventMap } from "../../../../../../src/robotlegs/bender/extensions/localEventMap/impl/EventMap";
-
-import { EventDispatcherExtension } from "../../../../../../src/robotlegs/bender/extensions/eventDispatcher/EventDispatcherExtension";
-import { LocalEventMapExtension } from "../../../../../../src/robotlegs/bender/extensions/localEventMap/LocalEventMapExtension";
 
 describe("DomEventMap", () => {
     const STARTED: string = "started";

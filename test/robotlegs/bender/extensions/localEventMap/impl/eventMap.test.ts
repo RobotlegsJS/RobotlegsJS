@@ -9,19 +9,12 @@ import "../../../../../entry";
 
 import { assert } from "chai";
 
-import { IContext } from "../../../../../../src/robotlegs/bender/framework/api/IContext";
-import { Context } from "../../../../../../src/robotlegs/bender/framework/impl/Context";
-
-import { IEvent } from "../../../../../../src/robotlegs/bender/events/api/IEvent";
 import { IEventDispatcher } from "../../../../../../src/robotlegs/bender/events/api/IEventDispatcher";
 import { Event } from "../../../../../../src/robotlegs/bender/events/impl/Event";
 import { EventDispatcher } from "../../../../../../src/robotlegs/bender/events/impl/EventDispatcher";
 
 import { IEventMap } from "../../../../../../src/robotlegs/bender/extensions/localEventMap/api/IEventMap";
 import { EventMap } from "../../../../../../src/robotlegs/bender/extensions/localEventMap/impl/EventMap";
-
-import { EventDispatcherExtension } from "../../../../../../src/robotlegs/bender/extensions/eventDispatcher/EventDispatcherExtension";
-import { LocalEventMapExtension } from "../../../../../../src/robotlegs/bender/extensions/localEventMap/LocalEventMapExtension";
 
 import { CustomEvent } from "../support/CustomEvent";
 import { CustomEvent2 } from "../support/CustomEvent2";

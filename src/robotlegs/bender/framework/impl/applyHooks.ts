@@ -26,9 +26,7 @@ import { instantiateUnmapped } from "./instantiateUnmapped";
  * @param injector An optional Injector
  */
 export function applyHooks(hooks: any[], injector?: IInjector): void {
-    for (let i = 0; i < hooks.length; i++) {
-        let hook: any = hooks[i];
-
+    for (let hook of hooks) {
         if (typeof hook === "function" && hook.prototype.hook === undefined) {
             (<Function>hook)();
             continue;

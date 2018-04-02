@@ -15,37 +15,55 @@ describe("Event", () => {
     it("event_only_with_type_is_initialized", () => {
         let event: Event = new Event("added");
         assert.equal(event.type, "added");
-        assert.isFalse(event.defaultPrevented);
+        assert.isFalse(event.isDefaultPrevented);
         assert.isFalse(event.bubbles);
-        assert.isUndefined(event.detail);
+        assert.isFalse(event.cancelable);
+        assert.isUndefined(event.data);
     });
 
     it("event_with_type_and_bubbles_is_initialized", () => {
-        let event: Event = new Event("added", { bubbles: true });
+        let event: Event = new Event("added", true);
         assert.equal(event.type, "added");
-        assert.isFalse(event.defaultPrevented);
+        assert.isFalse(event.isDefaultPrevented);
         assert.isTrue(event.bubbles);
-        assert.isUndefined(event.detail);
+        assert.isFalse(event.cancelable);
+        assert.isUndefined(event.data);
     });
 
-    it("event_with_type_and_bubbles_and_detail_is_initialized", () => {
-        let detail: any = {};
-        let event: Event = new Event("added", { bubbles: true, detail });
+    it("event_with_type_and_bubbles_and_cancelable_is_initialized", () => {
+        let event: Event = new Event("added", true, true);
         assert.equal(event.type, "added");
-        assert.isFalse(event.defaultPrevented);
+        assert.isFalse(event.isDefaultPrevented);
         assert.isTrue(event.bubbles);
-        assert.equal(event.detail, detail);
+        assert.isTrue(event.cancelable);
+        assert.isUndefined(event.data);
+    });
+
+    it("event_with_type_and_bubbles_and_cancelable_and_data_is_initialized", () => {
+        let data: any = {};
+        let event: Event = new Event("added", true, true, data);
+        assert.equal(event.type, "added");
+        assert.isFalse(event.isDefaultPrevented);
+        assert.isTrue(event.bubbles);
+        assert.isTrue(event.cancelable);
+        assert.equal(event.data, data);
     });
 
     it("preventDefault_is_called", () => {
-        let event: Event = new Event("added");
+        let event: Event = new Event("added", false, true);
         event.preventDefault();
-        assert.isTrue(event.defaultPrevented);
+        assert.isTrue(event.isDefaultPrevented);
     });
 
     it("stopPropagation_is_called", () => {
-        let event: Event = new Event("added", { bubbles: true });
+        let event: Event = new Event("added", true);
         event.stopPropagation();
-        assert.isFalse(event.bubbles);
+        assert.isTrue(event.isPropagationStopped);
+    });
+
+    it("stopImmediatePropagation_is_called", () => {
+        let event: Event = new Event("added", true);
+        event.stopImmediatePropagation();
+        assert.isTrue(event.isPropagationImmediateStopped);
     });
 });

@@ -268,8 +268,7 @@ describe("MessageDispatcher", () => {
     it("sync handlers should run in order", () => {
         let expected: string[] = ["A", "B", "C", "D"];
         let results: string[] = [];
-        for (let i: number = 0; i < expected.length; i++) {
-            let id: string = expected[i];
+        for (const id of expected) {
             dispatcher.addMessageHandler(message, createHandler(results.push.bind(results), id));
         }
         dispatcher.dispatchMessage(message);
@@ -279,8 +278,7 @@ describe("MessageDispatcher", () => {
     it("sync handlers should run in reverse order", () => {
         let expected: string[] = ["A", "B", "C", "D"];
         let results: string[] = [];
-        for (let i: number = 0; i < expected.length; i++) {
-            let id: string = expected[i];
+        for (const id of expected) {
             dispatcher.addMessageHandler(message, createHandler(results.push.bind(results), id));
         }
         dispatcher.dispatchMessage(message, null, true);
@@ -290,8 +288,7 @@ describe("MessageDispatcher", () => {
     it("async handlers should run in order", (done: Function) => {
         let expected: string[] = ["A", "B", "C", "D"];
         let results: string[] = [];
-        for (let i: number = 0; i < expected.length; i++) {
-            let id: string = expected[i];
+        for (const id of expected) {
             dispatcher.addMessageHandler(message, createAsyncHandler(results.push.bind(results), id));
         }
         dispatcher.dispatchMessage(message);
@@ -304,8 +301,7 @@ describe("MessageDispatcher", () => {
     it("async handlers should run in reverse order when reversed", (done: Function) => {
         let expected: string[] = ["A", "B", "C", "D"];
         let results: string[] = [];
-        for (let i: number = 0; i < expected.length; i++) {
-            let id: string = expected[i];
+        for (const id of expected) {
             dispatcher.addMessageHandler(message, createAsyncHandler(results.push.bind(results), id));
         }
         dispatcher.dispatchMessage(message, null, true);

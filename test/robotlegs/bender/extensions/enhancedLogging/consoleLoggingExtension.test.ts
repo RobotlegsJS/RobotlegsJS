@@ -9,8 +9,6 @@ import "../../../../entry";
 
 import sinon = require("sinon");
 
-import { assert } from "chai";
-
 import { IContext } from "../../../../../src/robotlegs/bender/framework/api/IContext";
 import { Context } from "../../../../../src/robotlegs/bender/framework/impl/Context";
 

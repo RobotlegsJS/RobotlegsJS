@@ -9,7 +9,6 @@ import { injectable, inject, named } from "inversify";
 
 import { IGuard } from "../../../../../../src/robotlegs/bender/framework/api/IGuard";
 import { Event } from "../../../../../../src/robotlegs/bender/events/impl/Event";
-import { ICommand } from "../../../../../../src/robotlegs/bender/extensions/commandCenter/api/ICommand";
 
 @injectable()
 export class EventInjectedCallbackGuard implements IGuard {

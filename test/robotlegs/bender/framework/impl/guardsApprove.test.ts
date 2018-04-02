@@ -35,7 +35,7 @@ describe("guardsApprove", () => {
     }
 
     let falseyGuardObject: object = {
-        approve: function(): number {
+        approve: (): number => {
             return 0;
         }
     };

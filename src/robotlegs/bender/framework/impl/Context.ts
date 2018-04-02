@@ -7,6 +7,7 @@
 
 import { injectable } from "inversify";
 
+import { IBundle } from "../api/IBundle";
 import { IConfig } from "../api/IConfig";
 import { IContext } from "../api/IContext";
 import { IExtension } from "../api/IExtension";
@@ -25,6 +26,8 @@ import { RobotlegsInjector } from "./RobotlegsInjector";
 import { UID } from "./UID";
 
 import { EventDispatcher } from "../../events/impl/EventDispatcher";
+
+import { IClass } from "../../extensions/matching/IClass";
 
 /*[Event(name="destroy", type="robotlegs.bender.framework.api.LifecycleEvent")]*/
 /*[Event(name="detain", type="robotlegs.bender.framework.api.PinEvent")]*/
@@ -279,22 +282,20 @@ export class Context extends EventDispatcher implements IContext {
     /**
      * @inheritDoc
      */
-    public install(...extensions: any[]): IContext {
-        for (let i: number = 0; i < extensions.length; i++) {
-            let extension: IExtension = extensions[i];
+    public install(...extensions: Array<IBundle | IClass<IBundle> | IExtension | IClass<IExtension>>): IContext {
+        extensions.forEach((extension: IBundle | IClass<IBundle> | IExtension | IClass<IExtension>) => {
             this._extensionInstaller.install(extension);
-        }
+        });
         return this;
     }
 
     /**
      * @inheritDoc
      */
-    public configure(...configs: any[]): IContext {
-        for (let i: number = 0; i < configs.length; i++) {
-            let config: IConfig = configs[i];
+    public configure(...configs: Array<IConfig | IClass<IConfig>>): IContext {
+        configs.forEach((config: IConfig | IClass<IConfig>) => {
             this._configManager.addConfig(config);
-        }
+        });
         return this;
     }
 
@@ -360,10 +361,9 @@ export class Context extends EventDispatcher implements IContext {
      * @inheritDoc
      */
     public detain(...instances: any[]): IContext {
-        for (let i: number = 0; i < instances.length; i++) {
-            let instance: any = instances[i];
+        instances.forEach((instance: any) => {
             this._pin.detain(instance);
-        }
+        });
         return this;
     }
 
@@ -371,10 +371,9 @@ export class Context extends EventDispatcher implements IContext {
      * @inheritDoc
      */
     public release(...instances: any[]): IContext {
-        for (let i: number = 0; i < instances.length; i++) {
-            let instance: any = instances[i];
+        instances.forEach((instance: any) => {
             this._pin.release(instance);
-        }
+        });
         return this;
     }
 

@@ -316,10 +316,9 @@ export class Lifecycle implements ILifecycle {
     }
 
     public addReversedEventTypes(...types: any[]): void {
-        for (let i: number = 0; i < types.length; i++) {
-            let type = types[i];
+        types.forEach((type: any) => {
             this._reversedEventTypes.set(type, true);
-        }
+        });
     }
 
     /*============================================================================*/
