@@ -22,13 +22,17 @@
 
 - [ ] Migrate [original documentation](https://github.com/robotlegs/robotlegs-framework/blob/master/src/readme.md) and adapt it to TypeScript.
 
-## Robotlegs-Core 0.1.0
+## Robotlegs-Core 0.2.0
 
-### v0.1.4
+### v0.2.0
+
+- Enforce TSLint rules (see #57).
 
 - Update TypeScript Compiler Options (see #56).
 
 - Update dev dependencies to latest version.
+
+## Robotlegs-Core 0.1.0
 
 ### [v0.1.3](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/0.1.3) - 2018-03-04
 
