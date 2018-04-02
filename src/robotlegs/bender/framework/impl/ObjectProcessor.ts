@@ -7,6 +7,8 @@
 
 import { IMatcher } from "../api/IMatcher";
 
+import { ObjectHandler } from "./ObjectHandler";
+
 /**
  * Robotlegs object processor
  *
@@ -48,40 +50,5 @@ export class ObjectProcessor {
      */
     public removeAllHandlers(): void {
         this._handlers.length = 0;
-    }
-}
-
-class ObjectHandler {
-    /*============================================================================*/
-    /* Private Properties                                                         */
-    /*============================================================================*/
-
-    private _matcher: IMatcher;
-
-    private _handler: Function;
-
-    /*============================================================================*/
-    /* Constructor                                                                */
-    /*============================================================================*/
-
-    /**
-     * @private
-     */
-    constructor(matcher: IMatcher, handler: Function) {
-        this._matcher = matcher;
-        this._handler = handler;
-    }
-
-    /*============================================================================*/
-    /* Public Functions                                                           */
-    /*============================================================================*/
-
-    /**
-     * @private
-     */
-    public handle(object: any): void {
-        if (this._matcher.matches(object)) {
-            this._handler(object);
-        }
     }
 }
