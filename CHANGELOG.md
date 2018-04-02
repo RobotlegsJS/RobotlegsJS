@@ -26,6 +26,8 @@
 
 ### v0.1.4
 
+- Update TypeScript Compiler Options (see #56).
+
 - Update dev dependencies to latest version.
 
 ### [v0.1.3](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/0.1.3) - 2018-03-04

@@ -42,7 +42,7 @@ export class CommandTriggerMap {
     /**
      * @private
      */
-    public getTrigger(...params): ICommandTrigger {
+    public getTrigger(...params: any[]): ICommandTrigger {
         let key: any = this.getKey(params);
         let trigger = this._triggers.get(key);
         if (!trigger) {
@@ -55,7 +55,7 @@ export class CommandTriggerMap {
     /**
      * @private
      */
-    public removeTrigger(...params): ICommandTrigger {
+    public removeTrigger(...params: any[]): ICommandTrigger {
         return this.destroyTrigger(this.getKey(params));
     }
 

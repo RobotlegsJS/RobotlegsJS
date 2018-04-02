@@ -4,19 +4,21 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = (env => {
 
-  if (!env) env = {production: false};
+  if (!env) env = { production: false, karma: false };
 
-  let tsconfig = env.production ? "tsconfig.json" : "tsconfig.test.json";
+  let mode = env.production ? "production" : "development";
+  let tsconfig = !env.karma ? "tsconfig.json" : "tsconfig.test.json";
+  let output = env.production ? "dist" : "dev";
   let filename = env.production ? "robotlegs.min.js" : "robotlegs.js";
 
   return {
-    mode: env.production ? "production" : "development",
+    mode: mode,
     entry: {
       main: path.join(__dirname, "src/index.ts")
     },
 
     output: {
-      path: path.join(__dirname, "dist"),
+      path: path.join(__dirname, output),
       filename: filename,
 
       libraryTarget: "var",

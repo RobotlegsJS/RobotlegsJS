@@ -2,6 +2,7 @@
 /.nyc_output
 /.vscode
 /coverage
+/dev
 /docs
 /media
 /lib/test

@@ -131,14 +131,14 @@ export interface IContext extends IEventDispatcher {
      * @param instances Instances to pin
      * @return this
      */
-    detain(...instances): IContext;
+    detain(...instances: any[]): IContext;
 
     /**
      * Unpins instances from memory
      * @param instances Instances to unpin
      * @return this
      */
-    release(...instances): IContext;
+    release(...instances: any[]): IContext;
 
     /**
      * Initializes this context
