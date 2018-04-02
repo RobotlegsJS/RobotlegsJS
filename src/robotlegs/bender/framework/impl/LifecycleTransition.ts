@@ -65,7 +65,7 @@ export class LifecycleTransition {
      * @param states Allowed states
      * @return Self
      */
-    public fromStates(...states): LifecycleTransition {
+    public fromStates(...states: any[]): LifecycleTransition {
         for (let i: number = 0; i < states.length; i++) {
             let state = states[i];
             this._fromStates.push(state);
@@ -163,7 +163,7 @@ export class LifecycleTransition {
         // run before handlers
         this._dispatcher.dispatchMessage(
             this._name,
-            function(error: any): void {
+            (error: any): void => {
                 // revert state, report error, and exit
                 if (error) {
                     this.setState(initialState);
@@ -189,7 +189,7 @@ export class LifecycleTransition {
 
                 // dispatch post transition event
                 this.dispatch(this._postTransitionEvent);
-            }.bind(this),
+            },
             this._reverse
         );
     }

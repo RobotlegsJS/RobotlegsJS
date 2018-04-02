@@ -7,7 +7,6 @@
 
 import { IBundle } from "../../framework/api/IBundle";
 import { IContext } from "../../framework/api/IContext";
-import { LogLevel } from "../../framework/api/LogLevel";
 
 import { DirectCommandMapExtension } from "../../extensions/directCommandMap/DirectCommandMapExtension";
 import { InjectableLoggerExtension } from "../../extensions/enhancedLogging/InjectableLoggerExtension";

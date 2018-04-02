@@ -82,7 +82,7 @@ export class EventDispatcher implements IEventDispatcher {
     /**
      * @private
      */
-    $EventDispatcher: Object;
+    $EventDispatcher: any;
 
     /**
      * @private
@@ -181,7 +181,7 @@ export class EventDispatcher implements IEventDispatcher {
      */
     public removeEventListener(type: string, listener: Function, thisObject?: any, useCapture?: boolean): void {
         var values = this.$EventDispatcher;
-        var eventMap: Object = useCapture ? values[Keys.captureEventsMap] : values[Keys.eventsMap];
+        var eventMap: any = useCapture ? values[Keys.captureEventsMap] : values[Keys.eventsMap];
         var list: EventBin[] = eventMap[type];
         if (!list) {
             return;
@@ -245,7 +245,7 @@ export class EventDispatcher implements IEventDispatcher {
      */
     $notifyListener(event: IEvent, capturePhase: boolean): boolean {
         var values = this.$EventDispatcher;
-        var eventMap: Object = capturePhase ? values[Keys.captureEventsMap] : values[Keys.eventsMap];
+        var eventMap: any = capturePhase ? values[Keys.captureEventsMap] : values[Keys.eventsMap];
         var list: EventBin[] = eventMap[event.type];
         if (!list) {
             return true;
