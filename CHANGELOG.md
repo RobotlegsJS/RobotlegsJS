@@ -31,10 +31,60 @@ Major Breaking Changes:
 
 - **IEvent** interface changed to remove usage of **IEventInit** interface (see #57).
 
-- Constructor of **Event** class changed to remove usage of **IEventInit** interface
-
+    -- Interface **IEvent** was:
     ```typescript
-    constructor(type: string, bubbles?: boolean, cancelable?: boolean, data?: any)
+    export interface IEvent {
+        type: string;
+        defaultPrevented?: boolean;
+        bubbles?: boolean;
+        target?: any;
+        currentTarget?: any;
+        detail?: any;
+    }
+    ```
+
+    -- Interface **IEvent** is now:
+    ```typescript
+    export interface IEvent {
+        type: string;
+        bubbles?: boolean;
+        cancelable?: boolean;
+        isDefaultPrevented?: boolean;
+        isPropagationStopped?: boolean;
+        isPropagationImmediateStopped?: boolean;
+        currentTarget?: any;
+        target?: any;
+        data?: any;
+        preventDefault(): void;
+        stopPropagation(): void;
+        stopImmediatePropagation(): void;
+    }
+    ```
+
+- Constructor of **Event** class changed to remove usage of **IEventInit** interface (see #57).
+
+    -- Constructor of **Event** class was:
+    ```typescript
+    export class Event implements IEvent {
+        constructor(type: string, eventInit: IEventInit = { bubbles: false }) {
+            this.type = type;
+            this.defaultPrevented = false;
+            this.bubbles = eventInit.bubbles;
+            this.detail = eventInit.detail;
+        }
+    }
+    ```
+
+    -- Constructor of **Event** is now:
+    ```typescript
+    export class Event implements IEvent {
+        constructor(type: string, bubbles?: boolean, cancelable?: boolean, data?: any) {
+            this._type = type;
+            this._bubbles = !!bubbles;
+            this._cancelable = !!cancelable;
+            this._data = data;
+        }
+    }
     ```
 
 Features Or Improvements:
