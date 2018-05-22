@@ -90,6 +90,8 @@ Major Breaking Changes:
 Features Or Improvements:
 ---
 
+- Update Inversify to version 4.13.0 (see #61).
+
 - Enforce TSLint rules (see #57).
 
 - Update TypeScript Compiler Options (see #56).
