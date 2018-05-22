@@ -14,7 +14,7 @@
  * and then invokes the supplied closure with the given params
  * (if provided) and finally calls back.
  */
-export function createAsyncHandler(closure: Function = null, ...params): Function {
+export function createAsyncHandler(closure: Function = null, ...params: any[]): Function {
     return function(message: any, callback: Function): void {
         setTimeout(function(): void {
             if (closure) {

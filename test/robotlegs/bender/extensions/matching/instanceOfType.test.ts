@@ -31,7 +31,7 @@ describe("instanceOfType", () => {
             function args(arg: number) {
                 return arg;
             },
-            x => {
+            (x: any) => {
                 console.log(`x = ${x}`);
             },
             console.log,

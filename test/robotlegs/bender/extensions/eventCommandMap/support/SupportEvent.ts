@@ -28,7 +28,7 @@ export class SupportEvent extends Event {
      * @param type The event type
      */
     constructor(type: string) {
-        super(type, { bubbles: true });
+        super(type, true);
     }
 
     /*============================================================================*/

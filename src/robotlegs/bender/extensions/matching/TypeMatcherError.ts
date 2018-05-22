@@ -14,7 +14,7 @@ export class TypeMatcherError extends Error {
     /*============================================================================*/
 
     public static EMPTY_MATCHER: string = "An empty matcher will create a filter which matches nothing. " +
-        "You should specify at least one condition for the filter.";
+    "You should specify at least one condition for the filter.";
 
     public static SEALED_MATCHER: string = "This matcher has been sealed and can no longer be configured.";
 

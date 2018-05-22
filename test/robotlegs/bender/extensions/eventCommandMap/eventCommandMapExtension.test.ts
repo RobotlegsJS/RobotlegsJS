@@ -20,11 +20,9 @@ import { EventCommandMap } from "../../../../../src/robotlegs/bender/extensions/
 import { EventCommandMapExtension } from "../../../../../src/robotlegs/bender/extensions/eventCommandMap/EventCommandMapExtension";
 
 describe("EventCommandMapExtension", () => {
-    let eventDispatcher: IEventDispatcher;
     let context: IContext;
 
     beforeEach(() => {
-        eventDispatcher = new EventDispatcher();
         context = new Context();
         context.injector.bind(IEventDispatcher).toConstantValue(new EventDispatcher());
     });
@@ -32,7 +30,6 @@ describe("EventCommandMapExtension", () => {
     afterEach(() => {
         context.destroy();
         context = null;
-        eventDispatcher = null;
     });
 
     it("eventCommandMap_is_mapped_into_injector", () => {
