@@ -125,7 +125,7 @@ describe("DirectCommandMap", () => {
     it("detains_command", () => {
         let command: IClass<ICommand> = NullCommand;
         let wasDetained: boolean = false;
-        let handler: Function = function(...params): void {
+        let handler: Function = function(...params: any[]): void {
             wasDetained = true;
         };
 
@@ -139,7 +139,7 @@ describe("DirectCommandMap", () => {
     it("releases_command", () => {
         let command: IClass<ICommand> = NullCommand;
         let wasReleased: boolean = false;
-        let handler: Function = function(...params): void {
+        let handler: Function = function(...params: any[]): void {
             wasReleased = true;
         };
 

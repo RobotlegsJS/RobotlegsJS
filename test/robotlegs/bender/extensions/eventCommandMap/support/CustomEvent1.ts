@@ -28,7 +28,7 @@ export class CustomEvent1 extends Event {
      * @param type The event type
      */
     constructor(type: string) {
-        super(type, { bubbles: true });
+        super(type, true);
     }
 
     /*============================================================================*/

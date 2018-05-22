@@ -14,7 +14,7 @@
  * that invokes the supplied closure with the given params
  * (if provided).
  */
-export function createHandler(closure: Function = null, ...params): Function {
+export function createHandler(closure: Function = null, ...params: any[]): Function {
     return function(): void {
         if (closure) {
             closure.apply(null, params);
