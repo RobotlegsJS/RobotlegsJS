@@ -35,9 +35,9 @@
   version "5.2.0"
   resolved "https://registry.npmjs.org/@types/mocha/-/mocha-5.2.0.tgz#b3c8e69f038835db1a7fdc0b3d879fc50506e29e"
 
-"@types/sinon@^4.3.3":
-  version "4.3.3"
-  resolved "https://registry.npmjs.org/@types/sinon/-/sinon-4.3.3.tgz#97cbbfddc3282b5fd40c7abf80b99db426fd4237"
+"@types/sinon@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.npmjs.org/@types/sinon/-/sinon-5.0.0.tgz#e5d49a422f64b2c658bbeb8529679c9a6a0b5a3a"
 
 "@webassemblyjs/ast@1.4.3":
   version "1.4.3"
