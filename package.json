@@ -99,7 +99,7 @@
     "mocha": "^5.2.0",
     "nyc": "^11.8.0",
     "prettier": "^1.12.1",
-    "publish-please": "^2.4.1",
+    "publish-please": "^3.0.0",
     "reflect-metadata": "^0.1.12",
     "remap-istanbul": "^0.11.1",
     "rimraf": "^2.6.2",
