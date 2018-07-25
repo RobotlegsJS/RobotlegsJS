@@ -48,7 +48,6 @@
     "no-switch-case-fall-through": false,
     "no-this-assignment": false,
     "no-unused-expression": true,
-    "no-unused-variable": true,
     "no-use-before-declare": true,
     "no-var-keyword": true,
     "object-literal-sort-keys": false,
