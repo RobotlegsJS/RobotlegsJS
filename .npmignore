@@ -21,6 +21,7 @@ tsconfig.json
 tsconfig.test.json
 tsfmt.json
 tslint.json
+tslint.test.json
 typings.json
 webpack.config.js
 yarn.lock
