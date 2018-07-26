@@ -2,18 +2,24 @@
   "compilerOptions": {
     "outDir": "lib",
     "target": "es5",
-    "lib": ["es6", "dom"],
+    "lib": ["es7", "dom"],
     "types": ["reflect-metadata"],
+    "sourceMap": true,
+    "inlineSources": true,
     "module": "commonjs",
     "moduleResolution": "node",
-    "declaration": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "noImplicitAny": true,
-    "noUnusedParameters": false,
-    "noUnusedLocals": true,
     "removeComments": true,
-    "sourceMap": false
+    "strict": false,
+    "noImplicitAny": true,
+    "strictNullChecks": false,
+    "noImplicitThis": false,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true
   },
   "include": [
     "./src/**/*.ts"
