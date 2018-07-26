@@ -1,13 +1,11 @@
 process.env.TEST = true;
-process.env.NODE_ENV = 'test';
+process.env.NODE_ENV = "test";
 
-const webpack = require("webpack");
-const path = require("path");
-const webpackConfig = require('./webpack.config.js')({ production: false, karma: true });
+const webpackConfig = require("./webpack.config.js")({ production: false, karma: true });
 
 delete webpackConfig.entry;
 
-module.exports = function(config) {
+module.exports = config => {
 
   var configuration = {
     basePath: "",
@@ -35,12 +33,12 @@ module.exports = function(config) {
       "karma-webpack",
       "karma-sourcemap-writer",
       "karma-sourcemap-loader",
+      "karma-remap-istanbul",
       "karma-mocha-reporter",
       "karma-mocha",
       "karma-chai",
       "karma-sinon",
       "karma-es6-shim",
-      "karma-remap-istanbul",
       "karma-coverage-istanbul-reporter"
     ],
     reporters: (
@@ -66,10 +64,10 @@ module.exports = function(config) {
   };
 
   if (process.env.TRAVIS) {
-    configuration.browsers = ['PhantomJS'];
+    configuration.browsers.push("PhantomJS");
     configuration.plugins.push("karma-phantomjs-launcher");
   } else {
-    configuration.browsers = ['PhantomJS'];
+    configuration.browsers.push("PhantomJS");
     configuration.plugins.push("karma-phantomjs-launcher");
   }
 
