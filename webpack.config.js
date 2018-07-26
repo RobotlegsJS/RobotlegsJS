@@ -1,18 +1,19 @@
-const webpack = require('webpack');
-const path = require('path');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const webpack = require("webpack");
+const path = require("path");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
-module.exports = (env => {
+module.exports = env => {
 
   if (!env) env = { production: false, karma: false };
 
   let mode = env.production ? "production" : "development";
   let tsconfig = !env.karma ? "tsconfig.json" : "tsconfig.test.json";
-  let output = env.production ? "dist" : "dev";
+  let output = env.production ? "dist" : "dist-test";
   let filename = env.production ? "robotlegs.min.js" : "robotlegs.js";
 
   return {
     mode: mode,
+
     entry: {
       main: path.join(__dirname, "src/index.ts")
     },
@@ -48,12 +49,32 @@ module.exports = (env => {
 
     plugins: (
       (env.production)
-        ? [ new UglifyJSPlugin() ]
+        ? []
         : [ new webpack.SourceMapDevToolPlugin({ test: /\.ts$/i }) ]
     ),
 
+    optimization:
+      (env.production)
+        ? {
+            concatenateModules: true,
+            minimize: true,
+            minimizer: [
+              new UglifyJsPlugin({
+                cache: true,
+                parallel: 4,
+                uglifyOptions: {
+                  output: {
+                    comments: false
+                  }
+                }
+              })
+            ]
+          }
+        : {}
+    ,
+
     resolve: {
-      extensions: ['.ts', '.js', '.json']
+      extensions: [".ts", ".js", ".json"]
     }
   }
-});
+};
