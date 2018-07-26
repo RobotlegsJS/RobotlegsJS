@@ -1,12 +1,11 @@
 .idea
 .nyc_output
-build
-dev
-lib
-node_modules
-typings
 coverage
-inversify.d.ts
+dist/lib
+dist-test
+lib
+lib-test
+node_modules
 *.as
 *.iml
 src/**/*.js
@@ -14,3 +13,4 @@ src/**/*.js.map
 test/**/*.js
 test/**/*.js.map
 npm-debug.log
+yarn-error.log
