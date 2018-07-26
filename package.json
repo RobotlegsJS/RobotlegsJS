@@ -13,11 +13,12 @@
     "tslint:src": "tslint --project tsconfig.json",
     "tslint:test": "tslint --config tslint.test.json --project tsconfig.test.json",
     "tslint": "npm run tslint-check:src && npm run tslint-check:test && npm run tslint:src && npm run tslint:test",
-    "clean-up": "rimraf .nyc_output && rimraf coverage && rimraf lib",
-    "compile": "tsc -d",
+    "clean-up": "rimraf .nyc_output && rimraf coverage && rimraf lib && rimraf lib-test && rimraf dist-test",
+    "compile:src": "tsc -d --importHelpers",
+    "compile:test": "tsc -p tsconfig.test.json -d --importHelpers",
     "dev": "webpack",
     "build": "webpack --env.production",
-    "prepare": "npm run clean-up && npm run compile",
+    "prepare": "npm run clean-up && npm run compile:src",
     "prepublishOnly": "publish-please guard",
     "publish-please": "npm run tslint && npm run autoformat && npm run clean-up && npm run test && publish-please"
   },
@@ -64,7 +65,8 @@
   },
   "homepage": "https://github.com/RobotlegsJS/RobotlegsJS#readme",
   "dependencies": {
-    "inversify": "^4.13.0"
+    "inversify": "^4.13.0",
+    "tslib": "^1.9.3"
   },
   "devDependencies": {
     "@types/bluebird": "^3.5.23",
@@ -84,7 +86,6 @@
     "jsdom-global": "^3.0.2",
     "karma": "^2.0.5",
     "karma-chai": "^0.1.0",
-    "karma-chai-sinon": "^0.1.5",
     "karma-chrome-launcher": "^2.2.0",
     "karma-coverage-istanbul-reporter": "^2.0.1",
     "karma-es6-shim": "^1.0.0",
@@ -93,6 +94,7 @@
     "karma-phantomjs-launcher": "^1.0.4",
     "karma-remap-istanbul": "^0.6.0",
     "karma-sinon": "^1.0.5",
+    "karma-sinon-chai": "^2.0.2",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-sourcemap-writer": "^0.1.2",
     "karma-webpack": "^3.0.0",
