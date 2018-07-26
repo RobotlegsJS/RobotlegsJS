@@ -1,6 +1,7 @@
 RobotlegsJS <img src="media/robotlegs.png?raw=true" width="30" height="30" />
 ===
 
+[![GitHub license](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/RobotlegsJS/RobotlegsJS/blob/master/LICENSE)
 [![Gitter chat](https://badges.gitter.im/RobotlegsJS/RobotlegsJS.svg)](https://gitter.im/RobotlegsJS/RobotlegsJS)
 [![Build Status](https://secure.travis-ci.org/RobotlegsJS/RobotlegsJS.svg?branch=master)](https://travis-ci.org/RobotlegsJS/RobotlegsJS)
 [![codebeat badge](https://codebeat.co/badges/71e222e9-851f-456d-85da-191686af0be5)](https://codebeat.co/projects/github-com-robotlegsjs-robotlegsjs-master)

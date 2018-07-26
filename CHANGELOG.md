@@ -96,6 +96,8 @@ Features Or Improvements:
 
 - Update TypeScript Compiler Options (see #56).
 
+- Adopts year-agnostic copyright message (see #70).
+
 - Update dev dependencies to latest version.
 
 ## Robotlegs-Core 0.1.0
