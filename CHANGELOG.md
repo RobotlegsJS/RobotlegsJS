@@ -94,7 +94,9 @@ Features Or Improvements:
 
 - Enforce TSLint rules (see #57).
 
-- Update TypeScript Compiler Options (see #56).
+- Update TypeScript Compiler Options to be more strict and to generate inline source maps (see #56, #71).
+
+- Use [tslib](https://github.com/Microsoft/tslib) library to avoid duplicated declarations (see #71).
 
 - Adopts year-agnostic copyright message (see #70).
 
