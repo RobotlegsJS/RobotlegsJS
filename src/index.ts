@@ -8,7 +8,20 @@
 /*
  * Dependency injection
  */
-export { injectable, inject } from "inversify";
+export {
+    ContainerModule,
+    decorate,
+    inject,
+    injectable,
+    interfaces,
+    multiInject,
+    named,
+    optional,
+    postConstruct,
+    tagged,
+    targetName,
+    unmanaged
+} from "inversify";
 
 /**
  * Framework API
@@ -41,6 +54,7 @@ export { LifecycleTransition } from "./robotlegs/bender/framework/impl/Lifecycle
 export { Logger } from "./robotlegs/bender/framework/impl/Logger";
 export { LogManager } from "./robotlegs/bender/framework/impl/LogManager";
 export { MessageDispatcher } from "./robotlegs/bender/framework/impl/MessageDispatcher";
+export { MessageRunner } from "./robotlegs/bender/framework/impl/MessageRunner";
 export { ObjectProcessor } from "./robotlegs/bender/framework/impl/ObjectProcessor";
 export { Pin } from "./robotlegs/bender/framework/impl/Pin";
 export { RobotlegsInjector } from "./robotlegs/bender/framework/impl/RobotlegsInjector";
@@ -87,31 +101,49 @@ export { NullCommandTrigger } from "./robotlegs/bender/extensions/commandCenter/
 
 // DirectCommandMap
 export { IDirectCommandMap } from "./robotlegs/bender/extensions/directCommandMap/api/IDirectCommandMap";
+export { IDirectCommandMapper } from "./robotlegs/bender/extensions/directCommandMap/api/IDirectCommandMapper";
+export { IDirectCommandConfigurator } from "./robotlegs/bender/extensions/directCommandMap/dsl/IDirectCommandConfigurator";
+export { DirectCommandMap } from "./robotlegs/bender/extensions/directCommandMap/impl/DirectCommandMap";
+export { DirectCommandMapper } from "./robotlegs/bender/extensions/directCommandMap/impl/DirectCommandMapper";
 export { DirectCommandMapExtension } from "./robotlegs/bender/extensions/directCommandMap/DirectCommandMapExtension";
 
 // EnhancedLogging
+export { ConsoleLogTarget } from "./robotlegs/bender/extensions/enhancedLogging/impl/ConsoleLogTarget";
+export { LogMessageParser } from "./robotlegs/bender/extensions/enhancedLogging/impl/LogMessageParser";
 export { ConsoleLoggingExtension } from "./robotlegs/bender/extensions/enhancedLogging/ConsoleLoggingExtension";
 export { InjectableLoggerExtension } from "./robotlegs/bender/extensions/enhancedLogging/InjectableLoggerExtension";
 
 // EventCommandMap
 export { IEventCommandMap } from "./robotlegs/bender/extensions/eventCommandMap/api/IEventCommandMap";
+export { EventCommandMap } from "./robotlegs/bender/extensions/eventCommandMap/impl/EventCommandMap";
+export { EventCommandTrigger } from "./robotlegs/bender/extensions/eventCommandMap/impl/EventCommandTrigger";
 export { EventCommandMapExtension } from "./robotlegs/bender/extensions/eventCommandMap/EventCommandMapExtension";
 
 // EventDispatcher
+export { EventRelay } from "./robotlegs/bender/extensions/eventDispatcher/impl/EventRelay";
+export { LifecycleEventRelay } from "./robotlegs/bender/extensions/eventDispatcher/impl/LifecycleEventRelay";
 export { EventDispatcherExtension } from "./robotlegs/bender/extensions/eventDispatcher/EventDispatcherExtension";
 
 // LocalEventMap
 export { IEventMap } from "./robotlegs/bender/extensions/localEventMap/api/IEventMap";
+export { DomEventMapConfig } from "./robotlegs/bender/extensions/localEventMap/impl/DomEventMapConfig";
+export { EventMap } from "./robotlegs/bender/extensions/localEventMap/impl/EventMap";
+export { EventMapConfig } from "./robotlegs/bender/extensions/localEventMap/impl/EventMapConfig";
 export { LocalEventMapExtension } from "./robotlegs/bender/extensions/localEventMap/LocalEventMapExtension";
 
 // Matching
 export { IClass } from "./robotlegs/bender/extensions/matching/IClass";
 export { IType } from "./robotlegs/bender/extensions/matching/IType";
-export { instanceOfType } from "./robotlegs/bender/extensions/matching/instanceOfType";
-export { isInstanceOfType } from "./robotlegs/bender/extensions/matching/isInstanceOfType";
 export { ITypeFilter } from "./robotlegs/bender/extensions/matching/ITypeFilter";
 export { ITypeMatcher } from "./robotlegs/bender/extensions/matching/ITypeMatcher";
+export { ITypeMatcherFactory } from "./robotlegs/bender/extensions/matching/ITypeMatcherFactory";
+export { TypeFilter } from "./robotlegs/bender/extensions/matching/TypeFilter";
 export { TypeMatcher } from "./robotlegs/bender/extensions/matching/TypeMatcher";
+export { TypeMatcherError } from "./robotlegs/bender/extensions/matching/TypeMatcherError";
+
+// Matching helpers
+export { instanceOfType } from "./robotlegs/bender/extensions/matching/instanceOfType";
+export { isInstanceOfType } from "./robotlegs/bender/extensions/matching/isInstanceOfType";
 
 /**
  * Bundles
