@@ -100,6 +100,8 @@ Features Or Improvements:
 
 - Adopts year-agnostic copyright message (see #70).
 
+- Improve public API, exposing more classes on index (see #72).
+
 - Update dev dependencies to latest version.
 
 ## Robotlegs-Core 0.1.0
