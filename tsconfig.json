@@ -10,7 +10,7 @@
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "removeComments": true,
+    "removeComments": false,
     "strict": false,
     "noImplicitAny": true,
     "strictNullChecks": false,
