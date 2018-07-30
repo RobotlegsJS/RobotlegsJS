@@ -102,6 +102,8 @@ Features Or Improvements:
 
 - Improve public API, exposing more classes on index (see #72).
 
+- Disable **removeComments** flag in **tsconfig.json** file, allowing comments to appear in output (see #73)
+
 - Update dev dependencies to latest version.
 
 ## Robotlegs-Core 0.1.0
