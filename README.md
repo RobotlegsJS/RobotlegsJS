@@ -38,17 +38,22 @@ Right now, this framework has extensions for [pixi.js v4](https://github.com/pix
 Installation
 ===
 
-You can get the latest release and the type definitions using npm:
+You can get the latest release and the type definitions using [NPM](https://www.npmjs.com/):
 
-```
+```bash
 npm install @robotlegsjs/core reflect-metadata --save
 ```
 
-RobotlegsJS requires TypeScript 2.0 and the `experimentalDecorators`,
-`emitDecoratorMetadata`, `types` and `lib` compilation options in your
-`tsconfig.json` file:
+Or using [Yarn](https://yarnpkg.com/en/):
 
-```json
+```bash
+yarn add @robotlegsjs/core reflect-metadata
+````
+
+> :warning: **Important!** RobotlegsJS requires TypeScript >= 2.0 and the `experimentalDecorators`, `emitDecoratorMetadata`, `types` and `lib`
+compilation options in your `tsconfig.json` file.
+
+```js
 {
     "compilerOptions": {
         "target": "es5",
@@ -61,6 +66,15 @@ RobotlegsJS requires TypeScript 2.0 and the `experimentalDecorators`,
     }
 }
 ```
+
+RobotlegsJS requires a modern JavaScript engine with support for:
+
+- [Reflect metadata](https://rbuckton.github.io/reflect-metadata/)
+- [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
+
+If your environment doesn't support one of these you will need to import a shim or polyfill.
+
+> :warning: **The `reflect-metadata` polyfill should be imported only once in your entire application** because the Reflect object is mean to be a global singleton. More details about this can be found [here](https://github.com/inversify/InversifyJS/issues/262#issuecomment-227593844).
 
 Quickstart
 ===
