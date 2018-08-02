@@ -16,7 +16,7 @@
 
   - [x] **printWidth** should be around **140** characters per line.
 
-  - [ ] Find a way to keep a new line between **@inject** anotation and property declarations.
+  - [x] Find a way to keep a new line between **@inject** anotation and property declarations.
 
 - [ ] Improve Code Coverage to reach 100%.
 
@@ -103,6 +103,8 @@ Features Or Improvements:
 - Improve public API, exposing more classes on index (see #72).
 
 - Disable **removeComments** flag in **tsconfig.json** file, allowing comments to appear in output (see #73)
+
+- Update README to improve installation instructions and update references for plugins (see #75).
 
 - Update dev dependencies to latest version.
 
