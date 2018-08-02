@@ -24,7 +24,7 @@
 
 ## Robotlegs-Core 0.2.0
 
-### v0.2.0
+### [v0.2.0](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/0.2.0) - 2018-08-02
 
 Major Breaking Changes:
 ---
@@ -105,6 +105,8 @@ Features Or Improvements:
 - Disable **removeComments** flag in **tsconfig.json** file, allowing comments to appear in output (see #73)
 
 - Update README to improve installation instructions and update references for plugins (see #75).
+
+- Update reference to Robotlegs Framework (see #76).
 
 - Update dev dependencies to latest version.
 
