@@ -236,7 +236,7 @@ There is plenty of frameworks and patterns out there that helps you to write
 DOM-based applications. There is no scalable solution yet to architecture a
 canvas-based application though.
 
-[Robotlegs](http://www.robotlegs.org) has proven itself of being a mature solution from the ActionScript
+[Robotlegs](https://github.com/robotlegs/robotlegs-framework) has proven itself of being a mature solution from the ActionScript
 community for interactive experiences.
 
 License
