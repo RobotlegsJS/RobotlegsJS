@@ -15,8 +15,8 @@ RobotlegsJS is a architecture-based IoC framework for JavaScript/TypeScript. Thi
 version is a direct port from the [ActionScript 3.0 codebase](https://github.com/robotlegs/robotlegs-framework).
 See the [motivation](#motivation) behind it.
 
-Right now, this framework have extensions for [pixi.js v4](http://www.pixijs.com) and
-[phaser-ce v2.8](http://phaser.io).
+Right now, this framework has extensions for [pixi.js v4](https://github.com/pixijs/pixi.js),
+[phaser-ce](https://github.com/photonstorm/phaser-ce) and [phaser](https://github.com/photonstorm/phaser).
 
 **Features**
 
@@ -28,26 +28,32 @@ Right now, this framework have extensions for [pixi.js v4](http://www.pixijs.com
 
 - [RobotlegsJS-Macrobot](https://github.com/RobotlegsJS/RobotlegsJS-Macrobot): extends commands, adding support to async and macro commands.
 - [RobotlegsJS-SignalCommandMap](https://github.com/RobotlegsJS/RobotlegsJS-SignalCommandMap): maps [SignalsJS](https://github.com/RobotlegsJS/SignalsJS) to commands.
-- [RobotlegsJS-Pixi](https://github.com/RobotlegsJS/RobotlegsJS-Pixi): integrate RobotlegsJS with [PixiJS](http://www.pixijs.com).
+- [RobotlegsJS-Pixi](https://github.com/RobotlegsJS/RobotlegsJS-Pixi): integrate RobotlegsJS with [PixiJS](https://github.com/pixijs/pixi.js).
 - [RobotlegsJS-Pixi-Palidor](https://github.com/RobotlegsJS/RobotlegsJS-Pixi-Palidor): a view manager extension for [RobotlegsJS-Pixi](https://github.com/RobotlegsJS/RobotlegsJS-Pixi).
 - [RobotlegsJS-Pixi-SignalMediator](https://github.com/RobotlegsJS/RobotlegsJS-Pixi-SignalMediator): a port of [Robotlegs SignalMediator Extension](https://github.com/MrDodson/robotlegs-extensions-SignalMediator) to TypeScript.
-- [RobotlegsJS-Phaser](https://github.com/RobotlegsJS/RobotlegsJS-Phaser): integrate RobotlegsJS with [Phaser](http://phaser.io).
-- [RobotlegsJS-Phaser-SignalCommandMap](https://github.com/RobotlegsJS/RobotlegsJS-Phaser-SignalCommandMap): maps [Phaser.Signal](https://photonstorm.github.io/phaser-ce/Phaser.Signal.html) to commands.
+- [RobotlegsJS-Phaser-CE](https://github.com/RobotlegsJS/RobotlegsJS-Phaser-CE): integrate RobotlegsJS with [Phaser-CE](https://github.com/photonstorm/phaser-ce).
+- [RobotlegsJS-Phaser-CE-SignalCommandMap](https://github.com/RobotlegsJS/RobotlegsJS-Phaser-CE-SignalCommandMap): maps [Phaser.Signal](https://photonstorm.github.io/phaser-ce/Phaser.Signal.html) to commands.
+- [RobotlegsJS-Phaser](https://github.com/RobotlegsJS/RobotlegsJS-Phaser): integrate RobotlegsJS with [Phaser](https://github.com/photonstorm/phaser).
 
 Installation
 ===
 
-You can get the latest release and the type definitions using npm:
+You can get the latest release and the type definitions using [NPM](https://www.npmjs.com/):
 
-```
+```bash
 npm install @robotlegsjs/core reflect-metadata --save
 ```
 
-RobotlegsJS requires TypeScript 2.0 and the `experimentalDecorators`,
-`emitDecoratorMetadata`, `types` and `lib` compilation options in your
-`tsconfig.json` file:
+Or using [Yarn](https://yarnpkg.com/en/):
 
-```json
+```bash
+yarn add @robotlegsjs/core reflect-metadata
+````
+
+> :warning: **Important!** RobotlegsJS requires TypeScript >= 2.0 and the `experimentalDecorators`, `emitDecoratorMetadata`, `types` and `lib`
+compilation options in your `tsconfig.json` file.
+
+```js
 {
     "compilerOptions": {
         "target": "es5",
@@ -60,6 +66,15 @@ RobotlegsJS requires TypeScript 2.0 and the `experimentalDecorators`,
     }
 }
 ```
+
+RobotlegsJS requires a modern JavaScript engine with support for:
+
+- [Reflect metadata](https://rbuckton.github.io/reflect-metadata/)
+- [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
+
+If your environment doesn't support one of these you will need to import a shim or polyfill.
+
+> :warning: **The `reflect-metadata` polyfill should be imported only once in your entire application** because the Reflect object is mean to be a global singleton. More details about this can be found [here](https://github.com/inversify/InversifyJS/issues/262#issuecomment-227593844).
 
 Quickstart
 ===
