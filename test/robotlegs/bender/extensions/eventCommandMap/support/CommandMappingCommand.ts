@@ -21,9 +21,11 @@ export class CommandMappingCommand implements ICommand {
     @named("nestedCommand")
     public command: IClass<Command>;
 
-    @inject(Event) public event: Event;
+    @inject(Event)
+    public event: Event;
 
-    @inject(IEventCommandMap) public eventCommandMap: IEventCommandMap;
+    @inject(IEventCommandMap)
+    public eventCommandMap: IEventCommandMap;
 
     public execute(): void {
         this.eventCommandMap.map(this.event.type, Event).toCommand(this.command);

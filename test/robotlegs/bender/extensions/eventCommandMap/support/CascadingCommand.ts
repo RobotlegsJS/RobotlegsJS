@@ -17,9 +17,11 @@ import { NullCommand } from "../../commandCenter/support/NullCommand";
 export class CascadingCommand implements ICommand {
     public static EVENT_TYPE: string = "cascadingEvent";
 
-    @inject(IEventDispatcher) public dispatcher: IEventDispatcher;
+    @inject(IEventDispatcher)
+    public dispatcher: IEventDispatcher;
 
-    @inject(IEventCommandMap) public eventCommandMap: IEventCommandMap;
+    @inject(IEventCommandMap)
+    public eventCommandMap: IEventCommandMap;
 
     public execute(): void {
         this.eventCommandMap
