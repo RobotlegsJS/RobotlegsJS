@@ -1,5 +1,4 @@
-RobotlegsJS <img src="media/robotlegs.png?raw=true" width="30" height="30" />
-===
+# RobotlegsJS <img src="media/robotlegs.png?raw=true" width="30" height="30" />
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/RobotlegsJS/RobotlegsJS/blob/master/LICENSE)
 [![Gitter chat](https://badges.gitter.im/RobotlegsJS/RobotlegsJS.svg)](https://gitter.im/RobotlegsJS/RobotlegsJS)
@@ -16,27 +15,37 @@ version is a direct port from the [ActionScript 3.0 codebase](https://github.com
 See the [motivation](#motivation) behind it.
 
 Right now, this framework has extensions for [pixi.js v4](https://github.com/pixijs/pixi.js),
-[phaser-ce](https://github.com/photonstorm/phaser-ce) and [phaser](https://github.com/photonstorm/phaser).
+[phaser-ce v2](https://github.com/photonstorm/phaser-ce), [phaser v3](https://github.com/photonstorm/phaser) and [easeljs](https://github.com/CreateJS/EaselJS).
 
 **Features**
 
 - Dependency injection (through [InversifyJS](https://github.com/inversify/InversifyJS))
+
 - Command management
+
 - View management
 
 **Extensions**
 
 - [RobotlegsJS-Macrobot](https://github.com/RobotlegsJS/RobotlegsJS-Macrobot): extends commands, adding support to async and macro commands.
+
 - [RobotlegsJS-SignalCommandMap](https://github.com/RobotlegsJS/RobotlegsJS-SignalCommandMap): maps [SignalsJS](https://github.com/RobotlegsJS/SignalsJS) to commands.
+
 - [RobotlegsJS-Pixi](https://github.com/RobotlegsJS/RobotlegsJS-Pixi): integrate RobotlegsJS with [PixiJS](https://github.com/pixijs/pixi.js).
+
 - [RobotlegsJS-Pixi-Palidor](https://github.com/RobotlegsJS/RobotlegsJS-Pixi-Palidor): a view manager extension for [RobotlegsJS-Pixi](https://github.com/RobotlegsJS/RobotlegsJS-Pixi).
+
 - [RobotlegsJS-Pixi-SignalMediator](https://github.com/RobotlegsJS/RobotlegsJS-Pixi-SignalMediator): a port of [Robotlegs SignalMediator Extension](https://github.com/MrDodson/robotlegs-extensions-SignalMediator) to TypeScript.
+
 - [RobotlegsJS-Phaser-CE](https://github.com/RobotlegsJS/RobotlegsJS-Phaser-CE): integrate RobotlegsJS with [Phaser-CE](https://github.com/photonstorm/phaser-ce).
+
 - [RobotlegsJS-Phaser-CE-SignalCommandMap](https://github.com/RobotlegsJS/RobotlegsJS-Phaser-CE-SignalCommandMap): maps [Phaser.Signal](https://photonstorm.github.io/phaser-ce/Phaser.Signal.html) to commands.
+
 - [RobotlegsJS-Phaser](https://github.com/RobotlegsJS/RobotlegsJS-Phaser): integrate RobotlegsJS with [Phaser](https://github.com/photonstorm/phaser).
 
-Installation
-===
+- [RobotlegsJS-CreateJS](https://github.com/RobotlegsJS/RobotlegsJS-CreateJS): integrate RobotlegsJS with [EaselJS](https://github.com/CreateJS/EaselJS).
+
+## Installation
 
 You can get the latest release and the type definitions using [NPM](https://www.npmjs.com/):
 
@@ -76,10 +85,9 @@ If your environment doesn't support one of these you will need to import a shim 
 
 > :warning: **The `reflect-metadata` polyfill should be imported only once in your entire application** because the Reflect object is mean to be a global singleton. More details about this can be found [here](https://github.com/inversify/InversifyJS/issues/262#issuecomment-227593844).
 
-Quickstart
-===
+## Quickstart
 
-## Creating A Context
+### Creating A Context
 
 To create a Robotlegs application or module you need to instantiate a Context. A
 context won't do much without some configuration.
@@ -104,7 +112,7 @@ Note: You must hold on to the context instance or it will be garbage collected.
 
 [See Framework docs.](docs/robotlegs/framework)
 
-## Context Initialization
+### Context Initialization
 
 If a ContextView is provided the Context is automatically initialized when the
 supplied view lands on stage. Be sure to install the ContextView last, as it may
@@ -124,7 +132,7 @@ automatically determined and initialization will be automatic.
 
 [See ContextView docs.](docs/robotlegs/extensions/contextView)
 
-## Application & Module Configuration
+### Application & Module Configuration
 
 A simple application configuration file might look something like this:
 
@@ -180,7 +188,7 @@ Context View.
 
 [See Framework documentation](docs/robotlegs/framework)
 
-### An Example Mediator
+#### An Example Mediator
 
 The mediator we mapped above might look like this:
 
@@ -202,7 +210,7 @@ The view that caused this mediator to be created is available for Injection.
 
 [MediatorMap](https://github.com/robotlegs/robotlegs-framework/tree/master/src/robotlegs/bender/extensions/mediatorMap)
 
-### An Example Command
+#### An Example Command
 
 The command we mapped above might look like this:
 
@@ -229,17 +237,15 @@ The event that triggered this command is available for Injection.
 
 [See EventCommandMap docs.](docs/robotlegs/extensions/eventCommandMap)
 
-Motivation
----
+## Motivation
 
-There is plenty of frameworks and patterns out there that helps you to write
+There are many frameworks and patterns out there that helps you to write
 DOM-based applications. There is no scalable solution yet to architecture a
 canvas-based application though.
 
 [Robotlegs](https://github.com/robotlegs/robotlegs-framework) has proven itself of being a mature solution from the ActionScript
 community for interactive experiences.
 
-License
----
+## License
 
 [MIT](LICENSE)
