@@ -161,7 +161,7 @@ describe("MessageDispatcher", () => {
         setTimeout(function(): void {
             assert.equal(actualMessage, message);
             done();
-        }, 50);
+        }, 100);
     });
 
     it("callback is called once", () => {
@@ -181,7 +181,7 @@ describe("MessageDispatcher", () => {
         setTimeout(function(): void {
             assert.equal(callbackCount, 1);
             done();
-        }, 50);
+        }, 100);
     });
 
     it("callback is called once after async handler", (done: Function) => {
@@ -193,7 +193,7 @@ describe("MessageDispatcher", () => {
         setTimeout(function(): void {
             assert.equal(callbackCount, 1);
             done();
-        }, 50);
+        }, 100);
     });
 
     it("callback is called once after sync and async handlers", (done: Function) => {
@@ -208,7 +208,7 @@ describe("MessageDispatcher", () => {
         setTimeout(function(): void {
             assert.equal(callbackCount, 1);
             done();
-        }, 50);
+        }, 100);
     });
 
     it("handler passes error to callback", () => {
@@ -235,7 +235,7 @@ describe("MessageDispatcher", () => {
         setTimeout(function(): void {
             assert.equal(actualError, expectedError);
             done();
-        }, 50);
+        }, 100);
     });
 
     it("handler that calls back more than once is ignored", () => {
@@ -262,7 +262,7 @@ describe("MessageDispatcher", () => {
         setTimeout(function(): void {
             assert.equal(callbackCount, 1);
             done();
-        }, 50);
+        }, 100);
     });
 
     it("sync handlers should run in order", () => {
@@ -295,7 +295,7 @@ describe("MessageDispatcher", () => {
         setTimeout(function(): void {
             assert.deepEqual(results, expected);
             done();
-        }, 50);
+        }, 100);
     });
 
     it("async handlers should run in reverse order when reversed", (done: Function) => {
@@ -308,7 +308,7 @@ describe("MessageDispatcher", () => {
         setTimeout(function(): void {
             assert.deepEqual(results, expected.reverse());
             done();
-        }, 50);
+        }, 100);
     });
 
     it("async and sync handlers should run in order", (done: Function) => {
@@ -322,7 +322,7 @@ describe("MessageDispatcher", () => {
         setTimeout(function(): void {
             assert.deepEqual(results, expected);
             done();
-        }, 50);
+        }, 100);
     });
 
     it("async and sync handlers should run in order when reversed", (done: Function) => {
@@ -336,7 +336,7 @@ describe("MessageDispatcher", () => {
         setTimeout(function(): void {
             assert.deepEqual(results, expected.reverse());
             done();
-        }, 50);
+        }, 100);
     });
 
     it("terminated message should not reach further handlers", () => {
@@ -372,7 +372,7 @@ describe("MessageDispatcher", () => {
         setTimeout(function(): void {
             assert.deepEqual(results, expected);
             done();
-        }, 50);
+        }, 100);
     });
 
     it("terminated_async_message_should_not_reach_further_handlers_when_reversed", (done: Function) => {
@@ -386,7 +386,7 @@ describe("MessageDispatcher", () => {
         setTimeout(function(): void {
             assert.deepEqual(results, expected);
             done();
-        }, 50);
+        }, 100);
     });
 
     it("handler is only added once", () => {
