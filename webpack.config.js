@@ -37,7 +37,7 @@ module.exports = env => {
         {
           test: ((env.production) /* disable this loader for production builds */
             ? /^$/
-            : /^(.(?!\.test))*\.ts$/),
+            : /^.*(src).*\.ts$/),
           loader: "istanbul-instrumenter-loader",
           query: {
             embedSource: true
