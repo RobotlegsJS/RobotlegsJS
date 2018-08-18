@@ -14,8 +14,8 @@ RobotlegsJS is a architecture-based IoC framework for JavaScript/TypeScript. Thi
 version is a direct port from the [ActionScript 3.0 codebase](https://github.com/robotlegs/robotlegs-framework).
 See the [motivation](#motivation) behind it.
 
-Right now, this framework has extensions for [pixi.js v4](https://github.com/pixijs/pixi.js),
-[phaser-ce v2](https://github.com/photonstorm/phaser-ce), [phaser v3](https://github.com/photonstorm/phaser) and [easeljs](https://github.com/CreateJS/EaselJS).
+Right now, this framework has extensions for [pixi.js v4](https://github.com/pixijs/pixi.js), [easeljs](https://github.com/CreateJS/EaselJS),
+[openfl](https://github.com/openfl/openfl), [phaser-ce v2](https://github.com/photonstorm/phaser-ce) and [phaser v3](https://github.com/photonstorm/phaser).
 
 **Features**
 
@@ -37,13 +37,15 @@ Right now, this framework has extensions for [pixi.js v4](https://github.com/pix
 
 - [RobotlegsJS-Pixi-SignalMediator](https://github.com/RobotlegsJS/RobotlegsJS-Pixi-SignalMediator): a port of [Robotlegs SignalMediator Extension](https://github.com/MrDodson/robotlegs-extensions-SignalMediator) to TypeScript.
 
+- [RobotlegsJS-CreateJS](https://github.com/RobotlegsJS/RobotlegsJS-CreateJS): integrate RobotlegsJS with [EaselJS](https://github.com/CreateJS/EaselJS).
+
+- [RobotlegsJS-OpenFL](https://github.com/RobotlegsJS/RobotlegsJS-OpenFL): integrate RobotlegsJS with [OpenFL](https://github.com/openfl/openfl).
+
 - [RobotlegsJS-Phaser-CE](https://github.com/RobotlegsJS/RobotlegsJS-Phaser-CE): integrate RobotlegsJS with [Phaser-CE](https://github.com/photonstorm/phaser-ce).
 
 - [RobotlegsJS-Phaser-CE-SignalCommandMap](https://github.com/RobotlegsJS/RobotlegsJS-Phaser-CE-SignalCommandMap): maps [Phaser.Signal](https://photonstorm.github.io/phaser-ce/Phaser.Signal.html) to commands.
 
 - [RobotlegsJS-Phaser](https://github.com/RobotlegsJS/RobotlegsJS-Phaser): integrate RobotlegsJS with [Phaser](https://github.com/photonstorm/phaser).
-
-- [RobotlegsJS-CreateJS](https://github.com/RobotlegsJS/RobotlegsJS-CreateJS): integrate RobotlegsJS with [EaselJS](https://github.com/CreateJS/EaselJS).
 
 ## Installation
 
