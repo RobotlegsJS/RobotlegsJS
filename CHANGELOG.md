@@ -28,6 +28,8 @@
 
 - Add reference to [CreateJS](https://github.com/RobotlegsJS/RobotlegsJS-CreateJS) extension (see #77).
 
+- Add reference to [OpenFL](https://github.com/RobotlegsJS/RobotlegsJS-OpenFL) extension (see #79).
+
 - Update `karma` setup to generate code coverage report only for `src` folder (see #78).
 
 - Update dev dependencies to latest version.
