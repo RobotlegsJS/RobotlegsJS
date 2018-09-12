@@ -9,7 +9,7 @@ module.exports = env => {
   let mode = env.production ? "production" : "development";
   let tsconfig = !env.karma ? "tsconfig.json" : "tsconfig.test.json";
   let output = env.production ? "dist" : "dist-test";
-  let filename = env.production ? "robotlegs.min.js" : "robotlegs.js";
+  let filename = env.karma ? "[name].[hash].js" : (env.production ? "robotlegs.min.js" : "robotlegs.js");
 
   return {
     mode: mode,
