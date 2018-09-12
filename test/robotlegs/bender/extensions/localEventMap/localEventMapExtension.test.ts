@@ -39,4 +39,18 @@ describe("LocalEventMapExtension", () => {
         context.initialize();
         assert.instanceOf(actual, EventMap);
     });
+
+    it("IEventMap_generates_new_instance_on_each_request", () => {
+        let eventMap1: IEventMap = null;
+        let eventMap2: IEventMap = null;
+        context.install(EventDispatcherExtension, LocalEventMapExtension);
+        context.whenInitializing(() => {
+            eventMap1 = context.injector.get<IEventMap>(IEventMap);
+            eventMap2 = context.injector.get<IEventMap>(IEventMap);
+        });
+        context.initialize();
+        assert.instanceOf(eventMap1, EventMap);
+        assert.instanceOf(eventMap2, EventMap);
+        assert.notEqual(eventMap1, eventMap2);
+    });
 });

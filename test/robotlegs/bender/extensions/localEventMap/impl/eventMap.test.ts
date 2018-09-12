@@ -18,6 +18,7 @@ import { EventMap } from "../../../../../../src/robotlegs/bender/extensions/loca
 
 import { CustomEvent } from "../support/CustomEvent";
 import { CustomEvent2 } from "../support/CustomEvent2";
+import { MockEventMap } from "../support/MockEventMap";
 
 describe("EventMap", () => {
     let eventDispatcher: IEventDispatcher;
@@ -398,5 +399,33 @@ describe("EventMap", () => {
         eventMap.resume();
         eventDispatcher.dispatchEvent(new CustomEvent(CustomEvent.STARTED));
         assert.deepEqual(actualOrder, expectedOrder);
+    });
+
+    it("EventMap_can_be_extended_allowing_internal_properties_to_be_acessed", () => {
+        let mockEventMap: MockEventMap = new MockEventMap();
+
+        mockEventMap.mapListener(eventDispatcher, CustomEvent.STARTED, listenerWithCounter, this, CustomEvent);
+
+        assert.equal(mockEventMap.listeners.length, 1);
+        assert.equal(mockEventMap.suspendedListeners.length, 0);
+        assert.equal(mockEventMap.domListeners.length, 0);
+        assert.equal(mockEventMap.suspendedDomListeners.length, 0);
+        assert.isFalse(mockEventMap.suspended);
+
+        mockEventMap.suspend();
+
+        assert.equal(mockEventMap.listeners.length, 0);
+        assert.equal(mockEventMap.suspendedListeners.length, 1);
+        assert.equal(mockEventMap.domListeners.length, 0);
+        assert.equal(mockEventMap.suspendedDomListeners.length, 0);
+        assert.isTrue(mockEventMap.suspended);
+
+        mockEventMap.resume();
+
+        assert.equal(mockEventMap.listeners.length, 1);
+        assert.equal(mockEventMap.suspendedListeners.length, 0);
+        assert.equal(mockEventMap.domListeners.length, 0);
+        assert.equal(mockEventMap.suspendedDomListeners.length, 0);
+        assert.isFalse(mockEventMap.suspended);
     });
 });

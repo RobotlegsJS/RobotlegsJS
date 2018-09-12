@@ -24,16 +24,16 @@ import { EventMapConfig } from "./EventMapConfig";
 @injectable()
 export class EventMap implements IEventMap {
     /*============================================================================*/
-    /* Private Properties                                                         */
+    /* Protected Properties                                                       */
     /*============================================================================*/
 
-    private _listeners: EventMapConfig[] = [];
-    private _suspendedListeners: EventMapConfig[] = [];
+    protected _listeners: EventMapConfig[] = [];
+    protected _suspendedListeners: EventMapConfig[] = [];
 
-    private _domListeners: DomEventMapConfig[] = [];
-    private _suspendedDomListeners: DomEventMapConfig[] = [];
+    protected _domListeners: DomEventMapConfig[] = [];
+    protected _suspendedDomListeners: DomEventMapConfig[] = [];
 
-    private _suspended: boolean = false;
+    protected _suspended: boolean = false;
 
     /*============================================================================*/
     /* Public Functions                                                           */
