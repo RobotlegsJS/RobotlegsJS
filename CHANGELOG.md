@@ -32,6 +32,8 @@
 
 - Update `karma` setup to generate code coverage report only for `src` folder (see #78).
 
+- Expose internal properties of `EventMap`, allowing the class to be extended (see #82).
+
 - Update dev dependencies to latest version.
 
 ### [v0.2.0](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/0.2.0) - 2018-08-02
