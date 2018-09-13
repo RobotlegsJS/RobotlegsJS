@@ -103,7 +103,7 @@
     "prettier": "^1.14.2",
     "publish-please": "^3.2.0",
     "reflect-metadata": "^0.1.12",
-    "remap-istanbul": "^0.11.1",
+    "remap-istanbul": "^0.12.0",
     "rimraf": "^2.6.2",
     "sinon": "^5.1.1",
     "sinon-chai": "^3.2.0",
