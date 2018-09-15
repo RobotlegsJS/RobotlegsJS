@@ -1,4 +1,4 @@
-# RobotlegsJS Core Changelog:
+# RobotlegsJS Core Changelog
 
 ## Robotlegs-Core 1.0.0
 
@@ -24,6 +24,10 @@
 
 ## Robotlegs-Core 0.2.0
 
+### v0.2.2
+
+- Update dev dependencies to latest version.
+
 ### [v0.2.1](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/0.2.1) - 2018-09-12
 
 - Add reference to [CreateJS](https://github.com/RobotlegsJS/RobotlegsJS-CreateJS) extension (see #77).
@@ -38,12 +42,11 @@
 
 ### [v0.2.0](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/0.2.0) - 2018-08-02
 
-Major Breaking Changes:
----
+#### Major Breaking Changes
 
 - **IEvent** interface changed to remove usage of **IEventInit** interface (see #57).
 
-    - Interface **IEvent** was:
+  - Interface **IEvent** was:
     ```typescript
     export interface IEvent {
         type: string;
@@ -55,7 +58,7 @@ Major Breaking Changes:
     }
     ```
 
-    - Interface **IEvent** is now:
+  - Interface **IEvent** is now:
     ```typescript
     export interface IEvent {
         type: string;
@@ -75,7 +78,7 @@ Major Breaking Changes:
 
 - Constructor of **Event** class changed to remove usage of **IEventInit** interface (see #57).
 
-    - Constructor of **Event** class was:
+  - Constructor of **Event** class was:
     ```typescript
     export class Event implements IEvent {
         constructor(type: string, eventInit: IEventInit = { bubbles: false }) {
@@ -87,7 +90,7 @@ Major Breaking Changes:
     }
     ```
 
-    - Constructor of **Event** is now:
+  - Constructor of **Event** is now:
     ```typescript
     export class Event implements IEvent {
         constructor(type: string, bubbles?: boolean, cancelable?: boolean, data?: any) {
@@ -99,8 +102,7 @@ Major Breaking Changes:
     }
     ```
 
-Features Or Improvements:
----
+#### Features Or Improvements
 
 - Update Inversify to version 4.13.0 (see #61).
 
@@ -150,8 +152,7 @@ Features Or Improvements:
 
 ### [v0.1.0](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/0.1.0) - 2017-11-10
 
-Major Breaking Changes:
----
+#### Major Breaking Changes
 
 - Remove usage of types **Number**, **String**, **Boolean** and **Object** (see #26).
 
@@ -163,8 +164,7 @@ Major Breaking Changes:
 
 - **InjectorActivityLoggingExtension** extension removed (see #26).
 
-Features Or Improvements:
----
+#### Features Or Improvements
 
 - Add helper method **getQualifiedClassName** (see #26).
 
