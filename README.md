@@ -31,6 +31,8 @@ Right now, this framework has extensions for [pixi.js v4](https://github.com/pix
 
 - [RobotlegsJS-SignalCommandMap](https://github.com/RobotlegsJS/RobotlegsJS-SignalCommandMap): maps [SignalsJS](https://github.com/RobotlegsJS/SignalsJS) to commands.
 
+- [RobotlegsJS-EventEmitter3](https://github.com/RobotlegsJS/RobotlegsJS-EventEmitter3): integrate RobotlegsJS with [EventEmitter3](https://github.com/primus/eventemitter3).
+
 - [RobotlegsJS-Pixi](https://github.com/RobotlegsJS/RobotlegsJS-Pixi): integrate RobotlegsJS with [PixiJS](https://github.com/pixijs/pixi.js).
 
 - [RobotlegsJS-Pixi-Palidor](https://github.com/RobotlegsJS/RobotlegsJS-Pixi-Palidor): a view manager extension for [RobotlegsJS-Pixi](https://github.com/RobotlegsJS/RobotlegsJS-Pixi).
