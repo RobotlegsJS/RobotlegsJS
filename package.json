@@ -72,7 +72,7 @@
     "@types/bluebird": "^3.5.24",
     "@types/chai": "^4.1.6",
     "@types/mocha": "^5.2.5",
-    "@types/sinon": "^5.0.2",
+    "@types/sinon": "^5.0.4",
     "bluebird": "^3.5.2",
     "browserify-versionify": "^1.0.6",
     "chai": "^4.2.0",
@@ -82,7 +82,7 @@
     "imports-loader": "^0.8.0",
     "istanbul": "^0.4.5",
     "istanbul-instrumenter-loader": "^3.0.1",
-    "jsdom": "^12.0.0",
+    "jsdom": "^12.1.0",
     "jsdom-global": "^3.0.2",
     "karma": "^3.0.0",
     "karma-chai": "^0.1.0",
@@ -102,7 +102,7 @@
     "mocha": "^5.2.0",
     "nyc": "^13.0.1",
     "prettier": "^1.14.3",
-    "publish-please": "^3.2.0",
+    "publish-please": "^4.0.0",
     "reflect-metadata": "^0.1.12",
     "remap-istanbul": "^0.12.0",
     "rimraf": "^2.6.2",
@@ -116,7 +116,7 @@
     "typescript": "^3.1.1",
     "uglifyjs-webpack-plugin": "^2.0.1",
     "webpack": "^4.20.2",
-    "webpack-cli": "^3.1.1",
+    "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.9"
   }
 }
