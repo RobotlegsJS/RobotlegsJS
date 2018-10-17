@@ -5,7 +5,7 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { guid } from "inversify";
+import { id } from "inversify";
 
 /**
  * Utility for generating unique object IDs
@@ -17,6 +17,6 @@ export class UID {
      * @return Generated UID
      */
     public static create(source?: any): string {
-        return guid();
+        return id().toString();
     }
 }
