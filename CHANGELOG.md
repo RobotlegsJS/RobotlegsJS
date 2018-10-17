@@ -26,6 +26,8 @@
 
 ### v0.2.2
 
+- Update [Inversify](https://github.com/inversify/InversifyJS) to version `4.14.0` (see #90).
+
 - Add reference to [EventEmitter3](https://github.com/RobotlegsJS/RobotlegsJS-EventEmitter3) extension (see #87).
 
 - Update dev dependencies to latest version.
