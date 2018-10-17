@@ -65,7 +65,7 @@
   },
   "homepage": "https://github.com/RobotlegsJS/RobotlegsJS#readme",
   "dependencies": {
-    "inversify": "^4.14.0",
+    "inversify": "^5.0.1",
     "tslib": "^1.9.3"
   },
   "devDependencies": {
