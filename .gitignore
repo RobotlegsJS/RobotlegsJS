@@ -13,4 +13,5 @@ src/**/*.js.map
 test/**/*.js
 test/**/*.js.map
 npm-debug.log
+package-lock.json
 yarn-error.log
