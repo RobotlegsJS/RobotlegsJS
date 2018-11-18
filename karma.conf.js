@@ -6,13 +6,13 @@ const webpackConfig = require("./webpack.config.js")({ production: false, karma:
 delete webpackConfig.entry;
 
 module.exports = config => {
+  "use strict";
 
   var configuration = {
     basePath: "",
     frameworks: [
       "mocha",
-      "chai",
-      "sinon",
+      "sinon-chai",
       "es6-shim"
     ],
     files: [
@@ -36,8 +36,7 @@ module.exports = config => {
       "karma-remap-istanbul",
       "karma-mocha-reporter",
       "karma-mocha",
-      "karma-chai",
-      "karma-sinon",
+      "karma-sinon-chai",
       "karma-es6-shim",
       "karma-coverage-istanbul-reporter"
     ],

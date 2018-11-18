@@ -30,6 +30,8 @@
 
 - Add reference to [EventEmitter3](https://github.com/RobotlegsJS/RobotlegsJS-EventEmitter3) extension (see #87).
 
+- Solve unit tests triggered by karma (see #95).
+
 - Update dev dependencies to latest version.
 
 ### [v0.2.1](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/0.2.1) - 2018-09-12
