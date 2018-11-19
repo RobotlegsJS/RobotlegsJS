@@ -32,6 +32,8 @@
 
 - Solve unit tests triggered by karma (see #95).
 
+- Migrate to headless Chrome (see #96).
+
 - Update dev dependencies to latest version.
 
 ### [v0.2.1](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/0.2.1) - 2018-09-12
