@@ -1,5 +1,8 @@
+const puppeteer = require('puppeteer');
+
 process.env.TEST = true;
 process.env.NODE_ENV = "test";
+process.env.CHROME_BIN = puppeteer.executablePath();
 
 const webpackConfig = require("./webpack.config.js")({ production: false, karma: true });
 
@@ -64,11 +67,11 @@ module.exports = config => {
   };
 
   if (process.env.TRAVIS) {
-    configuration.browsers.push("PhantomJS");
-    configuration.plugins.push("karma-phantomjs-launcher");
+    configuration.browsers.push("ChromeHeadless");
+    configuration.plugins.push("karma-chrome-launcher");
   } else {
-    configuration.browsers.push("PhantomJS");
-    configuration.plugins.push("karma-phantomjs-launcher");
+    configuration.browsers.push("ChromeHeadless");
+    configuration.plugins.push("karma-chrome-launcher");
   }
 
   config.set(configuration);
