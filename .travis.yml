@@ -17,7 +17,7 @@ before_install:
 before_script:
   - greenkeeper-lockfile-update
 script:
-  - yarn run karma
+  - yarn test
 after_script:
   - greenkeeper-lockfile-upload
 after_success:
