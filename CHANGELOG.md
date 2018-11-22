@@ -1,8 +1,11 @@
 # RobotlegsJS Core Changelog
 
-## Robotlegs-Core 1.0.0
+All notable changes to this project will be documented in this file.
 
-### v1.0.0 - Planned stable version
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## Suggestions or improvements for further versions
 
 - [ ] Rethink **Events** package, in order to avoid confusion between **DOM** event system.
 
@@ -12,7 +15,7 @@
 
 - [ ] Use [**Function Types**](https://www.typescriptlang.org/docs/handbook/functions.html) for handlers and callbacks instead of generic **Function** type.
 
-- [ ] Update **Prettier** rules:
+- [x] Update **Prettier** rules:
 
   - [x] **printWidth** should be around **140** characters per line.
 
@@ -22,15 +25,32 @@
 
 - [ ] Migrate [original documentation](https://github.com/robotlegs/robotlegs-framework/blob/master/src/readme.md) and adapt it to TypeScript.
 
-## Robotlegs-Core 0.2.0
+## [Unreleased]
 
-### v0.2.2
+### v1.0.0
 
-- Update [Inversify](https://github.com/inversify/InversifyJS) to version `5.0.1` (see #90, #91).
+#### Added
 
 - Add reference to [EventEmitter3](https://github.com/RobotlegsJS/RobotlegsJS-EventEmitter3) extension (see #87).
 
-- Solve unit tests triggered by karma (see #95).
+#### Changed
+
+- Update [Inversify](https://github.com/inversify/InversifyJS) to version `5.0.1` (see #90, #91).
+
+  - This version of `Inversify` has a breaking change on the `Public API`. The method `guid` was renamed to `id`:
+
+    ```typescript
+    let idCounter = 0;
+
+    function id(): number {
+        return idCounter++;
+    }
+
+    export { id };
+    ```
+
+    Since this breaking change was mistakenly released as version `4.14.0` (now deprecated),
+    we opted to release a `major` version of our package, even when there are no breaking changes on our side.
 
 - Migrate to headless Chrome (see #96).
 
@@ -38,11 +58,21 @@
 
 - Update dev dependencies to latest version.
 
+#### Fixed
+
+- Solve unit tests triggered by karma (see #95).
+
+## Robotlegs-Core 0.2.0
+
 ### [v0.2.1](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/0.2.1) - 2018-09-12
+
+#### Added
 
 - Add reference to [CreateJS](https://github.com/RobotlegsJS/RobotlegsJS-CreateJS) extension (see #77).
 
 - Add reference to [OpenFL](https://github.com/RobotlegsJS/RobotlegsJS-OpenFL) extension (see #79).
+
+#### Changed
 
 - Update `karma` setup to generate code coverage report only for `src` folder (see #78).
 
@@ -52,7 +82,7 @@
 
 ### [v0.2.0](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/0.2.0) - 2018-08-02
 
-#### Major Breaking Changes
+#### Changed
 
 - **IEvent** interface changed to remove usage of **IEventInit** interface (see #57).
 
@@ -112,8 +142,6 @@
     }
     ```
 
-#### Features Or Improvements
-
 - Update Inversify to version 4.13.0 (see #61).
 
 - Enforce TSLint rules (see #57).
@@ -138,9 +166,13 @@
 
 ### [v0.1.3](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/0.1.3) - 2018-03-04
 
+#### Changed
+
 - Update Inversify to version 4.11.1 (see #47).
 
 ### [v0.1.2](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/0.1.2) - 2018-03-04
+
+#### Changed
 
 - Use `rimraf` instead of `rm -rf`.
 
@@ -154,6 +186,8 @@
 
 ### [v0.1.1](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/0.1.1) - 2017-11-13
 
+#### Changed
+
 - Strict Type Checking for TypeMatcher class (see #32).
 
 - Update .npmignore (see #31).
@@ -162,19 +196,7 @@
 
 ### [v0.1.0](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/0.1.0) - 2017-11-10
 
-#### Major Breaking Changes
-
-- Remove usage of types **Number**, **String**, **Boolean** and **Object** (see #26).
-
-- Improve **matching** extension (see #26).
-
-- The usage of **ICommand** is mandatory (see #26).
-
-- **EventMap** handles DOM events properly (see #26).
-
-- **InjectorActivityLoggingExtension** extension removed (see #26).
-
-#### Features Or Improvements
+#### Added
 
 - Add helper method **getQualifiedClassName** (see #26).
 
@@ -182,13 +204,25 @@
 
 - Add Changelog (see #26).
 
-- Improve Code Coverage and Fix Bugs (see #26).
-
 - Add Code of Conduct (see #27).
 
 - Add Issue Template (see #28).
 
 - Add Pull Request Template (see #29).
+
+#### Changed
+
+- Remove usage of types **Number**, **String**, **Boolean** and **Object** (see #26).
+
+- Improve **matching** extension (see #26).
+
+- The usage of **ICommand** is mandatory (see #26).
+
+- **EventMap** handles `DOM` events properly (see #26).
+
+- **InjectorActivityLoggingExtension** extension removed (see #26).
+
+- Improve Code Coverage and Fix Bugs (see #26).
 
 - Upgraded **Inversify** to version [4.5.1](https://github.com/inversify/InversifyJS/releases/tag/4.5.1) (see #30)
 
@@ -197,6 +231,8 @@
 ## Robotlegs-Core 0.0.1
 
 ### [v0.0.7](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/0.0.7) - 2017-10-31
+
+#### Changed
 
 - **Event** class reads **bubbles** parameter passed through constructor (see #20)
 
@@ -208,7 +244,11 @@
 
 ### [v0.0.6](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/0.0.6) - 2017-09-26
 
+#### Added
+
 - Add reference to [RobotlegsJS-Pixi-SignalMediator](https://github.com/RobotlegsJS/RobotlegsJS-Pixi-SignalMediator) extension.
+
+#### Changed
 
 - Adapt to NPM [v5.0.0](http://blog.npmjs.org/post/161081169345/v500) (see #12).
 
@@ -218,6 +258,8 @@
 
 ### [v0.0.5](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/0.0.5) - 2017-09-15
 
+#### Added
+
 - Add reference to [RobotlegsJS-Pixi-Palidor](https://github.com/RobotlegsJS/RobotlegsJS-Pixi-Palidor) extension.
 
 - Add support to [Prettier](https://prettier.io) code formatter (see #8).
@@ -225,6 +267,8 @@
 - Add support to [Istanbul](https://istanbul.js.org) test coverage tool (see #10).
 
 - Add integration with [CodeBeat](https://codebeat.co) (see #9).
+
+#### Changed
 
 - Update TSLint rules (see #7).
 
@@ -234,15 +278,23 @@
 
 ### [v0.0.4](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/0.0.4) - 2017-08-30
 
+#### Added
+
 - Enable GreenKeeper (see #5).
+
+#### Changed
 
 - Update dev dependencies to latest version.
 
 ### [v0.0.3](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/0.0.3) - 2017-08-11
 
+#### Changed
+
 - Update contributing guidelines.
 
 ### [v0.0.2](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/0.0.2) - 2017-08-11
+
+#### Changed
 
 - Update README.
 
