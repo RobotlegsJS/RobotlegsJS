@@ -56,6 +56,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Improve performance of Karma (see #97).
 
+- Prepare package for stable version (see #98).
+
 - Update dev dependencies to latest version.
 
 #### Fixed
