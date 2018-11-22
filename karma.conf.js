@@ -21,12 +21,12 @@ module.exports = config => {
     files: [
       { pattern: "node_modules/reflect-metadata/Reflect.js", include: true },
       { pattern: "node_modules/bluebird/js/browser/bluebird.js", include: true },
-      { pattern: "./test/**/**/**.test.ts", include: true },
+      { pattern: "./test/index.ts", include: true },
       { pattern: '**/*.map', served: true, included: false, watched: true }
     ],
     preprocessors: {
-      "./**/**/**/**.ts": ["sourcemap"],
-      "./test/**/**/**.test.ts": ["webpack"]
+      "./test/index.ts": ["webpack"],
+      "./**/**/**/**.ts": ["sourcemap"]
     },
     webpack: webpackConfig,
     webpackMiddleware: {
@@ -43,6 +43,9 @@ module.exports = config => {
       "karma-es6-shim",
       "karma-coverage-istanbul-reporter"
     ],
+    mime: {
+      "text/x-typescript": ["ts","tsx"]
+    },
     reporters: (
       config.singleRun ?
         ["dots", "mocha", "coverage-istanbul"] :
