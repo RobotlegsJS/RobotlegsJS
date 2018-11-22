@@ -73,6 +73,7 @@
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.5",
     "@types/sinon": "^5.0.6",
+    "@types/webpack-env": "^1.13.6",
     "bluebird": "^3.5.3",
     "browserify-versionify": "^1.0.6",
     "chai": "^4.2.0",
