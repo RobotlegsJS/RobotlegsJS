@@ -52,7 +52,7 @@ Right now, this framework has extensions for [pixi.js v4](https://github.com/pix
 ## Some companies using RobotlegsJS
 
 [<img src="media/companies/cupcake.png" width="100">](http://www.cupcakese.com)
-[<img src="media/companies/koreez.jpeg" width="100">](http://www.cupcakese.com)
+[<img src="media/companies/koreez.jpeg" width="100">](https://koreez.games)
 
 ## Installation
 
