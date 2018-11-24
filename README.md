@@ -49,6 +49,11 @@ Right now, this framework has extensions for [pixi.js v4](https://github.com/pix
 
 - [RobotlegsJS-Phaser](https://github.com/RobotlegsJS/RobotlegsJS-Phaser): integrate RobotlegsJS with [Phaser](https://github.com/photonstorm/phaser).
 
+## Some companies using RobotlegsJS
+
+[<img src="media/companies/cupcake.png" width="100">](http://www.cupcakese.com)
+[<img src="media/companies/koreez.jpeg" width="100">](http://www.cupcakese.com)
+
 ## Installation
 
 You can get the latest release and the type definitions using [NPM](https://www.npmjs.com/):
