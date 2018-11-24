@@ -51,8 +51,8 @@ Right now, this framework has extensions for [pixi.js v4](https://github.com/pix
 
 ## Some companies using RobotlegsJS
 
-[![CupCake Entertainment](<img src="https://raw.githubusercontent.com/RobotlegsJS/RobotlegsJS/master/media/companies/cupcake.png" width="100">)](http://www.cupcakese.com)
-[![Koreez Studio](<img src="https://raw.githubusercontent.com/RobotlegsJS/RobotlegsJS/master/media/companies/koreez.jpeg" width="100">)](https://koreez.games)
+<a href="http://www.cupcakese.com" target="_blank"><img width="100" src="http://www.gamefounders.com/wp-content/uploads/formidable/Cupcake_SquareThumb-150x150.png"/></a>
+<a href="https://koreez.games" target="_blank"><img width="100" src="https://koreez.games/img/about/1.jpg"/></a>
 
 ## Installation
 
