@@ -1,3 +1,9 @@
+---
+name: Custom issue template
+about: Open a general issue request
+
+---
+
 <!--- Provide a general summary of the issue in the Title above -->
 
 ## Expected Behavior
