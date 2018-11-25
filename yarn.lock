@@ -5367,10 +5367,10 @@ public-encrypt@^4.0.0:
     randombytes "^2.0.1"
     safe-buffer "^5.1.2"
 
-publish-please@^5.3.0:
-  version "5.3.0"
-  resolved "https://registry.npmjs.org/publish-please/-/publish-please-5.3.0.tgz#bc27aaae563fed5887307a2c419a683bb92b85c4"
-  integrity sha512-VJhnwAN32kct8cK9vijDZ8Q+H3+FEGgahZzK55TDS9kVKxgebEdE3DA7dRED8Vq+LwJ+2awgx5cSzVQKpTKPrw==
+publish-please@^5.4.0:
+  version "5.4.0"
+  resolved "https://registry.npmjs.org/publish-please/-/publish-please-5.4.0.tgz#7ba61754afadf394181a39dc3dcec6275417a9a9"
+  integrity sha512-zoDSBFqOHQJyvcqlt/wTnN+lzcewuUZcxofndLibDuf6gRNyinRl+V1+RnT7vaJmwbjPiK3OQqiCqK8giccddg==
   dependencies:
     chalk "2.4.1"
     cp-sugar "1.0.0"
