@@ -65,7 +65,7 @@ export class MessageRunner {
                 let handled: boolean = false;
                 handler(
                     this._message,
-                    function(error: Error = null, msg: string = null): void {
+                    (error: Error = null, msg: string = null): void => {
                         // handler must not invoke the callback more than once
                         if (handled) {
                             return;
@@ -80,7 +80,7 @@ export class MessageRunner {
                         } else {
                             this.next();
                         }
-                    }.bind(this)
+                    }
                 );
                 // IMPORTANT: MUST break this loop with a RETURN. See top.
                 return;
