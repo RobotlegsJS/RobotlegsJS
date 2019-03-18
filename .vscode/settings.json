@@ -2,4 +2,24 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
   "tslint.configFile": "tslint.test.json",
+
+  // Set the default
+  "editor.formatOnSave": false,
+
+  // Enable per-language
+  "[html]": {
+    "editor.formatOnSave": true
+  },
+
+  "[json]": {
+    "editor.formatOnSave": true
+  },
+
+  "[javascript]": {
+    "editor.formatOnSave": true
+  },
+
+  "[typescript]": {
+    "editor.formatOnSave": true
+  }
 }
