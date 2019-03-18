@@ -7,7 +7,7 @@
   "scripts": {
     "test": "nyc mocha",
     "karma": "node --max-old-space-size=2048 node_modules/.bin/karma start --single-run",
-    "autoformat": "prettier --config .prettierrc --write {src,test}{/,/**/}{*,*.test}.ts",
+    "autoformat": "prettier --config .prettierrc --write --list-different \"{src,static,test,example,definitions}{/**/,/}*.{html,css,js,json,ts}\"",
     "tslint-check:src": "tslint-config-prettier-check ./tslint.json",
     "tslint-check:test": "tslint-config-prettier-check ./tslint.test.json",
     "tslint:src": "tslint --project tsconfig.json",
