@@ -42,7 +42,7 @@ describe("ConfigManager", () => {
     });
 
     it("addHandler works", () => {
-        configManager.addConfigHandler(instanceOfType(TestObject), new Function());
+        configManager.addConfigHandler(instanceOfType(TestObject), () => {});
     });
 
     it("handler is called", () => {

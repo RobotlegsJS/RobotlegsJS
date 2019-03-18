@@ -38,11 +38,11 @@ describe("MessageDispatcher", () => {
     });
 
     it("addMessageHandler runs", () => {
-        dispatcher.addMessageHandler(message, new Function());
+        dispatcher.addMessageHandler(message, () => {});
     });
 
     it("addMessageHandler stores handler", () => {
-        dispatcher.addMessageHandler(message, new Function());
+        dispatcher.addMessageHandler(message, () => {});
         assert.isTrue(dispatcher.hasMessageHandler(message));
     });
 
@@ -55,29 +55,29 @@ describe("MessageDispatcher", () => {
     });
 
     it("hasMessageHandler returns true", () => {
-        dispatcher.addMessageHandler(message, new Function());
+        dispatcher.addMessageHandler(message, () => {});
         assert.isTrue(dispatcher.hasMessageHandler(message));
     });
 
     it("hasMessageHandler returns false for wrong message", () => {
-        dispatcher.addMessageHandler("abcde", new Function());
+        dispatcher.addMessageHandler("abcde", () => {});
         assert.isFalse(dispatcher.hasMessageHandler(message));
     });
 
     it("removeMessageHandler runs", () => {
-        dispatcher.removeMessageHandler(message, new Function());
+        dispatcher.removeMessageHandler(message, () => {});
     });
 
     it("removeMessageHandler removes the handler", () => {
-        let handler: Function = new Function();
+        let handler: Function = () => {};
         dispatcher.addMessageHandler(message, handler);
         dispatcher.removeMessageHandler(message, handler);
         assert.isFalse(dispatcher.hasMessageHandler(message));
     });
 
     it("removeMessageHandler does not remove the wrong handler", () => {
-        let handler: Function = new Function();
-        let otherHandler: Function = new Function();
+        let handler: Function = () => {};
+        let otherHandler: Function = () => {};
         dispatcher.addMessageHandler(message, handler);
         dispatcher.addMessageHandler(message, otherHandler);
         dispatcher.removeMessageHandler(message, otherHandler);
