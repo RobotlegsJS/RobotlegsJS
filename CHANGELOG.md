@@ -49,6 +49,10 @@ Types of changes:
 - in case of vulnerabilities.
 -->
 
+## Robotlegs-Core 1.0.0
+
+### [v1.0.1](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/1.0.1) - 2019-03-20
+
 #### Changed
 
 - Improve `prettier` rules and `autoformat` script (see #109).
@@ -56,8 +60,6 @@ Types of changes:
 - Enable `"editor.formatOnSave"` rule for `VS Code` (see #109).
 
 - Update dev dependencies to latest version.
-
-## Robotlegs-Core 1.0.0
 
 ### [v1.0.0](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/1.0.0) - 2018-11-25
 
