@@ -63,25 +63,22 @@ export class MessageRunner {
             } else if (handler.length === 2) {
                 // sync or async handler: (message, callback)
                 let handled: boolean = false;
-                handler(
-                    this._message,
-                    (error: Error = null, msg: string = null): void => {
-                        // handler must not invoke the callback more than once
-                        if (handled) {
-                            return;
-                        }
-
-                        handled = true;
-
-                        if (error || this._handlers.length === 0) {
-                            if (this._callback) {
-                                safelyCallBack(this._callback, error, this._message);
-                            }
-                        } else {
-                            this.next();
-                        }
+                handler(this._message, (error: Error = null, msg: string = null): void => {
+                    // handler must not invoke the callback more than once
+                    if (handled) {
+                        return;
                     }
-                );
+
+                    handled = true;
+
+                    if (error || this._handlers.length === 0) {
+                        if (this._callback) {
+                            safelyCallBack(this._callback, error, this._message);
+                        }
+                    } else {
+                        this.next();
+                    }
+                });
                 // IMPORTANT: MUST break this loop with a RETURN. See top.
                 return;
             } else {
