@@ -98,7 +98,7 @@
     "karma-es6-shim": "^1.0.0",
     "karma-mocha": "^1.3.0",
     "karma-mocha-reporter": "^2.2.5",
-    "karma-remap-istanbul": "^0.6.0",
+    "karma-remap-istanbul": "git://github.com/Ne-Ne/karma-remap-istanbul.git#c8ca36501e92b93a3a865a4bfe466f3bd68e4944",
     "karma-sinon-chai": "^2.0.2",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-sourcemap-writer": "^0.1.2",
