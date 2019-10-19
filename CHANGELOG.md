@@ -51,6 +51,8 @@ Types of changes:
 
 #### Changed
 
+- Update `codebeat` Project UUID.
+
 - Update dev dependencies to latest version.
 
 ## Robotlegs-Core 1.0.0
