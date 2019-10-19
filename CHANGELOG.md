@@ -49,13 +49,11 @@ Types of changes:
 - in case of vulnerabilities.
 -->
 
-## Robotlegs-Core 1.0.0
-
-### [v1.0.3](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/1.0.3) - 2019-08-15
-
 #### Changed
 
 - Update dev dependencies to latest version.
+
+## Robotlegs-Core 1.0.0
 
 ### [v1.0.2](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/1.0.2) - 2019-07-18
 
