@@ -1,6 +1,7 @@
 --require jsdom-global/register
 --require ts-node/register
 --require source-map-support/register
+--recursive
 --full-trace
 --bail
 node_modules/reflect-metadata/Reflect.js
