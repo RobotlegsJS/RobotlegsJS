@@ -1,6 +1,6 @@
 {
   "name": "@robotlegsjs/core",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "An architecture-based IoC framework for JavaScript/TypeScript",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
