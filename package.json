@@ -104,7 +104,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-sourcemap-writer": "^0.1.2",
     "karma-webpack": "^4.0.2",
-    "mocha": "^6.2.2",
+    "mocha": "^7.0.1",
     "nyc": "^14.1.1",
     "prettier": "^1.18.2",
     "publish-please": "^5.5.1",
