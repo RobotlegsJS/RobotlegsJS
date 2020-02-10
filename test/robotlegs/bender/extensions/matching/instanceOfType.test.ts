@@ -191,7 +191,7 @@ describe("instanceOfType", () => {
     });
 
     it("stress_match_test", done => {
-        let collections: Array<TypeCollection<any>> = [
+        let collections: TypeCollection<any>[] = [
             arrayCollection,
             baseTypeCollection,
             booleanCollection,
@@ -212,7 +212,7 @@ describe("instanceOfType", () => {
         for (let c: number = 0; c < numCollections; c++) {
             let typeCollection: TypeCollection<any> = collections[c];
             let matcher: IMatcher = typeCollection.matcher;
-            let matchWith: Array<IType<any>> = typeCollection.matchWith;
+            let matchWith: IType<any>[] = typeCollection.matchWith;
 
             // iterate through all collections
             for (let i: number = 0; i < numCollections; i++) {

@@ -16,17 +16,17 @@ export interface ITypeFilter extends IMatcher {
     /**
      * All types that an item must extend or implement
      */
-    allOfTypes: Array<IType<any>>;
+    allOfTypes: IType<any>[];
 
     /**
      * Any types that an item must extend or implement
      */
-    anyOfTypes: Array<IType<any>>;
+    anyOfTypes: IType<any>[];
 
     /**
      * Types that an item must not extend or implement
      */
-    noneOfTypes: Array<IType<any>>;
+    noneOfTypes: IType<any>[];
 
     /**
      * Unique description for this filter

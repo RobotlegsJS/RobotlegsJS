@@ -19,12 +19,12 @@ import { BaseType } from "./support/BaseType";
 import { ExtendedType } from "./support/ExtendedType";
 
 describe("TypeMatcher", () => {
-    const ALL_OF: Array<IType<any>> = [BaseType, ExtendedType];
-    const ALL_OF_2: Array<IType<any>> = [Object];
-    const ANY_OF: Array<IType<any>> = [Boolean, Number];
-    const ANY_OF_2: Array<IType<any>> = [Array, Date];
-    const NONE_OF: Array<IType<any>> = [Error, TypeError];
-    const NONE_OF_2: Array<IType<any>> = [TypeMatcherError];
+    const ALL_OF: IType<any>[] = [BaseType, ExtendedType];
+    const ALL_OF_2: IType<any>[] = [Object];
+    const ANY_OF: IType<any>[] = [Boolean, Number];
+    const ANY_OF_2: IType<any>[] = [Array, Date];
+    const NONE_OF: IType<any>[] = [Error, TypeError];
+    const NONE_OF_2: IType<any>[] = [TypeMatcherError];
 
     let matcher: TypeMatcher;
 
