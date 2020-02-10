@@ -16,7 +16,7 @@ import { CommandPayload } from "../../../../../../src/robotlegs/bender/extension
 describe("CommandPayload", () => {
     let subject: CommandPayload;
 
-    function createConfig(values?: any[], classes?: Array<IType<any>>): CommandPayload {
+    function createConfig(values?: any[], classes?: IType<any>[]): CommandPayload {
         return (subject = new CommandPayload(values, classes));
     }
 
@@ -41,7 +41,7 @@ describe("CommandPayload", () => {
     });
 
     it("test_classes_are_stored", () => {
-        let expected: Array<IType<any>> = [String, Number];
+        let expected: IType<any>[] = [String, Number];
         createConfig(null, expected);
         assert.deepEqual(subject.classes, expected);
     });

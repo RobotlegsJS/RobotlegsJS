@@ -282,7 +282,7 @@ export class Context extends EventDispatcher implements IContext {
     /**
      * @inheritDoc
      */
-    public install(...extensions: Array<IBundle | IClass<IBundle> | IExtension | IClass<IExtension>>): IContext {
+    public install(...extensions: IBundle[] | IClass<IBundle>[] | IExtension[] | IClass<IExtension>[]): IContext {
         extensions.forEach((extension: IBundle | IClass<IBundle> | IExtension | IClass<IExtension>) => {
             this._extensionInstaller.install(extension);
         });
@@ -292,7 +292,7 @@ export class Context extends EventDispatcher implements IContext {
     /**
      * @inheritDoc
      */
-    public configure(...configs: Array<IConfig | IClass<IConfig>>): IContext {
+    public configure(...configs: IConfig[] | IClass<IConfig>[]): IContext {
         configs.forEach((config: IConfig | IClass<IConfig>) => {
             this._configManager.addConfig(config);
         });

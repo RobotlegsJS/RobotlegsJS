@@ -16,9 +16,9 @@ import { BaseType } from "./support/BaseType";
 import { ExtendedType } from "./support/ExtendedType";
 
 describe("TypeFilter", () => {
-    let allOf: Array<IType<any>> = [ExtendedType, Object, BaseType];
-    let anyOf: Array<IType<any>> = [Promise, String, TypeFilter, Function, Number, Boolean];
-    let noneOf: Array<IType<any>> = [Error];
+    let allOf: IType<any>[] = [ExtendedType, Object, BaseType];
+    let anyOf: IType<any>[] = [Promise, String, TypeFilter, Function, Number, Boolean];
+    let noneOf: IType<any>[] = [Error];
     let filter: TypeFilter;
 
     beforeEach(() => {

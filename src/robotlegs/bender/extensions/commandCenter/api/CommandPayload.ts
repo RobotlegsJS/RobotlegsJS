@@ -25,7 +25,7 @@ export class CommandPayload {
     /**
      * Ordered list of value classes
      */
-    public get classes(): Array<IType<any>> {
+    public get classes(): IType<any>[] {
         return this._classes;
     }
 
@@ -41,7 +41,7 @@ export class CommandPayload {
     /*============================================================================*/
 
     private _values: any[];
-    private _classes: Array<IType<any>>;
+    private _classes: IType<any>[];
 
     /*============================================================================*/
     /* Constructor                                                                */
@@ -52,7 +52,7 @@ export class CommandPayload {
      * @param values Optional values
      * @param classes Optional classes
      */
-    constructor(values?: any[], classes?: Array<IType<any>>) {
+    constructor(values?: any[], classes?: IType<any>[]) {
         this._values = values;
         this._classes = classes;
     }

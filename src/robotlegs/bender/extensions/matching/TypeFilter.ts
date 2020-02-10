@@ -19,30 +19,30 @@ export class TypeFilter implements ITypeFilter {
     /* Public Properties                                                          */
     /*============================================================================*/
 
-    protected _allOfTypes: Array<IType<any>>;
+    protected _allOfTypes: IType<any>[];
 
     /**
      * @inheritDoc
      */
-    public get allOfTypes(): Array<IType<any>> {
+    public get allOfTypes(): IType<any>[] {
         return this._allOfTypes;
     }
 
-    protected _anyOfTypes: Array<IType<any>>;
+    protected _anyOfTypes: IType<any>[];
 
     /**
      * @inheritDoc
      */
-    public get anyOfTypes(): Array<IType<any>> {
+    public get anyOfTypes(): IType<any>[] {
         return this._anyOfTypes;
     }
 
-    protected _noneOfTypes: Array<IType<any>>;
+    protected _noneOfTypes: IType<any>[];
 
     /**
      * @inheritDoc
      */
-    public get noneOfTypes(): Array<IType<any>> {
+    public get noneOfTypes(): IType<any>[] {
         return this._noneOfTypes;
     }
 
@@ -62,7 +62,7 @@ export class TypeFilter implements ITypeFilter {
     /**
      * @private
      */
-    constructor(allOf: Array<IType<any>>, anyOf: Array<IType<any>>, noneOf: Array<IType<any>>) {
+    constructor(allOf: IType<any>[], anyOf: IType<any>[], noneOf: IType<any>[]) {
         if (!allOf || !anyOf || !noneOf) {
             throw Error("TypeFilter parameters can not be null");
         }
