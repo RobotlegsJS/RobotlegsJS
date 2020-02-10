@@ -49,6 +49,10 @@ Types of changes:
 - in case of vulnerabilities.
 -->
 
+#### Security
+
+- Migrate to [terser-webpack-plugin](https://github.com/webpack-contrib/terser-webpack-plugin) to solve security vulnerability (see #132).
+
 ## Robotlegs-Core 1.0.0
 
 ### [v1.0.3](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/1.0.3) - 2019-10-20
