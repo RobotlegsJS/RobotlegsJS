@@ -54,7 +54,7 @@ module.exports = env => {
             new TerserPlugin({
               cache: true,
               parallel: 4,
-              uglifyOptions: {
+              terserOptions: {
                 output: {
                   comments: false
                 }

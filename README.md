@@ -14,7 +14,7 @@ RobotlegsJS is a architecture-based IoC framework for JavaScript/TypeScript. Thi
 version is a direct port from the [ActionScript 3.0 codebase](https://github.com/robotlegs/robotlegs-framework).
 See the [motivation](#motivation) behind it.
 
-Right now, this framework has extensions for [pixi.js v4](https://github.com/pixijs/pixi.js), [easeljs](https://github.com/CreateJS/EaselJS),
+Right now, this framework has extensions for [pixi.js v5](https://github.com/pixijs/pixi.js), [easeljs](https://github.com/CreateJS/EaselJS),
 [openfl](https://github.com/openfl/openfl), [phaser-ce v2](https://github.com/photonstorm/phaser-ce) and [phaser v3](https://github.com/photonstorm/phaser).
 
 **Features**
