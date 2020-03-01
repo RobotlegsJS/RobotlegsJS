@@ -49,6 +49,18 @@ Types of changes:
 - in case of vulnerabilities.
 -->
 
+## Robotlegs-Core 2.0.0
+
+### [v2.0.0](https://github.com/RobotlegsJS/RobotlegsJS/releases/tag/2.0.0) - 2020-03-01
+
+#### Breaking Change
+
+- Update `typescript` to version `^3.8.3` (see #132).
+
+  - Migrate array notation from `Array<SomeType>` to `SomeType[]`.
+
+  - The rest of the `Public API` remains unchanged.
+
 #### Added
 
 - Add **Tidelift** as funding option (see #133).
