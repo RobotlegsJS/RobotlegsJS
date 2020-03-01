@@ -71,6 +71,8 @@ Types of changes:
 
 - Update `tslib` to version `1.11.1` (see #137).
 
+- Update dev dependencies to latest version.
+
 #### Security
 
 - Migrate to [terser-webpack-plugin](https://github.com/webpack-contrib/terser-webpack-plugin) to solve security vulnerability (see #132).
