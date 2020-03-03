@@ -78,8 +78,8 @@
   },
   "devDependencies": {
     "@istanbuljs/nyc-config-typescript": "^1.0.1",
-    "@types/bluebird": "^3.5.29",
-    "@types/chai": "^4.2.9",
+    "@types/bluebird": "^3.5.30",
+    "@types/chai": "^4.2.10",
     "@types/mocha": "^7.0.1",
     "@types/sinon": "^7.5.2",
     "@types/webpack-env": "^1.15.1",
@@ -120,7 +120,7 @@
     "tslint": "^6.0.0",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.8.3",
-    "webpack": "^4.41.6",
+    "webpack": "^4.42.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
   }
