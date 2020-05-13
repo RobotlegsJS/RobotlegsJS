@@ -74,7 +74,7 @@
   },
   "dependencies": {
     "inversify": "^5.0.1",
-    "tslib": "^1.11.1"
+    "tslib": "^2.0.0"
   },
   "devDependencies": {
     "@istanbuljs/nyc-config-typescript": "^1.0.1",
