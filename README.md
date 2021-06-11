@@ -1,13 +1,12 @@
+# Archived
+
+**This repository is archived**. Development migrated to https://github.com/RobotlegsJS/RobotlegsJS-Framework/blob/master/packages/core.
+
 # RobotlegsJS <img src="https://raw.githubusercontent.com/RobotlegsJS/RobotlegsJS/master/media/robotlegs.png" width="30" height="30" />
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/RobotlegsJS/RobotlegsJS/blob/master/LICENSE)
 [![Gitter chat](https://badges.gitter.im/RobotlegsJS/RobotlegsJS.svg)](https://gitter.im/RobotlegsJS/RobotlegsJS)
-[![Build Status](https://travis-ci.com/RobotlegsJS/RobotlegsJS.svg?branch=master)](https://travis-ci.com/RobotlegsJS/RobotlegsJS)
-[![codebeat badge](https://codebeat.co/badges/688bb0d8-636d-4ff6-ba00-ec077188ef65)](https://codebeat.co/projects/github-com-robotlegsjs-robotlegsjs-master)
-[![Maintainability](https://api.codeclimate.com/v1/badges/6a6bb3d51f955aef1cd7/maintainability)](https://codeclimate.com/github/RobotlegsJS/RobotlegsJS/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/6a6bb3d51f955aef1cd7/test_coverage)](https://codeclimate.com/github/RobotlegsJS/RobotlegsJS/test_coverage)
 [![npm version](https://badge.fury.io/js/%40robotlegsjs%2Fcore.svg)](https://badge.fury.io/js/%40robotlegsjs%2Fcore)
-[![Greenkeeper badge](https://badges.greenkeeper.io/RobotlegsJS/RobotlegsJS.svg)](https://greenkeeper.io/)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 RobotlegsJS is a architecture-based IoC framework for JavaScript/TypeScript. This
@@ -49,11 +48,6 @@ Right now, this framework has extensions for [pixi.js v5](https://github.com/pix
 
 - [RobotlegsJS-Phaser](https://github.com/RobotlegsJS/RobotlegsJS-Phaser): integrate RobotlegsJS with [Phaser](https://github.com/photonstorm/phaser).
 
-## Some companies using RobotlegsJS
-
-<a href="http://www.cupcakese.com" target="_blank"><img width="100" src="http://www.gamefounders.com/wp-content/uploads/formidable/Cupcake_SquareThumb-150x150.png"/></a>
-<a href="https://koreez.games" target="_blank"><img width="100" src="https://koreez.games/img/about/1.jpg"/></a>
-
 ## Installation
 
 You can get the latest release and the type definitions using [NPM](https://www.npmjs.com/):
@@ -93,158 +87,6 @@ RobotlegsJS requires a modern JavaScript engine with support for:
 If your environment doesn't support one of these you will need to import a shim or polyfill.
 
 > :warning: **The `reflect-metadata` polyfill should be imported only once in your entire application** because the Reflect object is mean to be a global singleton. More details about this can be found [here](https://github.com/inversify/InversifyJS/issues/262#issuecomment-227593844).
-
-## Quickstart
-
-### Creating A Context
-
-To create a Robotlegs application or module you need to instantiate a Context. A
-context won't do much without some configuration.
-
-```ts
-let renderer = PIXI.autoDetectRenderer(800, 600, {});
-let context = new Context()
-        .install(MVCSBundle)
-        .configure(MyAppConfig, SomeOtherConfig)
-        .configure(new ContextView((<any>this.renderer).plugins.interaction));
-```
-
-We install the MVCSBundle, which in turn installs a number of commonly used
-Extensions. We then add some custom application configurations.
-
-We pass the instance "this" through as the "contextView" which is required by
-many of the view related extensions. It must be installed after the bundle or it
-won't be processed. Also, it should always be added as the final configuration
-as it may trigger context initialization.
-
-Note: You must hold on to the context instance or it will be garbage collected.
-
-[See Framework docs.](docs/robotlegs/framework)
-
-### Context Initialization
-
-If a ContextView is provided the Context is automatically initialized when the
-supplied view lands on stage. Be sure to install the ContextView last, as it may
-trigger context initialization.
-
-If a ContextView is not supplied then the Context must be manually initialized.
-
-```ts
-let context = new Context()
-        .install(MyCompanyBundle)
-        .configure(MyAppConfig, SomeOtherConfig)
-        .initialize();
-```
-
-Note: This does not apply to Flex MXML configuration as the ContextView is
-automatically determined and initialization will be automatic.
-
-[See ContextView docs.](docs/robotlegs/extensions/contextView)
-
-### Application & Module Configuration
-
-A simple application configuration file might look something like this:
-
-```ts
-import {
-   IConfig,
-   IInjector,
-   IMediatorMap,
-   IEventCommandMap,
-   ContextView,
-   inject
-} from "@robotlegsjs/core";
-
-public class MyAppConfig implements IConfig
-{
-
-    @inject(IInjector)
-    injector: IInjector;
-
-    @inject(IMediatorMap)
-    mediatorMap: IMediatorMap;
-
-    @inject(IEventCommandMap)
-    commandMap: IEventCommandMap;
-
-    @inject(IContextView)
-    contextView: IEventCommandMap;
-
-    public function configure(): void
-    {
-        // Map UserModel as a context enforced singleton
-        this.injector.bind(UserModel).toSelf().inSingletonScope();
-
-        // Create a UserProfileMediator for each UserProfileView
-        // that lands inside of the Context View
-        this.mediatorMap.map(UserProfileView).toMediator(UserProfileMediator);
-
-        // Execute UserSignInCommand when UserEvent.SIGN_IN
-        // is dispatched on the context's Event Dispatcher
-        this.commandMap.map(UserEvent.SIGN_IN).toCommand(UserSignInCommand);
-
-        // The "view" property is a DisplayObjectContainer reference.
-        this.contextView.view.addChild(new MainView());
-    }
-}
-```
-
-The configuration file above implements IConfig. An instance of this class will
-be created automatically when the context initializes.
-
-We Inject the utilities that we want to configure, and add our Main View to the
-Context View.
-
-[See Framework documentation](docs/robotlegs/framework)
-
-#### An Example Mediator
-
-The mediator we mapped above might look like this:
-
-```ts
-import { inject, IEventMap, IEventDispatcher, Mediator } from "@robotlegsjs/core";
-import { UserProfileView } from "./UserProfileView";
-
-public class UserProfileMediator extends Mediator<UserProfileView>
-{
-    public function initialize():void
-    {
-        // Redispatch an event from the view to the framework
-        this.addViewListener(UserEvent.SIGN_IN, dispatch);
-    }
-}
-```
-
-The view that caused this mediator to be created is available for Injection.
-
-[MediatorMap](https://github.com/robotlegs/robotlegs-framework/tree/master/src/robotlegs/bender/extensions/mediatorMap)
-
-#### An Example Command
-
-The command we mapped above might look like this:
-
-```ts
-import { Command, inject } from "@robotlegsjs/core";
-
-public class UserSignInCommand extends Command
-{
-    @inject(UserEvent)
-    event: UserEvent;
-
-    @inject(UserModel)
-    model: UserModel;
-
-    public function execute(): void
-    {
-        if (event.username == "bob")
-            model.signedIn = true;
-    }
-}
-```
-
-The event that triggered this command is available for Injection.
-
-[See EventCommandMap docs.](docs/robotlegs/extensions/eventCommandMap)
 
 ## Motivation
 
